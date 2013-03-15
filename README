@@ -1,1 +1,6 @@
-This file was created by JetBrains PhpStorm 6.0 for binding GitHub repository
+Titta på example.php
+
+En stark rekomendation är att generera ett fast auth-nyckel.
+Gnerera nyckel med getAuthorizationKey() och lägg in nycklen när klassen instansieras lik koden nedan:
+
+new SwedbankJson($username, $password, 'Min-fasta-auth-nyckel');
