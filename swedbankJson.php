@@ -21,7 +21,7 @@ class SwedbankJson
     /**
      * EnhetsID som skapas av Swedbank
      */
-    const unitID = 'tDAjCp8znppTPfkz';
+    const unitID = '8Qg7Jd03WGLaDTZj';
 
     /**
      * Bas-url för API-anrop
@@ -29,14 +29,9 @@ class SwedbankJson
     const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v1/';
 
     /**
-     * Bas-url för utlogging-Anrop
-     */
-    const baseUriUn = 'https://unauth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v1/';
-
-    /**
      * Useragent som
      */
-    const useragent = 'SwedbankMOBPrivateIOS/3.1.2 (iOS; 6.1) Apple/iPhone';
+    const useragent = 'SwedbankMOBPrivateIOS/3.2.0_(iOS;_6.1.3)_Apple/iPhone5,2';
 
     /**
      * @var resource CURL-resurs
@@ -148,34 +143,7 @@ class SwedbankJson
      */
     private function swedbankInit()
     {
-        $this->connect();
         $this->login();
-    }
-
-    /**
-     * Uppkoppling mot Swedbank
-     * Kontrollerar om auth-nyckel och App-version är okej.
-     *
-     * @return bool         True om allt är okej
-     * @throws Exception    Om anropet är fel eller om API:et vill upplysa något för användaren
-     */
-    private function connect()
-    {
-        $output = $this->getRequest('identification/device/', self::baseUriUn);
-
-        if (empty($output->status) OR $output->status != 'OK')
-        {
-            if (empty($output->status))
-                throw new Exception(
-                    'Ett allvarligt problem har uppståt!' . PHP_EOL . PHP_EOL . 'JSON: ' . json_encode($output), 1);
-
-            elseif ($output->status == 'WARNING' AND $output->warnings[0]->type == 'APPVERSION')
-                throw new Exception('OBS! Appversion behöver uppdateras!', 2);
-            else
-                throw new Exception('Kan ej kontakta Swedbanks servrar.', 3);
-        }
-
-        return true;
     }
 
     /**
@@ -208,7 +176,7 @@ class SwedbankJson
      * Visar kontodetaljer och transaktioner för konto
      *
      * @param $accoutID string  Unika och slumpade konto-id från Swedbank API
-     * @param $getAll   bool      True om alla transaktioner ska visas, annars falls
+     * @param $getAll   bool    True om alla transaktioner ska visas, annars falls
      *
      * @return object           Avkodad JSON med kontinformationn
      * @throws Exception        AccoutID inte stämmer
