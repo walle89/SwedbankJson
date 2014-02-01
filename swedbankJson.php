@@ -143,7 +143,6 @@ class SwedbankJson
      * @return object       Lista på alla Investeringssparkonton
      * @throws Exception    Något med API-anropet gör att kontorna inte listas
      */
-
     public function portfolioList()
     {
         if (empty($ch))
@@ -152,7 +151,7 @@ class SwedbankJson
         $output = $this->getRequest('portfolio/holdings');
 
         if (!isset($output->savingsAccounts))
-            throw new Exception('Konton kunde inte listas.', 6);
+            throw new Exception('Investeringssparkonton kunde inte listas.', 8);
 
         return $output;
     }
