@@ -135,6 +135,27 @@ class SwedbankJson
 
         return $output;
     }
+    
+    
+    /**
+     * Listar investeringssparande som finns tillgängliga
+     *
+     * @return object       Lista på alla Investeringssparkonton
+     * @throws Exception    Något med API-anropet gör att kontorna inte listas
+     */
+
+    public function portfolioList()
+    {
+        if (empty($ch))
+            $this->swedbankInit();
+
+        $output = $this->getRequest('portfolio/holdings');
+
+        if (!isset($output->savingsAccounts))
+            throw new Exception('Konton kunde inte listas.', 6);
+
+        return $output;
+    }
 
     /**
      * Lathund för uppoppling
