@@ -131,7 +131,7 @@ class SwedbankJson
         $output = $this->getRequest('engagement/overview');
 
         if (!isset($output->transactionAccounts))
-            throw new Exception('Konton kunde inte listas.', 6);
+            throw new Exception('Bankkonton kunde inte listas.', 6);
 
         return $output;
     }
