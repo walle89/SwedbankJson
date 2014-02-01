@@ -29,7 +29,7 @@ class SwedbankJson
     const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v1/';
 
     /**
-     * Useragent som
+     * Useragent
      */
     const useragent = 'SwedbankMOBPrivateIOS/3.2.0_(iOS;_6.1.3)_Apple/iPhone5,2';
 
@@ -196,7 +196,7 @@ class SwedbankJson
      * Visar kontodetaljer och transaktioner för konto
      *
      * @param $accoutID string  Unika och slumpade konto-id från Swedbank API
-     * @param $getAll   bool    True om alla transaktioner ska visas, annars falls
+     * @param $getAll   bool    True om alla transaktioner ska visas, annars false
      *
      * @return object           Avkodad JSON med kontinformationn
      * @throws Exception        AccoutID inte stämmer
