@@ -12,6 +12,8 @@
 // Används för att genererea auth-nyckel
 require_once 'uuid.php';
 
+class UserException extends Exception{}
+
 /**
  * Class SwedbankJson
 
@@ -131,7 +133,7 @@ class SwedbankJson
         $output = $this->getRequest('engagement/overview');
 
         if (!isset($output->transactionAccounts))
-            throw new Exception('Bankkonton kunde inte listas.', 6);
+            throw new Exception('Bankkonton kunde inte listas.', 30);
 
         return $output;
     }
@@ -151,7 +153,7 @@ class SwedbankJson
         $output = $this->getRequest('portfolio/holdings');
 
         if (!isset($output->savingsAccounts))
-            throw new Exception('Investeringssparkonton kunde inte listas.', 8);
+            throw new Exception('Investeringssparkonton kunde inte listas.', 40);
 
         return $output;
     }
@@ -179,7 +181,7 @@ class SwedbankJson
         $output      = $this->postRequest('identification/personalcode', $data_string);
 
         if (!isset($output->links->next->uri))
-            throw new Exception('Inlogging misslyckades. Kontrollera användarnman, lösenord och authorization-nyckel.', 4);
+            throw new Exception('Inlogging misslyckades. Kontrollera användarnman, lösenord och authorization-nyckel.', 10);
 
         // Hämtar ID-nummer
         $profile = $this->profile();
@@ -210,7 +212,7 @@ class SwedbankJson
         $output = $this->getRequest('engagement/transactions/' . $accoutID, null, $query);
 
         if (!isset($output->transactions))
-            throw new Exception('AccountID stämmer inte', 7);
+            throw new Exception('AccountID stämmer inte', 50);
 
         return $output;
     }
@@ -226,9 +228,20 @@ class SwedbankJson
     {
         $output = $this->getRequest('profile/');
 
-        if (!isset($output->banks[0]->bankId))
-            throw new Exception('Något med fel med profilsidan.', 5);
+        if(!isset($output->hasSwedbankProfile))
+            throw new Exception('Något med fel med profilsidan.', 20);
 
+        if (!isset($output->banks[0]->bankId))
+        {
+            if(!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
+                throw new UserException('Du är inte kund i Swedbank.', 21);
+
+            elseif($output->hasSwedbankProfile AND !$output->hasSavingsbankProfile)
+                throw new UserException('Du är inte kund i Sparbanken.', 22);
+
+            else
+                throw new Exception('Profilsidan innerhåller inga bankkonton.',23);
+        }
         return $output;
     }
 

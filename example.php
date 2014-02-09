@@ -29,11 +29,20 @@ try
     $accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[0]->id); // Hämtar från första kontot, sannolikt lönekontot
     $bankConn->terminate();
 }
+// Fel av användare
+catch (UserException $e)
+{
+    echo $e->getMessage();
+    exit;
+}
+// Systemfel och övriga fel
 catch (Exception $e)
 {
     echo 'Swedbank-fel: ' . $e->getMessage() . ' (Err #' . $e->getCode() . ")\r\n" . $e->getTraceAsString();
     exit;
 }
+
+
 
 ####
 
