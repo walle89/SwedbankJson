@@ -2,12 +2,29 @@
 
 require_once 'swedbankJson.php';
 
-$username = 198903060000;   // Personnummer
-$password = 'fakePW';       // Personlig kod
+// Inställningar
+define('USERNAME', 198903060000);   // Personnummer
+define('PASSWORD', 'fakePW');       // Personlig kod
+
+echo '
+Auth-nyckel:
+';
+try
+{
+    $bankConn = new SwedbankJson(USERNAME, PASSWORD);
+    echo $bankConn->getAuthorizationKey();
+}
+catch (Exception $e)
+{
+    echo 'Swedbank-fel: ' . $e->getMessage() . ' (Err #' . $e->getCode() . ")\r\n" . $e->getTraceAsString();
+    exit;
+}
+
+
 
 try
 {
-    $bankConn    = new SwedbankJson($username, $password);
+    $bankConn    = new SwedbankJson(USERNAME, PASSWORD, AUTH_KEY);
     $accounts    = $bankConn->accountList();
     $accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[0]->id); // Hämtar från första kontot, sannolikt lönekontot
     $bankConn->terminate();
@@ -20,23 +37,14 @@ catch (Exception $e)
 
 ####
 
-echo '<pre>
-Konton
-';
+echo '<strong>Konton<strong><pre>';
 print_r($accounts);
 
 ####
 
 echo '
-Kontoutdrag
+<strong>Kontoutdrag</strong>
 ';
 print_r($accountInfo);
 
 ####
-
-echo '
-Auth-nyckel:
-';
-
-$bankConn = new SwedbankJson($username, $password);
-echo $bankConn->getAuthorizationKey();
