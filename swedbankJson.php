@@ -1,7 +1,6 @@
 <?php
 /**
  * Wraper för Swedbanks stänga mobilapps API
- * Används först och främst till att hämtra transaktioner från ett konto med peronlig kod.
  *
  * @package SwedbankJSON
  * @author  Eric Wallmander
@@ -9,31 +8,18 @@
  *          Time: 21:36
  */
 
-// Används för att genererea auth-nyckel
-require_once 'uuid.php';
-
-class UserException extends Exception{}
+// Beroende av uuid-klassen.
+require_once 'lib/uuid.php';
 
 /**
  * Class SwedbankJson
-
  */
 class SwedbankJson
 {
     /**
-     * EnhetsID som skapas av Swedbank
-     */
-    const unitID = '8Qg7Jd03WGLaDTZj';
-
-    /**
      * Bas-url för API-anrop
      */
     const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v1/';
-
-    /**
-     * Useragent
-     */
-    const useragent = 'SwedbankMOBPrivateIOS/3.2.0_(iOS;_6.1.3)_Apple/iPhone5,2';
 
     /**
      * @var resource CURL-resurs
@@ -45,7 +31,7 @@ class SwedbankJson
      */
     private $_ckfile;
 
-    /**
+    /**‚
      * @var string Auth-nyckel mot Swedbank
      */
     private $_authorization;
@@ -76,19 +62,41 @@ class SwedbankJson
     private $_id;
 
     /**
+     * @var string  AppID som skapas av Swedbank
+     */
+    private $_appID;
+
+    /**
+     * @var string  User-agent för appen
+     */
+    private $_useragent;
+
+    /**
      * Grundläggande upgifter
      *
      * @param int    $username      Personnummer för inlogging till internetbanken
      * @param string $password      Personlig kod för inlogging till internetbanken
-     * @param string $authorization Authteristeringnyckel som genereras av getAuthorizationKey(), om inget anges genreras en nyckel. @see self::getAuthorizationKey();
-     * @param string $ckfile        Sökväg till mapp där cookiejar kan temporärt sparas
+     * @param array  $appdata       En array med nödvändig datar för API:et
+     * @param string $ckfile        Sökväg till mapp där cookiejar kan temporärt spara
+     *
+     * @throws $appdata om argumentet $appdata inte är av typen 'array' eller inte har rätt index och värden
      */
-    public function __construct($username, $password, $authorization = '', $ckfile = './')
+    public function __construct($username, $password, $appdata, $ckfile = './temp/')
     {
         $this->_username      = $username;
         $this->_password      = $password;
-        $this->_authorization = (!empty($authorization)) ? $authorization : $this->getAuthorizationKey();
+        $this->setAppData($appdata);
         $this->_ckfile        = tempnam($ckfile, "CURLCOOKIE");
+        $this->setAuthorizationKey();
+    }
+
+    private function setAppData($appdata)
+    {
+        if(!is_array($appdata) OR empty($appdata['appID']) OR empty($appdata['useragent']))
+            throw new Exception('Fel inmatning av AppData!');
+
+        $this->_appID       = $appdata['appID'];
+        $this->_useragent   = $appdata['useragent'];
     }
 
     /**
@@ -96,9 +104,17 @@ class SwedbankJson
      *
      * @return string en slumpad auth-nyckel
      */
-    public function getAuthorizationKey()
+    public function genAuthorizationKey()
     {
-        return base64_encode($this::unitID . ':' . strtoupper(UUID::v4()));
+        return base64_encode($this->_appID . ':' . strtoupper(UUID::v4()));
+    }
+
+    /**
+     * @param string $key Sätta en egen AuthorizationKey
+     */
+    public function setAuthorizationKey($key='')
+    {
+        $this->_authorization = (empty($key)) ? $this->genAuthorizationKey() : $key;
     }
 
     /**
@@ -255,7 +271,6 @@ class SwedbankJson
         return $this->postRequest('profile/private/' . $this->_bankID);
     }
 
-
     /**
      * Skickar GET-förfrågan
      *
@@ -395,7 +410,7 @@ class SwedbankJson
         $this->_ch = curl_init();
         curl_setopt($this->_ch, CURLOPT_COOKIEJAR, $this->_ckfile);
         curl_setopt($this->_ch, CURLOPT_COOKIEFILE, $this->_ckfile);
-        curl_setopt($this->_ch, CURLOPT_USERAGENT, self::useragent);
+        curl_setopt($this->_ch, CURLOPT_USERAGENT, $this->_useragent);
         curl_setopt($this->_ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->_ch, CURLOPT_AUTOREFERER, true);
         curl_setopt($this->_ch, CURLOPT_FOLLOWLOCATION, true);
@@ -437,3 +452,5 @@ class SwedbankJson
         return $requestHeader;
     }
 }
+
+class UserException extends Exception{}
