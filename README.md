@@ -1,62 +1,54 @@
 # SwedbankJson
 
-Wrapper
+Wrapper för Swedbanks stängda API som används för swedbanks- och sparbakernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller orginisationsnummer och lösenord).
 
-## Project Setup
+Målet för projektet är att låta vem som helst använda wrappen till sina egna projekt så som budget- och ekonomisystem.
 
-_How do I, as a developer, start working on the project?_
+## Systemkrav
 
-1. _What dependencies does it have (where are they expressed) and how do I install them?_
-2. _How can I see the project working before I change anything?_
+* PHP 5.3+
+* Curl
 
-## Testing
+## Installation
 
-_How do I run the project's automated tests?_
+### 1. Kör git clone
 
-### Unit Tests
+```bash
+git clone https://github.com/walle89/SwedbankJson.git
+```
 
-1. `rake spec`
+_Notering:_ Det går självfallet ladda ned som en zip-fil, men det blir enkalre att ladda ned framtida uppdateringar.
 
-### Integration Tests
+### 2. Kopiera example.sample.php till en ny fil och ändra inställningarna
 
-1. _Run other local services / provide credentials for external services._
-2. `rake spec:integration`
+### 3. Ladda upp till en webbserver med PHP
 
-## Deploying
+### 4. Testa genom att gå in på den nyligen skapade filen
 
-### _How to setup the deployment environment_
+## Användning och exempel
 
-- _Required heroku addons, packages, or chef recipes._
-- _Required environment variables or credentials not included in git._
-- _Monitoring services and logging._
+Se [example.sample.php](https://github.com/walle89/SwedbankJson/blob/master/example.sample.php).
 
-### _How to deploy_
+## Dokumentation
 
-## Troubleshooting & Useful Tools
+Finns i form av PHPDoc kommentarer i filerna. Utförligare dokumentation med API-
+anrop finns på todo-listan.
 
-_Examples of common tasks_
+## Uppdateringar
 
-> e.g.
->
-> - How to make curl requests while authenticated via oauth.
-> - How to monitor background jobs.
-> - How to run the app through a proxy.
+```bash
+git pull
+```
 
-## Contributing changes
+Det är främst [appData.php](https://github.com/walle89/SwedbankJson/blob/master/appData.php) som kan komma att ändras i takt med Swedbank uppdaterar sina appar och därmed appid:n och useragents.
 
-- _Internal git workflow_
-- _Pull request guidelines_
-- _Tracker project_
-- _Google group_
-- _irc channel_
-- _"Please open github issues"_
+## Feedback, frågor, buggar, etc.
 
-## License
+Skapa en [Github Issue](https://github.com/walle89/SwedbankJson/issues).
 
-##Användning
-Titta på example.php
+## Licens (MIT)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-En stark rekomendation är att generera en fast auth-nyckel.
-Gnerera nyckel med getAuthorizationKey() och lägg in nycklen när klassen instansieras lik koden nedan:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-new SwedbankJson($username, $password, 'Min-fasta-auth-nyckel');
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
