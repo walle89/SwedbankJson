@@ -276,7 +276,7 @@ class SwedbankJson
      */
     private function menus()
     {
-        return $this->postRequest('profile/private/' . $this->_bankID);
+        return $this->postRequest('profile/' . $this->_id);
     }
 
     /**
