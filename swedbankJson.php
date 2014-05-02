@@ -72,6 +72,11 @@ class SwedbankJson
     private $_useragent;
 
     /**
+     * @var string Profiltyp
+     */
+    private $_profileType;
+
+    /**
      * Grundläggande upgifter
      *
      * @param int    $username      Personnummer för inlogging till internetbanken
@@ -97,6 +102,7 @@ class SwedbankJson
 
         $this->_appID       = $appdata['appID'];
         $this->_useragent   = $appdata['useragent'];
+        $this->_profileType = (strpos($this->_useragent, 'Corporate')) ? 'corporateProfile' : 'privateProfile';
     }
 
     /**
@@ -205,7 +211,7 @@ class SwedbankJson
         $profile = $this->profile();
 
         $this->_bankID = $profile->banks[0]->bankId;
-        $this->_id     = $profile->banks[0]->privateProfile->id;
+        $this->_id     = $profile->banks[0]->{$this->_profileType}->id; // Väljer privat- eller företagskonto beroende på angiven useragent
 
         $this->menus();
 
