@@ -102,7 +102,7 @@ class SwedbankJson
 
         $this->_appID       = $appdata['appID'];
         $this->_useragent   = $appdata['useragent'];
-        $this->_profileType = (strpos($this->_useragent, 'Corporate')) ? 'corporateProfile' : 'privateProfile';
+        $this->_profileType = (strpos($this->_useragent, 'Corporate')) ? 'corporateProfiles' : 'privateProfile';
     }
 
     /**
@@ -210,8 +210,9 @@ class SwedbankJson
         // Hämtar ID-nummer
         $profile = $this->profile();
 
-        $this->_bankID = $profile->banks[0]->bankId;
-        $this->_id     = $profile->banks[0]->{$this->_profileType}->id; // Väljer privat- eller företagskonto beroende på angiven useragent
+        $this->_bankID  = $profile->banks[0]->bankId;
+        $profileData    = $profile->banks[0]->{$this->_profileType}; // Väljer privat- eller företagskonto beroende på angiven useragent
+        $this->_id      = (is_array($profileData)) ? $profileData[0]->id : $profileData->id; // @todo Göra det möjligt att välja profil
 
         $this->menus();
 
