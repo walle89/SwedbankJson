@@ -215,17 +215,18 @@ class SwedbankJson
     /**
      * Visar kontodetaljer och transaktioner för konto
      *
-     * @param $accoutID string  Unika och slumpade konto-id från Swedbank API
-     * @param $getAll   bool    True om alla transaktioner ska visas, annars false
+     * @param $accoutID             string  Unika och slumpade konto-id från Swedbank API
+     * @param $transactionsPerPage  int     Antal transaktioner som listas "per sida". Måste vara ett heltal större eller lika med 1.
+     * @param $page                 int     Aktuell sida. Måste vara ett heltal större eller lika med 1. $transactionsPerPage måste anges.
      *
      * @return object           Avkodad JSON med kontinformationn
      * @throws Exception        AccoutID inte stämmer
      */
-    public function accountDetails($accoutID, $getAll = false)
+    public function accountDetails($accoutID, $transactionsPerPage=0, $page=1)
     {
         $query = array();
-        if ($getAll)
-            $query = array( 'transactionsPerPage' => 10000, 'page' => 1 );
+        if($transactionsPerPage > 0 AND $page >= 1)
+            $query = array( 'transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,);
 
         $output = $this->getRequest('engagement/transactions/' . $accoutID, null, $query);
 
