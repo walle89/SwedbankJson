@@ -6,24 +6,28 @@ Målet för projektet är att låta vem som helst använda wrappen till sina egn
 
 ## Systemkrav
 
-* PHP 5.3+
+* PHP 5.4+
 * Curl
 
-## Installation
+## Installation via Composer
 
-### 1. Kör git clone
+Rekomendationen är att instllera SwedbankJson med
+[Composer](http://getcomposer.org).
 
+Kör följande i ett terminalfönster:
 ```bash
-git clone https://github.com/walle89/SwedbankJson.git
+# Installera Composer
+curl -sS https://getcomposer.org/installer | php
 ```
 
-_Notering:_ Det går självfallet ladda ned som en zip-fil, men det blir enkalre att ladda ned framtida uppdateringar.
+Lägg in SwebankJson i composer.json antingen manuellt eller med följande kommando:
 
-### 2. Kopiera example.sample.php till en ny fil och ändra inställningarna
+```bash
+# Uppdatera eller skapa composer.json samt ladda ned SwedbankJson
+php composer.phar require walle89/swedbank-json dev-master
+```
 
-### 3. Ladda upp till en webbserver med PHP
-
-### 4. Testa genom att gå in på den nyligen skapade filen
+Se exempelkod och dokumentation för implementering
 
 ## Användning och exempel
 

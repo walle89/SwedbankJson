@@ -7,9 +7,10 @@
  *          Date: 2012-01-01
  *          Time: 21:36
  */
+namespace walle89\SwedbankJson;
 
-// Beroende av uuid-klassen.
-require_once 'lib/uuid.php';
+use Exception;
+use Rhumsaa\Uuid\Uuid;
 
 /**
  * Class SwedbankJson
@@ -112,7 +113,7 @@ class SwedbankJson
      */
     public function genAuthorizationKey()
     {
-        return base64_encode($this->_appID . ':' . strtoupper(UUID::v4()));
+        return base64_encode($this->_appID . ':' . strtoupper(Uuid::uuid4()));
     }
 
     /**
@@ -139,7 +140,6 @@ class SwedbankJson
     {
         return $this->putRequest('identification/logout');
     }
-
 
     /**
      * Listar alla bankkonton som finns tillgängliga
@@ -200,9 +200,9 @@ class SwedbankJson
     private function login()
     {
         $data_string = json_encode(array('useEasyLogin' => false, 'password' => $this->_password, 'generateEasyLoginId' => false, 'userId' => $this->_username,  ));
-        $output      = $this->postRequest('identification/personalcode', $data_string);
+        $output      = $this->postRequest('identification/personalcode', $data_string, true);
 
-        if($output->generateEasyLoginId)
+         if($output->generateEasyLoginId)
             throw new Exception('Byte av personlig kod krävs av banken. Var god rätta till detta genom att logga in på internetbanken.', 11);
         elseif (!isset($output->links->next->uri))
             throw new Exception('Inlogging misslyckades. Kontrollera användarnman, lösenord och authorization-nyckel.', 10);
@@ -353,6 +353,7 @@ class SwedbankJson
         {
             curl_setopt($this->_ch, CURLOPT_HEADER, 1);
             curl_setopt($this->_ch, CURLINFO_HEADER_OUT, 1);
+            curl_setopt($this->_ch, CURLOPT_NOPROGRESS, 0);
         }
 
         $data = curl_exec($this->_ch);
@@ -361,7 +362,7 @@ class SwedbankJson
         {
             $headers = curl_getinfo($this->_ch, CURLINFO_HEADER_OUT);
 
-            return array( 'request' => $headers, 'response' => $data );
+            return array( 'request' => $headers.$data_string, 'response' => $data );
         }
         else
             return json_decode($data);
@@ -432,7 +433,7 @@ class SwedbankJson
      *
      * @return string   8 slumpvalda tecken
      */
-    private function dsid()
+    public function dsid()
     {
         $dsid = substr(sha1(mt_rand()), rand(1, 30), 8);
         $dsid = substr($dsid, 0, 4) . strtoupper(substr($dsid, 4, 4));
