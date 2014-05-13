@@ -2,4 +2,5 @@
 .DS_Store 
 tests/
 exmaple.php
-temp/
+composer.phar
+vendor/

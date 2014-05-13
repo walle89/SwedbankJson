@@ -1,6 +1,9 @@
 <?php
-require_once 'swedbankJson.php';
-require_once 'appData.php';
+require_once 'vendor/autoload.php';
+
+use walle89\SwedbankJson\SwedbankJson;
+use walle89\SwedbankJson\UserException;
+use walle89\SwedbankJson\AppData;
 
 // Inställningar
 define('USERNAME',  198903060000);   // Personnummer
@@ -9,7 +12,7 @@ define('BANKID',    'swedbank');     // Byt mot motsvarnde IOS/Android mobil app
 
 try
 {
-    $bankConn    = new SwedbankJson(USERNAME, PASSWORD, $appData[BANKID]);
+    $bankConn    = new SwedbankJson(USERNAME, PASSWORD, AppData::bankAppId(BANKID));
     $accounts    = $bankConn->accountList();
     $accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[0]->id); // Hämtar från första kontot, sannolikt lönekontot
     $bankConn->terminate();

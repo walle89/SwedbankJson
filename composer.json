@@ -1,0 +1,35 @@
+{
+    "name": "walle89/swedbank-json",
+    "description": "Wrapper for Swedbank's closed mobile apps API in Sweden",
+    "type": "library",
+    "keywords": ["swedbank","wrapper","api","json"],
+    "version": "0.2.0",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "homepage": "https://github.com/walle89/SwedbankJson",
+    "authors": [
+        {
+            "name": "Eric Wallmander",
+            "homepage": "http://wallmander.net/"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/walle89/SwedbankJson.git"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/walle89/SwedbankJson/issues",
+        "source": "https://github.com/walle89/SwedbankJson"
+    },
+    "require": {
+        "php": ">=5.4",
+        "ext-curl": "*",
+        "rhumsaa/uuid": "~2.7",
+        "guzzlehttp/guzzle": "4.x"
+    },
+    "autoload": {
+        "psr-4": {"walle89\\SwedbankJson\\":"src/"}
+    }
+}
