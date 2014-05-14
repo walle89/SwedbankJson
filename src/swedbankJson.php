@@ -53,16 +53,6 @@ class SwedbankJson
     private $_password;
 
     /**
-     * @var mixed bankID från API:et som sparas för anrop
-     */
-    private $_bankID;
-
-    /**
-     * @var int ID från API:et som sparas för anrop
-     */
-    private $_id;
-
-    /**
      * @var string  AppID som skapas av Swedbank
      */
     private $_appID;
@@ -92,18 +82,125 @@ class SwedbankJson
         $this->_username      = $username;
         $this->_password      = $password;
         $this->setAppData($appdata);
-        $this->_ckfile        = tempnam($ckfile, "CURLCOOKIE");
+        $this->_ckfile        = tempnam($ckfile, 'CURLCOOKIE');
         $this->setAuthorizationKey();
     }
 
-    private function setAppData($appdata)
+    /**
+     * Utlogging från API:et.
+     * @see self::terminate()
+     */
+    public function __destruct()
     {
-        if(!is_array($appdata) OR empty($appdata['appID']) OR empty($appdata['useragent']))
-            throw new Exception('Fel inmatning av AppData!');
+        $this->terminate();
+    }
 
-        $this->_appID       = $appdata['appID'];
-        $this->_useragent   = $appdata['useragent'];
-        $this->_profileType = (strpos($this->_useragent, 'Corporate')) ? 'corporateProfiles' : 'privateProfile';
+    /**
+     * Profilinfomation
+     * Få tillgång till BankID och ID.
+     *
+     * @return array        JSON-avkodad data om profilen
+     * @throws Exception    Fel med  anrop mot API:et
+     */
+    public function profileList()
+    {
+        if (empty($ch))
+            $this->login();
+
+        $output = $this->getRequest('profile/');
+
+        if (!isset($output->hasSwedbankProfile))
+            throw new Exception('Något med fel med profilsidan.', 20);
+
+        if (!isset($output->banks[0]->bankId)) {
+            if (!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
+                throw new UserException('Du är inte kund i Swedbank.', 21);
+
+            elseif ($output->hasSwedbankProfile AND !$output->hasSavingsbankProfile)
+                throw new UserException('Du är inte kund i Sparbanken.', 22);
+
+            else
+                throw new Exception('Profilsidan innerhåller inga bankkonton.', 23);
+        }
+        return $output->banks;
+    }
+
+    /**
+     * Listar alla bankkonton som finns tillgängliga
+     *
+     * @param string $profileID     ProfilID
+     * @return object               Lista på alla konton
+     * @throws \Exception           Något med API-anropet gör att kontorna inte listas
+     */
+    public function accountList($profileID='')
+    {
+        $this->selectProfile($profileID);
+
+        $output = $this->getRequest('engagement/overview');
+
+        if (!isset($output->transactionAccounts))
+            throw new Exception('Bankkonton kunde inte listas.', 30);
+
+        return $output;
+    }
+
+    /**
+     * Listar investeringssparande som finns tillgängliga
+     *
+     * @param string $profileID ProfilID
+     * @return object           Lista på alla Investeringssparkonton
+     * @throws \Exception       Något med API-anropet gör att kontorna inte listas
+     */
+    public function portfolioList($profileID='')
+    {
+        $this->selectProfile($profileID);
+
+        $output = $this->getRequest('portfolio/holdings');
+
+        if (!isset($output->savingsAccounts))
+            throw new Exception('Investeringssparkonton kunde inte listas.', 40);
+
+        return $output;
+    }
+
+    /**
+     * Visar kontodetaljer och transaktioner för konto
+     *
+     * @param $accoutID             string  Unika och slumpade konto-id från Swedbank API
+     * @param $transactionsPerPage  int     Antal transaktioner som listas "per sida". Måste vara ett heltal större eller lika med 1.
+     * @param $page                 int     Aktuell sida. Måste vara ett heltal större eller lika med 1. $transactionsPerPage måste anges.
+     *
+     * @return object           Avkodad JSON med kontinformationn
+     * @throws Exception        AccoutID inte stämmer
+     */
+    public function accountDetails($accoutID, $transactionsPerPage = 0, $page = 1)
+    {
+        $query = array();
+        if ($transactionsPerPage > 0 AND $page >= 1)
+            $query = array('transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,);
+
+        $output = $this->getRequest('engagement/transactions/' . $accoutID, null, $query);
+
+        if (!isset($output->transactions))
+            throw new Exception('AccountID stämmer inte', 50);
+
+        return $output;
+    }
+
+    /**
+     * Loggar ut från API:et
+     */
+    public function terminate()
+    {
+        return $this->putRequest('identification/logout');
+    }
+
+    /**
+     * @param string $key Sätta en egen AuthorizationKey
+     */
+    public function setAuthorizationKey($key = '')
+    {
+        $this->_authorization = (empty($key)) ? $this->genAuthorizationKey() : $key;
     }
 
     /**
@@ -117,77 +214,17 @@ class SwedbankJson
     }
 
     /**
-     * @param string $key Sätta en egen AuthorizationKey
+     * @param $appdata
+     * @throws \Exception
      */
-    public function setAuthorizationKey($key='')
+    private function setAppData(array $appdata)
     {
-        $this->_authorization = (empty($key)) ? $this->genAuthorizationKey() : $key;
-    }
+        if(!is_array($appdata) OR empty($appdata['appID']) OR empty($appdata['useragent']))
+            throw new Exception('Fel inmatning av AppData!');
 
-    /**
-     * Utlogging från API:et.
-     * @see self::terminate()
-     */
-    public function __destruct()
-    {
-        $this->terminate();
-    }
-
-    /**
-     * Loggar ut från API:et
-     */
-    public function terminate()
-    {
-        return $this->putRequest('identification/logout');
-    }
-
-    /**
-     * Listar alla bankkonton som finns tillgängliga
-     *
-     * @return object       Lista på alla konton
-     * @throws Exception    Något med API-anropet gör att kontorna inte listas
-     */
-    public function accountList()
-    {
-        if (empty($ch))
-            $this->swedbankInit();
-
-        $output = $this->getRequest('engagement/overview');
-
-        if (!isset($output->transactionAccounts))
-            throw new Exception('Bankkonton kunde inte listas.', 30);
-
-        return $output;
-    }
-    
-    
-    /**
-     * Listar investeringssparande som finns tillgängliga
-     *
-     * @return object       Lista på alla Investeringssparkonton
-     * @throws Exception    Något med API-anropet gör att kontorna inte listas
-     */
-    public function portfolioList()
-    {
-        if (empty($ch))
-            $this->swedbankInit();
-
-        $output = $this->getRequest('portfolio/holdings');
-
-        if (!isset($output->savingsAccounts))
-            throw new Exception('Investeringssparkonton kunde inte listas.', 40);
-
-        return $output;
-    }
-
-    /**
-     * Lathund för uppoppling
-     * Gör både uppkopping och inlogging mot Swedbank.
-     * @see self::connect() @see self::login()
-     */
-    private function swedbankInit()
-    {
-        $this->login();
+        $this->_appID       = $appdata['appID'];
+        $this->_useragent   = $appdata['useragent'];
+        $this->_profileType = (strpos($this->_useragent, 'Corporate')) ? 'corporateProfiles' : 'privateProfile';
     }
 
     /**
@@ -202,83 +239,34 @@ class SwedbankJson
         $data_string = json_encode(array('useEasyLogin' => false, 'password' => $this->_password, 'generateEasyLoginId' => false, 'userId' => $this->_username,  ));
         $output      = $this->postRequest('identification/personalcode', $data_string, true);
 
-         if($output->generateEasyLoginId)
+        if($output->generateEasyLoginId)
             throw new Exception('Byte av personlig kod krävs av banken. Var god rätta till detta genom att logga in på internetbanken.', 11);
         elseif (!isset($output->links->next->uri))
             throw new Exception('Inlogging misslyckades. Kontrollera användarnman, lösenord och authorization-nyckel.', 10);
-        
-        // Hämtar ID-nummer
-        $profile = $this->profile();
-
-        $this->_bankID  = $profile->banks[0]->bankId;
-        $profileData    = $profile->banks[0]->{$this->_profileType}; // Väljer privat- eller företagskonto beroende på angiven useragent
-        $this->_id      = (is_array($profileData)) ? $profileData[0]->id : $profileData->id; // @todo Göra det möjligt att välja profil
-
-        $this->menus();
 
         return true;
     }
 
     /**
-     * Visar kontodetaljer och transaktioner för konto
+     * Väjer profil
      *
-     * @param $accoutID             string  Unika och slumpade konto-id från Swedbank API
-     * @param $transactionsPerPage  int     Antal transaktioner som listas "per sida". Måste vara ett heltal större eller lika med 1.
-     * @param $page                 int     Aktuell sida. Måste vara ett heltal större eller lika med 1. $transactionsPerPage måste anges.
-     *
-     * @return object           Avkodad JSON med kontinformationn
-     * @throws Exception        AccoutID inte stämmer
+     * @param $profileID
+     * @throws UserException
+     * @throws \Exception
      */
-    public function accountDetails($accoutID, $transactionsPerPage=0, $page=1)
+    private function selectProfile($profileID)
     {
-        $query = array();
-        if($transactionsPerPage > 0 AND $page >= 1)
-            $query = array( 'transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,);
-
-        $output = $this->getRequest('engagement/transactions/' . $accoutID, null, $query);
-
-        if (!isset($output->transactions))
-            throw new Exception('AccountID stämmer inte', 50);
-
-        return $output;
-    }
-
-    /**
-     * Profilinfomation
-     * Få tillgång till BankID och ID.
-     *
-     * @return array        JSON-avkodad data om profilen
-     * @throws Exception    Fel med  anrop mot API:et
-     */
-    private function profile()
-    {
-        $output = $this->getRequest('profile/');
-
-        if(!isset($output->hasSwedbankProfile))
-            throw new Exception('Något med fel med profilsidan.', 20);
-
-        if (!isset($output->banks[0]->bankId))
+        // Om profil inte är definerad, hämta standardprofil
+        if (empty($profileID))
         {
-            if(!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
-                throw new UserException('Du är inte kund i Swedbank.', 21);
+            $profiles = $this->profileList();
+            $profileData = $profiles->banks[0]->{$this->_profileType}; // Väljer privat- eller företagskonto beroende på angiven useragent
 
-            elseif($output->hasSwedbankProfile AND !$output->hasSavingsbankProfile)
-                throw new UserException('Du är inte kund i Sparbanken.', 22);
-
-            else
-                throw new Exception('Profilsidan innerhåller inga bankkonton.',23);
+            $profileID = (isset($profileData->id)) ? $profileData->id : $profileData[0]->id;
         }
-        return $output;
-    }
 
-    /**
-     * Innehåller information om menyer och annan information för appen
-     *
-     * @return object Avkodad information från JSON om möjlga anrop och menystrutur för app
-     */
-    private function menus()
-    {
-        return $this->postRequest('profile/' . $this->_id);
+        // Väljer profil
+        $this->postRequest('profile/' . $profileID);
     }
 
     /**
@@ -368,7 +356,6 @@ class SwedbankJson
             return json_decode($data);
     }
 
-
     /**
      * Skickar PUT-förfrågan
      *
@@ -428,20 +415,6 @@ class SwedbankJson
     }
 
     /**
-     * Generering av dsid
-     * Slumpar 8 tecken som måste skickas med i varje anrop. Antagligen för att API:et vill förhindra en cache skapas
-     *
-     * @return string   8 slumpvalda tecken
-     */
-    public function dsid()
-    {
-        $dsid = substr(sha1(mt_rand()), rand(1, 30), 8);
-        $dsid = substr($dsid, 0, 4) . strtoupper(substr($dsid, 4, 4));
-
-        return str_shuffle($dsid);
-    }
-
-    /**
      * Gemensama HTTP-headers som anapassas efter typ av anriop
      *
      * @param string $dsid          8 slumpvalda tecken @see self::dsid();
@@ -461,6 +434,20 @@ class SwedbankJson
         }
 
         return $requestHeader;
+    }
+
+    /**
+     * Generering av dsid
+     * Slumpar 8 tecken som måste skickas med i varje anrop. Antagligen för att API:et vill förhindra en cache skapas
+     *
+     * @return string   8 slumpvalda tecken
+     */
+    private function dsid()
+    {
+        $dsid = substr(sha1(mt_rand()), rand(1, 30), 8);
+        $dsid = substr($dsid, 0, 4) . strtoupper(substr($dsid, 4, 4));
+
+        return str_shuffle($dsid);
     }
 }
 
