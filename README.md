@@ -2,7 +2,30 @@
 
 Wrapper för Swedbanks stängda API som används för swedbanks- och sparbakernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller orginisationsnummer och lösenord).
 
-Målet för projektet är att låta vem som helst använda wrappen till sina egna projekt så som budget- och ekonomisystem.
+Exempel för privatperson
+
+```php
+require_once 'vendor/autoload.php';
+
+use walle89\SwedbankJson\SwedbankJson;
+use walle89\SwedbankJson\AppData;
+
+// Inställningar
+define('USERNAME',  198903060000);   // Personnummer
+define('PASSWORD',  'fakePW');       // Personlig kod
+define('BANKID',    'swedbank');     // Byt mot motsvarnde IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_ung, sparbanken_ung, swedbank_företag
+
+$bankConn    = new SwedbankJson(USERNAME, PASSWORD, AppData::bankAppId(BANKID));
+$accounts    = $bankConn->accountList();
+$accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[0]->id); // Hämtar från första kontot, sannolikt lönekontot
+$bankConn->terminate();
+
+echo '<strong>Konton<strong><pre>';
+print_r($accounts);
+
+echo '<strong>Kontoutdrag</strong>';
+print_r($accountInfo);
+```
 
 ## Systemkrav
 
@@ -11,8 +34,7 @@ Målet för projektet är att låta vem som helst använda wrappen till sina egn
 
 ## Installation via Composer
 
-Rekomendationen är att instllera SwedbankJson med
-[Composer](http://getcomposer.org).
+Rekomendationen är att instllera SwedbankJson med [Composer](http://getcomposer.org).
 
 Kör följande i ett terminalfönster:
 ```bash
@@ -20,23 +42,30 @@ Kör följande i ett terminalfönster:
 curl -sS https://getcomposer.org/installer | php
 ```
 
-Lägg in SwebankJson i composer.json antingen manuellt eller med följande kommando:
-
+Lägg in SwebankJson i composer.json antingen med följande kommando:
 ```bash
 # Uppdatera eller skapa composer.json samt ladda ned SwedbankJson
 php composer.phar require walle89/swedbank-json dev-master
 ```
 
-Se exempelkod och dokumentation för implementering
+***Eller*** manuellt med:
+```javascript
+{
+    "require": {
+        "walle89/swedbank-json": "dev-master"
+    }
+}
+```
 
-## Användning och exempel
+Efter lyckade installation ladda in autoload.php i vendor mappen.
 
-Se [example.sample.php](https://github.com/walle89/SwedbankJson/blob/master/example.sample.php).
+```php
+require 'vendor/autoload.php';
+```
 
 ## Dokumentation
 
-Finns i form av PHPDoc kommentarer i filerna. Utförligare dokumentation med API-
-anrop finns på todo-listan.
+Finns i form av PHPDoc kommentarer i filerna. Utförligare dokumentation med API-anrop finns på todo-listan.
 
 ## Uppdateringar
 
@@ -44,7 +73,7 @@ anrop finns på todo-listan.
 php composer.phar update
 ```
 
-Det är främst [appdata.php](https://github.com/walle89/SwedbankJson/blob/master/src/appdata.php) som kan komma att ändras i takt med Swedbank uppdaterar sina appar och därmed appid:n och useragents.
+Det är främst [appdata.php](https://github.com/walle89/SwedbankJson/blob/master/src/appdata.php) som kan komma att ändras i takt med Swedbank uppdaterar sina appar och därmed appID:n och User Agents.
 
 ## Feedback, frågor, buggar, etc.
 
