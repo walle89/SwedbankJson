@@ -41,10 +41,10 @@ anrop finns på todo-listan.
 ## Uppdateringar
 
 ```bash
-git pull
+php composer.phar update
 ```
 
-Det är främst [appData.php](https://github.com/walle89/SwedbankJson/blob/master/appData.php) som kan komma att ändras i takt med Swedbank uppdaterar sina appar och därmed appid:n och useragents.
+Det är främst [appdata.php](https://github.com/walle89/SwedbankJson/blob/master/src/appdata.php) som kan komma att ändras i takt med Swedbank uppdaterar sina appar och därmed appid:n och useragents.
 
 ## Feedback, frågor, buggar, etc.
 
