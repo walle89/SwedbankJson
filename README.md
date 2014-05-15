@@ -7,8 +7,8 @@ Exempel för privatperson
 ```php
 require_once 'vendor/autoload.php';
 
-use walle89\SwedbankJson\SwedbankJson;
-use walle89\SwedbankJson\AppData;
+use SwedbankJson\SwedbankJson;
+use SwedbankJson\AppData;
 
 // Inställningar
 define('USERNAME',  198903060000);   // Personnummer
@@ -44,20 +44,20 @@ curl -sS https://getcomposer.org/installer | php
 
 Lägg in SwebankJson i composer.json antingen med följande kommando:
 ```bash
-# Uppdatera eller skapa composer.json samt ladda ned SwedbankJson
-php composer.phar require walle89/swedbank-json dev-master
+# Uppdatera eller skapa composer.json samt kör installation
+php composer.phar require walle89/swedbank-json ~0.3
 ```
 
 ***Eller*** manuellt med:
 ```javascript
 {
     "require": {
-        "walle89/swedbank-json": "dev-master"
+        "walle89/swedbank-json": "~0.3"
     }
 }
 ```
 
-Efter lyckade installation ladda in autoload.php i vendor mappen.
+Efter lyckad installation, ladda in autoload.php i vendor mappen.
 
 ```php
 require 'vendor/autoload.php';
@@ -69,11 +69,12 @@ Finns i form av PHPDoc kommentarer i filerna. Utförligare dokumentation med API
 
 ## Uppdateringar
 
+Kör följande kommando:
 ```bash
 php composer.phar update
 ```
 
-Det är främst [appdata.php](https://github.com/walle89/SwedbankJson/blob/master/src/appdata.php) som kan komma att ändras i takt med Swedbank uppdaterar sina appar och därmed appID:n och User Agents.
+Det är främst [appdata.php](https://github.com/walle89/SwedbankJson/blob/master/src/appdata.php) som kan komma att ändras i samband med Swedbank uppdaterar sina appar och därmed appID:n och User Agents.
 
 ## Feedback, frågor, buggar, etc.
 

@@ -7,7 +7,7 @@
  *          Date: 2012-01-01
  *          Time: 21:36
  */
-namespace walle89\SwedbankJson;
+namespace SwedbankJson;
 
 use Exception;
 use Rhumsaa\Uuid\Uuid;

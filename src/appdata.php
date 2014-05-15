@@ -1,13 +1,13 @@
 <?php
 /**
- * Inställningar öfr
+ * Inställningar för
  *
  * @package Projectnamn
  * @author walle
  * Date: 2014-05-13
  * Time: 21:40
  */
-namespace walle89\SwedbankJson;
+namespace SwedbankJson;
 
 /**
  * Class appdata
