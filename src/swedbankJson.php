@@ -126,7 +126,7 @@ class SwedbankJson
         $data_string = json_encode(array('useEasyLogin' => false, 'password' => $this->_password, 'generateEasyLoginId' => false, 'userId' => $this->_username,));
         $output = $this->postRequest('identification/personalcode', $data_string, true);
 
-        if ($output->generateEasyLoginId)
+        if (!empty($output->personalCodeChangeRequired))
             throw new Exception('Byte av personlig kod krävs av banken. Var god rätta till detta genom att logga in på internetbanken.', 11);
         elseif (!isset($output->links->next->uri))
             throw new Exception('Inlogging misslyckades. Kontrollera användarnman, lösenord och authorization-nyckel.', 10);
