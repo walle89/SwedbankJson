@@ -94,6 +94,7 @@ class SwedbankJson
     public function __destruct()
     {
         $this->terminate();
+        unlink($this->_ckfile);
     }
 
     /**
