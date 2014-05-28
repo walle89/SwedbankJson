@@ -1,6 +1,6 @@
 <?php
 /**
- * Inställningar för
+ * Inställningar för olika app-varianter från Swedbank.
  *
  * @package Projectnamn
  * @author walle
