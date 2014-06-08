@@ -1,6 +1,6 @@
 <?php
 /**
- * Wraper för Swedbanks stänga mobilapps API
+ * Wrapper för Swedbanks stänga API för mobilappar
  *
  * @package SwedbankJSON
  * @author  Eric Wallmander
@@ -36,14 +36,14 @@ class SwedbankJson
     private $_password;
 
     /**
-     * @var string  AppID som skapas av Swedbank
+     * @var string AppID. Ett ID som finns i Swedbanks appar.
      */
     private $_appID;
 
     /**
-     * @var string  User-agent för appen
+     * @var string  User agent för appen
      */
-    private $_useragent;
+    private $_userAgent;
 
     /**
      * @var string Auth-nyckel mot Swedbank
@@ -61,7 +61,7 @@ class SwedbankJson
     private $_ckfile;
 
     /**
-     * @var string Profiltyp
+     * @var string Profiltyp (företag eller privatperson)
      */
     private $_profileType;
 
@@ -70,9 +70,9 @@ class SwedbankJson
      *
      * @param int    $username      Personnummer för inlogging till internetbanken
      * @param string $password      Personlig kod för inlogging till internetbanken
-     * @param array  $appdata       En array med nödvändig datar för API:et
-     * @param bool   $debug         En array med nödvändig datar för API:et
-     * @param string $ckfile        Sökväg till mapp där cookiejar kan temporärt spara
+     * @param array  $appdata       En array med nödvändig data för API:et
+     * @param bool   $debug         Sätt true för att göra felsökning, annars false eller null
+     * @param string $ckfile        Sökväg till mapp där cookiejar kan sparas temporärt
      *
      * @throws $appdata om argumentet $appdata inte är av typen 'array' eller inte har rätt index och värden
      */
@@ -106,7 +106,7 @@ class SwedbankJson
     }
 
     /**
-     * Generera auth-nyckel för att kunna komunicera med Swedbanks servrar
+     * Generera auth-nyckel för att kunna kommunicera med Swedbanks servrar
      *
      * @return string en slumpad auth-nyckel
      */
@@ -137,10 +137,11 @@ class SwedbankJson
 
     /**
      * Profilinfomation
-     * Få tillgång till BankID och ID.
+     *
+     * Få tillgång till lista av profiler och respektive tillfälliga ID-nummer. Varje privatperson och företag har egna profiler.
      *
      * @return array        JSON-avkodad data om profilen
-     * @throws Exception    Fel med  anrop mot API:et
+     * @throws Exception    Fel med anrop mot Swedbank API:et
      */
     public function profileList()
     {
@@ -150,14 +151,14 @@ class SwedbankJson
         $output = $this->getRequest('profile/');
 
         if (!isset($output->hasSwedbankProfile))
-            throw new Exception('Något med fel med profilsidan.', 20);
+            throw new Exception('Något med profilsidan är fel.', 20);
 
         if (!isset($output->banks[0]->bankId)) {
             if (!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
-                throw new UserException('Du är inte kund i Swedbank.', 21);
+                throw new UserException('Kontot är inte kopplad till Swedbank. Välj ett annat BankID', 21);
 
             elseif ($output->hasSwedbankProfile AND !$output->hasSavingsbankProfile)
-                throw new UserException('Du är inte kund i Sparbanken.', 22);
+                throw new UserException('Kontot är inte kund i Sparbanken. Välj ett annat BankID', 22);
 
             else
                 throw new Exception('Profilsidan innerhåller inga bankkonton.', 23);
@@ -166,7 +167,29 @@ class SwedbankJson
     }
 
     /**
-     * Listar alla bankkonton som finns tillgängliga
+     * Väljer profil
+     *
+     * @param $profileID
+     * @throws UserException
+     * @throws \Exception
+     */
+    private function selectProfile($profileID)
+    {
+        // Om profil inte är definerad, hämta standardprofil
+        if (empty($profileID))
+        {
+            $profiles = $this->profileList();
+            $profileData = $profiles->{$this->_profileType}; // Väljer privat- eller företagskonto beroende på angiven appdata user-agent
+
+            $profileID = (isset($profileData->id)) ? $profileData->id : $profileData[0]->id;
+        }
+
+        // Väljer profil
+        $this->postRequest('profile/' . $profileID);
+    }
+
+    /**
+     * Listar alla bankkonton som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.
      *
      * @param string $profileID     ProfilID
      * @return object               Lista på alla konton
@@ -185,7 +208,7 @@ class SwedbankJson
     }
 
     /**
-     * Listar investeringssparande som finns tillgängliga
+     * Listar investeringssparande som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.
      *
      * @param string $profileID ProfilID
      * @return object           Lista på alla Investeringssparkonton
@@ -201,27 +224,6 @@ class SwedbankJson
             throw new Exception('Investeringssparkonton kunde inte listas.', 40);
 
         return $output;
-    }
-
-    /**
-     * Väjer profil
-     *
-     * @param $profileID
-     * @throws UserException
-     * @throws \Exception
-     */
-    private function selectProfile($profileID)
-    {
-        // Om profil inte är definerad, hämta standardprofil
-        if (empty($profileID)) {
-            $profiles = $this->profileList();
-            $profileData = $profiles->{$this->_profileType}; // Väljer privat- eller företagskonto beroende på angiven useragent
-
-            $profileID = (isset($profileData->id)) ? $profileData->id : $profileData[0]->id;
-        }
-
-        // Väljer profil
-        $this->postRequest('profile/' . $profileID);
     }
 
     /**
@@ -257,8 +259,10 @@ class SwedbankJson
     }
 
     /**
-     * @param $appdata
-     * @throws \Exception
+     * Lägger nödvändig appdata för att kommunicera med API:et. Bland annat appID för att generera nycklar.
+     *
+     * @param array $appdata
+     * @throws \Exception       Om rätt fält inte existerar eller är tomma
      */
     private function setAppData(array $appdata)
     {
@@ -266,8 +270,8 @@ class SwedbankJson
             throw new Exception('Fel inmatning av AppData!');
 
         $this->_appID       = $appdata['appID'];
-        $this->_useragent   = $appdata['useragent'];
-        $this->_profileType = (strpos($this->_useragent, 'Corporate')) ? 'corporateProfiles' : 'privateProfile'; // För standardprofil
+        $this->_userAgent   = $appdata['useragent'];
+        $this->_profileType = (strpos($this->_userAgent, 'Corporate')) ? 'corporateProfiles' : 'privateProfile'; // För standardprofil
     }
 
     /**
@@ -326,7 +330,7 @@ class SwedbankJson
     /**
      * Gemensam hantering av HTTP requests
      *
-     * @param string    $method
+     * @param string    $method     Typ av HTTP förfrågan (ex. GET, POST)
      * @param string    $apiRequest Requesttyp till API
      * @param array     $query      Ev. query till URL
      * @return mixed    @see \GuzzleHttp\Client\createRequest
@@ -345,7 +349,7 @@ class SwedbankJson
                         'Accept-Encoding' => 'gzip, deflate',
                         'Connection' => 'keep-alive',
                         'Proxy-Connection' => 'keep-alive',
-                        'User-Agent' => $this->_useragent,
+                        'User-Agent' => $this->_userAgent,
                     ],
                     'allow_redirects' => ['max' => 10, 'referer' => true],
                     'config' => [
