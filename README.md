@@ -13,7 +13,7 @@ use SwedbankJson\AppData;
 // Inställningar
 define('USERNAME',  198903060000);   // Personnummer
 define('PASSWORD',  'fakePW');       // Personlig kod
-define('BANKID',    'swedbank');     // Byt mot motsvarnde IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_ung, sparbanken_ung, swedbank_företag
+define('BANKID',    'swedbank');     // Byt mot motsvarnde IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_ung, sparbanken_ung, swedbank_foretag, sparbanken_foretag
 
 $bankConn    = new SwedbankJson(USERNAME, PASSWORD, AppData::bankAppId(BANKID));
 $accounts    = $bankConn->accountList();
