@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
-            "version": "4.1.0",
+            "version": "4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "85a0ba7de064493c928a8bcdc5eef01e0bde9953"
+                "reference": "577a69ff7d0a24e9576a2885c3a7afbaadd51ec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/85a0ba7de064493c928a8bcdc5eef01e0bde9953",
-                "reference": "85a0ba7de064493c928a8bcdc5eef01e0bde9953",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/577a69ff7d0a24e9576a2885c3a7afbaadd51ec1",
+                "reference": "577a69ff7d0a24e9576a2885c3a7afbaadd51ec1",
                 "shasum": ""
             },
             "require": {
@@ -36,7 +36,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0.x-dev"
+                    "dev-master": "4.1.x-dev"
                 }
             },
             "autoload": {
@@ -69,7 +69,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-05-28 05:13:19"
+            "time": "2014-06-08 20:00:20"
         },
         {
             "name": "guzzlehttp/streams",
