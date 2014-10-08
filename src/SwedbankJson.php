@@ -76,7 +76,7 @@ class SwedbankJson
      *
      * @throws $appdata om argumentet $appdata inte är av typen 'array' eller inte har rätt index och värden
      */
-    public function __construct($username, $password, $appdata, $debug=false, $ckfile = './temp/')
+    public function __construct($username, $password, $appdata, $debug = false, $ckfile = './temp/')
     {
         $this->_username      = $username;
         $this->_password      = $password;
@@ -124,7 +124,7 @@ class SwedbankJson
      */
     private function login()
     {
-        $data_string = json_encode(array('useEasyLogin' => false, 'password' => $this->_password, 'generateEasyLoginId' => false, 'userId' => $this->_username,));
+        $data_string = json_encode(['useEasyLogin' => false, 'password' => $this->_password, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
         $output = $this->postRequest('identification/personalcode', $data_string, true);
 
         if (!empty($output->personalCodeChangeRequired))
@@ -195,7 +195,7 @@ class SwedbankJson
      * @return object               Lista på alla konton
      * @throws \Exception           Något med API-anropet gör att kontorna inte listas
      */
-    public function accountList($profileID='')
+    public function accountList($profileID = '')
     {
         $this->selectProfile($profileID);
 
@@ -214,7 +214,7 @@ class SwedbankJson
      * @return object           Lista på alla Investeringssparkonton
      * @throws \Exception       Något med API-anropet gör att kontorna inte listas
      */
-    public function portfolioList($profileID='')
+    public function portfolioList($profileID = '')
     {
         $this->selectProfile($profileID);
 
@@ -236,11 +236,14 @@ class SwedbankJson
      * @return object           Avkodad JSON med kontinformationn
      * @throws Exception        AccoutID inte stämmer
      */
-    public function accountDetails($accoutID, $transactionsPerPage = 0, $page = 1)
+    public function accountDetails($accoutID = '', $transactionsPerPage = 0, $page = 1)
     {
-        $query = array();
+        if(empty($accoutID))
+            $accoutID = $this->accountList()->transactionAccounts[0]->id;
+
+        $query = [];
         if ($transactionsPerPage > 0 AND $page >= 1)
-            $query = array('transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,);
+            $query = ['transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,];
 
         $output = $this->getRequest('engagement/transactions/' . $accoutID, $query);
 
@@ -282,7 +285,7 @@ class SwedbankJson
      *
      * @return object    JSON-avkodad information från API:et
      */
-    private function getRequest($apiRequest, $query = array())
+    private function getRequest($apiRequest, $query = [])
     {
         $request = $this->createRequest('get', $apiRequest, $query);
         $response = $this->_client->send($request);
@@ -335,7 +338,7 @@ class SwedbankJson
      * @param array     $query      Ev. query till URL
      * @return mixed    @see \GuzzleHttp\Client\createRequest
      */
-    private function createRequest($method, $apiRequest, array $query=[])
+    private function createRequest($method, $apiRequest, array $query = [])
     {
         if (empty($this->_client))
         {
