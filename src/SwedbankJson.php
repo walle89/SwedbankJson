@@ -66,6 +66,11 @@ class SwedbankJson
     private $_profileType;
 
     /**
+     * @var bool Håller koll på om profil är satt
+     */
+    private $_selectedProfileID;
+
+    /**
      * Grundläggande upgifter
      *
      * @param int    $username      Personnummer för inlogging till internetbanken
@@ -129,6 +134,7 @@ class SwedbankJson
 
         if (!empty($output->personalCodeChangeRequired))
             throw new Exception('Byte av personlig kod krävs av banken. Var god rätta till detta genom att logga in på internetbanken.', 11);
+
         elseif (!isset($output->links->next->uri))
             throw new Exception('Inlogging misslyckades. Kontrollera användarnman, lösenord och authorization-nyckel.', 10);
 
@@ -169,15 +175,19 @@ class SwedbankJson
     /**
      * Väljer profil
      *
-     * @param $profileID
+     * @param string $profileID
+     * @throws Exception
      * @throws UserException
-     * @throws \Exception
      */
-    private function selectProfile($profileID)
+    private function selectProfile($profileID = '')
     {
         // Om profil inte är definerad, hämta standardprofil
         if (empty($profileID))
         {
+            // Är profileID satt? Hoppa över selectProfile
+            if($this->_selectedProfileID)
+                return null;
+
             $profiles = $this->profileList();
             $profileData = $profiles->{$this->_profileType}; // Väljer privat- eller företagskonto beroende på angiven appdata user-agent
 
@@ -186,6 +196,34 @@ class SwedbankJson
 
         // Väljer profil
         $this->postRequest('profile/' . $profileID);
+
+        $this->_selectedProfileID = $profileID;
+    }
+
+    /**
+     * Antal avvisade betalningar, osignerade betalningar, osignerade överförningar och inkommna e-fakturor
+     *
+     * @return object       Lista med antal
+     * @throws Exception
+     */
+    public function reminders()
+    {
+        $this->selectProfile();
+
+        return $this->getRequest('message/reminders');
+    }
+
+    /**
+     * Lista på konton grupperade på typ
+     *
+     * @return object
+     * @throws Exception
+     */
+    public function baseInfo()
+    {
+        $this->selectProfile();
+
+        return $this->getRequest('transfer/baseinfo');
     }
 
     /**
