@@ -1,6 +1,6 @@
 # SwedbankJson
 
-Inofficiell wrapper för det API som används för Swedbanks- och Sparbankernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller organisationsnummer och lösenord).
+Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller organisationsnummer och lösenord).
 
 **Detta kan wrappen än så länge göra**
 
@@ -126,8 +126,8 @@ Det är främst [appdata.php](https://github.com/walle89/SwedbankJson/blob/maste
 Skapa en [Github Issue](https://github.com/walle89/SwedbankJson/issues).
 
 ## Andra projekt med Swedbanks API
-* [SwedbankSharp](https://github.com/DarkTwisterr/SwedbankSharp) av [DarkTwisterr](https://github.com/DarkTwisterr) - C# med .NET implementation av Swedbank API:et.
-* [Swedbank-Cli](https://github.com/spaam/swedbank-cli) av [Spaam](https://github.com/spaam/) - Gör dina bankärenden via terminalen. Skriven i Python.
+* [SwedbankSharp](https://github.com/DarkTwisterr/SwedbankSharp) av [DarkTwisterr](https://github.com/DarkTwisterr) - C# med .NET implementation.
+* [Swedbank-Cli](https://github.com/spaam/swedbank-cli) av [Spaam](https://github.com/spaam/) - Swedbank i terminalen. Skriven i Python.
 
 ## Licens (MIT)
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
