@@ -127,7 +127,7 @@ Skapa en [Github Issue](https://github.com/walle89/SwedbankJson/issues).
 
 ## Andra projekt med Swedbanks API
 * [SwedbankSharp](https://github.com/DarkTwisterr/SwedbankSharp) av [DarkTwisterr](https://github.com/DarkTwisterr) - C# med .NET implementation av Swedbank API:et.
-* [Swedbank-Cli](https://github.com/spaam/swedbank-cli) av [Spaam](https://github.com/spaam/) - Gör dina bankrädnden via terminalen. Skriven i Python.
+* [Swedbank-Cli](https://github.com/spaam/swedbank-cli) av [Spaam](https://github.com/spaam/) - Gör dina bankärenden via terminalen. Skriven i Python.
 
 ## Licens (MIT)
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
