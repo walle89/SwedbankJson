@@ -176,6 +176,7 @@ class SwedbankJson
      * Väljer profil
      *
      * @param string $profileID
+     * @return null Då när profil är redan är vald
      * @throws Exception
      * @throws UserException
      */
