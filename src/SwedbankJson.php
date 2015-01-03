@@ -369,6 +369,21 @@ class SwedbankJson
     }
 
     /**
+     * Skickar DELETE-förfrågan
+     *
+     * @param string $apiRequest Typ av anrop mot API:et
+     *
+     * @return object    Avkodad JSON-data från API:et
+     */
+    private function deleteRequest($apiRequest)
+    {
+        $request = $this->createRequest('delete', $apiRequest);
+        $response = $this->_client->send($request);
+
+        return $response->json(['object' => true]);
+    }
+
+    /**
      * Gemensam hantering av HTTP requests
      *
      * @param string    $method     Typ av HTTP förfrågan (ex. GET, POST)
