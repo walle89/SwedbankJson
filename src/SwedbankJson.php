@@ -291,6 +291,84 @@ class SwedbankJson
         return $output;
     }
 
+
+    /**
+     * Lista möjliga snabbsaldo konton
+     *
+     * @param string $profileID
+     * @return object
+     * @throws Exception
+     */
+    public function quickBalanceAccounts($profileID = '')
+    {
+        $this->selectProfile($profileID);
+
+        $output = $this->getRequest('quickbalance/accounts');
+
+        if (!isset($output->accounts))
+            throw new Exception('Snabbsaldokonton kan inte listas.', 60);
+
+        return $output;
+    }
+
+    /**
+     * Aktiverar och kopplar snabbsaldo till konto
+     *
+     * För att kunna visa (@see quickBalance()) och avaktivera (@see quickBalanceUnsubscription()) snabbsaldo måste man
+     * ange "subscriptionId" som finns med i resultatet. Man bör spara undan subscriptionId i en databas eller
+     * motsvarande.
+     *
+     * @param $accountQuickBalanceSubID
+     * @return object
+     * @throws Exception
+     */
+    public function quickBalanceSubscription($accountQuickBalanceSubID)
+    {
+        $output = $this->postRequest('quickbalance/subscription/'. $accountQuickBalanceSubID);
+
+        if (!isset($output->subscriptionId))
+            throw new Exception('Kan ej sätta prenumeration, förmodligen fel ID av "quickbalanceSubscription"', 61);
+
+        return $output;
+    }
+
+    /**
+     * Hämta snabbsaldo
+     *
+     * @param $quickBalanceSubscriptionId
+     * @return object
+     * @throws Exception
+     */
+    public function quickBalance($quickBalanceSubscriptionId)
+    {
+        $output = $this->getRequest('quickbalance/'. $quickBalanceSubscriptionId);
+
+        if (!isset($output->balance))
+            throw new Exception('Kan ej hämta snabbsaldo. Kontrollera ID', 62);
+
+        return $output;
+    }
+
+    /**
+     * Avaktiverar snabbsaldo för konto
+     *
+     * @param $quickBalanceSubscriptionId
+     * @param string $profileID
+     * @return object
+     * @throws Exception
+     */
+    public function quickBalanceUnsubscription($quickBalanceSubscriptionId, $profileID = '')
+    {
+        $this->selectProfile($profileID);
+
+        $output = $this->deleteRequest('quickbalance/subscription/' . $quickBalanceSubscriptionId);
+
+        if (!isset($output->subscriptionId))
+            throw new Exception('Kan ej sätta prenumeration, förmodligen fel ID av "quickbalanceSubscription"', 63);
+
+        return $output;
+    }
+
     /**
      * Loggar ut från API:et
      */
