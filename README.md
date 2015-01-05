@@ -2,11 +2,12 @@
 
 Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller organisationsnummer och lösenord).
 
-**Detta kan wrappen än så länge göra**
+**Detta kan wrappen göra**
 
 * Översikt av tillgängliga konton så som lönekonto, sparkonton investeringsbesparningar, lån, bankkort och kreditkort.
 * Lista ett kontos samtliga transaktioner med historik så långt bak i tiden som finns tillgängligt i internetbanken.
 * Företagsinloggingar kan välja att lista konton utifrån en vald profil.
+* Aktivera, avaktivera och visa snabbsaldo.
 * Kommunicerar med Swedbanks servrar över SSL utan mellanhänder. Ingenting sparas eller loggas.
 * Autentiseringsnyckel som krävs för inlogging genereras automatiskt per session (standard) eller manuellt sätta en statisk nykel.
 
