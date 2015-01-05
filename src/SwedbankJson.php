@@ -394,7 +394,7 @@ class SwedbankJson
                         'User-Agent' => $this->_userAgent,
                     ],
                     'allow_redirects' => ['max' => 10, 'referer' => true],
-                    'verify' => false,
+                    'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
                     'config' => [
                         'curl' => [
                             CURLOPT_COOKIEJAR => $this->_ckfile,
