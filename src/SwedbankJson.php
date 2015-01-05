@@ -79,7 +79,7 @@ class SwedbankJson
      * @param bool   $debug         Sätt true för att göra felsökning, annars false eller null
      * @param string $ckfile        Sökväg till mapp där cookiejar kan sparas temporärt
      *
-     * @throws $appdata om argumentet $appdata inte är av typen 'array' eller inte har rätt index och värden
+     * @throws $appdata Om argumentet $appdata inte är av typen 'array' eller inte har rätt index och värden
      */
     public function __construct($username, $password, $appdata, $debug = false, $ckfile = './temp/')
     {
@@ -217,7 +217,7 @@ class SwedbankJson
     /**
      * Lista på konton grupperade på typ
      *
-     * @return object
+     * @return object       Lista med grundläggande information om konton
      * @throws Exception
      */
     public function baseInfo()
@@ -296,8 +296,8 @@ class SwedbankJson
     /**
      * Lista möjliga snabbsaldo konton
      *
-     * @param string $profileID
-     * @return object
+     * @param string $profileID ProfilID
+     * @return object           Lista på snabbsaldokonton med respektive quickbalanceSubscription ID
      * @throws Exception
      */
     public function quickBalanceAccounts($profileID = '')
@@ -319,8 +319,8 @@ class SwedbankJson
      * ange "subscriptionId" som finns med i resultatet. Man bör spara undan subscriptionId i en databas eller
      * motsvarande.
      *
-     * @param $accountQuickBalanceSubID
-     * @return object
+     * @param string $accountQuickBalanceSubID  ID hämtad från @see quickBalanceAccounts(). Leta efter ID under quickbalanceSubscription
+     * @return object                           Bekräfltese med innehållande subscriptionId
      * @throws Exception
      */
     public function quickBalanceSubscription($accountQuickBalanceSubID)
@@ -336,8 +336,8 @@ class SwedbankJson
     /**
      * Hämta snabbsaldo
      *
-     * @param $quickBalanceSubscriptionId
-     * @return object
+     * @param string $quickBalanceSubscriptionId   SubscriptionId
+     * @return object                       Saldoinformation
      * @throws Exception
      */
     public function quickBalance($quickBalanceSubscriptionId)
@@ -353,8 +353,8 @@ class SwedbankJson
     /**
      * Avaktiverar snabbsaldo för konto
      *
-     * @param $quickBalanceSubscriptionId
-     * @param string $profileID
+     * @param string $quickBalanceSubscriptionId SubscriptionId
+     * @param string $profileID ProfileID
      * @return object
      * @throws Exception
      */
