@@ -394,6 +394,7 @@ class SwedbankJson
                         'User-Agent' => $this->_userAgent,
                     ],
                     'allow_redirects' => ['max' => 10, 'referer' => true],
+                    'verify' => false,
                     'config' => [
                         'curl' => [
                             CURLOPT_COOKIEJAR => $this->_ckfile,
