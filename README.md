@@ -91,7 +91,7 @@ curl -sS https://getcomposer.org/installer | php
 Lägg in SwebankJson i composer.json antingen med följande kommando:
 ```bash
 # Uppdatera eller skapa composer.json samt kör installation
-php composer.phar require walle89/swedbank-json ~0.34
+php composer.phar require walle89/swedbank-json ~0.4
 ```
 
 ***Eller*** manuellt med:
