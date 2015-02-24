@@ -29,7 +29,7 @@ class AppData
             throw new UserException('Bankid "swedbank_företag" är inte längre giltigt. Använd "swedbank_foretag"',1);
 
         elseif (!isset(self::$appData[ $bankID ]))
-            throw new UserException('BankID existerar inte, använd något av följande: '.implode(', ', array_keys(self::$appData)));
+            throw new UserException('BankID existerar inte, använd något av följande: '.implode(', ', array_keys(self::$appData)),2);
 
         return self::$appData[ $bankID ];
     }
