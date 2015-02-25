@@ -20,15 +20,12 @@ Det enklaste exemplet. Kontotransaktioner från första kontot som är sannolikt
 ```php
 require_once 'vendor/autoload.php';
 
-use SwedbankJson\SwedbankJson;
-use SwedbankJson\AppData;
-
 // Inställningar
 define('USERNAME',  198903060000);   // Person- eller organisationsnummer
 define('PASSWORD',  'fakePW');       // Personlig kod
 define('BANKID',    'swedbank');     // Byt mot motsvarande IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_ung, sparbanken_ung, swedbank_foretag, sparbanken_foretag
 
-$bankConn    = new SwedbankJson(USERNAME, PASSWORD, AppData::bankAppId(BANKID));
+$bankConn    = new SwedbankJson\SwedbankJson(USERNAME, PASSWORD, BANKID);
 $accountInfo = $bankConn->accountDetails(); // Hämtar från första kontot, sannolikt lönekontot
 $bankConn->terminate(); // Utlogging
 

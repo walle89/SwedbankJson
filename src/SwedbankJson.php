@@ -75,7 +75,7 @@ class SwedbankJson
      *
      * @param int    $username      Personnummer för inlogging till internetbanken
      * @param string $password      Personlig kod för inlogging till internetbanken
-     * @param array  $appdata       En array med nödvändig data för API:et
+     * @param string $appdata       En array med nödvändig data för API:et
      * @param bool   $debug         Sätt true för att göra felsökning, annars false eller null
      * @param string $ckfile        Sökväg till mapp där cookiejar kan sparas temporärt
      *
@@ -85,7 +85,7 @@ class SwedbankJson
     {
         $this->_username      = $username;
         $this->_password      = $password;
-        $this->setAppData($appdata);
+        $this->setAppData( (!is_array($appdata)) ? AppData::bankAppId($appdata) : $appdata);
         $this->_ckfile        = tempnam($ckfile, 'CURLCOOKIE');
         $this->setAuthorizationKey();
         $this->_debug         = (bool)$debug;
