@@ -26,7 +26,7 @@ define('USERNAME',  198903060000);   // Person- eller organisationsnummer
 define('PASSWORD',  'fakePW');       // Personlig kod
 
 $auth = new SwedbankJson\Auth\PersonalCode(BANKID, USERNAME, PASSWORD);
-$bankConn = new SwedbankJson\SwedbankJson($auth, true);
+$bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 Men vill man använda en annan inloggigstyp än personlig kod behöver man modifera ovanstånde kod till ett av förjande:
 
