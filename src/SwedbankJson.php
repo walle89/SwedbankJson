@@ -10,10 +10,6 @@
 namespace SwedbankJson;
 
 use Exception;
-use Rhumsaa\Uuid\Uuid;
-
-use GuzzleHttp\Client;
-use GuzzleHttp\Stream\Stream;
 
 /**
  * Class SwedbankJson
@@ -21,49 +17,9 @@ use GuzzleHttp\Stream\Stream;
 class SwedbankJson
 {
     /**
-     * Bas-url för API-anrop
+     * @var object
      */
-    const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v1/';
-
-    /**
-     * @var int Inlogging personnummer
-     */
-    private $_username;
-
-    /**
-     * @var string Personlig kod.
-     */
-    private $_password;
-
-    /**
-     * @var string AppID. Ett ID som finns i Swedbanks appar.
-     */
-    private $_appID;
-
-    /**
-     * @var string  User agent för appen
-     */
-    private $_userAgent;
-
-    /**
-     * @var string Auth-nyckel mot Swedbank
-     */
-    private $_authorization;
-
-    /**
-     * @var resource CURL-resurs
-     */
-    private $_client;
-
-    /**
-     * @var string Sökväg för cookiejarl
-     */
-    private $_ckfile;
-
-    /**
-     * @var string Profiltyp (företag eller privatperson)
-     */
-    private $_profileType;
+    private $_auth;
 
     /**
      * @var bool Håller koll på om profil är satt
@@ -73,22 +29,15 @@ class SwedbankJson
     /**
      * Grundläggande upgifter
      *
-     * @param int    $username      Personnummer för inlogging till internetbanken
-     * @param string $password      Personlig kod för inlogging till internetbanken
-     * @param string $appdata       En array med nödvändig data för API:et
+     * @param object $auth          Från auth
      * @param bool   $debug         Sätt true för att göra felsökning, annars false eller null
-     * @param string $ckfile        Sökväg till mapp där cookiejar kan sparas temporärt
      *
      * @throws $appdata Om argumentet $appdata inte är av typen 'array' eller inte har rätt index och värden
      */
-    public function __construct($username, $password, $appdata, $debug = false, $ckfile = './temp/')
+    public function __construct($auth, $debug = false)
     {
-        $this->_username      = $username;
-        $this->_password      = $password;
-        $this->setAppData( (!is_array($appdata)) ? AppData::bankAppId($appdata) : $appdata);
-        $this->_ckfile        = tempnam($ckfile, 'CURLCOOKIE');
-        $this->setAuthorizationKey();
-        $this->_debug         = (bool)$debug;
+        $this->_auth        = $auth;
+        $this->_debug       = (bool)$debug;
     }
 
     /**
@@ -99,46 +48,6 @@ class SwedbankJson
     public function __destruct()
     {
         $this->terminate();
-        unlink($this->_ckfile);
-    }
-
-    /**
-     * @param string $key Sätta en egen AuthorizationKey
-     */
-    public function setAuthorizationKey($key = '')
-    {
-        $this->_authorization = (empty($key)) ? $this->genAuthorizationKey() : $key;
-    }
-
-    /**
-     * Generera auth-nyckel för att kunna kommunicera med Swedbanks servrar
-     *
-     * @return string en slumpad auth-nyckel
-     */
-    public function genAuthorizationKey()
-    {
-        return base64_encode($this->_appID . ':' . strtoupper(Uuid::uuid4()));
-    }
-
-    /**
-     * Inlogging
-     * Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t
-     *
-     * @return bool         True om inloggingen lyckades
-     * @throws Exception    Fel vid inloggen
-     */
-    private function login()
-    {
-        $data_string = json_encode(['useEasyLogin' => false, 'password' => $this->_password, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
-        $output = $this->postRequest('identification/personalcode', $data_string, true);
-
-        if (!empty($output->personalCodeChangeRequired))
-            throw new Exception('Byte av personlig kod krävs av banken. Var god rätta till detta genom att logga in på internetbanken.', 11);
-
-        elseif (!isset($output->links->next->uri))
-            throw new Exception('Inlogging misslyckades. Kontrollera användarnman, lösenord och authorization-nyckel.', 10);
-
-        return true;
     }
 
     /**
@@ -151,10 +60,10 @@ class SwedbankJson
      */
     public function profileList()
     {
-        if (empty($this->_client))
-            $this->login();
+        if (empty($this->_auth->getClient()))
+            $this->_auth->login();
 
-        $output = $this->getRequest('profile/');
+        $output = $this->_auth->getRequest('profile/');
 
         if (!isset($output->hasSwedbankProfile))
             throw new Exception('Något med profilsidan är fel.', 20);
@@ -190,13 +99,13 @@ class SwedbankJson
                 return null;
 
             $profiles = $this->profileList();
-            $profileData = $profiles->{$this->_profileType}; // Väljer privat- eller företagskonto beroende på angiven appdata user-agent
+            $profileData = $profiles->{$this->_auth->getProfileType()}; // Väljer privat- eller företagskonto beroende på angiven appdata user-agent
 
             $profileID = (isset($profileData->id)) ? $profileData->id : $profileData[0]->id;
         }
 
         // Väljer profil
-        $this->postRequest('profile/' . $profileID);
+        $this->_auth->postRequest('profile/' . $profileID);
 
         $this->_selectedProfileID = $profileID;
     }
@@ -211,7 +120,7 @@ class SwedbankJson
     {
         $this->selectProfile();
 
-        return $this->getRequest('message/reminders');
+        return $this->_auth->getRequest('message/reminders');
     }
 
     /**
@@ -224,7 +133,7 @@ class SwedbankJson
     {
         $this->selectProfile();
 
-        return $this->getRequest('transfer/baseinfo');
+        return $this->_auth->getRequest('transfer/baseinfo');
     }
 
     /**
@@ -238,7 +147,7 @@ class SwedbankJson
     {
         $this->selectProfile($profileID);
 
-        $output = $this->getRequest('engagement/overview');
+        $output = $this->_auth->getRequest('engagement/overview');
 
         if (!isset($output->transactionAccounts))
             throw new Exception('Bankkonton kunde inte listas.', 30);
@@ -257,7 +166,7 @@ class SwedbankJson
     {
         $this->selectProfile($profileID);
 
-        $output = $this->getRequest('portfolio/holdings');
+        $output = $this->_auth->getRequest('portfolio/holdings');
 
         if (!isset($output->savingsAccounts))
             throw new Exception('Investeringssparkonton kunde inte listas.', 40);
@@ -284,7 +193,7 @@ class SwedbankJson
         if ($transactionsPerPage > 0 AND $page >= 1)
             $query = ['transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,];
 
-        $output = $this->getRequest('engagement/transactions/' . $accoutID, $query);
+        $output = $this->_auth->getRequest('engagement/transactions/' . $accoutID, $query);
 
         if (!isset($output->transactions))
             throw new Exception('AccountID stämmer inte', 50);
@@ -304,7 +213,7 @@ class SwedbankJson
     {
         $this->selectProfile($profileID);
 
-        $output = $this->getRequest('quickbalance/accounts');
+        $output = $this->_auth->getRequest('quickbalance/accounts');
 
         if (!isset($output->accounts))
             throw new Exception('Snabbsaldokonton kan inte listas.', 60);
@@ -325,7 +234,7 @@ class SwedbankJson
      */
     public function quickBalanceSubscription($accountQuickBalanceSubID)
     {
-        $output = $this->postRequest('quickbalance/subscription/'. $accountQuickBalanceSubID);
+        $output = $this->_auth->postRequest('quickbalance/subscription/'. $accountQuickBalanceSubID);
 
         if (!isset($output->subscriptionId))
             throw new Exception('Kan ej sätta prenumeration, förmodligen fel ID av "quickbalanceSubscription"', 61);
@@ -342,7 +251,7 @@ class SwedbankJson
      */
     public function quickBalance($quickBalanceSubscriptionId)
     {
-        $output = $this->getRequest('quickbalance/'. $quickBalanceSubscriptionId);
+        $output = $this->_auth->getRequest('quickbalance/'. $quickBalanceSubscriptionId);
 
         if (!isset($output->balance))
             throw new Exception('Kan ej hämta snabbsaldo. Kontrollera ID', 62);
@@ -362,7 +271,7 @@ class SwedbankJson
     {
         $this->selectProfile($profileID);
 
-        $output = $this->deleteRequest('quickbalance/subscription/' . $quickBalanceSubscriptionId);
+        $output = $this->_auth->deleteRequest('quickbalance/subscription/' . $quickBalanceSubscriptionId);
 
         if (!isset($output->subscriptionId))
             throw new Exception('Kan ej sätta prenumeration, förmodligen fel ID av "quickbalanceSubscription"', 63);
@@ -375,155 +284,7 @@ class SwedbankJson
      */
     public function terminate()
     {
-        return $this->putRequest('identification/logout');
-    }
-
-    /**
-     * Lägger nödvändig appdata för att kommunicera med API:et. Bland annat appID för att generera nycklar.
-     *
-     * @param array $appdata
-     * @throws \Exception       Om rätt fält inte existerar eller är tomma
-     */
-    private function setAppData(array $appdata)
-    {
-        if(!is_array($appdata) OR empty($appdata['appID']) OR empty($appdata['useragent']))
-            throw new Exception('Fel inmatning av AppData!');
-
-        $this->_appID       = $appdata['appID'];
-        $this->_userAgent   = $appdata['useragent'];
-        $this->_profileType = (strpos($this->_userAgent, 'Corporate')) ? 'corporateProfiles' : 'privateProfile'; // För standardprofil
-    }
-
-    /**
-     * Skickar GET-förfrågan
-     *
-     * @param string $apiRequest   Typ av anrop mot API:et
-     * @param array  $query         Fråga för GET-anrop
-     *
-     * @return object    JSON-avkodad information från API:et
-     */
-    private function getRequest($apiRequest, $query = [])
-    {
-        $request = $this->createRequest('get', $apiRequest, $query);
-        $response = $this->_client->send($request);
-
-        return $response->json(['object' => true]);
-    }
-
-    /**
-     * Skickar POST-förfrågan
-     *
-     * @param string $apiRequest    Typ av anrop mot API:et
-     * @param string $data_string   Data som ska skickas i strängformat
-     *
-     * @return object    JSON-avkodad information från API:et
-     */
-    private function postRequest($apiRequest, $data_string = '')
-    {
-        $request = $this->createRequest('post', $apiRequest);
-
-        if(!empty($data_string))
-        {
-            $request->addHeader('Content-Type', 'application/json; charset=UTF-8');
-            $request->setBody(Stream::factory($data_string));
-        }
-
-        $response = $this->_client->send($request);
-        return $response->json(['object' => true]);
-    }
-
-    /**
-     * Skickar PUT-förfrågan
-     *
-     * @param string $apiRequest Typ av anrop mot API:et
-     *
-     * @return object    Avkodad JSON-data från API:et
-     */
-    private function putRequest($apiRequest)
-    {
-        $request = $this->createRequest('put', $apiRequest);
-        $response = $this->_client->send($request);
-
-        return $response->json(['object' => true]);
-    }
-
-    /**
-     * Skickar DELETE-förfrågan
-     *
-     * @param string $apiRequest Typ av anrop mot API:et
-     *
-     * @return object    Avkodad JSON-data från API:et
-     */
-    private function deleteRequest($apiRequest)
-    {
-        $request = $this->createRequest('delete', $apiRequest);
-        $response = $this->_client->send($request);
-
-        return $response->json(['object' => true]);
-    }
-
-    /**
-     * Gemensam hantering av HTTP requests
-     *
-     * @param string    $method     Typ av HTTP förfrågan (ex. GET, POST)
-     * @param string    $apiRequest Requesttyp till API
-     * @param array     $query      Ev. query till URL
-     * @return mixed    @see \GuzzleHttp\Client\createRequest
-     */
-    private function createRequest($method, $apiRequest, array $query = [])
-    {
-        if (empty($this->_client))
-        {
-            $this->_client = new Client([
-                'base_url' => self::baseUri,
-                'defaults' => [
-                    'headers' => [
-                        'Authorization' => $this->_authorization,
-                        'Accept' => '*/*',
-                        'Accept-Language' => 'sv-se',
-                        'Accept-Encoding' => 'gzip, deflate',
-                        'Connection' => 'keep-alive',
-                        'Proxy-Connection' => 'keep-alive',
-                        'User-Agent' => $this->_userAgent,
-                    ],
-                    'allow_redirects' => ['max' => 10, 'referer' => true],
-                    'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
-                    'config' => [
-                        'curl' => [
-                            CURLOPT_COOKIEJAR => $this->_ckfile,
-                            CURLOPT_COOKIEFILE => $this->_ckfile,
-                        ],
-                    ],
-                ],
-                'debug' => $this->_debug,
-            ]);
-        }
-
-        $dsidStr = ['dsid' => $this->dsid()];
-
-        $httpQuery = array_merge($query, $dsidStr);
-
-        return $this->_client->createRequest($method, $apiRequest, [
-            'cookies'   => $dsidStr,
-            'query'     => $httpQuery,
-        ]);
-    }
-
-    /**
-     * Generering av dsid
-     * Slumpar 8 tecken som måste skickas med i varje anrop.
-     *
-     * @return string   8 slumpvalda tecken
-     */
-    private function dsid()
-    {
-        // Välj 8 tecken
-        $dsid = substr(sha1(mt_rand()), rand(1, 30), 8);
-
-        // Gör 4 tecken till versaler
-        $dsid = substr($dsid, 0, 4) . strtoupper(substr($dsid, 4, 4));
-
-        return str_shuffle($dsid);
+        return $this->_auth->terminate();
     }
 }
 
