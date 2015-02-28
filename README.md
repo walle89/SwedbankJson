@@ -63,18 +63,8 @@ Välj säkerhetsdosa -> Mata in engångskod i dosan -> Fyll i svaret från säke
 ### Kontotransaktioner
 Lista kontotransaktioner från första kontot som är sannolikt lönekontot med personlig kod. Ändra bara inställningarna nedan.
 ```php
-require_once 'vendor/autoload.php';
-
-// Inställningar
-define('USERNAME',  198903060000);   // Person- eller organisationsnummer
-define('PASSWORD',  'fakePW');       // Personlig kod
-define('BANKID',    'swedbank');     // Byt mot motsvarande IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_ung, sparbanken_ung, swedbank_foretag, sparbanken_foretag
-
-// Inlogging
-$auth = new SwedbankJson\Auth\PersonalCode(BANKID, USERNAME, PASSWORD);             // Personlig kod
-$bankConn = new SwedbankJson\SwedbankJson($auth, true);
-
 $accountInfo = $bankConn->accountDetails(); // Hämtar från första kontot, sannolikt lönekontot
+
 $bankConn->terminate(); // Utlogging
 
 echo '<strong>Kontoutdrag</strong>';
