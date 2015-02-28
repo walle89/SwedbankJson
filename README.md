@@ -40,7 +40,7 @@ Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad
 ```php
 $auth = new SwedbankJson\Auth\SecurityToken(BANKID, USERNAME, $challangeResponse);
 ```
-$challangeResponse ska vara ett 8-siffrigt nummer som man får från bankdosan som behövs för att logga in
+**$challangeResponse** ska vara ett 8-siffrigt nummer som man får från bankdosan som behövs för att logga in
 
 #### Säkerhetsdosa (Responskod)
 Den andra typen av inlogginsmetod för säkerhetsdosa är responskod. Här ska 
