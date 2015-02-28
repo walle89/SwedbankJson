@@ -30,8 +30,8 @@ $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 Men vill man använda en annan inloggigstyp än personlig kod behöver man modifera ovanstånde kod till ett av förjande:
 
-#### Säkerhetsdosa (Loginkod)
-Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dessa är loginkod, som ger ett 8-siffrig kod när man har loggat in på dosan och väler 1 när Appli visas.
+#### Säkerhetsdosa (Engångskod)
+Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dessa är engångskod, som ger ett 8-siffrig kod när man har låst upp dosan och väler 1 när Appli visas.
 
 Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 
@@ -40,7 +40,7 @@ Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad
 ```php
 $auth = new SwedbankJson\Auth\SecurityToken(BANKID, USERNAME, $challengeResponse);
 ```
-**$challengeResponse** ska vara ett 8-siffrigt nummer som man får från bankdosan som behövs för att logga in
+**$challengeResponse** ska vara ett 8-siffrigt nummer som man får från säkerhetsdosan som behövs för att logga in
 
 #### Säkerhetsdosa (Responskod)
 Den andra typen av inlogginsmetod för säkerhetsdosa är responskod. Här ska 
