@@ -58,7 +58,7 @@ class PersonalCode extends AbstractAuth
     public function login()
     {
         $data_string = json_encode(['useEasyLogin' => false, 'password' => $this->_password, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
-        $output = $this->postRequest('identification/personalcode', $data_string, true);
+        $output = $this->postRequest('identification/personalcode', $data_string);
 
         if (!empty($output->personalCodeChangeRequired))
             throw new Exception('Byte av personlig kod krävs av banken. Var god rätta till detta genom att logga in på internetbanken.', 11);
