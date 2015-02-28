@@ -38,9 +38,9 @@ Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad
 
 ```php
-$auth = new SwedbankJson\Auth\SecurityToken(BANKID, USERNAME, $challangeResponse);
+$auth = new SwedbankJson\Auth\SecurityToken(BANKID, USERNAME, $challengeResponse);
 ```
-**$challangeResponse** ska vara ett 8-siffrigt nummer som man får från bankdosan som behövs för att logga in
+**$challengeResponse** ska vara ett 8-siffrigt nummer som man får från bankdosan som behövs för att logga in
 
 #### Säkerhetsdosa (Responskod)
 Den andra typen av inlogginsmetod för säkerhetsdosa är responskod. Här ska 
@@ -52,11 +52,11 @@ Välj säkerhetsdosa -> Mata in engångskod i dosan -> Fyll i svaret från säke
 ```php
 // Work in progress
 //$auth = new SwedbankJson\Auth\SecurityToken(BANKID, USERNAME);
-//$auth->getChallange();
+//$auth->getchallenge();
 //$_SESSION['auth'] = $auth;
 // *Ny sidhämtning*
 //$auth=$_SESSION['auth'];
-//$auth->login($challangeResponse);
+//$auth->login($challengeResponse);
 
 ```
 
