@@ -64,7 +64,7 @@ class PersonalCode extends AbstractAuth
             throw new Exception('Byte av personlig kod krävs av banken. Var god rätta till detta genom att logga in på internetbanken.', 11);
 
         elseif (!isset($output->links->next->uri))
-            throw new Exception('Inlogging misslyckades. Kontrollera användarnman, lösenord och authorization-nyckel.', 10);
+            throw new Exception('Inlogging misslyckades. Kontrollera användarnamn, lösenord och authorization-nyckel.', 10);
 
         return true;
     }
