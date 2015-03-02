@@ -55,7 +55,8 @@ class SwedbankJson
      */
     public function profileList()
     {
-        if (empty($this->_auth->getClient()))
+        $client = $this->_auth->getClient();
+        if (empty($client))
             $this->_auth->login();
 
         $output = $this->_auth->getRequest('profile/');
