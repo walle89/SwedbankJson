@@ -10,6 +10,7 @@
 namespace SwedbankJson;
 
 use Exception;
+use SwedbankJson\Auth\AbstractAuth;
 
 /**
  * Class SwedbankJson
@@ -27,17 +28,11 @@ class SwedbankJson
     private $_selectedProfileID;
 
     /**
-     * Grundläggande upgifter
-     *
-     * @param object $auth          Från auth
-     * @param bool   $debug         Sätt true för att göra felsökning, annars false eller null
-     *
-     * @throws $appdata Om argumentet $appdata inte är av typen 'array' eller inte har rätt index och värden
+     * @param AbstractAuth $auth    Instans en av inloggingsmetoderna
      */
-    public function __construct($auth, $debug = false)
+    public function __construct(AbstractAuth $auth)
     {
-        $this->_auth        = $auth;
-        $this->_debug       = (bool)$debug;
+        $this->_auth = $auth;
     }
 
     /**
