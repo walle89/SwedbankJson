@@ -72,7 +72,7 @@ class SecurityToken extends AbstractAuth
             if (!isset($output->links->next->uri))
                 throw new Exception('Inlogging misslyckades. Kontrollera användarnamn och authorization-nyckel.', 10);
 
-            $this->_challenge           = (int)$output->challange;
+            $this->_challenge           = (int)$output->challenge;
             $this->_useOneTimePassword  = (bool)$output->useOneTimePassword;
         }
 
