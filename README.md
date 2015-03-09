@@ -117,14 +117,14 @@ curl -sS https://getcomposer.org/installer | php
 
 Lägg in SwebankJson i composer.json antingen med följande kommando:
 ```bash
-php composer.phar require walle89/swedbank-json ~0.4
+php composer.phar require walle89/swedbank-json ~0.5
 ```
 
 ***Eller*** skapa eller ändra composer.json med följande innehåll och kör "php composer.phar install":
 ```javascript
 {
     "require": {
-        "walle89/swedbank-json": "~0.4"
+        "walle89/swedbank-json": "~0.5"
     }
 }
 ```
@@ -143,14 +143,14 @@ Kör sedan [Compoer-Setup.exe](https://getcomposer.org/doc/00-intro.md#using-the
 
 Högerklicka på en katalog och välj "Use Composer here". Ett cmd.exe-fönster ska öppnas och kör då detta kommando:
 ```winbatch
-composer require walle89/swedbank-json ~0.4
+composer require walle89/swedbank-json ~0.5
 ```
 
 ***Eller*** skapa eller ändra composer.json med följande innehåll samt högerklicka och klicka "Composer Install":
 ```javascript
 {
     "require": {
-        "walle89/swedbank-json": "~0.4"
+        "walle89/swedbank-json": "~0.5"
     }
 }
 ```

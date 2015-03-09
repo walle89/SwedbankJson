@@ -1,3 +1,16 @@
+#0.5.0 / 2015-03-09
+
+### Nyheter
+* Stöd för inlogging för bankdosa med engångslösenord (se README.md)
+
+### Ändringar
+* Med anledning av stödjet av bankdosa har skapadet av SwedbankJson objektet gjots om. Se README.md.
+* Förenklad och snyggare att sätta AppID som är bakåtkompatibel med den tidigare metoden.
+
+### Uppdateringar
+* Uppdatering av appversion för samtliga Swedbank-appar.
+* Uppdaterad dokumentation med guide för Windowsanvändare.
+
 #0.4.0 / 2015-02-13
 
 ### Nyheter
