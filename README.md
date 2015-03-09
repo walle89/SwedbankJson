@@ -15,13 +15,13 @@ Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas m
 
 ## Kodexempel
 
-### Grund
+### Grund (Personlig kod)
 Grundkoden för exemplen nedan:
 ```php
 require_once 'vendor/autoload.php';
 
 // Inställningar
-define('BANKID',    'swedbank');     // Byt mot motsvarande IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_ung, sparbanken_ung, swedbank_foretag, sparbanken_foretag
+define('BANKID',    'swedbank');     // Byt mot motsvarande IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_foretag, sparbanken_foretag, swedbank_ung, sparbanken_ung
 define('USERNAME',  198903060000);   // Person- eller organisationsnummer
 define('PASSWORD',  'fakePW');       // Personlig kod
 
@@ -31,7 +31,7 @@ $bankConn = new SwedbankJson\SwedbankJson($auth);
 Men vill man använda en annan inloggigstyp än personlig kod behöver man modifera ovanstånde kod till ett av förjande:
 
 #### Säkerhetsdosa (Engångskod)
-Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dessa är engångskod, som ger ett 8-siffrig kod när man har låst upp dosan och väler 1 när Appli visas.
+Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dessa är engångskod, som ger ett 8-siffrig kod när man har låst upp dosan och väljer 1 när "Appli" visas.
 
 Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 
@@ -79,7 +79,7 @@ print_r($accountInfo);
 ```
 
 ### Profilväljare (företag)
-I Swedbanks API finns det stöd för att ha flera företagsprofiler kopplat till sin inlogging. Glöm inte att ändra BANKID till något av Swedbanks företagsappar.
+I Swedbanks API finns det stöd för att ha flera företagsprofiler kopplat till sin inlogging. Glöm inte att ändra BANKID till an av Swedbanks företagsappar.
 ```PHP
 $profiles = $bankConn->profileList(); // Profiler
 
@@ -104,23 +104,23 @@ print_r($accountInfo);
 * PHP 5.4+
 * Curl
 
-## Installation med Composer
+## Installation
 
-Rekommendationen är att installera SwedbankJson med [Composer](http://getcomposer.org).
+Idag erbjuds enbart installation via [Composer](http://getcomposer.org). Det är möjligt att ladda ned projektfilterna och manuelt installera stödbibliotek, men det är inget som rekommenderas.
 
-Kör följande i ett terminalfönster:
+### Linux och OS X
+
+Kör följande i ett terminalfönster (Öppna Applikationer > Vekrtyg > Terminal på OSX):
 ```bash
-# Installera Composer
 curl -sS https://getcomposer.org/installer | php
 ```
 
 Lägg in SwebankJson i composer.json antingen med följande kommando:
 ```bash
-# Uppdatera eller skapa composer.json samt kör installation
 php composer.phar require walle89/swedbank-json ~0.4
 ```
 
-***Eller*** manuellt med:
+***Eller*** skapa eller ändra composer.json med följande innehåll och kör "php composer.phar install":
 ```javascript
 {
     "require": {
@@ -135,22 +135,51 @@ Efter lyckad installation, ladda in autoload.php i vendor mappen.
 require 'vendor/autoload.php';
 ```
 
+### Windows
+
+Se till att php.exe finns installerat och den fulla sökvägen till den (ex. C:\php\php.exe).
+
+Kör sedan [Compoer-Setup.exe](https://getcomposer.org/doc/00-intro.md#using-the-installer) och följ instruktionerna samt se till att "Shell menus" installeras.
+
+Högerklicka på en katalog och välj "Use Composer here". Ett cmd.exe-fönster ska öppnas och kör då detta kommando:
+```winbatch
+composer require walle89/swedbank-json ~0.4
+```
+
+***Eller*** skapa eller ändra composer.json med följande innehåll samt högerklicka och klicka "Composer Install":
+```javascript
+{
+    "require": {
+        "walle89/swedbank-json": "~0.4"
+    }
+}
+```
+
+Efter lyckad installation, ladda in autoload.php i vendor mappen.
+```php
+require 'vendor/autoload.php';
+```
+
 ## Dokumentation
 
 Finns i form av PHPDoc kommentarer i filerna. Utförligare dokumentation med API-anrop finns på [todo-listan](https://github.com/walle89/SwedbankJson/wiki/Todo).
 
 ## Uppdateringar
 
+Främsta anledningen till uppdateringar behöver göras är att Swedbank ändrar AppID och User Agent för varje uppdatering av sina appar. AppID och User Agent används som en del av atuetensierings prosessen.
+
+### Linux och OS X
 Kör följande kommando:
 ```bash
 php composer.phar update
 ```
 
-Det är främst [appdata.php](https://github.com/walle89/SwedbankJson/blob/master/src/appdata.php) som kan komma att ändras i samband med Swedbank uppdaterar sina appar och därmed appID:n och User Agents.
+### Windows
+Högerklicka på den katalog som innehåller composer.json, högerklicka och välj "Composter update".
 
 ## Feedback, frågor, buggar, etc.
 
-Skapa en [Github Issue](https://github.com/walle89/SwedbankJson/issues).
+Skapa en [Github Issue](https://github.com/walle89/SwedbankJson/issues), men var god kontrollera att det inte finns någon annan som skapat en likande issue (sökfunktinen är din vän).
 
 ## Andra projekt med Swedbanks API
 * [SwedbankSharp](https://github.com/DarkTwisterr/SwedbankSharp) av [DarkTwisterr](https://github.com/DarkTwisterr) - C# med .NET implementation.
