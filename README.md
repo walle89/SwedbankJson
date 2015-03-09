@@ -15,21 +15,47 @@ Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas m
 
 ## Kodexempel
 
-### Quick start
-Det enklaste exemplet. Kontotransaktioner från första kontot som är sannolikt lönekontot. Det enda som behöver ändras innan man kan köra koden är USERNAME, PASSWORD samt eventuellt BANKID.
+### Grund
+Grundkoden för exemplen nedan:
 ```php
 require_once 'vendor/autoload.php';
 
-use SwedbankJson\SwedbankJson;
-use SwedbankJson\AppData;
-
 // Inställningar
+define('BANKID',    'swedbank');     // Byt mot motsvarande IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_ung, sparbanken_ung, swedbank_foretag, sparbanken_foretag
 define('USERNAME',  198903060000);   // Person- eller organisationsnummer
 define('PASSWORD',  'fakePW');       // Personlig kod
-define('BANKID',    'swedbank');     // Byt mot motsvarande IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_ung, sparbanken_ung, swedbank_foretag, sparbanken_foretag
 
-$bankConn    = new SwedbankJson(USERNAME, PASSWORD, AppData::bankAppId(BANKID));
+$auth = new SwedbankJson\Auth\PersonalCode(BANKID, USERNAME, PASSWORD);
+$bankConn = new SwedbankJson\SwedbankJson($auth);
+```
+Men vill man använda en annan inloggigstyp än personlig kod behöver man modifera ovanstånde kod till ett av förjande:
+
+#### Säkerhetsdosa (Engångskod)
+Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dessa är engångskod, som ger ett 8-siffrig kod när man har låst upp dosan och väler 1 när Appli visas.
+
+Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
+
+Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad
+
+```php
+$auth = new SwedbankJson\Auth\SecurityToken(BANKID, USERNAME, $challengeResponse);
+```
+**$challengeResponse** ska vara ett 8-siffrigt nummer som man får från säkerhetsdosan som behövs för att logga in
+
+#### Säkerhetsdosa (Responskod)
+Den andra typen av inlogginsmetod för säkerhetsdosa är responskod. Här ska 
+
+Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
+
+Välj säkerhetsdosa -> Mata in engångskod i dosan -> Fyll i svaret från säkerhetsdosan -> Inloggad
+
+I dagsläget finns det inget stöd för denna typ av inlogging, men den finns på todo-listan. Den som kan tänka sig att ställa upp som testare kan kontakta mig för mer info. Frågor ställs sedvanligt via en issue.
+
+### Kontotransaktioner
+Lista kontotransaktioner från första kontot som är sannolikt lönekontot med personlig kod. Ändra bara inställningarna nedan.
+```php
 $accountInfo = $bankConn->accountDetails(); // Hämtar från första kontot, sannolikt lönekontot
+
 $bankConn->terminate(); // Utlogging
 
 echo '<strong>Kontoutdrag</strong>';
@@ -78,7 +104,7 @@ print_r($accountInfo);
 * PHP 5.4+
 * Curl
 
-## Installation via Composer
+## Installation med Composer
 
 Rekommendationen är att installera SwedbankJson med [Composer](http://getcomposer.org).
 
