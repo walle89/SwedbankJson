@@ -7,6 +7,7 @@ Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas m
 * Översikt av tillgängliga konton så som lönekonto, sparkonton investeringsbesparningar, lån, bankkort och kreditkort.
 * Lista ett kontos samtliga transaktioner med historik så långt bak i tiden som finns tillgängligt i internetbanken.
 * Företagsinloggingar kan välja att lista konton utifrån en vald profil.
+* Inlogging via personlig kod eller säkerhetsdosa.
 * Aktivera, avaktivera och visa snabbsaldo.
 * Kommunicerar med Swedbanks servrar över SSL utan mellanhänder. Ingenting sparas eller loggas.
 * Autentiseringsnyckel som krävs för inlogging genereras automatiskt per session (standard) eller manuellt sätta en statisk nykel.
@@ -35,21 +36,21 @@ Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dess
 
 Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 
-Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad
+**Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad**
 
 ```php
 $auth = new SwedbankJson\Auth\SecurityToken(BANK_APP, USERNAME, $challengeResponse);
 ```
-**$challengeResponse** ska vara ett 8-siffrigt nummer som man får från säkerhetsdosan som behövs för att logga in
+**$challengeResponse** ska vara ett 8-siffrigt nummer som man får från säkerhetsdosan
 
-#### Säkerhetsdosa (Responskod)
-Den andra typen av inlogginsmetod för säkerhetsdosa är responskod. Här ska 
+#### Säkerhetsdosa (Kontrollnummer och svarskod)
+Den andra typen av inlogginsmetod för säkerhetsdosa är kontrollnummer med svarskod. Denna metod innebär att man får en 8-siffrigt kontrollnummer som ska matas in i dosan och som svar får man ett nytt 8-siffrigt svarskod som skrivs in i antingen appen eller i internetbanken.
 
 Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 
-Välj säkerhetsdosa -> Mata in engångskod i dosan -> Fyll i svaret från säkerhetsdosan -> Inloggad
+**Välj säkerhetsdosa -> Mata in kontrollnummer i dosan -> Skriv av savarskod -> Inloggad**
 
-I dagsläget finns det inget stöd för denna typ av inlogging, men den finns på todo-listan. Den som kan tänka sig att ställa upp som testare kan kontakta mig för mer info. Frågor ställs sedvanligt via en issue.
+I dagsläget finns det inget stöd för denna typ av inlogging, men den finns på todo-listan. Den som kan tänka sig att ställa upp som testare kan läsa mer om det [här](https://github.com/walle89/SwedbankJson/issues/18#issuecomment-77850071).
 
 ### Kontotransaktioner
 Lista kontotransaktioner från första kontot som är sannolikt lönekontot med personlig kod. Ändra bara inställningarna nedan.
