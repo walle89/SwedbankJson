@@ -49,16 +49,7 @@ Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 
 Välj säkerhetsdosa -> Mata in engångskod i dosan -> Fyll i svaret från säkerhetsdosan -> Inloggad
 
-```php
-// Work in progress
-//$auth = new SwedbankJson\Auth\SecurityToken(BANKID, USERNAME);
-//$auth->getchallenge();
-//$_SESSION['auth'] = $auth;
-// *Ny sidhämtning*
-//$auth=$_SESSION['auth'];
-//$auth->login($challengeResponse);
-
-```
+I dagsläget finns det inget stöd för denna typ av inlogging, men den finns på todo-listan. Den som kan tänka sig att ställa upp som testare kan kontakta mig för mer info. Frågor ställs sedvanligt via en issue.
 
 ### Kontotransaktioner
 Lista kontotransaktioner från första kontot som är sannolikt lönekontot med personlig kod. Ändra bara inställningarna nedan.
