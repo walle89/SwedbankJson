@@ -1,6 +1,6 @@
 # SwedbankJson
 
-Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller organisationsnummer och lösenord).
+Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller organisationsnummer och lösenord) eller med säkerhetsdosa.
 
 **Detta kan wrappen göra**
 
@@ -53,7 +53,7 @@ Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 I dagsläget finns det inget stöd för denna typ av inlogging, men den finns på todo-listan. Den som kan tänka sig att ställa upp som testare kan läsa mer om det [här](https://github.com/walle89/SwedbankJson/issues/18#issuecomment-77850071).
 
 ### Kontotransaktioner
-Lista kontotransaktioner från första kontot som är sannolikt lönekontot med personlig kod. Ändra bara inställningarna nedan.
+Lista kontotransaktioner från första kontot.
 ```php
 $accountInfo = $bankConn->accountDetails(); // Hämtar från första kontot, sannolikt lönekontot
 
@@ -106,12 +106,11 @@ print_r($accountInfo);
 * Curl
 
 ## Installation
-
 Idag erbjuds enbart installation via [Composer](http://getcomposer.org). Det är möjligt att ladda ned projektfilterna och manuelt installera stödbibliotek, men det är inget som rekommenderas.
 
 ### Linux och OS X
 
-Kör följande i ett terminalfönster (Öppna Applikationer > Vekrtyg > Terminal på OSX):
+Kör följande i ett terminalfönster (OS X: Öppna Applikationer > Verktygsprogram > Terminal):
 ```bash
 curl -sS https://getcomposer.org/installer | php
 ```
@@ -147,7 +146,7 @@ Högerklicka på en katalog och välj "Use Composer here". Ett cmd.exe-fönster 
 composer require walle89/swedbank-json ~0.5
 ```
 
-***Eller*** skapa eller ändra composer.json med följande innehåll samt högerklicka och klicka "Composer Install":
+***Eller*** skapa eller ändra composer.json med följande innehåll samt högerklicka och välj "Composer Install":
 ```javascript
 {
     "require": {
