@@ -21,11 +21,11 @@ Grundkoden för exemplen nedan:
 require_once 'vendor/autoload.php';
 
 // Inställningar
-define('BANKID',    'swedbank');     // Byt mot motsvarande IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_foretag, sparbanken_foretag, swedbank_ung, sparbanken_ung
+define('BANK_APP',  'swedbank');     // Byt mot motsvarande IOS/Android mobil app. Alternativ: swedbank, sparbanken, swedbank_foretag, sparbanken_foretag, swedbank_ung, sparbanken_ung
 define('USERNAME',  198903060000);   // Person- eller organisationsnummer
 define('PASSWORD',  'fakePW');       // Personlig kod
 
-$auth = new SwedbankJson\Auth\PersonalCode(BANKID, USERNAME, PASSWORD);
+$auth = new SwedbankJson\Auth\PersonalCode(BANK_APP, USERNAME, PASSWORD);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 Men vill man använda en annan inloggigstyp än personlig kod behöver man modifera ovanstånde kod till ett av förjande:
@@ -38,7 +38,7 @@ Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad
 
 ```php
-$auth = new SwedbankJson\Auth\SecurityToken(BANKID, USERNAME, $challengeResponse);
+$auth = new SwedbankJson\Auth\SecurityToken(BANK_APP, USERNAME, $challengeResponse);
 ```
 **$challengeResponse** ska vara ett 8-siffrigt nummer som man får från säkerhetsdosan som behövs för att logga in
 
@@ -79,7 +79,7 @@ print_r($accountInfo);
 ```
 
 ### Profilväljare (företag)
-I Swedbanks API finns det stöd för att ha flera företagsprofiler kopplat till sin inlogging. Glöm inte att ändra BANKID till an av Swedbanks företagsappar.
+I Swedbanks API finns det stöd för att ha flera företagsprofiler kopplat till sin inlogging. Glöm inte att ändra BANK_APP till an av Swedbanks företagsappar.
 ```PHP
 $profiles = $bankConn->profileList(); // Profiler
 

@@ -23,14 +23,14 @@ class AppData
         'sparbanken_foretag'    => [ 'appID' => 'p0sLuHGYX8RTChET', 'useragent' => 'SavingbankMOBCorporateIOS/1.7.0_(iOS;_8.1.3)_Apple/iPhone7,2'   ],
     ];
 
-    public static function bankAppId($bankID)
+    public static function bankAppId($bankApp)
     {
-        if ($bankID == 'swedbank_företag')
-            throw new UserException('Bankid "swedbank_företag" är inte längre giltigt. Använd "swedbank_foretag"',1);
+        if ($bankApp == 'swedbank_företag')
+            throw new UserException('BankApp "swedbank_företag" är inte längre giltigt. Använd "swedbank_foretag"',1);
 
-        elseif (!isset(self::$appData[ $bankID ]))
-            throw new UserException('BankID existerar inte, använd något av följande: '.implode(', ', array_keys(self::$appData)),2);
+        elseif (!isset(self::$appData[ $bankApp ]))
+            throw new UserException('BankApp existerar inte, använd något av följande: '.implode(', ', array_keys(self::$appData)),2);
 
-        return self::$appData[ $bankID ];
+        return self::$appData[ $bankApp ];
     }
 }

@@ -39,7 +39,7 @@ class SecurityToken extends AbstractAuth
     /**
      * Grundläggande upgifter
      *
-     * @param string|array $bankID      ID för vilken bank som ska anropas, eller array med appdata uppgifter.
+     * @param string|array $bankApp     ID för vilken bank som ska anropas, eller array med appdata uppgifter.
      * @param int $username             Personnummer för inlogging till internetbanken
      * @param int $challengeResponse    Personlig kod för inlogging till internetbanken
      * @param bool $debug               Sätt true för att göra felsökning, annars false eller null
@@ -48,9 +48,9 @@ class SecurityToken extends AbstractAuth
      * @throws \Exception
      * @throws \SwedbankJson\UserException
      */
-    public function __construct($bankID, $username, $challengeResponse = 0, $debug = false, $ckfile = './temp/')
+    public function __construct($bankApp, $username, $challengeResponse = 0, $debug = false, $ckfile = './temp/')
     {
-        $this->setAppData((!is_array($bankID)) ? AppData::bankAppId($bankID) : $bankID);
+        $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
         $this->_username = $username;
         $this->setchallengeResponse($challengeResponse);
         $this->_debug = (bool)$debug;
