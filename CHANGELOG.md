@@ -1,3 +1,8 @@
+#0.5.1 / 2015-03-09
+
+### Övrigt
+ * Uppdateringar av Guzzle
+
 #0.5.0 / 2015-03-09
 
 ### Nyheter
