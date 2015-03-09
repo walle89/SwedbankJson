@@ -1,6 +1,6 @@
 .idea
-.DS_Store 
 tests/
 exmaple.php
 composer.phar
 vendor/
+.DS_Store
