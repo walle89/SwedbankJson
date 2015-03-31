@@ -117,7 +117,7 @@ class SecurityToken extends AbstractAuth
      */
     public function setchallengeResponse($challengeResponse)
     {
-        $this->_challengeResponse = (int)$challengeResponse;
+        $this->_challengeResponse = $challengeResponse;
     }
 
     /**
