@@ -22,7 +22,7 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * Bas-url för API-anrop
      */
-    const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v1/';
+    const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v2/';
 
     /**
      * @var string AppID. Ett ID som finns i Swedbanks appar.
