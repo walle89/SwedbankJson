@@ -64,7 +64,7 @@ class SecurityToken extends AbstractAuth
      */
     public function getchallenge()
     {
-        if(empty($this->_challange))
+        if(empty($this->_challenge))
         {
             $data_string = json_encode(['useEasyLogin' => false, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
             $output = $this->postRequest('identification/securitytoken/challenge', $data_string);
