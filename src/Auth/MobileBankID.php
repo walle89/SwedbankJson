@@ -26,11 +26,6 @@ class MobileBankID extends AbstractAuth
     private $_verified=false;
 
     /**
-     * @var bool
-     */
-    private $_firstRun=true;
-
-    /**
      * Grundläggande upgifter
      *
      * @param string|array      $bankApp    ID för vilken bank som ska anropas, eller array med appdata uppgifter.
@@ -50,6 +45,28 @@ class MobileBankID extends AbstractAuth
         $this->setAuthorizationKey();
     }
 
+
+    /**
+     *
+     *
+     * @return bool
+     * @throws Exception
+     */
+    public function initAuth()
+    {
+        if ($this->_verified)
+            return true;
+
+        $data_string = json_encode(['useEasyLogin' => false, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
+        $output = $this->postRequest('identification/bankid/mobile', $data_string);
+
+        if($output->status != 'USER_SIGN')
+            throw new Exception('Kan inte koppla bankID.', 10);
+
+        return true;
+    }
+
+
     /**
      *
      *
@@ -61,10 +78,7 @@ class MobileBankID extends AbstractAuth
         if($this->_verified)
             return true;
 
-        $urlAddon = (!$this->_firstRun) ? '/verify' : '';
-        $this->_firstRun = false;
-
-        $output = $this->getRequest('bankid/mobile'.$urlAddon);
+        $output = $this->getRequest('identification/bankid/mobile/verify');
 
         if(empty($output->status))
             throw new Exception('BankID är inte verifierad.', 11);
