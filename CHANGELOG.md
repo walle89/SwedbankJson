@@ -1,3 +1,9 @@
+#0.5.2 / 2015-04-21
+
+### Övrigt
+ * Buggfix. Getchallenge() sparar inte utmaningen inom en session.
+ * Uppdatering av Guzzle beroende.
+ 
 #0.5.1 / 2015-03-09
 
 ### Övrigt

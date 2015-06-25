@@ -1,12 +1,13 @@
 # SwedbankJson
 
-Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller organisationsnummer och lösenord).
+Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller organisationsnummer och lösenord) eller med säkerhetsdosa.
 
 **Detta kan wrappen göra**
 
 * Översikt av tillgängliga konton så som lönekonto, sparkonton investeringsbesparningar, lån, bankkort och kreditkort.
 * Lista ett kontos samtliga transaktioner med historik så långt bak i tiden som finns tillgängligt i internetbanken.
 * Företagsinloggingar kan välja att lista konton utifrån en vald profil.
+* Inlogging via personlig kod eller säkerhetsdosa.
 * Aktivera, avaktivera och visa snabbsaldo.
 * Kommunicerar med Swedbanks servrar över SSL utan mellanhänder. Ingenting sparas eller loggas.
 * Autentiseringsnyckel som krävs för inlogging genereras automatiskt per session (standard) eller manuellt sätta en statisk nykel.
@@ -35,24 +36,24 @@ Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dess
 
 Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 
-Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad
+**Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad**
 
 ```php
 $auth = new SwedbankJson\Auth\SecurityToken(BANK_APP, USERNAME, $challengeResponse);
 ```
-**$challengeResponse** ska vara ett 8-siffrigt nummer som man får från säkerhetsdosan som behövs för att logga in
+**$challengeResponse** ska vara ett 8-siffrigt nummer som man får från säkerhetsdosan
 
-#### Säkerhetsdosa (Responskod)
-Den andra typen av inlogginsmetod för säkerhetsdosa är responskod. Här ska 
+#### Säkerhetsdosa (Kontrollnummer och svarskod)
+Den andra typen av inlogginsmetod för säkerhetsdosa är kontrollnummer med svarskod. Denna metod innebär att man får en 8-siffrigt kontrollnummer som ska matas in i dosan och som svar får man ett nytt 8-siffrigt svarskod som skrivs in i antingen appen eller i internetbanken.
 
 Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 
-Välj säkerhetsdosa -> Mata in engångskod i dosan -> Fyll i svaret från säkerhetsdosan -> Inloggad
+**Välj säkerhetsdosa -> Mata in kontrollnummer i dosan -> Skriv av savarskod -> Inloggad**
 
-I dagsläget finns det inget stöd för denna typ av inlogging, men den finns på todo-listan. Den som kan tänka sig att ställa upp som testare kan kontakta mig för mer info. Frågor ställs sedvanligt via en issue.
+I dagsläget finns det inget stöd för denna typ av inlogging, men den finns på todo-listan. Den som kan tänka sig att ställa upp som testare kan läsa mer om det [här](https://github.com/walle89/SwedbankJson/issues/18#issuecomment-77850071).
 
 ### Kontotransaktioner
-Lista kontotransaktioner från första kontot som är sannolikt lönekontot med personlig kod. Ändra bara inställningarna nedan.
+Lista kontotransaktioner från första kontot.
 ```php
 $accountInfo = $bankConn->accountDetails(); // Hämtar från första kontot, sannolikt lönekontot
 
@@ -105,12 +106,11 @@ print_r($accountInfo);
 * Curl
 
 ## Installation
-
 Idag erbjuds enbart installation via [Composer](http://getcomposer.org). Det är möjligt att ladda ned projektfilterna och manuelt installera stödbibliotek, men det är inget som rekommenderas.
 
 ### Linux och OS X
 
-Kör följande i ett terminalfönster (Öppna Applikationer > Vekrtyg > Terminal på OSX):
+Kör följande i ett terminalfönster (OS X: Öppna Applikationer > Verktygsprogram > Terminal):
 ```bash
 curl -sS https://getcomposer.org/installer | php
 ```
@@ -146,7 +146,7 @@ Högerklicka på en katalog och välj "Use Composer here". Ett cmd.exe-fönster 
 composer require walle89/swedbank-json ~0.5
 ```
 
-***Eller*** skapa eller ändra composer.json med följande innehåll samt högerklicka och klicka "Composer Install":
+***Eller*** skapa eller ändra composer.json med följande innehåll samt högerklicka och välj "Composer Install":
 ```javascript
 {
     "require": {

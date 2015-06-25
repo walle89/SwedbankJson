@@ -3,7 +3,6 @@
     "description": "Wrapper for Swedbank's closed mobile apps API in Sweden",
     "type": "library",
     "keywords": ["swedbank","wrapper","api","json"],
-    "version": "0.5.1",
     "minimum-stability": "stable",
     "license": "MIT",
     "homepage": "https://github.com/walle89/SwedbankJson",
