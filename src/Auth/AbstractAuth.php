@@ -187,7 +187,6 @@ abstract class AbstractAuth implements AuthInterface
         if (empty($this->_client))
         {
             $this->_client = new Client([
-                'base_url' => self::baseUri,
                 'defaults' => [
                     'headers' => [
                         'Authorization' => $this->_authorization,
@@ -206,6 +205,7 @@ abstract class AbstractAuth implements AuthInterface
                             CURLOPT_COOKIEFILE  => $this->_ckfile,
                         ],
                     ],
+                'base_uri' => self::baseUri,
                 ],
                 'debug' => $this->_debug,
             ]);
