@@ -12,6 +12,7 @@ namespace SwedbankJson\Auth;
 
 use Exception;
 
+use GuzzleHttp\Psr7\Request;
 use Rhumsaa\Uuid\Uuid;
 
 use GuzzleHttp\Client;
@@ -117,10 +118,9 @@ abstract class AbstractAuth implements AuthInterface
      */
     public function getRequest($apiRequest, $query = [])
     {
-        $request = $this->createRequest('get', $apiRequest, $query);
-        $response = $this->_client->send($request);
+        $request = $this->createRequest('get', $apiRequest);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request, $query);
     }
 
     /**
@@ -131,17 +131,15 @@ abstract class AbstractAuth implements AuthInterface
      *
      * @return object    JSON-avkodad information från API:et
      */
-    public function postRequest($apiRequest, $data_string = '')
+    public function postRequest($apiRequest, $data_string = null)
     {
-        $request = $this->createRequest('post', $apiRequest);
+        $headers = [];
+        if (!is_null($data_string))
+            $headers['Content-Type'] = 'application/json; charset=UTF-8';
 
-        if (!empty($data_string)) {
-            $request->addHeader('Content-Type', 'application/json; charset=UTF-8');
-            $request->setBody(Stream::factory($data_string));
-        }
+        $request = $this->createRequest('post', $apiRequest, $headers, $data_string);
 
-        $response = $this->_client->send($request);
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -154,9 +152,8 @@ abstract class AbstractAuth implements AuthInterface
     public function putRequest($apiRequest)
     {
         $request = $this->createRequest('put', $apiRequest);
-        $response = $this->_client->send($request);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -169,20 +166,20 @@ abstract class AbstractAuth implements AuthInterface
     public function deleteRequest($apiRequest)
     {
         $request = $this->createRequest('delete', $apiRequest);
-        $response = $this->_client->send($request);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
      * Gemensam hantering av HTTP requests
      *
-     * @param string $method Typ av HTTP förfrågan (ex. GET, POST)
-     * @param string $apiRequest Requesttyp till API
-     * @param array $query Ev. query till URL
+     * @param string    $method     Typ av HTTP förfrågan (ex. GET, POST)
+     * @param string    $apiRequest Requesttyp till API
+     * @param array     $headers    Extra HTTP headers
+     * @param string    $body       Body innehåll
      * @return mixed    @see \GuzzleHttp\Client\createRequest
      */
-    private function createRequest($method, $apiRequest, array $query = [])
+    private function createRequest($method, $apiRequest, $headers=[], $body=null)
     {
         if (empty($this->_client))
         {
@@ -210,14 +207,25 @@ abstract class AbstractAuth implements AuthInterface
             ]);
         }
 
+        return new Request($method, $apiRequest, $headers, $body);
+    }
+
+    /**
+     * @param $request
+     * @param array $query
+     * @param array $options
+     * @return object
+     */
+    private function sendRequest($request, array $query=[], array $options=[])
+    {
         $dsidStr = ['dsid' => $this->dsid()];
 
-        $httpQuery = array_merge($query, $dsidStr);
+        $options['cookies'] = $dsidStr;
+        $options['query']   = array_merge($query, $dsidStr);
 
-        return $this->_client->createRequest($method, $apiRequest, [
-            'cookies' => $dsidStr,
-            'query' => $httpQuery,
-        ]);
+        $response = $this->_client->send($request, $options);
+
+        return $response->json(['object' => true]);
     }
 
     /**
