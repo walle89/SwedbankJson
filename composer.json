@@ -19,7 +19,7 @@
     "require": {
         "php": ">=5.4",
         "ext-curl": "*",
-        "rhumsaa/uuid": "~2.7",
+        "ramsey/uuid": "~2.8",
         "guzzlehttp/guzzle": "~5.0"
     },
     "autoload": {
