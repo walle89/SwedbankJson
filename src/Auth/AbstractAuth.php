@@ -187,26 +187,25 @@ abstract class AbstractAuth implements AuthInterface
         if (empty($this->_client))
         {
             $this->_client = new Client([
-                'defaults' => [
-                    'headers' => [
-                        'Authorization' => $this->_authorization,
-                        'Accept' => '*/*',
-                        'Accept-Language' => 'sv-se',
-                        'Accept-Encoding' => 'gzip, deflate',
-                        'Connection' => 'keep-alive',
-                        'Proxy-Connection' => 'keep-alive',
-                        'User-Agent' => $this->_userAgent,
-                    ],
-                    'allow_redirects' => ['max' => 10, 'referer' => true],
-                    'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
-                    'config' => [
-                        'curl' => [
-                            CURLOPT_COOKIEJAR   => $this->_ckfile,
-                            CURLOPT_COOKIEFILE  => $this->_ckfile,
-                        ],
-                    ],
                 'base_uri' => self::baseUri,
+                'headers' => [
+                    'Authorization' => $this->_authorization,
+                    'Accept' => '*/*',
+                    'Accept-Language' => 'sv-se',
+                    'Accept-Encoding' => 'gzip, deflate',
+                    'Connection' => 'keep-alive',
+                    'Proxy-Connection' => 'keep-alive',
+                    'User-Agent' => $this->_userAgent,
                 ],
+                'allow_redirects' => ['max' => 10, 'referer' => true],
+                'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
+                /*
+                'config' => [
+                    'curl' => [
+                        CURLOPT_COOKIEJAR   => $this->_ckfile,
+                        CURLOPT_COOKIEFILE  => $this->_ckfile,
+                    ],
+                ],*/
                 'debug' => $this->_debug,
             ]);
         }
