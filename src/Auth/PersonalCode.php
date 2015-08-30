@@ -32,19 +32,16 @@ class PersonalCode extends AbstractAuth
      * @param int               $username   Personnummer för inlogging till internetbanken
      * @param string            $password   Personlig kod för inlogging till internetbanken
      * @param bool              $debug      Sätt true för att göra felsökning, annars false eller null
-     * @param string            $ckfile     Sökväg till mapp där cookiejar kan sparas temporärt
-     *
      *
      * @throws \Exception
      * @throws \SwedbankJson\UserException
      */
-    public function __construct($bankApp, $username, $password, $debug = false, $ckfile = './temp/')
+    public function __construct($bankApp, $username, $password, $debug = false)
     {
         $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
         $this->_username    = $username;
         $this->_password    = $password;
         $this->_debug       = (bool)$debug;
-        $this->_ckfile      = tempnam($ckfile, 'CURLCOOKIE');
         $this->setAuthorizationKey();
     }
 

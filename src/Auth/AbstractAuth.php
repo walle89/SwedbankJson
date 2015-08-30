@@ -48,11 +48,6 @@ abstract class AbstractAuth implements AuthInterface
     protected $_client;
 
     /**
-     * @var string Sökväg för cookiejarl
-     */
-    protected $_ckfile;
-
-    /**
      * @var string Profiltyp (företag eller privatperson)
      */
     private $_profileType;
@@ -92,9 +87,6 @@ abstract class AbstractAuth implements AuthInterface
     {
         $result = $this->putRequest('identification/logout');
         unset($this->_client);
-
-        if(file_exists($this->_ckfile))
-            unlink($this->_ckfile);
 
         return $result;
     }
