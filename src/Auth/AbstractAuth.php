@@ -12,6 +12,9 @@ namespace SwedbankJson\Auth;
 
 use Exception;
 
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Cookie\SetCookie;
+use GuzzleHttp\Cookie\CookieJar;
 use Rhumsaa\Uuid\Uuid;
 
 use GuzzleHttp\Client;
@@ -45,11 +48,6 @@ abstract class AbstractAuth implements AuthInterface
     protected $_client;
 
     /**
-     * @var string Sökväg för cookiejarl
-     */
-    protected $_ckfile;
-
-    /**
      * @var string Profiltyp (företag eller privatperson)
      */
     private $_profileType;
@@ -58,6 +56,11 @@ abstract class AbstractAuth implements AuthInterface
      * @var bool Debugging
      */
     protected $_debug;
+
+    /**
+     * @var object
+     */
+    private $_cookieJar;
 
     /**
      * @param string $key Sätta en egen AuthorizationKey
@@ -84,9 +87,6 @@ abstract class AbstractAuth implements AuthInterface
     {
         $result = $this->putRequest('identification/logout');
         unset($this->_client);
-
-        if(file_exists($this->_ckfile))
-            unlink($this->_ckfile);
 
         return $result;
     }
@@ -117,10 +117,9 @@ abstract class AbstractAuth implements AuthInterface
      */
     public function getRequest($apiRequest, $query = [])
     {
-        $request = $this->createRequest('get', $apiRequest, $query);
-        $response = $this->_client->send($request);
+        $request = $this->createRequest('get', $apiRequest);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request, $query);
     }
 
     /**
@@ -131,17 +130,15 @@ abstract class AbstractAuth implements AuthInterface
      *
      * @return object    JSON-avkodad information från API:et
      */
-    public function postRequest($apiRequest, $data_string = '')
+    public function postRequest($apiRequest, $data_string = null)
     {
-        $request = $this->createRequest('post', $apiRequest);
+        $headers = [];
+        if (!is_null($data_string))
+            $headers['Content-Type'] = 'application/json; charset=UTF-8';
 
-        if (!empty($data_string)) {
-            $request->addHeader('Content-Type', 'application/json; charset=UTF-8');
-            $request->setBody(Stream::factory($data_string));
-        }
+        $request = $this->createRequest('post', $apiRequest, $headers, $data_string);
 
-        $response = $this->_client->send($request);
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -154,9 +151,8 @@ abstract class AbstractAuth implements AuthInterface
     public function putRequest($apiRequest)
     {
         $request = $this->createRequest('put', $apiRequest);
-        $response = $this->_client->send($request);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -169,56 +165,69 @@ abstract class AbstractAuth implements AuthInterface
     public function deleteRequest($apiRequest)
     {
         $request = $this->createRequest('delete', $apiRequest);
-        $response = $this->_client->send($request);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
      * Gemensam hantering av HTTP requests
      *
-     * @param string $method Typ av HTTP förfrågan (ex. GET, POST)
-     * @param string $apiRequest Requesttyp till API
-     * @param array $query Ev. query till URL
+     * @param string    $method     Typ av HTTP förfrågan (ex. GET, POST)
+     * @param string    $apiRequest Requesttyp till API
+     * @param array     $headers    Extra HTTP headers
+     * @param string    $body       Body innehåll
      * @return mixed    @see \GuzzleHttp\Client\createRequest
      */
-    private function createRequest($method, $apiRequest, array $query = [])
+    private function createRequest($method, $apiRequest, $headers=[], $body=null)
     {
         if (empty($this->_client))
         {
+            $this->_cookieJar = new CookieJar();
+
             $this->_client = new Client([
-                'base_url' => self::baseUri,
-                'defaults' => [
-                    'headers' => [
-                        'Authorization' => $this->_authorization,
-                        'Accept' => '*/*',
-                        'Accept-Language' => 'sv-se',
-                        'Accept-Encoding' => 'gzip, deflate',
-                        'Connection' => 'keep-alive',
-                        'Proxy-Connection' => 'keep-alive',
-                        'User-Agent' => $this->_userAgent,
-                    ],
-                    'allow_redirects' => ['max' => 10, 'referer' => true],
-                    'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
-                    'config' => [
-                        'curl' => [
-                            CURLOPT_COOKIEJAR   => $this->_ckfile,
-                            CURLOPT_COOKIEFILE  => $this->_ckfile,
-                        ],
-                    ],
+                'base_uri' => self::baseUri,
+                'headers' => [
+                    'Authorization' => $this->_authorization,
+                    'Accept' => '*/*',
+                    'Accept-Language' => 'sv-se',
+                    'Accept-Encoding' => 'gzip, deflate',
+                    'Connection' => 'keep-alive',
+                    'Proxy-Connection' => 'keep-alive',
+                    'User-Agent' => $this->_userAgent,
                 ],
+                'cookies' => $this->_cookieJar,
+                'allow_redirects' => ['max' => 10, 'referer' => true],
+                'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
                 'debug' => $this->_debug,
             ]);
         }
 
-        $dsidStr = ['dsid' => $this->dsid()];
+        return new Request($method, $apiRequest, $headers, $body);
+    }
 
-        $httpQuery = array_merge($query, $dsidStr);
+    /**
+     * @param $request
+     * @param array $query
+     * @param array $options
+     * @return object
+     */
+    private function sendRequest($request, array $query=[], array $options=[])
+    {
+        $dsid = $this->dsid();
 
-        return $this->_client->createRequest($method, $apiRequest, [
-            'cookies' => $dsidStr,
-            'query' => $httpQuery,
-        ]);
+        $this->_cookieJar->setCookie(new SetCookie([
+            'Name' => 'dsid',
+            'Value' => $dsid,
+            'Path' => null,
+            'Domain' => 0,
+        ]));
+
+        $options['cookies'] = $this->_cookieJar;
+        $options['query']   = array_merge($query, ['dsid' => $dsid]);
+
+        $response = $this->_client->send($request, $options);
+
+        return json_decode($response->getBody());
     }
 
     /**
