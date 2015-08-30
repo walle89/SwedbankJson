@@ -13,6 +13,8 @@ namespace SwedbankJson\Auth;
 use Exception;
 
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Cookie\SetCookie;
+use GuzzleHttp\Cookie\CookieJar;
 use Rhumsaa\Uuid\Uuid;
 
 use GuzzleHttp\Client;
@@ -59,6 +61,11 @@ abstract class AbstractAuth implements AuthInterface
      * @var bool Debugging
      */
     protected $_debug;
+
+    /**
+     * @var object
+     */
+    private $_cookieJar;
 
     /**
      * @param string $key Sätta en egen AuthorizationKey
@@ -183,6 +190,8 @@ abstract class AbstractAuth implements AuthInterface
     {
         if (empty($this->_client))
         {
+            $this->_cookieJar = new CookieJar();
+
             $this->_client = new Client([
                 'base_uri' => self::baseUri,
                 'headers' => [
@@ -194,15 +203,9 @@ abstract class AbstractAuth implements AuthInterface
                     'Proxy-Connection' => 'keep-alive',
                     'User-Agent' => $this->_userAgent,
                 ],
+                'cookies' => $this->_cookieJar,
                 'allow_redirects' => ['max' => 10, 'referer' => true],
                 'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
-                /*
-                'config' => [
-                    'curl' => [
-                        CURLOPT_COOKIEJAR   => $this->_ckfile,
-                        CURLOPT_COOKIEFILE  => $this->_ckfile,
-                    ],
-                ],*/
                 'debug' => $this->_debug,
             ]);
         }
@@ -218,10 +221,17 @@ abstract class AbstractAuth implements AuthInterface
      */
     private function sendRequest($request, array $query=[], array $options=[])
     {
-        $dsidStr = ['dsid' => $this->dsid()];
+        $dsid = $this->dsid();
 
-        $options['cookies'] = $dsidStr;
-        $options['query']   = array_merge($query, $dsidStr);
+        $this->_cookieJar->setCookie(new SetCookie([
+            'Name' => 'dsid',
+            'Value' => $dsid,
+            'Path' => null,
+            'Domain' => 0,
+        ]));
+
+        $options['cookies'] = $this->_cookieJar;
+        $options['query']   = array_merge($query, ['dsid' => $dsid]);
 
         $response = $this->_client->send($request, $options);
 
