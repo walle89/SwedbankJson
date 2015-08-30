@@ -235,7 +235,7 @@ abstract class AbstractAuth implements AuthInterface
 
         $response = $this->_client->send($request, $options);
 
-        return $response->json(['object' => true]);
+        return json_decode($response->getBody());
     }
 
     /**
