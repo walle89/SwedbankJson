@@ -216,10 +216,10 @@ abstract class AbstractAuth implements AuthInterface
         $dsid = $this->dsid();
 
         $this->_cookieJar->setCookie(new SetCookie([
-            'Name' => 'dsid',
-            'Value' => $dsid,
-            'Path' => null,
-            'Domain' => 0,
+            'Name'      => 'dsid',
+            'Value'     => $dsid,
+            'Path'      => '/',
+            'Domain'    => 0,
         ]));
 
         $options['cookies'] = $this->_cookieJar;
