@@ -26,14 +26,19 @@ use GuzzleHttp\Cookie\SessionCookieJar;
 abstract class AbstractAuth implements AuthInterface
 {
     /**
-     * Bas-url för API-anrop
-     */
-    const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v3/';
-
-    /**
      * Namn för cookieJar session
      */
     const cookieJarSession = 'swedbankjson_cookiejar';
+
+    /**
+     * @var string
+     */
+    private $_baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/';
+
+    /**
+     * @var string
+     */
+    private $_apiVersion = 'v3';
 
     /**
      * @var string AppID. Ett ID som finns i Swedbanks appar.
@@ -191,6 +196,28 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
+     * Retunterar inställd profil
+     *
+     * @return string
+     */
+    public function getProfileType()
+    {
+        return $this->_profileType;
+    }
+
+    /**
+     * Guzzle klientobjekt
+     *
+     * @return resource
+     */
+    public function getClient()
+    {
+        return $this->_client;
+    }
+
+
+
+    /**
      * Gemensam hantering av HTTP requests
      *
      * @param string $method Typ av HTTP förfrågan (ex. GET, POST)
@@ -205,7 +232,7 @@ abstract class AbstractAuth implements AuthInterface
             $this->_cookieJar = ($this->_persistentSession) ? new SessionCookieJar(self::cookieJarSession, true) : new CookieJar();
 
             $this->_client = new Client([
-                'base_uri' => self::baseUri,
+                'base_uri' => $this->_baseUri.$this->_apiVersion.'/',
                 'headers' => [
                     'Authorization' => $this->_authorization,
                     'Accept' => '*/*',
@@ -286,23 +313,13 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     * Guzzle klientobjekt
+     * Set
      *
-     * @return resource
+     * @param string $baseUri
      */
-    public function getClient()
+    protected function setBaseUri($baseUri)
     {
-        return $this->_client;
-    }
-
-    /**
-     * Retunterar inställd profil
-     *
-     * @return string
-     */
-    public function getProfileType()
-    {
-        return $this->_profileType;
+        $this->_baseUri = $baseUri;
     }
 }
 
