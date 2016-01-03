@@ -12,14 +12,13 @@ namespace SwedbankJson\Auth;
 
 use Exception;
 
-use GuzzleHttp\Cookie\SessionCookieJar;
+use Rhumsaa\Uuid\Uuid;
+use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Cookie\SetCookie;
 use GuzzleHttp\Cookie\CookieJar;
-use Rhumsaa\Uuid\Uuid;
+use GuzzleHttp\Cookie\SessionCookieJar;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Stream\Stream;
 
 abstract class AbstractAuth implements AuthInterface
 {
