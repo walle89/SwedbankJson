@@ -24,17 +24,17 @@ class SecurityToken extends AbstractAuth
     /**
      * @var int
      */
-    private $_challengeResponse;
+    protected $_challengeResponse;
 
     /**
      * @var int
      */
-    private $_challenge=null;
+    protected $_challenge=null;
 
     /**
      * @var bool
      */
-    private $_useOneTimePassword;
+    protected $_useOneTimePassword;
 
     /**
      * Grundläggande upgifter
@@ -54,6 +54,7 @@ class SecurityToken extends AbstractAuth
         $this->setchallengeResponse($challengeResponse);
         $this->_debug = (bool)$debug;
         $this->setAuthorizationKey();
+        $this->persistentSession();
     }
 
     /**
@@ -73,6 +74,8 @@ class SecurityToken extends AbstractAuth
             $this->_challenge           = (int)$output->challenge;
             $this->_useOneTimePassword  = (bool)$output->useOneTimePassword;
         }
+
+        $this->saveSession();
 
         return $this->_challenge;
     }
@@ -124,5 +127,14 @@ class SecurityToken extends AbstractAuth
     public function isUseOneTimePassword()
     {
         return $this->_useOneTimePassword;
+    }
+
+    public function __sleep()
+    {
+        $sleepAttr   = parent::__sleep();
+        $sleepAttr[] = '_challenge';
+        $sleepAttr[] = '_challengeResponse';
+        $sleepAttr[] = '_useOneTimePassword';
+        return $sleepAttr;
     }
 }
