@@ -31,6 +31,11 @@ abstract class AbstractAuth implements AuthInterface
     const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v3/';
 
     /**
+     * Namn för auth session
+     */
+    const authSession = 'swedbankjson_auth';
+
+    /**
      * Namn för cookieJar session
      */
     const cookieJarSession = 'swedbankjson_cookiejar';
@@ -108,6 +113,7 @@ abstract class AbstractAuth implements AuthInterface
         $this->_cookieJar->clear();
         $this->_cookieJar->clearSessionCookies();
         unset($this->_client);
+        unset($_SESSION[self::authSession]);
 
         return $result;
     }
@@ -258,6 +264,14 @@ abstract class AbstractAuth implements AuthInterface
     protected function persistentSession()
     {
         $this->_persistentSession = true;
+    }
+
+    /**
+     * Sparar auth session
+     */
+    protected function saveSession()
+    {
+        $_SESSION[self::authSession] = serialize($this);
     }
 
     /**
