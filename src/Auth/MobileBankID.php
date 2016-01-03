@@ -92,26 +92,6 @@ class MobileBankID extends AbstractAuth
     }
 
     /**
-     *
-     *
-     * @param int $intervall
-     * @param int $maxTries
-     * @return bool
-     * @throws Exception
-     */
-    public function autoVerify($intervall = 5, $maxTries = 12)
-    {
-        for ($i = 0; $i < $maxTries; $i++) {
-            if ($this->verify())
-                return true;
-
-            sleep($intervall);
-        }
-
-        return false;
-    }
-
-    /**
      * Inlogging
      *
      * Verifiering måste vara genomförd för att kunna genomföra restireande steg i inloggingsprocessen
