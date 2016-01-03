@@ -19,7 +19,10 @@ use GuzzleHttp\Cookie\SetCookie;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\SessionCookieJar;
 
-
+/**
+ * Class AbstractAuth
+ * @package SwedbankJson\Auth
+ */
 abstract class AbstractAuth implements AuthInterface
 {
     /**
@@ -73,6 +76,10 @@ abstract class AbstractAuth implements AuthInterface
     protected $_persistentSession = false;
 
     /**
+     * Ange AuthorizationKey
+     *
+     * Om ingen nyckel anges, genereras automaiskt en nyckel.
+     *
      * @param string $key Sätta en egen AuthorizationKey
      */
     public function setAuthorizationKey($key = '')
@@ -190,7 +197,7 @@ abstract class AbstractAuth implements AuthInterface
      * @param string $apiRequest Requesttyp till API
      * @param array $headers Extra HTTP headers
      * @param string $body Body innehåll
-     * @return mixed    @see \GuzzleHttp\Client\createRequest
+     * @return Request
      */
     private function createRequest($method, $apiRequest, $headers = [], $body = null)
     {
@@ -219,12 +226,14 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     * @param $request
-     * @param array $query
-     * @param array $options
-     * @return object
+     * Skicka/verkställ HTTP request
+     *
+     * @param Request $request
+     * @param array $query Fråga för GET-anrop
+     * @param array $options Guzzle konfiguration
+     * @return mixed    Json-objekt med data från API:et @see json_decode();
      */
-    private function sendRequest($request, array $query = [], array $options = [])
+    private function sendRequest(Request $request, array $query = [], array $options = [])
     {
         $dsid = $this->dsid();
 
@@ -244,7 +253,7 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     *
+     *  Slår på sessions-data ska sparas mellan sessioner
      */
     protected function persistentSession()
     {
@@ -252,7 +261,7 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     *
+     * @return array
      */
     public function __sleep()
     {
@@ -277,6 +286,8 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
+     * Guzzle klientobjekt
+     *
      * @return resource
      */
     public function getClient()
@@ -285,6 +296,8 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
+     * Retunterar inställd profil
+     *
      * @return string
      */
     public function getProfileType()

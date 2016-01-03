@@ -13,6 +13,10 @@ namespace SwedbankJson\Auth;
 use SwedbankJson\AppData;
 use Exception;
 
+/**
+ * Class MobileBankID
+ * @package SwedbankJson\Auth
+ */
 class MobileBankID extends AbstractAuth
 {
     /**
@@ -26,14 +30,11 @@ class MobileBankID extends AbstractAuth
     private $_verified = false;
 
     /**
-     * Grundläggande upgifter
+     * Grundläggande upgifter för mobilt BankID
      *
      * @param string|array $bankApp ID för vilken bank som ska anropas, eller array med appdata uppgifter.
      * @param int $username Personnummer för inlogging till internetbanken
      * @param bool $debug Sätt true för att göra felsökning, annars false eller null
-     *
-     * @throws \Exception
-     * @throws \SwedbankJson\UserException
      */
     public function __construct($bankApp, $username, $debug = false)
     {
@@ -46,7 +47,9 @@ class MobileBankID extends AbstractAuth
 
 
     /**
+     * Inleder inlogging med Mobilt BankID
      *
+     * Ser till att verifieringsförfrågan skickas till användarens mobila BankID
      *
      * @return bool
      * @throws Exception
@@ -67,7 +70,7 @@ class MobileBankID extends AbstractAuth
 
 
     /**
-     *
+     * Verifierings kontroll
      *
      * @return bool
      * @throws Exception
@@ -110,7 +113,8 @@ class MobileBankID extends AbstractAuth
 
     /**
      * Inlogging
-     * Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t
+     *
+     * Verifiering måste vara genomförd för att kunna genomföra restireande steg i inloggingsprocessen
      *
      * @return bool         True om inloggingen lyckades
      * @throws Exception    Fel vid inloggen
