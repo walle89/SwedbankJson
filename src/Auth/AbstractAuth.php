@@ -113,7 +113,9 @@ abstract class AbstractAuth implements AuthInterface
         $this->_cookieJar->clear();
         $this->_cookieJar->clearSessionCookies();
         unset($this->_client);
-        unset($_SESSION[self::authSession]);
+
+        if($this->persistentSession())
+            unset($_SESSION[self::authSession]);
 
         return $result;
     }
