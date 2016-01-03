@@ -41,6 +41,7 @@ class MobileBankID extends AbstractAuth
         $this->_username    = $username;
         $this->_debug       = (bool)$debug;
         $this->setAuthorizationKey();
+        $this->persistentSession();
     }
 
 

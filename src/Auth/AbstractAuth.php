@@ -12,6 +12,7 @@ namespace SwedbankJson\Auth;
 
 use Exception;
 
+use GuzzleHttp\Cookie\SessionCookieJar;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Cookie\SetCookie;
 use GuzzleHttp\Cookie\CookieJar;
@@ -28,19 +29,24 @@ abstract class AbstractAuth implements AuthInterface
     const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v3/';
 
     /**
+     * Namn för cookieJar session
+     */
+    const cookieJarSession = 'swedbankjson_cookiejar';
+
+    /**
      * @var string AppID. Ett ID som finns i Swedbanks appar.
      */
-    private $_appID;
+    protected $_appID;
 
     /**
      * @var string  User agent för appen
      */
-    private $_userAgent;
+    protected $_userAgent;
 
     /**
      * @var string Auth-nyckel mot Swedbank
      */
-    private $_authorization;
+    protected $_authorization;
 
     /**
      * @var resource CURL-resurs
@@ -50,7 +56,7 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * @var string Profiltyp (företag eller privatperson)
      */
-    private $_profileType;
+    protected $_profileType;
 
     /**
      * @var bool Debugging
@@ -60,7 +66,12 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * @var object
      */
-    private $_cookieJar;
+    protected $_cookieJar;
+
+    /**
+     * @var
+     */
+    protected $_persistentSession = false;
 
     /**
      * @param string $key Sätta en egen AuthorizationKey
@@ -86,6 +97,10 @@ abstract class AbstractAuth implements AuthInterface
     public function terminate()
     {
         $result = $this->putRequest('identification/logout');
+
+        // Cleanup
+        $this->_cookieJar->clear();
+        $this->_cookieJar->clearSessionCookies();
         unset($this->_client);
 
         return $result;
@@ -182,7 +197,7 @@ abstract class AbstractAuth implements AuthInterface
     {
         if (empty($this->_client))
         {
-            $this->_cookieJar = new CookieJar();
+            $this->_cookieJar = ($this->_persistentSession) ?new SessionCookieJar(self::cookieJarSession, true) : new CookieJar();
 
             $this->_client = new Client([
                 'base_uri' => self::baseUri,
@@ -228,6 +243,22 @@ abstract class AbstractAuth implements AuthInterface
         $response = $this->_client->send($request, $options);
 
         return json_decode($response->getBody());
+    }
+
+    /**
+     *
+     */
+    protected function persistentSession()
+    {
+        $this->_persistentSession = true;
+    }
+
+    /**
+     *
+     */
+    public function __sleep()
+    {
+        return ['_appID', '_userAgent', '_authorization', '_profileType', '_debug', '_persistentSession',];
     }
 
     /**
