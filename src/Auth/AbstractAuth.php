@@ -187,17 +187,16 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * Gemensam hantering av HTTP requests
      *
-     * @param string    $method     Typ av HTTP förfrågan (ex. GET, POST)
-     * @param string    $apiRequest Requesttyp till API
-     * @param array     $headers    Extra HTTP headers
-     * @param string    $body       Body innehåll
+     * @param string $method Typ av HTTP förfrågan (ex. GET, POST)
+     * @param string $apiRequest Requesttyp till API
+     * @param array $headers Extra HTTP headers
+     * @param string $body Body innehåll
      * @return mixed    @see \GuzzleHttp\Client\createRequest
      */
-    private function createRequest($method, $apiRequest, $headers=[], $body=null)
+    private function createRequest($method, $apiRequest, $headers = [], $body = null)
     {
-        if (empty($this->_client))
-        {
-            $this->_cookieJar = ($this->_persistentSession) ?new SessionCookieJar(self::cookieJarSession, true) : new CookieJar();
+        if (empty($this->_client)) {
+            $this->_cookieJar = ($this->_persistentSession) ? new SessionCookieJar(self::cookieJarSession, true) : new CookieJar();
 
             $this->_client = new Client([
                 'base_uri' => self::baseUri,
@@ -226,19 +225,19 @@ abstract class AbstractAuth implements AuthInterface
      * @param array $options
      * @return object
      */
-    private function sendRequest($request, array $query=[], array $options=[])
+    private function sendRequest($request, array $query = [], array $options = [])
     {
         $dsid = $this->dsid();
 
         $this->_cookieJar->setCookie(new SetCookie([
-            'Name'      => 'dsid',
-            'Value'     => $dsid,
-            'Path'      => '/',
-            'Domain'    => 0,
+            'Name' => 'dsid',
+            'Value' => $dsid,
+            'Path' => '/',
+            'Domain' => 0,
         ]));
 
         $options['cookies'] = $this->_cookieJar;
-        $options['query']   = array_merge($query, ['dsid' => $dsid]);
+        $options['query'] = array_merge($query, ['dsid' => $dsid]);
 
         $response = $this->_client->send($request, $options);
 
@@ -295,4 +294,6 @@ abstract class AbstractAuth implements AuthInterface
     }
 }
 
-class UserException extends Exception{}
+class UserException extends Exception
+{
+}
