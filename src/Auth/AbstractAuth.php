@@ -26,6 +26,11 @@ use GuzzleHttp\Cookie\SessionCookieJar;
 abstract class AbstractAuth implements AuthInterface
 {
     /**
+     * Namn för auth session
+     */
+    const authSession = 'swedbankjson_auth';
+
+    /**
      * Namn för cookieJar session
      */
     const cookieJarSession = 'swedbankjson_cookiejar';
@@ -113,6 +118,7 @@ abstract class AbstractAuth implements AuthInterface
         $this->_cookieJar->clear();
         $this->_cookieJar->clearSessionCookies();
         unset($this->_client);
+        unset($_SESSION[self::authSession]);
 
         return $result;
     }
@@ -285,6 +291,14 @@ abstract class AbstractAuth implements AuthInterface
     protected function persistentSession()
     {
         $this->_persistentSession = true;
+    }
+
+    /**
+     * Sparar auth session
+     */
+    protected function saveSession()
+    {
+        $_SESSION[self::authSession] = serialize($this);
     }
 
     /**

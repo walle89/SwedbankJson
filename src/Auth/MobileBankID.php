@@ -27,7 +27,7 @@ class MobileBankID extends AbstractAuth
     /**
      * @var bool
      */
-    private $_verified = false;
+    protected $_verified = false;
 
     /**
      * Grundläggande upgifter för mobilt BankID
@@ -65,6 +65,8 @@ class MobileBankID extends AbstractAuth
         if ($output->status != 'USER_SIGN')
             throw new Exception('Kan inte koppla bankID.', 10);
 
+        $this->saveSession();
+
         return true;
     }
 
@@ -88,6 +90,8 @@ class MobileBankID extends AbstractAuth
         // Om status är "COMPLETE", är det lyckad inlogging
         $this->_verified = ($output->status == 'COMPLETE');
 
+        $this->saveSession();
+
         return $this->_verified;
     }
 
@@ -105,5 +109,12 @@ class MobileBankID extends AbstractAuth
             throw new Exception('BankID är inte verifierad.', 12);
 
         return true;
+    }
+
+    public function __sleep()
+    {
+        $sleepAttr = parent::__sleep();
+        $sleepAttr[] = '_verified';
+        return $sleepAttr;
     }
 }
