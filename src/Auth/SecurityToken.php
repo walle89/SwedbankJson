@@ -12,6 +12,7 @@ namespace SwedbankJson\Auth;
 
 use SwedbankJson\AppData;
 use Exception;
+use SwedbankJson\Exception\UserException;
 
 class SecurityToken extends AbstractAuth
 {
