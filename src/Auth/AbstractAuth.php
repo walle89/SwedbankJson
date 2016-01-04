@@ -239,6 +239,7 @@ abstract class AbstractAuth implements AuthInterface
      * @param Request $request
      * @param array $query Fråga för GET-anrop
      * @param array $options Guzzle konfiguration
+     *
      * @return mixed    Json-objekt med data från API:et @see json_decode();
      */
     private function sendRequest(Request $request, array $query = [], array $options = [])
@@ -320,8 +321,4 @@ abstract class AbstractAuth implements AuthInterface
     {
         return $this->_profileType;
     }
-}
-
-class UserException extends Exception
-{
 }
