@@ -360,14 +360,4 @@ abstract class AbstractAuth implements AuthInterface
     {
         $this->_baseUri = $baseUri;
     }
-
-    /**
-     * Retunterar inställd profil
-     *
-     * @return string
-     */
-    public function getProfileType()
-{
-        return $this->_profileType;
-    }
 }
