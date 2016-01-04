@@ -18,6 +18,9 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Cookie\SetCookie;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\SessionCookieJar;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
+use SwedbankJson\Exception\ApiException;
 
 /**
  * Class AbstractAuth
@@ -109,6 +112,13 @@ abstract class AbstractAuth implements AuthInterface
     {
         $result = $this->putRequest('identification/logout');
 
+        $this->cleanup();
+
+        return $result;
+    }
+
+    private function cleanup()
+    {
         // Cleanup
         $this->_cookieJar->clear();
         $this->_cookieJar->clearSessionCookies();
@@ -116,8 +126,6 @@ abstract class AbstractAuth implements AuthInterface
 
         if($this->persistentSession())
             unset($_SESSION[self::authSession]);
-
-        return $result;
     }
 
     /**
@@ -256,7 +264,20 @@ abstract class AbstractAuth implements AuthInterface
         $options['cookies'] = $this->_cookieJar;
         $options['query'] = array_merge($query, ['dsid' => $dsid]);
 
-        $response = $this->_client->send($request, $options);
+        try
+        {
+            $response = $this->_client->send($request, $options);
+        }
+        catch(ServerException $e)
+        {
+            $this->cleanup();
+            throw new ApiException($e->getResponse());
+        }
+        catch (ClientException $e)
+        {
+            $this->terminate();
+            throw new ApiException($e->getResponse());
+        }
 
         return json_decode($response->getBody());
     }
