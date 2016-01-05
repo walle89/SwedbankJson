@@ -20,7 +20,7 @@ class SecurityToken extends AbstractAuth
     /**
      * @var int Inlogging personnummer
      */
-    private $_username;
+    protected $_username;
 
     /**
      * @var int
@@ -133,6 +133,7 @@ class SecurityToken extends AbstractAuth
     public function __sleep()
     {
         $sleepAttr   = parent::__sleep();
+        $sleepAttr[] = '_username';
         $sleepAttr[] = '_challenge';
         $sleepAttr[] = '_challengeResponse';
         $sleepAttr[] = '_useOneTimePassword';
