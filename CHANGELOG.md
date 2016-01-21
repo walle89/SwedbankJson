@@ -1,4 +1,5 @@
 # Change Log
+Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här filen.
 
 ## [Unreleased][unreleased]
 ### Added
