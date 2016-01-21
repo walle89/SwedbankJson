@@ -36,16 +36,6 @@ class SwedbankJson
     }
 
     /**
-     * Utlogging från API:et.
-     *
-     * @see self::terminate()
-     */
-    public function __destruct()
-    {
-        $this->terminate();
-    }
-
-    /**
      * Profilinfomation
      *
      * Få tillgång till lista av profiler och respektive tillfälliga ID-nummer. Varje privatperson och företag har egna profiler.

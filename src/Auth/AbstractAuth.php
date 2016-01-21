@@ -13,10 +13,19 @@ namespace SwedbankJson\Auth;
 use Exception;
 
 use Rhumsaa\Uuid\Uuid;
-
 use GuzzleHttp\Client;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Cookie\SetCookie;
+use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Cookie\SessionCookieJar;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
+use SwedbankJson\Exception\ApiException;
 
+/**
+ * Class AbstractAuth
+ * @package SwedbankJson\Auth
+ */
 abstract class AbstractAuth implements AuthInterface
 {
     /**
@@ -25,19 +34,29 @@ abstract class AbstractAuth implements AuthInterface
     const baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v3/';
 
     /**
+     * Namn för auth session
+     */
+    const authSession = 'swedbankjson_auth';
+
+    /**
+     * Namn för cookieJar session
+     */
+    const cookieJarSession = 'swedbankjson_cookiejar';
+
+    /**
      * @var string AppID. Ett ID som finns i Swedbanks appar.
      */
-    private $_appID;
+    protected $_appID;
 
     /**
      * @var string  User agent för appen
      */
-    private $_userAgent;
+    protected $_userAgent;
 
     /**
      * @var string Auth-nyckel mot Swedbank
      */
-    private $_authorization;
+    protected $_authorization;
 
     /**
      * @var resource CURL-resurs
@@ -45,14 +64,9 @@ abstract class AbstractAuth implements AuthInterface
     protected $_client;
 
     /**
-     * @var string Sökväg för cookiejarl
-     */
-    protected $_ckfile;
-
-    /**
      * @var string Profiltyp (företag eller privatperson)
      */
-    private $_profileType;
+    protected $_profileType;
 
     /**
      * @var bool Debugging
@@ -60,6 +74,20 @@ abstract class AbstractAuth implements AuthInterface
     protected $_debug;
 
     /**
+     * @var object
+     */
+    protected $_cookieJar;
+
+    /**
+     * @var
+     */
+    protected $_persistentSession = false;
+
+    /**
+     * Ange AuthorizationKey
+     *
+     * Om ingen nyckel anges, genereras automaiskt en nyckel.
+     *
      * @param string $key Sätta en egen AuthorizationKey
      */
     public function setAuthorizationKey($key = '')
@@ -83,12 +111,21 @@ abstract class AbstractAuth implements AuthInterface
     public function terminate()
     {
         $result = $this->putRequest('identification/logout');
-        unset($this->_client);
 
-        if(file_exists($this->_ckfile))
-            unlink($this->_ckfile);
+        $this->cleanup();
 
         return $result;
+    }
+
+    private function cleanup()
+    {
+        // Cleanup
+        $this->_cookieJar->clear();
+        $this->_cookieJar->clearSessionCookies();
+        unset($this->_client);
+
+        if ($this->_persistentSession)
+            unset($_SESSION[self::authSession]);
     }
 
     /**
@@ -117,10 +154,9 @@ abstract class AbstractAuth implements AuthInterface
      */
     public function getRequest($apiRequest, $query = [])
     {
-        $request = $this->createRequest('get', $apiRequest, $query);
-        $response = $this->_client->send($request);
+        $request = $this->createRequest('get', $apiRequest);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request, $query);
     }
 
     /**
@@ -131,17 +167,15 @@ abstract class AbstractAuth implements AuthInterface
      *
      * @return object    JSON-avkodad information från API:et
      */
-    public function postRequest($apiRequest, $data_string = '')
+    public function postRequest($apiRequest, $data_string = null)
     {
-        $request = $this->createRequest('post', $apiRequest);
+        $headers = [];
+        if (!is_null($data_string))
+            $headers['Content-Type'] = 'application/json; charset=UTF-8';
 
-        if (!empty($data_string)) {
-            $request->addHeader('Content-Type', 'application/json; charset=UTF-8');
-            $request->setBody(Stream::factory($data_string));
-        }
+        $request = $this->createRequest('post', $apiRequest, $headers, $data_string);
 
-        $response = $this->_client->send($request);
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -154,9 +188,8 @@ abstract class AbstractAuth implements AuthInterface
     public function putRequest($apiRequest)
     {
         $request = $this->createRequest('put', $apiRequest);
-        $response = $this->_client->send($request);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -169,9 +202,8 @@ abstract class AbstractAuth implements AuthInterface
     public function deleteRequest($apiRequest)
     {
         $request = $this->createRequest('delete', $apiRequest);
-        $response = $this->_client->send($request);
 
-        return $response->json(['object' => true]);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -179,46 +211,99 @@ abstract class AbstractAuth implements AuthInterface
      *
      * @param string $method Typ av HTTP förfrågan (ex. GET, POST)
      * @param string $apiRequest Requesttyp till API
-     * @param array $query Ev. query till URL
-     * @return mixed    @see \GuzzleHttp\Client\createRequest
+     * @param array $headers Extra HTTP headers
+     * @param string $body Body innehåll
+     * @return Request
      */
-    private function createRequest($method, $apiRequest, array $query = [])
+    private function createRequest($method, $apiRequest, $headers = [], $body = null)
     {
-        if (empty($this->_client))
-        {
+        if (empty($this->_client)) {
+            $this->_cookieJar = ($this->_persistentSession) ? new SessionCookieJar(self::cookieJarSession, true) : new CookieJar();
+
             $this->_client = new Client([
-                'base_url' => self::baseUri,
-                'defaults' => [
-                    'headers' => [
-                        'Authorization' => $this->_authorization,
-                        'Accept' => '*/*',
-                        'Accept-Language' => 'sv-se',
-                        'Accept-Encoding' => 'gzip, deflate',
-                        'Connection' => 'keep-alive',
-                        'Proxy-Connection' => 'keep-alive',
-                        'User-Agent' => $this->_userAgent,
-                    ],
-                    'allow_redirects' => ['max' => 10, 'referer' => true],
-                    'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
-                    'config' => [
-                        'curl' => [
-                            CURLOPT_COOKIEJAR   => $this->_ckfile,
-                            CURLOPT_COOKIEFILE  => $this->_ckfile,
-                        ],
-                    ],
+                'base_uri' => self::baseUri,
+                'headers' => [
+                    'Authorization' => $this->_authorization,
+                    'Accept' => '*/*',
+                    'Accept-Language' => 'sv-se',
+                    'Accept-Encoding' => 'gzip, deflate',
+                    'Connection' => 'keep-alive',
+                    'Proxy-Connection' => 'keep-alive',
+                    'User-Agent' => $this->_userAgent,
                 ],
+                'cookies' => $this->_cookieJar,
+                'allow_redirects' => ['max' => 10, 'referer' => true],
+                'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
                 'debug' => $this->_debug,
             ]);
         }
 
-        $dsidStr = ['dsid' => $this->dsid()];
+        return new Request($method, $apiRequest, $headers, $body);
+    }
 
-        $httpQuery = array_merge($query, $dsidStr);
+    /**
+     * Skicka/verkställ HTTP request
+     *
+     * @param Request $request
+     * @param array $query Fråga för GET-anrop
+     * @param array $options Guzzle konfiguration
+     *
+     * @return mixed    Json-objekt med data från API:et @see json_decode();
+     */
+    private function sendRequest(Request $request, array $query = [], array $options = [])
+    {
+        $dsid = $this->dsid();
 
-        return $this->_client->createRequest($method, $apiRequest, [
-            'cookies' => $dsidStr,
-            'query' => $httpQuery,
-        ]);
+        $this->_cookieJar->setCookie(new SetCookie([
+            'Name' => 'dsid',
+            'Value' => $dsid,
+            'Path' => '/',
+            'Domain' => 0,
+        ]));
+
+        $options['cookies'] = $this->_cookieJar;
+        $options['query'] = array_merge($query, ['dsid' => $dsid]);
+
+        try
+        {
+            $response = $this->_client->send($request, $options);
+        }
+        catch(ServerException $e)
+        {
+            $this->cleanup();
+            throw new ApiException($e->getResponse());
+        }
+        catch (ClientException $e)
+        {
+            $this->terminate();
+            throw new ApiException($e->getResponse());
+        }
+
+        return json_decode($response->getBody());
+    }
+
+    /**
+     *  Slår på sessions-data ska sparas mellan sessioner
+     */
+    protected function persistentSession()
+    {
+        $this->_persistentSession = true;
+    }
+
+    /**
+     * Sparar auth session
+     */
+    protected function saveSession()
+    {
+        $_SESSION[self::authSession] = serialize($this);
+    }
+
+    /**
+     * @return array
+     */
+    public function __sleep()
+    {
+        return ['_appID', '_userAgent', '_authorization', '_profileType', '_debug', '_persistentSession',];
     }
 
     /**
@@ -239,6 +324,8 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
+     * Guzzle klientobjekt
+     *
      * @return resource
      */
     public function getClient()
@@ -247,6 +334,8 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
+     * Retunterar inställd profil
+     *
      * @return string
      */
     public function getProfileType()
@@ -254,5 +343,3 @@ abstract class AbstractAuth implements AuthInterface
         return $this->_profileType;
     }
 }
-
-class UserException extends Exception{}

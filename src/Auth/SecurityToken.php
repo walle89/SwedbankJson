@@ -12,6 +12,7 @@ namespace SwedbankJson\Auth;
 
 use SwedbankJson\AppData;
 use Exception;
+use SwedbankJson\Exception\UserException;
 
 class SecurityToken extends AbstractAuth
 {
@@ -43,18 +44,16 @@ class SecurityToken extends AbstractAuth
      * @param int $username             Personnummer för inlogging till internetbanken
      * @param int $challengeResponse    Personlig kod för inlogging till internetbanken
      * @param bool $debug               Sätt true för att göra felsökning, annars false eller null
-     * @param string $ckfile            Sökväg till mapp där cookiejar kan sparas temporärt
      *
      * @throws \Exception
      * @throws \SwedbankJson\UserException
      */
-    public function __construct($bankApp, $username, $challengeResponse = 0, $debug = false, $ckfile = './temp/')
+    public function __construct($bankApp, $username, $challengeResponse = 0, $debug = false)
     {
         $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
         $this->_username = $username;
         $this->setchallengeResponse($challengeResponse);
         $this->_debug = (bool)$debug;
-        $this->_ckfile = tempnam($ckfile, 'CURLCOOKIE');
         $this->setAuthorizationKey();
     }
 
