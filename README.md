@@ -1,15 +1,18 @@
 # SwedbankJson
 
-Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar. Inlogging görs med hjälp av internetbankens personliga kod (person- eller organisationsnummer och lösenord) eller med säkerhetsdosa.
+Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar (privatperson, ungdom och företag). Det finns flertalet stöd för olika inloggningstyper:
+
+* Mobilt BankID
+* Säkerhetsdosa med engångskod
+* Ingen inlogging (för vissa funktioner, tex. snabbsaldo) 
 
 **Detta kan wrappen göra**
 
 * Översikt av tillgängliga konton så som lönekonto, sparkonton investeringsbesparningar, lån, bankkort och kreditkort.
-* Lista ett kontos samtliga transaktioner med historik så långt bak i tiden som finns tillgängligt i internetbanken.
+* Lista ett kontos samtliga transaktioner.
 * Företagsinloggingar kan välja att lista konton utifrån en vald profil.
-* Inlogging via personlig kod eller säkerhetsdosa.
 * Aktivera, avaktivera och visa snabbsaldo.
-* Kommunicerar med Swedbanks servrar över SSL utan mellanhänder. Ingenting sparas eller loggas.
+* Kommunicationen sker krypterat enbart med Swedbankds servrar utan mellanhänder.
 * Autentiseringsnyckel som krävs för inlogging genereras automatiskt per session (standard) eller manuellt sätta en statisk nykel.
 
 [Fler funktioner finns planerade](https://github.com/walle89/SwedbankJson/labels/todo).
@@ -102,11 +105,11 @@ print_r($accountInfo);
 
 ## Systemkrav
 
-* PHP 5.4+
+* PHP 5.5+
 * Curl
 
 ## Installation
-Idag erbjuds enbart installation via [Composer](http://getcomposer.org). Det är möjligt att ladda ned projektfilterna och manuelt installera stödbibliotek, men det är inget som rekommenderas.
+Idag erbjuds enbart installation med [Composer](http://getcomposer.org). Installation som görs på andra sätt rekommenderas inte och ges ingen support för.
 
 ### Linux och OS X
 
@@ -119,17 +122,7 @@ Lägg in SwebankJson i composer.json antingen med följande kommando:
 ```bash
 php composer.phar require walle89/swedbank-json ~0.5
 ```
-
-***Eller*** skapa eller ändra composer.json med följande innehåll och kör "php composer.phar install":
-```javascript
-{
-    "require": {
-        "walle89/swedbank-json": "~0.5"
-    }
-}
-```
-
-Efter lyckad installation, ladda in autoload.php i vendor mappen.
+Efter lyckad installation, ladda in autoload.php.
 
 ```php
 require 'vendor/autoload.php';
@@ -141,12 +134,7 @@ Se till att php.exe finns installerat och den fulla sökvägen till den (ex. C:\
 
 Kör sedan [Compoer-Setup.exe](https://getcomposer.org/doc/00-intro.md#using-the-installer) och följ instruktionerna samt se till att "Shell menus" installeras.
 
-Högerklicka på en katalog och välj "Use Composer here". Ett cmd.exe-fönster ska öppnas och kör då detta kommando:
-```winbatch
-composer require walle89/swedbank-json ~0.5
-```
-
-***Eller*** skapa eller ändra composer.json med följande innehåll samt högerklicka och välj "Composer Install":
+Skapa eller ändra composer.json med följande innehåll:
 ```javascript
 {
     "require": {
@@ -155,7 +143,7 @@ composer require walle89/swedbank-json ~0.5
 }
 ```
 
-Efter lyckad installation, ladda in autoload.php i vendor mappen.
+Högerklicka på composer.json och välj "Composer Install". Efter lyckad installation, ladda in autoload.php.
 ```php
 require 'vendor/autoload.php';
 ```
