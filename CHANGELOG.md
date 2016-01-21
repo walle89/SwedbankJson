@@ -1,11 +1,16 @@
 # Change Log
-All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+### Added
+- Mobilt BankID
+
 ### Changed
-- This change log
+- Guzzle 6 och därmed PHP 5.5 krav
 - Uppdatering av appversion för samtliga Swedbank-appar.
+- Förbättrad felhantering
+
+### Removed
+- Automatisk utlogging - Måste anropa terminate() manuelt
 
 ## [0.5.2] - 2015-04-21
 ### Changed
