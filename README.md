@@ -32,7 +32,7 @@ print_r($accountInfo);
 
 ## Dokumentation
 
-* [Introduktion](docs/insroduktion.md)
+* [Introduktion](docs/introduktion.md)
 * [Inlogginhstyper](docs/inloggingstyper.md)
 * [Refferens](docs/refferens.md)
 
