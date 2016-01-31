@@ -18,6 +18,8 @@ Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas m
 [Fler funktioner finns planerade](https://github.com/walle89/SwedbankJson/labels/todo).
 
 ## Kodexempel
+Ett exempel på hur man listar transaktioner för ett konto. Inloggingstypen är [säkerhetsdosa med engångskod](docs/inloggingstyper.md#säkerhetsdosa-med-engångskod). 
+
 ```php
 $auth     = new SwedbankJson\Auth\SecurityToken($bankApp, $username, $challengeResponse);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
@@ -30,6 +32,18 @@ echo 'Kontoutdrag
 print_r($accountInfo);
 ```
 
+Alla API:er kräver inte någon inlogging. Ett exempel är snabbsaldo.
+```php
+$auth     = new SwedbankJson\Auth\UnAuth($bankApp);
+$bankConn = new SwedbankJson\SwedbankJson($auth);
+
+$quickBalance = $bankConn->quickBalance($subID);
+
+echo 'Snabbslado
+<pre>';
+print_r($quickBalance);
+```
+
 ## Dokumentation
 
 * [Introduktion](docs/introduktion.md)
@@ -39,7 +53,7 @@ print_r($accountInfo);
 ## Uppdateringar
 
 Främsta anledningen till uppdateringar behöver göras är att Swedbank ändrar AppID och User Agent för varje uppdatering av sina appar. AppID och User Agent används som en del av atuetensierings prosessen.
-Justera versionen i composer.json och kör sedan `composer update`.
+Eventuellt justera versionen i composer.json och kör sedan `composer update`.
 
 ## Feedback, frågor, buggar, etc.
 

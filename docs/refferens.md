@@ -1,4 +1,5 @@
 # Refferens
+För mer detaljerad information, se phpdoc i [SwedbankJson.php](../src/SwedbankJson.php)
 
 ## Profilelist()
 Listar tillgänliga profiler för användaren. Används för att bland kunna växla mellan privat konto och ett eller flera företagskonton.

@@ -21,9 +21,9 @@ composer require walle89/swedbank-json ~0.6
 
 Mer ingående [instruktioner för installation med Composer](composer.md)
 
-## 
+## Komplett exempel
+Detta exempel använder [säkerhetsdosa med engångskod](docs/inloggingstyper.md#säkerhetsdosa-med-engångskod) som inloggingstyp för att lista kontotransaktioner. 
 
-### Komplett exempel
 ```php
 <?php 
 require 'vendor/autoload.php';
@@ -52,9 +52,10 @@ echo 'Kontoutdrag
 print_r($accountInfo);
 ```
 
-## 
+### Föredrar en annan inlogginstyp?
+[Lista och instruktioner för respektive inloginstyp](inloggingstyper.md).
 
-### Kontotransaktioner
+## Kontotransaktioner
 Lista kontotransaktioner från första kontot.
 
 ```php
@@ -66,7 +67,7 @@ echo '<strong>Kontoutdrag</strong>';
 print_r($accountInfo);
 ```
 
-### Välja konto
+## Välja konto
 För att lista och välja ett specifikt konto som man hämtar sina transaktioner kan man modifiera ovanstående kod till följande:
 
 ```php
@@ -83,7 +84,7 @@ echo '<strong>Kontoutdrag</strong>';
 print_r($accountInfo);
 ```
 
-### Profilväljare (företag)
+## Profilväljare (företag)
 I Swedbanks API finns det stöd för att ha flera företagsprofiler kopplat till sin inlogging. Glöm inte att ändra BANK_APP till an av Swedbanks företagsappar.
 
 ```PHP
