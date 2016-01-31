@@ -2,10 +2,10 @@
 
 * [Inledning](#inledning)
 * [Ingen inlogging](#ingen-inlogging)
-* [Säkerhetsdosa med engångskod]()
-* [Säkerhetsdosa med kontrollnummer och svarskod]()
-* [Mobilt BankID]()
-* [Personlig kod]()
+* [Säkerhetsdosa med engångskod](#säkerhetsdosa-med-engångskod)
+* [Säkerhetsdosa med kontrollnummer och svarskod](#säkerhetsdosa-med-kontrollnummer-och-svarskod)
+* [Mobilt BankID](#mobilt-bankid)
+* [Personlig kod](#personlig-kod-nedlagd)
 
 ## Inledning
 Gemensama instälningar för kodexempelen nedan.
