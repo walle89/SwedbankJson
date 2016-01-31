@@ -1,7 +1,7 @@
 # Change Log
 Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här filen.
 
-## [Unreleased][unreleased]
+## [0.6.0] - 2016-01-31
 ### Added
 - Ny inloggingstyp: Mobilt BankID
 - Ny inloggingstyp: Ingen inlogging

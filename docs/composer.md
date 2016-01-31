@@ -9,7 +9,7 @@ curl -sS https://getcomposer.org/installer | php
 
 Lägg in SwebankJson i composer.json antingen med följande kommando:
 ```bash
-php composer.phar require walle89/swedbank-json ~0.5
+php composer.phar require walle89/swedbank-json ~0.6
 ```
 Efter lyckad installation, ladda in autoload.php.
 
@@ -27,7 +27,7 @@ Skapa eller ändra composer.json med följande innehåll:
 ```javascript
 {
     "require": {
-        "walle89/swedbank-json": "~0.5"
+        "walle89/swedbank-json": "~0.6"
     }
 }
 ```
