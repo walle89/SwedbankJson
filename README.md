@@ -33,7 +33,7 @@ print_r($accountInfo);
 ## Dokumentation
 
 * [Introduktion](docs/introduktion.md)
-* [Inlogginhstyper](docs/inloggingstyper.md)
+* [Inloggingstyper](docs/inloggingstyper.md)
 * [Refferens](docs/refferens.md)
 
 ## Uppdateringar
