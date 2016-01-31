@@ -161,7 +161,7 @@ class SwedbankJson
     }
 
     /**
-     * Visar kontodetaljer och transaktioner för konto
+     * Visar kontodetaljer och transaktioner för konto. Om inget kontoID anges väljs första kontot i listan.
      *
      * @param $accoutID             string  Unik och slumpvis konto-id från Swedbank API
      * @param $transactionsPerPage  int     Antal transaktioner som listas "per sida". Måste vara ett heltal större eller lika med 1.
@@ -189,7 +189,7 @@ class SwedbankJson
 
 
     /**
-     * Lista möjliga snabbsaldo konton
+     * Lista möjligar snabbsaldo konton.  Om ingen profil anges väljs första profilen i listan.
      *
      * @param string $profileID ProfilID
      * @return object           Lista på snabbsaldokonton med respektive quickbalanceSubscription ID
@@ -208,7 +208,7 @@ class SwedbankJson
     }
 
     /**
-     * Aktiverar och kopplar snabbsaldo till konto
+     * Aktiverar och kopplar snabbsaldo till konto.
      *
      * För att kunna visa (@see quickBalance()) och avaktivera (@see quickBalanceUnsubscription()) snabbsaldo måste man
      * ange "subscriptionId" som finns med i resultatet. Man bör spara undan subscriptionId i en databas eller

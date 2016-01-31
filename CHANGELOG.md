@@ -3,12 +3,14 @@ Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här
 
 ## [Unreleased][unreleased]
 ### Added
-- Mobilt BankID
+- Ny inloggingstyp: Mobilt BankID
+- Ny inloggingstyp: Ingen inlogging
 
 ### Changed
 - Guzzle 6 och därmed PHP 5.5 krav
 - Uppdatering av appversion för samtliga Swedbank-appar.
 - Förbättrad felhantering
+- Förbättrad dokumentation
 
 ### Removed
 - Automatisk utlogging - Måste anropa terminate() manuelt
