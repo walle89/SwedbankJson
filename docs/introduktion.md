@@ -89,7 +89,7 @@ print_r($accountInfo);
 ```
 
 ## Profilväljare (företag)
-I Swedbanks API finns det stöd för att ha flera företagsprofiler kopplat till sin inlogging. Glöm inte att ändra BANK_APP till an av Swedbanks företagsappar.
+I Swedbanks API finns det stöd för att ha flera företagsprofiler kopplat till sin inlogging. Glöm inte att ändra BANK_APP till ett av Swedbanks företagsappar.
 
 ```PHP
 $profiles = $bankConn->profileList(); // Profiler
