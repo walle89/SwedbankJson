@@ -1,6 +1,13 @@
 # Change Log
 Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här filen.
 
+## [Unreleased][unreleased]
+### Added
+- Dokumentation för snabbsaldo
+
+### Changed
+- Rätt sökvägar i dokumentation
+
 ## [0.6.0] - 2016-01-31
 ### Added
 - Ny inloggingstyp: Mobilt BankID
