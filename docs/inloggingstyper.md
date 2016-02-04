@@ -82,6 +82,8 @@ Inloggingsprocessen för mobilt BankID sker i flera steg som kräver att session
 
 ###Exempelkod 
 ```php
+session_start();
+
 // Inled inloggning
 if (!isset($_SESSION['swedbankjson_auth']))
 {

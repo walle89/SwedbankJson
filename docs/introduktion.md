@@ -28,6 +28,10 @@ Detta exempel använder [säkerhetsdosa med engångskod](docs/inloggingstyper.md
 <?php 
 require 'vendor/autoload.php';
 
+// Inställningar
+$bankApp  = 'swedbank';
+$username = 8903060000; 
+
 if(empty($_POST['challengeResponse'])
 {
    echo '
