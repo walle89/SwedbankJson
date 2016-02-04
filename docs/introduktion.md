@@ -6,6 +6,7 @@
 * [Kontotransaktioner](#kontotransaktioner)
 * [Välja konto](#välja-konto)
 * [Profilväljare (företag)](#profilväljare-företag)
+* [Snabbsaldo](#snabbsaldo)
 
 ## Systemkrav
 
@@ -108,4 +109,75 @@ print_r($profiles);
 
 echo '<strong>Kontoutdrag</strong>';
 print_r($accountInfo);
+```
+
+## Snabbsaldo 
+Ett av få API-anrop som kan helautomatiseras, då det inte kräver någon inlogging. Följande information går att uthämta:
+
+* Aktuellt totalsaldo för kontot
+* Om det finns notiser (ex. obetald e-faktura)
+
+```php
+<?php 
+require 'vendor/autoload.php';
+
+// Inställningar
+$bankApp        = 'swedbank';
+$subscriptionId = 'ExampleXX2GCi3333YpupYBDZX75sOme8Ht9dtuFAKE=';
+
+$auth     = new SwedbankJson\Auth\UnAuth($bankApp);
+$bankConn = new SwedbankJson\SwedbankJson($auth);
+
+echo '<pre>';
+var_dump($bankConn->quickBalance($subscriptionId));
+
+```
+
+### Hur hämtar jag subscriptionId?
+Enklast är att använda detta verktyg:
+
+```php
+<?php 
+require 'vendor/autoload.php';
+
+session_start();
+
+// Inställningar
+$bankApp  = 'swedbank';
+$username = 8903060000; 
+
+// Inled inloggning
+if (!isset($_SESSION['swedbankjson_auth']))
+{
+    $auth = new SwedbankJson\Auth\MobileBankID($bankApp, $username);
+    $auth->initAuth();
+    exit('Öppna BankID-appen och godkänn inloggingen. Därefter uppdatera sidan.');
+}
+
+// Verifiera inlogging
+$auth = unserialize($_SESSION['swedbankjson_auth']);
+if (!$auth->verify())
+    exit("Du uppdaterade sidan, men inloggningen är inte godkänd i BankID-appen. Försök igen.");
+
+// Inloggad
+$bankConn = new SwedbankJson\SwedbankJson($auth);
+
+if (empty($_POST['quickbalanceSubscriptionID']))
+{
+    $quickBalanceAccounts = $bankConn->quickBalanceAccounts();
+
+    echo '<form action="" method="post"><p>Välj konto för subscriptionId</p><select name="quickbalanceSubscriptionID">';
+
+    foreach ($quickBalanceAccounts->accounts as $account)
+        echo '<option value="'.$account->quickbalanceSubscription->id.'">'.$account->name.'</option>';
+
+    echo '</select><button>Skapa prenumeration</button></form>';
+    exit;
+}
+
+$subInfo = $bankConn->quickBalanceSubscription($_POST['quickbalanceSubscriptionID']);
+echo "Kopiera in följande i din kod:<p></p>\$subscriptionId = '{$subInfo->subscriptionId}';";
+
+$auth->terminate(); // Utloggin
+
 ```
