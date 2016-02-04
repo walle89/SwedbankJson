@@ -22,7 +22,7 @@ composer require walle89/swedbank-json ~0.6
 Mer ingående [instruktioner för installation med Composer](composer.md)
 
 ## Komplett exempel
-Detta exempel använder [säkerhetsdosa med engångskod](docs/inloggingstyper.md#säkerhetsdosa-med-engångskod) som inloggingstyp för att lista kontotransaktioner. 
+Detta exempel använder [säkerhetsdosa med engångskod](inloggingstyper.md#säkerhetsdosa-med-engångskod) som inloggingstyp för att lista kontotransaktioner. 
 
 ```php
 <?php 
