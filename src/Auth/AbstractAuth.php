@@ -39,12 +39,12 @@ abstract class AbstractAuth implements AuthInterface
     const cookieJarSession = 'swedbankjson_cookiejar';
 
     /**
-     * @var string
+     * @var string Adress till API-server
      */
     private $_baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/';
 
     /**
-     * @var string
+     * @var string API-version
      */
     private $_apiVersion = 'v3';
 
@@ -79,12 +79,12 @@ abstract class AbstractAuth implements AuthInterface
     protected $_debug;
 
     /**
-     * @var object
+     * @var object Guzzle Cookie Jar
      */
     protected $_cookieJar;
 
     /**
-     * @var
+     * @var bool Om inlogningstypen behöver sparas mellan sessioner
      */
     protected $_persistentSession = false;
 
@@ -122,6 +122,9 @@ abstract class AbstractAuth implements AuthInterface
         return $result;
     }
 
+    /**
+     * Uppresning av cookiejar och sessioner
+     */
     private function cleanup()
     {
         // Cleanup
@@ -231,8 +234,6 @@ abstract class AbstractAuth implements AuthInterface
         return $this->_client;
     }
 
-
-
     /**
      * Gemensam hantering av HTTP requests
      *
@@ -326,7 +327,7 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     * @return array
+     * @return array Lista på attribut som ska sparas
      */
     public function __sleep()
     {
@@ -351,9 +352,9 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     * Set
+     * Sätta en annan adress till API-server
      *
-     * @param string $baseUri
+     * @param string $baseUri URI till API-server (Exlusive version)
      */
     protected function setBaseUri($baseUri)
     {
