@@ -32,19 +32,18 @@ class MobileBankID extends AbstractAuth
     /**
      * Grundläggande upgifter för mobilt BankID
      *
-     * @param string|array $bankApp ID för vilken bank som ska anropas, eller array med appdata uppgifter.
-     * @param int $username Personnummer för inlogging till internetbanken
-     * @param bool $debug Sätt true för att göra felsökning, annars false eller null
+     * @param string|array $bankApp  ID för vilken bank som ska anropas, eller array med appdata uppgifter.
+     * @param int          $username Personnummer för inlogging till internetbanken
+     * @param bool         $debug    Sätt true för att göra felsökning, annars false eller null
      */
     public function __construct($bankApp, $username, $debug = false)
     {
         $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
         $this->_username = $username;
-        $this->_debug = (bool)$debug;
+        $this->_debug    = (bool)$debug;
         $this->setAuthorizationKey();
         $this->persistentSession();
     }
-
 
     /**
      * Inleder inlogging med Mobilt BankID
@@ -60,7 +59,7 @@ class MobileBankID extends AbstractAuth
             return true;
 
         $data_string = json_encode(['useEasyLogin' => false, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
-        $output = $this->postRequest('identification/bankid/mobile', $data_string);
+        $output      = $this->postRequest('identification/bankid/mobile', $data_string);
 
         if ($output->status != 'USER_SIGN')
             throw new Exception('Kan inte koppla bankID.', 10);
@@ -69,7 +68,6 @@ class MobileBankID extends AbstractAuth
 
         return true;
     }
-
 
     /**
      * Verifierings kontroll
@@ -113,7 +111,7 @@ class MobileBankID extends AbstractAuth
 
     public function __sleep()
     {
-        $sleepAttr = parent::__sleep();
+        $sleepAttr   = parent::__sleep();
         $sleepAttr[] = '_verified';
         return $sleepAttr;
     }

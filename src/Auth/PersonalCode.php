@@ -28,10 +28,10 @@ class PersonalCode extends AbstractAuth
     /**
      * Grundläggande upgifter
      *
-     * @param string|array      $bankApp    ID för vilken bank som ska anropas, eller array med appdata uppgifter.
-     * @param int               $username   Personnummer för inlogging till internetbanken
-     * @param string            $password   Personlig kod för inlogging till internetbanken
-     * @param bool              $debug      Sätt true för att göra felsökning, annars false eller null
+     * @param string|array $bankApp  ID för vilken bank som ska anropas, eller array med appdata uppgifter.
+     * @param int          $username Personnummer för inlogging till internetbanken
+     * @param string       $password Personlig kod för inlogging till internetbanken
+     * @param bool         $debug    Sätt true för att göra felsökning, annars false eller null
      *
      * @throws \Exception
      * @throws \SwedbankJson\UserException
@@ -39,9 +39,9 @@ class PersonalCode extends AbstractAuth
     public function __construct($bankApp, $username, $password, $debug = false)
     {
         $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
-        $this->_username    = $username;
-        $this->_password    = $password;
-        $this->_debug       = (bool)$debug;
+        $this->_username = $username;
+        $this->_password = $password;
+        $this->_debug    = (bool)$debug;
         $this->setAuthorizationKey();
     }
 
@@ -55,7 +55,7 @@ class PersonalCode extends AbstractAuth
     public function login()
     {
         $data_string = json_encode(['useEasyLogin' => false, 'password' => $this->_password, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
-        $output = $this->postRequest('identification/personalcode', $data_string);
+        $output      = $this->postRequest('identification/personalcode', $data_string);
 
         if (!empty($output->personalCodeChangeRequired))
             throw new Exception('Byte av personlig kod krävs av banken. Var god rätta till detta genom att logga in på internetbanken.', 11);

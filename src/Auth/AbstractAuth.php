@@ -107,7 +107,7 @@ abstract class AbstractAuth implements AuthInterface
      */
     public function genAuthorizationKey()
     {
-        return base64_encode($this->_appID . ':' . strtoupper(Uuid::uuid4()));
+        return base64_encode($this->_appID.':'.strtoupper(Uuid::uuid4()));
     }
 
     /**
@@ -140,6 +140,7 @@ abstract class AbstractAuth implements AuthInterface
      * Lägger nödvändig appdata för att kommunicera med API:et. Bland annat appID för att generera nycklar.
      *
      * @param array $appdata
+     *
      * @throws \Exception       Om rätt fält inte existerar eller är tomma
      */
     protected function setAppData($appdata)
@@ -147,8 +148,8 @@ abstract class AbstractAuth implements AuthInterface
         if (!is_array($appdata) OR empty($appdata['appID']) OR empty($appdata['useragent']))
             throw new Exception('Fel inmatning av AppData!');
 
-        $this->_appID = $appdata['appID'];
-        $this->_userAgent = $appdata['useragent'];
+        $this->_appID       = $appdata['appID'];
+        $this->_userAgent   = $appdata['useragent'];
         $this->_profileType = (strpos($this->_userAgent, 'Corporate')) ? 'corporateProfiles' : 'privateProfile'; // För standardprofil
     }
 
@@ -156,7 +157,7 @@ abstract class AbstractAuth implements AuthInterface
      * Skickar GET-förfrågan
      *
      * @param string $apiRequest Typ av anrop mot API:et
-     * @param array $query Fråga för GET-anrop
+     * @param array  $query      Fråga för GET-anrop
      *
      * @return object    JSON-avkodad information från API:et
      */
@@ -170,7 +171,7 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * Skickar POST-förfrågan
      *
-     * @param string $apiRequest Typ av anrop mot API:et
+     * @param string $apiRequest  Typ av anrop mot API:et
      * @param string $data_string Data som ska skickas i strängformat
      *
      * @return object    JSON-avkodad information från API:et
@@ -237,32 +238,34 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * Gemensam hantering av HTTP requests
      *
-     * @param string $method Typ av HTTP förfrågan (ex. GET, POST)
+     * @param string $method     Typ av HTTP förfrågan (ex. GET, POST)
      * @param string $apiRequest Requesttyp till API
-     * @param array $headers Extra HTTP headers
-     * @param string $body Body innehåll
+     * @param array  $headers    Extra HTTP headers
+     * @param string $body       Body innehåll
+     *
      * @return Request
      */
     private function createRequest($method, $apiRequest, $headers = [], $body = null)
     {
-        if (empty($this->_client)) {
+        if (empty($this->_client))
+        {
             $this->_cookieJar = ($this->_persistentSession) ? new SessionCookieJar(self::cookieJarSession, true) : new CookieJar();
 
             $this->_client = new Client([
-                'base_uri' => $this->_baseUri.$this->_apiVersion.'/',
-                'headers' => [
-                    'Authorization' => $this->_authorization,
-                    'Accept' => '*/*',
-                    'Accept-Language' => 'sv-se',
-                    'Accept-Encoding' => 'gzip, deflate',
-                    'Connection' => 'keep-alive',
+                'base_uri'        => $this->_baseUri.$this->_apiVersion.'/',
+                'headers'         => [
+                    'Authorization'    => $this->_authorization,
+                    'Accept'           => '*/*',
+                    'Accept-Language'  => 'sv-se',
+                    'Accept-Encoding'  => 'gzip, deflate',
+                    'Connection'       => 'keep-alive',
                     'Proxy-Connection' => 'keep-alive',
-                    'User-Agent' => $this->_userAgent,
+                    'User-Agent'       => $this->_userAgent,
                 ],
-                'cookies' => $this->_cookieJar,
+                'cookies'         => $this->_cookieJar,
                 'allow_redirects' => ['max' => 10, 'referer' => true],
-                'verify' => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
-                'debug' => $this->_debug,
+                'verify'          => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
+                'debug'           => $this->_debug,
             ]);
         }
 
@@ -273,8 +276,8 @@ abstract class AbstractAuth implements AuthInterface
      * Skicka/verkställ HTTP request
      *
      * @param Request $request
-     * @param array $query Fråga för GET-anrop
-     * @param array $options Guzzle konfiguration
+     * @param array   $query   Fråga för GET-anrop
+     * @param array   $options Guzzle konfiguration
      *
      * @return mixed    Json-objekt med data från API:et @see json_decode();
      */
@@ -283,25 +286,23 @@ abstract class AbstractAuth implements AuthInterface
         $dsid = $this->dsid();
 
         $this->_cookieJar->setCookie(new SetCookie([
-            'Name' => 'dsid',
-            'Value' => $dsid,
-            'Path' => '/',
+            'Name'   => 'dsid',
+            'Value'  => $dsid,
+            'Path'   => '/',
             'Domain' => 0,
         ]));
 
         $options['cookies'] = $this->_cookieJar;
-        $options['query'] = array_merge($query, ['dsid' => $dsid]);
+        $options['query']   = array_merge($query, ['dsid' => $dsid]);
 
         try
         {
-        $response = $this->_client->send($request, $options);
-        }
-        catch(ServerException $e)
+            $response = $this->_client->send($request, $options);
+        } catch (ServerException $e)
         {
             $this->cleanup();
             throw new ApiException($e->getResponse());
-        }
-        catch (ClientException $e)
+        } catch (ClientException $e)
         {
             $this->terminate();
             throw new ApiException($e->getResponse());
@@ -346,7 +347,7 @@ abstract class AbstractAuth implements AuthInterface
         $dsid = substr(sha1(mt_rand()), rand(1, 30), 8);
 
         // Gör 4 tecken till versaler
-        $dsid = substr($dsid, 0, 4) . strtoupper(substr($dsid, 4, 4));
+        $dsid = substr($dsid, 0, 4).strtoupper(substr($dsid, 4, 4));
 
         return str_shuffle($dsid);
     }

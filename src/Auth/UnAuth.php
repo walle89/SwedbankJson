@@ -22,8 +22,8 @@ class UnAuth extends AbstractAuth
     /**
      * Grundläggande upgifter
      *
-     * @param string|array      $bankApp    ID för vilken bank som ska anropas, eller array med appdata uppgifter.
-     * @param bool              $debug      Sätt true för att göra felsökning, annars false eller null
+     * @param string|array $bankApp ID för vilken bank som ska anropas, eller array med appdata uppgifter.
+     * @param bool         $debug   Sätt true för att göra felsökning, annars false eller null
      *
      * @throws \Exception
      * @throws \SwedbankJson\UserException
@@ -47,7 +47,7 @@ class UnAuth extends AbstractAuth
     {
         $output = $this->getRequest('identification/device/');
 
-        if($output->status != 'OK')
+        if ($output->status != 'OK')
             throw new Exception('Uppkoppling misslyckades, kontrollera authorization-nyckel.', 10);
 
         return true;

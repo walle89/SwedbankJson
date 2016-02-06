@@ -28,7 +28,7 @@ class SwedbankJson
     private $_selectedProfileID;
 
     /**
-     * @param AbstractAuth $auth    Instans en av inloggingsmetoderna
+     * @param AbstractAuth $auth Instans en av inloggingsmetoderna
      */
     public function __construct(AbstractAuth $auth)
     {
@@ -54,7 +54,8 @@ class SwedbankJson
         if (!isset($output->hasSwedbankProfile))
             throw new Exception('Något med profilsidan är fel.', 20);
 
-        if (!isset($output->banks[0]->bankId)) {
+        if (!isset($output->banks[0]->bankId))
+        {
             if (!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
                 throw new UserException('Kontot är inte kopplad till Swedbank. Välj ett annat BankApp', 21);
 
@@ -71,6 +72,7 @@ class SwedbankJson
      * Väljer profil
      *
      * @param string $profileID
+     *
      * @return null Då när profil är redan är vald
      * @throws Exception
      * @throws UserException
@@ -81,17 +83,17 @@ class SwedbankJson
         if (empty($profileID))
         {
             // Är profileID satt? Hoppa över selectProfile
-            if($this->_selectedProfileID)
+            if ($this->_selectedProfileID)
                 return null;
 
-            $profiles = $this->profileList();
+            $profiles    = $this->profileList();
             $profileData = $profiles->{$this->_auth->getProfileType()}; // Väljer privat- eller företagskonto beroende på angiven appdata user-agent
 
             $profileID = (isset($profileData->id)) ? $profileData->id : $profileData[0]->id;
         }
 
         // Väljer profil
-        $this->_auth->postRequest('profile/' . $profileID);
+        $this->_auth->postRequest('profile/'.$profileID);
 
         $this->_selectedProfileID = $profileID;
     }
@@ -125,7 +127,8 @@ class SwedbankJson
     /**
      * Listar alla bankkonton som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.
      *
-     * @param string $profileID     ProfilID
+     * @param string $profileID ProfilID
+     *
      * @return object               Lista på alla konton
      * @throws \Exception           Något med API-anropet gör att kontorna inte listas
      */
@@ -145,6 +148,7 @@ class SwedbankJson
      * Listar investeringssparande som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.
      *
      * @param string $profileID ProfilID
+     *
      * @return object           Lista på alla Investeringssparkonton
      * @throws \Exception       Något med API-anropet gör att kontorna inte listas
      */
@@ -172,14 +176,14 @@ class SwedbankJson
      */
     public function accountDetails($accoutID = '', $transactionsPerPage = 0, $page = 1)
     {
-        if(empty($accoutID))
+        if (empty($accoutID))
             $accoutID = $this->accountList()->transactionAccounts[0]->id;
 
         $query = [];
         if ($transactionsPerPage > 0 AND $page >= 1)
             $query = ['transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,];
 
-        $output = $this->_auth->getRequest('engagement/transactions/' . $accoutID, $query);
+        $output = $this->_auth->getRequest('engagement/transactions/'.$accoutID, $query);
 
         if (!isset($output->transactions))
             throw new Exception('AccountID stämmer inte', 50);
@@ -192,6 +196,7 @@ class SwedbankJson
      * Lista möjligar snabbsaldo konton.  Om ingen profil anges väljs första profilen i listan.
      *
      * @param string $profileID ProfilID
+     *
      * @return object           Lista på snabbsaldokonton med respektive quickbalanceSubscription ID
      * @throws Exception
      */
@@ -214,13 +219,14 @@ class SwedbankJson
      * ange "subscriptionId" som finns med i resultatet. Man bör spara undan subscriptionId i en databas eller
      * motsvarande.
      *
-     * @param string $accountQuickBalanceSubID  ID hämtad från @see quickBalanceAccounts(). Leta efter ID under quickbalanceSubscription
+     * @param string $accountQuickBalanceSubID ID hämtad från @see quickBalanceAccounts(). Leta efter ID under quickbalanceSubscription
+     *
      * @return object                           Bekräfltese med innehållande subscriptionId
      * @throws Exception
      */
     public function quickBalanceSubscription($accountQuickBalanceSubID)
     {
-        $output = $this->_auth->postRequest('quickbalance/subscription/'. $accountQuickBalanceSubID);
+        $output = $this->_auth->postRequest('quickbalance/subscription/'.$accountQuickBalanceSubID);
 
         if (!isset($output->subscriptionId))
             throw new Exception('Kan ej sätta prenumeration, förmodligen fel ID av "quickbalanceSubscription"', 61);
@@ -231,13 +237,14 @@ class SwedbankJson
     /**
      * Hämta snabbsaldo
      *
-     * @param string $quickBalanceSubscriptionId   SubscriptionId
+     * @param string $quickBalanceSubscriptionId SubscriptionId
+     *
      * @return object                       Saldoinformation
      * @throws Exception
      */
     public function quickBalance($quickBalanceSubscriptionId)
     {
-        $output = $this->_auth->getRequest('quickbalance/'. $quickBalanceSubscriptionId);
+        $output = $this->_auth->getRequest('quickbalance/'.$quickBalanceSubscriptionId);
 
         if (!isset($output->balance))
             throw new Exception('Kan ej hämta snabbsaldo. Kontrollera ID', 62);
@@ -249,7 +256,8 @@ class SwedbankJson
      * Avaktiverar snabbsaldo för konto
      *
      * @param string $quickBalanceSubscriptionId SubscriptionId
-     * @param string $profileID ProfileID
+     * @param string $profileID                  ProfileID
+     *
      * @return object
      * @throws Exception
      */
@@ -257,7 +265,7 @@ class SwedbankJson
     {
         $this->selectProfile($profileID);
 
-        $output = $this->_auth->deleteRequest('quickbalance/subscription/' . $quickBalanceSubscriptionId);
+        $output = $this->_auth->deleteRequest('quickbalance/subscription/'.$quickBalanceSubscriptionId);
 
         if (!isset($output->subscriptionId))
             throw new Exception('Kan ej sätta prenumeration, förmodligen fel ID av "quickbalanceSubscription"', 63);
@@ -274,4 +282,6 @@ class SwedbankJson
     }
 }
 
-class UserException extends Exception{}
+class UserException extends Exception
+{
+}

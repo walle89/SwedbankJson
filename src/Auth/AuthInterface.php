@@ -8,7 +8,6 @@
 
 namespace SwedbankJson\Auth;
 
-
 interface AuthInterface
 {
     public function login();
