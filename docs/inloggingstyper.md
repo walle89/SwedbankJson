@@ -36,7 +36,6 @@ Swedbank har valt att dela upp sina tjänster i flera olika mobilappar. Man beh�
 ## Ingen inlogging
 Absoult den enklaste inloggingstypen som enbart kräver att man anger banktyp. Detta gör att den går att automatisera utan användarens inverkan. Dock kan denna inloggningstyp enbart användas till ett fåtal förfrågningar så som snabbsaldo.
 
-###Exempelkod
 ```php
 $auth     = new SwedbankJson\Auth\UnAuth($bankApp);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
@@ -49,7 +48,6 @@ Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
 
 **Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad**
 
-###Exempelkod
 ```php
 if(empty($_POST['challengeResponse'])
 {
@@ -80,7 +78,6 @@ För närvarande finns det inte stöd i wrappern för denna typ av inlogging.
 ## Mobilt BankID
 Inloggingsprocessen för mobilt BankID sker i flera steg som kräver att sessionen sparas mellan förfrågningarna.
 
-###Exempelkod 
 ```php
 session_start();
 
