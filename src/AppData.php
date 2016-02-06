@@ -9,6 +9,8 @@
  */
 namespace SwedbankJson;
 
+use SwedbankJson\Exception\UserException;
+
 /**
  * Class appdata
  */
