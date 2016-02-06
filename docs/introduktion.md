@@ -112,10 +112,13 @@ print_r($accountInfo);
 ```
 
 ## Snabbsaldo 
-Ett av få API-anrop som kan helautomatiseras, då det inte kräver någon inlogging. Följande information går att uthämta:
+Ett av få API-anrop som kan helautomatiseras, då det inte kräver någon inlogging. Detta föutsätter att man skaffar ett SubscriptionId (se "[Hur hämtar jag SubscriptionId?](#hur-hämtar-jag-subscriptionid)").
+SubscriptionId är ett unikt ID per konto som kan bland annat ge följande information:
 
 * Aktuellt totalsaldo för kontot
-* Om det finns notiser (ex. obetald e-faktura)
+* Om det finns eller inte finns notiser för användaren (ex. nyinkomen e-faktura)
+
+Detta ID är tänkt att sparas och användas varje gång man begär snabbsaldo.
 
 ```php
 <?php 
@@ -133,7 +136,7 @@ var_dump($bankConn->quickBalance($subscriptionId));
 
 ```
 
-### Hur hämtar jag subscriptionId?
+### Hur hämtar jag SubscriptionId?
 Enklast är att använda detta verktyg:
 
 ```php
@@ -178,6 +181,6 @@ if (empty($_POST['quickbalanceSubscriptionID']))
 $subInfo = $bankConn->quickBalanceSubscription($_POST['quickbalanceSubscriptionID']);
 echo "Kopiera in följande i din kod:<p></p>\$subscriptionId = '{$subInfo->subscriptionId}';";
 
-$auth->terminate(); // Utloggin
+$auth->terminate(); // Utlogging
 
 ```
