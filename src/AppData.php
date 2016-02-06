@@ -17,12 +17,12 @@ use SwedbankJson\Exception\UserException;
 class AppData
 {
     private static $appData = [
-        'swedbank'              => [ 'appID' => 'IyTj3PGu2IRIpxRE', 'useragent' => 'SwedbankMOBPrivateIOS/4.2.0_(iOS;_8.3)_Apple/iPhone7,2'       ],
-        'sparbanken'            => [ 'appID' => 'HhfKI2Wy9INbpWv2', 'useragent' => 'SavingbankMOBPrivateIOS/4.2.0_(iOS;_8.3)_Apple/iPhone7,2'     ],
-        'swedbank_ung'          => [ 'appID' => 'g0ckLfoBFtXm9hBr', 'useragent' => 'SwedbankMOBYouthIOS/1.9.0_(iOS;_8.3)_Apple/iPhone7,2'         ],
-        'sparbanken_ung'        => [ 'appID' => 's5dE55nxAm3vjYeq', 'useragent' => 'SavingbankMOBYouthIOS/1.9.0_(iOS;_8.3)_Apple/iPhone7,2'       ],
-        'swedbank_foretag'      => [ 'appID' => 'wGd045W9Oa313XjQ', 'useragent' => 'SwedbankMOBCorporateIOS/1.9.0_(iOS;_8.3)_Apple/iPhone7,2'     ],
-        'sparbanken_foretag'    => [ 'appID' => 's0pgDBKeByxVVQhD', 'useragent' => 'SavingbankMOBCorporateIOS/1.9.0_(iOS;_8.3)_Apple/iPhone7,2'   ],
+        'swedbank'              => [ 'appID' => 'tKiUJOc0fAdy9itb', 'useragent' => 'SwedbankMOBPrivateIOS/4.5.0_(iOS;_9.2.1)_Apple/iPhone7,2'     ],
+        'sparbanken'            => [ 'appID' => 'ApXJOPzxuClYQ09o', 'useragent' => 'SavingbankMOBPrivateIOS/4.5.0_(iOS;_9.2.1)_Apple/iPhone7,2'   ],
+        'swedbank_ung'          => [ 'appID' => 'SjH7oIgOqkGmqxUz', 'useragent' => 'SwedbankMOBYouthIOS/2.0.0_(iOS;_9.2.1)_Apple/iPhone7,2'       ],
+        'sparbanken_ung'        => [ 'appID' => 'L9SJJQiYav1CvTtK', 'useragent' => 'SavingbankMOBYouthIOS/2.0.0_(iOS;_9.2.1)_Apple/iPhone7,2'     ],
+        'swedbank_foretag'      => [ 'appID' => 'FXdVTYdzOGBvqe5l', 'useragent' => 'SwedbankMOBCorporateIOS/2.2.0_(iOS;_9.2.1)_Apple/iPhone7,2'   ],
+        'sparbanken_foretag'    => [ 'appID' => 'SeUNIvpcNHnNPwvK', 'useragent' => 'SavingbankMOBCorporateIOS/2.2.0_(iOS;_9.2.1)_Apple/iPhone7,2' ],
     ];
 
     public static function bankAppId($bankApp)
