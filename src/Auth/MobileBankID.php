@@ -109,6 +109,9 @@ class MobileBankID extends AbstractAuth
         return true;
     }
 
+    /**
+     * @return array Lista på attribut som ska sparas
+     */
     public function __sleep()
     {
         $sleepAttr   = parent::__sleep();
