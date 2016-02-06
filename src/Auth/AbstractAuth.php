@@ -130,7 +130,6 @@ abstract class AbstractAuth implements AuthInterface
         unset($this->_client);
 
         if ($this->_persistentSession)
-        if($this->persistentSession())
             unset($_SESSION[self::authSession]);
     }
 
