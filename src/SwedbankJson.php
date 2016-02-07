@@ -235,7 +235,9 @@ class SwedbankJson
     }
 
     /**
-     * Lista aktuella överförningar
+     * Lista aktuella/framtida bekräftade överförningar
+     *
+     * Innehåller bland annat schemalagda och periodiska överförningar
      *
      * @return object
      */
