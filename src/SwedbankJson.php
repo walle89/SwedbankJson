@@ -29,6 +29,11 @@ class SwedbankJson
     private $_selectedProfileID;
 
     /**
+     * @var string ID för bekräftad överförning
+     */
+    private $_confirmTransferId;
+
+    /**
      * @param AbstractAuth $auth Instans en av inloggingsmetoderna
      */
     public function __construct(AbstractAuth $auth)
@@ -192,6 +197,90 @@ class SwedbankJson
         return $output;
     }
 
+    /**
+     * Lägg till och förbered överförning
+     *
+     * @param float  $amount                  Belopp att överföra
+     * @param string $fromAccountId           ID för avsändarkonto
+     * @param string $recipientAccountId      ID för kontomotagare
+     * @param string $fromAccountNote         Notering av transaktion
+     * @param string $recipientAccountMessage Meddelande för mottagare
+     * @param string $transferDate            Datum när överförningen ska ske i formatet YYYY-MM-DD (dagens datum och framåt). Om inget anges, görs den direkt
+     * @param string $perodicity              Periodicitet. För möjliga möjliga valbara perioder, se 'perodicity' från resultatet av @see baseInfo()
+     *
+     * @return object
+     */
+    public function registerTransfer($amount, $fromAccountId, $recipientAccountId, $fromAccountNote = '', $recipientAccountMessage = '', $transferDate = '', $perodicity = 'NONE')
+    {
+        $data = [
+            'amount'             => number_format((float)$amount, 2, ',', ''),
+            'note'               => $fromAccountNote,
+            'periodicalCode'     => $perodicity,
+            'message'            => $recipientAccountMessage,
+            'recipientAccountId' => $recipientAccountId,
+            'fromAccountId'      => $fromAccountId,
+        ];
+
+        if (!empty($transferDate))
+            $data['transferDate'] = $transferDate;
+
+        $this->_auth->postRequest('transfer/registered', $data);
+
+        return $this->fetchRegisteredTransfers();
+    }
+
+    /**
+     * Översikt av ej bekräftade överförningar
+     *
+     * @return object
+     */
+    public function fetchRegisteredTransfers()
+    {
+        $output = $this->_auth->getRequest('transfer/registered');
+
+        // confirmTransferId
+        preg_match('#transfer/confirmed/(.+)#iu', $output->links->uri, $m);
+        $this->_confirmTransferId = $m[1];
+
+        return $output;
+    }
+
+    /**
+     * Lista aktuella överförningar
+     *
+     * @return object
+     */
+    public function fetchConfirmedTransfers()
+    {
+        return $this->_auth->getRequest('transfer/confirmed');
+    }
+
+    /**
+     * Ta bort överförning
+     *
+     * @param $transfareId
+     */
+    public function deleteTransfer($transfareId)
+    {
+        $this->_auth->getRequest('transfer/'.$transfareId);
+        $this->_auth->deleteRequest('transfer/'.$transfareId);
+    }
+
+    /**
+     * Genomför transaktioner
+     *
+     * @return object
+     */
+    public function confirmTransfer()
+    {
+        if (empty($this->_confirmTransferId))
+            throw new UserException('');
+
+        $output                   = $this->_auth->putRequest('transfer/confirmed/'.$this->_confirmTransferId);
+        $this->_confirmTransferId = '';
+
+        return $output;
+    }
 
     /**
      * Lista möjligar snabbsaldo konton.  Om ingen profil anges väljs första profilen i listan.
