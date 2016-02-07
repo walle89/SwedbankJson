@@ -2,6 +2,8 @@
 Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här filen.
 
 ## [Unreleased][unreleased]
+
+## [0.6.1] - 2016-02-07
 ### Added
 - Dokumentation för snabbsaldo
 
@@ -9,6 +11,7 @@ Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här
 - Rätt sökvägar i dokumentation
 
 ### Fixed
+- Cleanup rensade inte sparad session
 - Rätt UserException namespace för Appdata
 
 ## [0.6.0] - 2016-01-31
@@ -146,7 +149,9 @@ Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här
 ### Added
 - Första släppet
 
-[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.6.0...HEAD
+[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/walle89/SwedbankJson/compare/v0.6.0...v0.6.1
+[0.6.0]: https://github.com/walle89/SwedbankJson/compare/v0.5.2...v0.6.0
 [0.5.2]: https://github.com/walle89/SwedbankJson/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/walle89/SwedbankJson/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/walle89/SwedbankJson/compare/v0.4.0...v0.5.0
