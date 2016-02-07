@@ -132,7 +132,7 @@ abstract class AbstractAuth implements AuthInterface
         $this->_cookieJar->clearSessionCookies();
         unset($this->_client);
 
-        if ($this->_persistentSession)
+        if ($this->_persistentSession AND isset($_SESSION[self::authSession]))
             unset($_SESSION[self::authSession]);
     }
 
@@ -316,6 +316,9 @@ abstract class AbstractAuth implements AuthInterface
      */
     protected function persistentSession()
     {
+        if (session_status() !== PHP_SESSION_ACTIVE OR !isset($_SESSION))
+            throw new Exception('Kan ej skapa session. Se till att session_start() är satt.');
+
         $this->_persistentSession = true;
     }
 
