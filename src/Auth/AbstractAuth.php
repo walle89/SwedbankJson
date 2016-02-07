@@ -46,7 +46,7 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * @var string API-version
      */
-    private $_apiVersion = 'v3';
+    private $_apiVersion = 'v4';
 
     /**
      * @var string AppID. Ett ID som finns i Swedbanks appar.
