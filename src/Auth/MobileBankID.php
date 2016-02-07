@@ -58,8 +58,13 @@ class MobileBankID extends AbstractAuth
         if ($this->_verified)
             return true;
 
-        $data_string = json_encode(['useEasyLogin' => false, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
-        $output      = $this->postRequest('identification/bankid/mobile', $data_string);
+        $output = $this->postRequest(
+            'identification/bankid/mobile',
+            [
+                'useEasyLogin'        => false,
+                'generateEasyLoginId' => false,
+                'userId'              => $this->_username,
+            ]);
 
         if ($output->status != 'USER_SIGN')
             throw new Exception('Kan inte koppla bankID.', 10);
