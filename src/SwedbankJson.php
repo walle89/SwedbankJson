@@ -221,7 +221,7 @@ class SwedbankJson
 
         $this->_auth->postRequest('transfer/registered', $data);
 
-        return $this->fetchRegisteredTransfers();
+        return $this->listRegisteredTransfers();
     }
 
     /**
@@ -229,7 +229,7 @@ class SwedbankJson
      *
      * @return object
      */
-    public function fetchRegisteredTransfers()
+    public function listRegisteredTransfers()
     {
         return $this->_auth->getRequest('transfer/registered');
     }
@@ -241,7 +241,7 @@ class SwedbankJson
      *
      * @return object
      */
-    public function fetchConfirmedTransfers()
+    public function listConfirmedTransfers()
     {
         return $this->_auth->getRequest('transfer/confirmed');
     }
@@ -264,7 +264,7 @@ class SwedbankJson
      */
     public function confirmTransfer()
     {
-        $transactions = $this->fetchRegisteredTransfers();
+        $transactions = $this->listRegisteredTransfers();
 
         if (empty($transactions->links->next->uri))
             throw new UserException('Det finns inga transaktioner att bekräfta');
