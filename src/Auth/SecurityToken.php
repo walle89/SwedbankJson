@@ -65,8 +65,14 @@ class SecurityToken extends AbstractAuth
     {
         if (empty($this->_challenge))
         {
-            $data_string = json_encode(['useEasyLogin' => false, 'generateEasyLoginId' => false, 'userId' => $this->_username,]);
-            $output      = $this->postRequest('identification/securitytoken/challenge', $data_string);
+            $output = $this->postRequest(
+                'identification/securitytoken/challenge',
+                [
+                    'useEasyLogin'        => false,
+                    'generateEasyLoginId' => false,
+                    'userId'              => $this->_username,
+                ]
+            );
 
             if (!isset($output->links->next->uri))
                 throw new Exception('Inlogging misslyckades. Kontrollera användarnamn och authorization-nyckel.', 10);
@@ -98,8 +104,7 @@ class SecurityToken extends AbstractAuth
         if (empty($this->_challengeResponse))
             throw new UserException('Säkerhetsdosans kod saknas, vänligen sätt den innan inlogging.', 11);
 
-        $data_string = json_encode(['response' => (string)$this->_challengeResponse,]);
-        $output      = $this->postRequest('identification/securitytoken', $data_string);
+        $output = $this->postRequest('identification/securitytoken', ['response' => (string)$this->_challengeResponse,]);
 
         if (!isset($output->links->next->uri))
         {

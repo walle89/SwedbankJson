@@ -2,6 +2,9 @@
 Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här filen.
 
 ## [Unreleased][unreleased]
+### Added
+- Överför pengar mellan konton
+
 ### Changed
 - Uppdatering av appversion för samtliga Swedbank-appar.
 
