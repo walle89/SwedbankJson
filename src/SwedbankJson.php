@@ -11,6 +11,7 @@ namespace SwedbankJson;
 
 use Exception;
 use SwedbankJson\Auth\AbstractAuth;
+use SwedbankJson\Exception\UserException;
 
 /**
  * Class SwedbankJson
@@ -280,8 +281,4 @@ class SwedbankJson
     {
         return $this->_auth->terminate();
     }
-}
-
-class UserException extends Exception
-{
 }
