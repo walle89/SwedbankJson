@@ -7,6 +7,7 @@
 * [Välja konto](#välja-konto)
 * [Profilväljare (företag)](#profilväljare-företag)
 * [Snabbsaldo](#snabbsaldo)
+* [Flytta pengar](#flytta-pengar)
 
 ## Systemkrav
 
@@ -180,7 +181,77 @@ if (empty($_POST['quickbalanceSubscriptionID']))
 
 $subInfo = $bankConn->quickBalanceSubscription($_POST['quickbalanceSubscriptionID']);
 echo "<p>Ditt subscriptionId: {$subInfo->subscriptionId}</p>
-<p>Testa det direkt:</p>var_dump(\$bankConn->quickBalance('{$subInfo->subscriptionId}'));";
+<p>Testa direkt:</p>var_dump(\$bankConn->quickBalance('{$subInfo->subscriptionId}'));";
 
 $auth->terminate(); // Utlogging
+```
+
+## Flytta pengar
+Just nu stöds direktöverförningar samt schemalagd och periodiserade överförningar mellan egna konton.
+Möjligtvis finns det stöd för andra typer av överförningar, under förutsättning att de inte behöver signeras.
+
+Exempel på hur man flyttar 0,99 kronor mellan två konton
+
+```php
+echo '<pre>':
+
+$baseInfo = $bankConn->baseInfo();
+
+// Hitta konton som passar utifrån dina förutsättningar
+print_r($baseInfo);
+
+// Ersätts med fördel av ett fomulär
+// OBS! Ändra detta innan du testar koden!
+$fromAccountId      = $baseInfo->fromAccountGroup[0]->accounts[0]->id;      // Ex. Lönekonto
+$recipientAccountId = $baseInfo->recipientAccountGroup[1]->accounts[3]->id; // Ex. Semensterkonto
+
+// Registera direktöverförning
+$result = $bankConn->registerTransfer(0.99, $fromAccountId, $recipientAccountId, 'Från test', 'Till test');
+
+// Se om överförningen registrerades
+print_r($result); // Likande output som listRegisteredTransfers()
+
+// Verkställ överförning
+print_r($bankConn->confirmTransfer());
+
+// Om man vill, kolla att inga överförningar finns kvar
+print_r($bankConn->listRegisteredTransfers());
+
+$auth->terminate(); // Utlogging
+```
+
+Det finns stöd för att registera flera överförningar och variationer av överförningar
+
+```php
+// Direktöverförning utan meddelande
+$bankConn->registerTransfer(0.99, $fromAccountId, $recipientAccountId);
+
+// Schemalagd överförning, kommer endast ske en gång
+$bankConn->registerTransfer(1000.00, $fromAccountId, $recipientAccountId, 'Present', 'Present', '2016-03-06');
+
+// Periodiserad överförning, datum måste anges som fungerar som startdatum.
+// Möjliga perioder finns avgörs av 'perodicity' som bland annat finns i resultatet av baseInfo().
+// Exemel på perioder: ["NONE", "WEEKLY", "EVERY_OTHER_WEEK", "MONTHLY", "EVERY_OTHER_MONTH", "QUARTERLY", "SEMI_ANNUALLY", "ANNUALLY"]
+$bankConn->registerTransfer(1000.00, $fromAccountId, $recipientAccountId, 'Present', 'Present', '2017-03-06', 'ANNUALLY');
+
+// Bekräfta alla överförningar
+print_r($bankConn->confirmTransfer());
+
+// Se om schemalagda och periodiserade överförningar regisiterades korrekt
+print_r($bankConn->listConfirmedTransfers());
+```
+
+Var dock noga med att inte registera två likande överförningar (samma summa, sändar- och mottagarkokonton samt datum), då genereras felmeddelande och förlorar sessionen.
+Man behöver då logga in igen, men tidigare registerade överförningar finns kvar.
+
+För att ta bort en överförning kan man göra följande
+
+```php
+// Ta bort obekräftad överförning
+$transfares = $bankConn->listRegisteredTransfers();
+$bankConn->deleteTransfer($transfares->transferGroups[0]->transfers[0]->id);
+
+// Ta bort schemalagd eller periodiserad överförning
+$confirmedTransfares = $bankConn->listConfirmedTransfers();
+$bankConn->deleteTransfer($confirmedTransfares->transferGroups[0]->transfers[2]->id);
 ```
