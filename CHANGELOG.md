@@ -2,6 +2,8 @@
 Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här filen.
 
 ## [Unreleased][unreleased]
+### Changed
+- Uppdatering av appversion för samtliga Swedbank-appar.
 
 ## [0.6.1] - 2016-02-07
 ### Added
