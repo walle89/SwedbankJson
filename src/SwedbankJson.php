@@ -29,11 +29,6 @@ class SwedbankJson
     private $_selectedProfileID;
 
     /**
-     * @var string ID för bekräftad överförning
-     */
-    private $_confirmTransferId;
-
-    /**
      * @param AbstractAuth $auth Instans en av inloggingsmetoderna
      */
     public function __construct(AbstractAuth $auth)
@@ -236,13 +231,7 @@ class SwedbankJson
      */
     public function fetchRegisteredTransfers()
     {
-        $output = $this->_auth->getRequest('transfer/registered');
-
-        // confirmTransferId
-        preg_match('#transfer/confirmed/(.+)#iu', $output->links->uri, $m);
-        $this->_confirmTransferId = $m[1];
-
-        return $output;
+        return $this->_auth->getRequest('transfer/registered');
     }
 
     /**
@@ -273,11 +262,16 @@ class SwedbankJson
      */
     public function confirmTransfer()
     {
-        if (empty($this->_confirmTransferId))
-            throw new UserException('');
+        $transactions = $this->fetchRegisteredTransfers();
 
-        $output                   = $this->_auth->putRequest('transfer/confirmed/'.$this->_confirmTransferId);
-        $this->_confirmTransferId = '';
+        if (empty($transactions->links->next->uri))
+            throw new UserException('Det finns inga transaktioner att bekräfta');
+
+        // confirmTransferId
+        preg_match('#transfer/confirmed/(.+)#iu', $transactions->links->next->uri, $m);
+        $confirmTransferId = $m[1];
+
+        $output = $this->_auth->putRequest('transfer/confirmed/'.$confirmTransferId);
 
         return $output;
     }
