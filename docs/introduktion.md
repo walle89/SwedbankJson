@@ -179,8 +179,8 @@ if (empty($_POST['quickbalanceSubscriptionID']))
 }
 
 $subInfo = $bankConn->quickBalanceSubscription($_POST['quickbalanceSubscriptionID']);
-echo "Kopiera in följande i din kod:<p></p>\$subscriptionId = '{$subInfo->subscriptionId}';";
+echo "<p>Ditt subscriptionId: {$subInfo->subscriptionId}</p>
+<p>Testa det direkt:</p>var_dump(\$bankConn->quickBalance('{$subInfo->subscriptionId}'));";
 
 $auth->terminate(); // Utlogging
-
 ```
