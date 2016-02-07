@@ -172,17 +172,20 @@ abstract class AbstractAuth implements AuthInterface
      * Skickar POST-förfrågan
      *
      * @param string $apiRequest  Typ av anrop mot API:et
-     * @param string $data_string Data som ska skickas i strängformat
+     * @param string $data Data som ska skickas i strängformat
      *
      * @return object    JSON-avkodad information från API:et
      */
-    public function postRequest($apiRequest, $data_string = null)
+    public function postRequest($apiRequest, $data = null)
     {
         $headers = [];
-        if (!is_null($data_string))
+        if (!is_null($data))
             $headers['Content-Type'] = 'application/json; charset=UTF-8';
 
-        $request = $this->createRequest('post', $apiRequest, $headers, $data_string);
+        if(is_array($data))
+            $data = json_encode($data);
+
+        $request = $this->createRequest('post', $apiRequest, $headers, $data);
 
         return $this->sendRequest($request);
     }
