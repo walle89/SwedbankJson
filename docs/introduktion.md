@@ -194,7 +194,6 @@ Exempel på hur man flyttar 0,99 kronor mellan två konton
 
 ```php
 echo '<pre>':
-
 $baseInfo = $bankConn->baseInfo();
 
 // Hitta konton som passar utifrån dina förutsättningar
