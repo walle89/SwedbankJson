@@ -48,7 +48,7 @@ print_r($quickBalance);
 
 * [Introduktion](docs/introduktion.md)
 * [Inloggingstyper](docs/inloggingstyper.md)
-* [Refferens](docs/refferens.md)
+* [Refferens](docs/reference/ApiIndex.md)
 
 ## Uppdateringar
 
