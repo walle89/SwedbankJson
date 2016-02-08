@@ -380,7 +380,7 @@ Sparar auth session
 
     array SwedbankJson\Auth\AbstractAuth::__sleep()
 
-
+För sparande av session
 
 
 
@@ -421,9 +421,9 @@ Sätta en annan adress till API-server
 
 ### login
 
-    mixed SwedbankJson\Auth\AuthInterface::login()
+    boolean SwedbankJson\Auth\AuthInterface::login()
 
-
+Inled inloggon
 
 
 

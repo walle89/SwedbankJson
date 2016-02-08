@@ -176,7 +176,7 @@ Methods
 
     mixed SwedbankJson\Auth\MobileBankID::__construct(string|array $bankApp, integer $username, boolean $debug)
 
-Grundläggande upgifter för mobilt BankID
+MobileBankID constructor.
 
 
 
@@ -218,9 +218,9 @@ Verifierings kontroll
 
 ### login
 
-    mixed SwedbankJson\Auth\AuthInterface::login()
+    boolean SwedbankJson\Auth\AuthInterface::login()
 
-
+Inled inloggon
 
 
 
@@ -234,7 +234,7 @@ Verifierings kontroll
 
     array SwedbankJson\Auth\AbstractAuth::__sleep()
 
-
+För sparande av session
 
 
 

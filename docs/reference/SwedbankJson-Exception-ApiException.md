@@ -1,7 +1,7 @@
 SwedbankJson\Exception\ApiException
 ===============
 
-
+Class ApiException
 
 
 
@@ -20,7 +20,7 @@ Properties
 
 ### $_response
 
-    private mixed $_response
+    private string $_response
 
 
 
@@ -31,7 +31,7 @@ Properties
 
 ### $_errorMessages
 
-    private mixed $_errorMessages = array()
+    private array $_errorMessages = array()
 
 
 
@@ -46,9 +46,9 @@ Methods
 
 ### __construct
 
-    mixed SwedbankJson\Exception\ApiException::__construct($response, $code, \Exception $previous)
+    mixed SwedbankJson\Exception\ApiException::__construct(string $response, integer $code, \Exception|null $previous)
 
-
+ApiException constructor.
 
 
 
@@ -56,9 +56,9 @@ Methods
 
 
 #### Arguments
-* $response **mixed**
-* $code **mixed**
-* $previous **Exception**
+* $response **string** - &lt;p&gt;Meddelande&lt;/p&gt;
+* $code **integer** - &lt;p&gt;Felkod&lt;/p&gt;
+* $previous **Exception|null** - &lt;p&gt;Exception föregående&lt;/p&gt;
 
 
 
@@ -66,7 +66,7 @@ Methods
 
     string SwedbankJson\Exception\ApiException::getResponse()
 
-
+Hämta meddelande
 
 
 
@@ -79,7 +79,7 @@ Methods
 
     array SwedbankJson\Exception\ApiException::getErrorMessages()
 
-
+Hämta felmeddelanden
 
 
 

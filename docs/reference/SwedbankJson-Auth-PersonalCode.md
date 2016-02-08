@@ -1,7 +1,7 @@
 SwedbankJson\Auth\PersonalCode
 ===============
 
-Class AbstractAuth
+Class PersonalCode
 
 
 
@@ -176,7 +176,7 @@ Methods
 
     mixed SwedbankJson\Auth\PersonalCode::__construct(string|array $bankApp, integer $username, string $password, boolean $debug)
 
-Grundläggande upgifter
+PersonalCode constructor.
 
 
 
@@ -193,9 +193,9 @@ Grundläggande upgifter
 
 ### login
 
-    mixed SwedbankJson\Auth\AuthInterface::login()
+    boolean SwedbankJson\Auth\AuthInterface::login()
 
-
+Inled inloggon
 
 
 
@@ -450,7 +450,7 @@ Sparar auth session
 
     array SwedbankJson\Auth\AbstractAuth::__sleep()
 
-
+För sparande av session
 
 
 

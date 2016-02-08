@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project title="SwedbankJson" version="v2.8.5">
   <partials/>
-  <file path="Auth/SecurityToken.php" generated-path="Auth.SecurityToken.html" hash="3a28880b3bf15e59dec76c32a0ebce8c" package="SwedbankJSON">
+  <file path="Auth/SecurityToken.php" generated-path="Auth.SecurityToken.html" hash="05c4aa6c770da65c00e97fed55db2f57" package="SwedbankJson">
     <docblock line="0">
       <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
-      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="package" line="0" description="SwedbankJson"/>
       <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2014-02-25&#10;         Time: 21:36"/>
     </docblock>
     <namespace-alias name="AppData">\SwedbankJson\AppData</namespace-alias>
     <namespace-alias name="Exception">\Exception</namespace-alias>
     <namespace-alias name="UserException">\SwedbankJson\Exception\UserException</namespace-alias>
-    <class final="false" abstract="false" namespace="SwedbankJson\Auth" line="17" package="SwedbankJSON">
+    <class final="false" abstract="false" namespace="SwedbankJson\Auth" line="21" package="SwedbankJson\Auth">
       <extends>\SwedbankJson\Auth\AbstractAuth</extends>
       <name>SecurityToken</name>
       <full_name>\SwedbankJson\Auth\SecurityToken</full_name>
-      <docblock line="17">
-        <description>Class AbstractAuth</description>
+      <docblock line="21">
+        <description>Class SecurityToken</description>
         <long-description></long-description>
-        <tag name="package" line="17" description="SwedbankJSON"/>
+        <tag name="package" line="21" description="SwedbankJson\Auth"/>
         <tag name="inherited_from" description="\SwedbankJson\Auth\AbstractAuth" refers="\SwedbankJson\Auth\AbstractAuth" link="/classes/SwedbankJson.Auth.AbstractAuth.html"/>
       </docblock>
       <constant namespace="SwedbankJson\Auth" line="34" package="SwedbankJson\Auth">
@@ -39,50 +39,50 @@
           <long-description></long-description>
         </docblock>
       </constant>
-      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="23" package="SwedbankJSON">
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="27" package="SwedbankJson\Auth">
         <name>$_username</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::_username</full_name>
         <default></default>
-        <docblock line="23">
+        <docblock line="27">
           <description></description>
           <long-description></long-description>
-          <tag name="var" line="23" description="&lt;p&gt;Inlogging personnummer&lt;/p&gt;" type="integer" variable="">
+          <tag name="var" line="27" description="&lt;p&gt;Inlogging personnummer&lt;/p&gt;" type="integer" variable="">
             <type>integer</type>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="28" package="SwedbankJSON">
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="32" package="SwedbankJson\Auth">
         <name>$_challengeResponse</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::_challengeResponse</full_name>
         <default></default>
-        <docblock line="28">
+        <docblock line="32">
           <description></description>
           <long-description></long-description>
-          <tag name="var" line="28" description="" type="integer" variable="">
+          <tag name="var" line="32" description="&lt;p&gt;Engångskod eller svarskod&lt;/p&gt;" type="integer" variable="">
             <type>integer</type>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="33" package="SwedbankJSON">
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="37" package="SwedbankJson\Auth">
         <name>$_challenge</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::_challenge</full_name>
         <default>null</default>
-        <docblock line="33">
+        <docblock line="37">
           <description></description>
           <long-description></long-description>
-          <tag name="var" line="33" description="" type="integer" variable="">
+          <tag name="var" line="37" description="&lt;p&gt;Kontrolkod från APIet&lt;/p&gt;" type="integer" variable="">
             <type>integer</type>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="38" package="SwedbankJSON">
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="42" package="SwedbankJson\Auth">
         <name>$_useOneTimePassword</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::_useOneTimePassword</full_name>
         <default></default>
-        <docblock line="38">
+        <docblock line="42">
           <description></description>
           <long-description></long-description>
-          <tag name="var" line="38" description="" type="boolean" variable="">
+          <tag name="var" line="42" description="&lt;p&gt;Om det är engångskod eller ej&lt;/p&gt;" type="boolean" variable="">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -207,30 +207,24 @@
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="51" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="52" package="SwedbankJson\Auth">
         <name>__construct</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::__construct()</full_name>
-        <docblock line="51">
-          <description>Grundläggande upgifter</description>
+        <docblock line="52">
+          <description>SecurityToken constructor.</description>
           <long-description></long-description>
-          <tag name="param" line="51" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
+          <tag name="param" line="52" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
             <type>string</type>
             <type>array</type>
           </tag>
-          <tag name="param" line="51" description="&lt;p&gt;Personnummer för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$username">
+          <tag name="param" line="52" description="&lt;p&gt;Personnummer för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$username">
             <type>integer</type>
           </tag>
-          <tag name="param" line="51" description="&lt;p&gt;Personlig kod för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$challengeResponse">
+          <tag name="param" line="52" description="&lt;p&gt;Personlig kod för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$challengeResponse">
             <type>integer</type>
           </tag>
-          <tag name="param" line="51" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
+          <tag name="param" line="52" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
             <type>boolean</type>
-          </tag>
-          <tag name="throws" line="51" description="" type="\Exception">
-            <type>\Exception</type>
-          </tag>
-          <tag name="throws" line="51" description="" type="\SwedbankJson\UserException">
-            <type>\SwedbankJson\UserException</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -254,34 +248,33 @@
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="64" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="67" package="SwedbankJson\Auth">
         <name>getchallenge</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::getchallenge()</full_name>
-        <docblock line="64">
-          <description></description>
+        <docblock line="67">
+          <description>Hämta kontrollkod från APIet</description>
           <long-description></long-description>
-          <tag name="return" line="64" description="" type="object">
-            <type>object</type>
+          <tag name="return" line="67" description="Kontrollkoden" type="string">
+            <type>string</type>
           </tag>
-          <tag name="throws" line="64" description="" type="\Exception">
+          <tag name="throws" line="67" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="96" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="100" package="SwedbankJson\Auth">
         <name>login</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::login()</full_name>
-        <docblock line="96">
-          <description>Inlogging
-Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t</description>
-          <long-description></long-description>
-          <tag name="param" line="96" description="" type="integer" variable="$challengeResponse">
+        <docblock line="100">
+          <description>Inlogging</description>
+          <long-description>Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t</long-description>
+          <tag name="param" line="100" description="&lt;p&gt;Engångskod eller svarskod&lt;/p&gt;" type="integer" variable="$challengeResponse">
             <type>integer</type>
           </tag>
-          <tag name="return" line="96" description="" type="boolean">
+          <tag name="return" line="100" description="Om inloggingen lyckades eller ej" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="96" description="" type="\Exception">
+          <tag name="throws" line="100" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -291,29 +284,29 @@ Loggar in med personummer och personig kod för att få reda på bankID och den 
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="123" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="129" package="SwedbankJson\Auth">
         <name>setchallengeResponse</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::setchallengeResponse()</full_name>
-        <docblock line="123">
-          <description></description>
+        <docblock line="129">
+          <description>Sätt engångskod eller svarskod</description>
           <long-description></long-description>
-          <tag name="param" line="123" description="" type="integer" variable="$challengeResponse">
-            <type>integer</type>
+          <tag name="param" line="129" description="&lt;p&gt;Engångskod eller svarskod&lt;/p&gt;" type="string" variable="$challengeResponse">
+            <type>string</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$challengeResponse</name>
           <default></default>
-          <type>integer</type>
+          <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="131" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="139" package="SwedbankJson\Auth">
         <name>isUseOneTimePassword</name>
         <full_name>\SwedbankJson\Auth\SecurityToken::isUseOneTimePassword()</full_name>
-        <docblock line="131">
-          <description></description>
+        <docblock line="139">
+          <description>Om det är en engångskod eller ej</description>
           <long-description></long-description>
-          <tag name="return" line="131" description="" type="boolean">
+          <tag name="return" line="139" description="Om det är en engångskod eller ej" type="boolean">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -603,38 +596,38 @@ Loggar in med personummer och personig kod för att få reda på bankID och den 
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="341" package="SwedbankJson\Auth">
         <name>__sleep</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
-        <docblock line="339">
-          <description></description>
+        <docblock line="341">
+          <description>För sparande av session</description>
           <long-description></long-description>
-          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+          <tag name="return" line="341" description="Lista på attribut som ska sparas" type="array">
             <type>array</type>
           </tag>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="352" package="SwedbankJson\Auth">
         <name>dsid</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
-        <docblock line="350">
+        <docblock line="352">
           <description>Generering av dsid
 Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <long-description></long-description>
-          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+          <tag name="return" line="352" description="8 slumpvalda tecken" type="string">
             <type>string</type>
           </tag>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="368" package="SwedbankJson\Auth">
         <name>setBaseUri</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
-        <docblock line="366">
+        <docblock line="368">
           <description>Sätta en annan adress till API-server</description>
           <long-description></long-description>
-          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+          <tag name="param" line="368" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
             <type>string</type>
           </tag>
         </docblock>
@@ -646,53 +639,43 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
     </class>
-    <parse_markers>
-      <error line="17" code="PPC:ERR-50005">No summary for class \SwedbankJson\Auth\SecurityToken</error>
-      <error line="64" code="PPC:ERR-50008">No summary for method getchallenge()</error>
-      <error line="123" code="PPC:ERR-50008">No summary for method setchallengeResponse()</error>
-      <error line="131" code="PPC:ERR-50008">No summary for method isUseOneTimePassword()</error>
-      <error line="28" code="PPC:ERR-50007">No summary for property $_challengeResponse</error>
-      <error line="33" code="PPC:ERR-50007">No summary for property $_challenge</error>
-      <error line="38" code="PPC:ERR-50007">No summary for property $_useOneTimePassword</error>
-    </parse_markers>
-    <source>eJylV11y2zYQfucpNjPukPRItuW0fZBqp27j6bjuNJ44mTwkGQ9EQhQiCGQB0I6b+jb2FXwBXay7/BdJqfYUL5IA7N+3u99CP71K5omzv7vrwC580CxJuIbZ6lHD5Q0Pp0wtDBi7ulcRg5OLs/xoGU+FxKtMoxQJ/pywYMEiXgn9fvnmz+yApXYea4BTLQL4wKRcMhVykoNqvWaWj+HwYPT98OBwePjD2uE7saTD0fjlj7i/7ziKLblBew1jJlafTtDQxHFS095PEtTPJtnJ6deAJ1bEatK9WJ19em+4btx0AsmMgUsepFrY23fxgivgXy1XoYGTqbGaBZbMO98ch1zO0KSF8V8zDUJZOFMyjiKhIkCA0ZxKl0uCIbu2n30mWlwjErBzhb5pCnOyUd8GwWCOCHMV8bcIUazM/9AAR6BSKTcomMax3Oz8G8UpbRcI202sw66O33SqQrm6jyKqBkiTSMxsBUdlCQuMLbH8NOL2D9Oa3cIO5QtzWhcInL3Oq/JaSMoMXQATo9yCAVM6TpgZAMeoNOQ6ljwErN4QywJNF7b3WlYpadXaKTNSb1000pjbF1WKrZCSFKAMt+QPV1u1d9JWaJcigkUcPl89padWH/JpGkFzXa7urQWrU57rZvgrwi8MZlya1eNCoZ0BoqeYNjBjEl3KEaSaaKfJznV8Y6DuoM7JWqOttdd6EaVTiTQxS1VAZ3B1FSAa6GZgvTLxgzoZgz7kjuBgUIZ8lLvuZ8q/ORUgdi7M8NhwW5CD570Q5iorjsqO78MrKM7H42LzLKzPYVwVoz9p665aGH3Yqdu560EnAK8bU4/6Mj6PMu3n4fapP8noV/zNCM9zfusVuu66ba25TbWCePqFB7adwaflK2rE47VRFzPw+DKxCHERRHXX96tb9f0skDi1SWoJxFwmiY19y/9KubHe2k1argi5smImgizcfVMwtiXG3q+suYOO5MfOTqYPE3fKzO0fMbadW+4eHedV1dWSyURccY1MWAmehe5/yVCB0LW1hTLtYuqKf17b8QumLRdBjpWNdeAVSA6PpcCRPjxWOMCGxwhPA/tyZTkHxW/qtHtuPcCWqFHe4rwPudmD81hZHRM3ENte40shZOQsVlIwB9asv6FCKS733AGMDtq+doqigQR4yHZ+FUJ1ZdKroTuA6kYpVfQNqVLPXe1Y0RMd3zY1UQVSuYEVEGXzNhs6+ejPRwahk/9ukjwR8Wz1gIZDBgl+IYbBAUe3sbgz6p+t7iVOBjzX8UzIoQjHZb/2TJkunbTvFkE2Rvoz215SmffwFnFxHwu8KGigS3R+X0KfzpJrVpDRaVhtZZuGlXXuaunawFsb/K77Z23UeS6O3QXXc25NGBumTJZ3wxaKXijUOphWTLLJpjOlW+AAVvXkzzpn1HRuK0Fu5UNU9dHVRQAZQ3n5Q8vfGObgcxuXZ5BLi9iDOCw6HHuzsCjM+05betkcdtGN1YOKjFw9Gq5w38XxW7qPKLotKuBax/pXsvEU9aND1DZ62WKkPho0+M5Vdua555gX/oVKHxtRqBfwC0eLQFSY5ZB6F9tCWuzu/OVE/b16kKFmIXxnKJUZCP6g4a2/jYXoubZxej+h4fub96nd1f+G6hYJlWLP35ANbje4h7PtLNOfvpZbLcLeRPN3zp3zLy65g2A=</source>
+    <source>eJydV+tu2zYU/u+nOAUySArs3Lrth72ky9oAyzKgQdOiP9oioCVKZk1RKkklzbq8TfIKeQG/2A6pq3VxkvGPbZLn/p3v0L+9ShfpaHd7ewTb8FGSNKUSwtWDhItrGsyJWCpQenUnIgLH56f5UZzMGcerRKKUEfw9Jf6SRLQS+kslwh6QTC8SCXAimQ8fCecxEQE1clCtN0TTKRzs7f882TuYHPyydviexeZwf/ryV9zfHY0EialCe+vGPh+jodlolKn2fpqifjKzJyfffZpqlohZ92J19vmDorJxs8zOa06UggvqZ5Lpm/fJkorB2K071l+/KwX0u6YiUHA8V1oSX9vLP0YjE681ZhZqviISmNBwKngSRUxEgNVB7SKLY5NDe23XfqaSXWEaYesSA5MmR7NhfSciWt2LSC2TACjnWHGFR+bngE5/gZWjIqLvMPWJUJuUnyVCy4Qb3aFEMwY2VD+mGA5BZJwP6J0nCYe3MQRUw+pOAu0EQL8Op+OtoAZF51iI60QGXRvr1fExQC0zXydyp7hROYOQJzE2hMRi/EukJDewZWqOKKshC6dv8j65YtwoNBdAJSi3JECETFKixoXfuY6YBoD9FCBQIUvTiIWaVsZLqya51doqy1xvnTewkdtnFW4049woQBmqjT8Guxu0dwpeaOcsAlvZ56q3FazUB3SeRdBcF6s7rQHTTnPdBH9F+IVASLlaPSwF2hlj9gQCFULC0aU8gwY267XP5hzJJsyEbxoYLi+rirplscZ1Asd90R7C3rh08zA351nlP0ZVEHrB1ORIUV1QjOu+YOrSFrSy43nwCorz6bTYPA3qc5hWAPJmbd1VL6MPW3Vfdz3oBOB2Y+pRX8bnmup4ebh96o8tibN/iMnnGb1xC123nU76c3UXI4aXOQcMkEAFDUl1JkXRTiVxGKEGfPRCJteqZu6NpY4aqXDbBWMhuDRONVaniL+663nVrfq+zUGS6TTTJv+5TJoo/Y5+y6jS7tpNsxyGnmsWMt9malcVvKINr+xW1pxxR/JTZ8fqw5qfEHXzd4Jd5pS7h0c5ILtarExEBZXIfZXgaeA8JmOwZa6tLZRp47Ar/mVtxyu4tVwm5dgUCCG3yOTkiDN8U0yOBA7ByRGmp5H7ctmag6DXddldpx6CMWrkNzh0A6p2Kthg0EgPV/hUCYhxVkDiL4A0oTsRKEX5jjOG/b22rx1QNDIBlffV6axXuDtt6vYqVfRNpFLPbe1T0Rwdt4Zar8pPq8sQA5EdzXbK5A+IfEaY/OS/m6xumDdc3aP9gECKXww94UQztxHeluvD1R3HUYDnMgkZn7Bg2mnueqz08OujL5A2R5QvgGrmoCclBtpPgGeSBjdN0kOYZgj0cciLgkS6DOv1YeLp9LxmBUeJmWwbuaphZZ35WroGWG/A77r71h7CroMzeknlgmoVJIoIZTGjyFKY54xpPIQElkXZUW6gwnBai7pktu/2m85tpNeNbIqqPjmyCMDym5uPEW8wzPGXdl6eQU2tseDjjMq/YnsXFpn60Ols1z4AnPK9ylcPigrcd3Dul+5jFp0Wm1ApE/na2HiK+v0D1Lb/ssVnfSSq8F0sdOg6Z1gX+tVAH5uYiRfwB0WLYIjU1tD0PbYF18gMeXcZbljd80CSAH5SppQ2Cd644a23icjM226Iu/LXX/dVP0QKzWf4/6KXfiZ4aqv2vwS7iDO47vnr1J+Dtb83m/7h9FEjxXo+WUF/8P34aoXaGkpDo+x2dDv6D/6dAxU=</source>
   </file>
-  <file path="Auth/AuthInterface.php" generated-path="Auth.AuthInterface.html" hash="c4e0d096011913da34f021c9f708bcda" package="Default">
+  <file path="Auth/AuthInterface.php" generated-path="Auth.AuthInterface.html" hash="9156bdd364fa588d24bbab407a9805bf" package="Default">
     <docblock line="0">
       <description>Created by PhpStorm.</description>
-      <long-description>User: walle
+      <long-description>User: Eric Wallmander
 Date: 15-02-28
 Time: 20:19</long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <interface namespace="SwedbankJson\Auth" line="11" package="Default">
+    <interface namespace="SwedbankJson\Auth" line="15" package="SwedbankJson\Auth">
       <name>AuthInterface</name>
       <full_name>\SwedbankJson\Auth\AuthInterface</full_name>
-      <docblock line="11">
-        <description></description>
+      <docblock line="15">
+        <description>Interface AuthInterface</description>
         <long-description></long-description>
-        <tag name="package" line="11" description="Default"/>
+        <tag name="package" line="15" description="SwedbankJson\Auth"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="13" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="22" package="SwedbankJson\Auth">
         <name>login</name>
         <full_name>\SwedbankJson\Auth\AuthInterface::login()</full_name>
-        <docblock line="13">
-          <description></description>
+        <docblock line="22">
+          <description>Inled inloggon</description>
           <long-description></long-description>
+          <tag name="return" line="22" description="Om inloggingen lyckades eller ej" type="boolean">
+            <type>boolean</type>
+          </tag>
         </docblock>
       </method>
     </interface>
-    <parse_markers>
-      <error line="11" code="PPC:ERR-50009">No summary for interface ""</error>
-      <error line="13" code="PPC:ERR-50008">No summary for method login()</error>
-    </parse_markers>
-    <source>eJw1yj8LwjAQh+H9PsWNWqj9A4K2goguOgnVzSVtrzaYXkKaUkT87iaDt73P73Z70xtIoggwwqMl4ajF+o3X3lRO22EV/D6SLXAWSlHIk38qMFvHaR7nmyA3OXjJ0yLb+kwAWAw0GtEQVjO1teDXZdT8OEyuLwEkO7JdWAOc/wUfQH9mqpVssJu4cVIzKv2UvFiW8P0B+As0fg==</source>
+    <source>eJx1UE1PwzAMvedX+AiVRrdKSNAhMcR22C4gDcSFS9p6bVjiRG4qNCH+O07VcQJfLL8PP9l396ELKs8yBRk8MuqIDVQneO7CPnp2Vwl/7ZFL2LCp4U1b6zQ1yIlYi7yExfVsXsyKm4S8GCdIMS8XtzLmSpF22AddI+w/sak0HXe9p/eHIXZLdQ7eUkQ+JFHCf6dErcR71O0f9nG/+cf5pUBqXJ8qRVi5zJD1betpQs/kijEOTFB5b+HJTTJDLRLYk+Q32ANaiwz4MZnysYehsvKWw0B1NF7UXmwXl0v1/QN75GfD</source>
   </file>
-  <file path="Auth/AbstractAuth.php" generated-path="Auth.AbstractAuth.html" hash="3c135081cd9d3ddb99a32edd71e703e5" package="SwedbankJSON">
+  <file path="Auth/AbstractAuth.php" generated-path="Auth.AbstractAuth.html" hash="4e6baed92e28f6339562c1ab79bfa817" package="SwedbankJson">
     <docblock line="0">
       <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
-      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="package" line="0" description="SwedbankJson"/>
       <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2014-02-25&#10;         Time: 21:36"/>
     </docblock>
     <namespace-alias name="Exception">\Exception</namespace-alias>
@@ -1123,36 +1106,36 @@ Time: 20:19</long-description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="341" package="SwedbankJson\Auth">
         <name>__sleep</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
-        <docblock line="339">
-          <description></description>
+        <docblock line="341">
+          <description>För sparande av session</description>
           <long-description></long-description>
-          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+          <tag name="return" line="341" description="Lista på attribut som ska sparas" type="array">
             <type>array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="352" package="SwedbankJson\Auth">
         <name>dsid</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
-        <docblock line="350">
+        <docblock line="352">
           <description>Generering av dsid
 Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <long-description></long-description>
-          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+          <tag name="return" line="352" description="8 slumpvalda tecken" type="string">
             <type>string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="368" package="SwedbankJson\Auth">
         <name>setBaseUri</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
-        <docblock line="366">
+        <docblock line="368">
           <description>Sätta en annan adress till API-server</description>
           <long-description></long-description>
-          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+          <tag name="param" line="368" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
             <type>string</type>
           </tag>
         </docblock>
@@ -1163,137 +1146,146 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         </argument>
       </method>
     </class>
-    <parse_markers>
-      <error line="339" code="PPC:ERR-50008">No summary for method __sleep()</error>
-    </parse_markers>
-    <source>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</source>
+    <source>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</source>
   </file>
-  <file path="Exception/ApiException.php" generated-path="Exception.ApiException.html" hash="b1c81a47d495b84c0a8b91d37e123376" package="Default">
+  <file path="Exception/ApiException.php" generated-path="Exception.ApiException.html" hash="95797cbeb7bc9344dc57f8ceb963a3f1" package="SwedbankJson">
     <docblock line="0">
-      <description></description>
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
-      <tag name="package" line="0" description="Default"/>
+      <tag name="package" line="0" description="SwedbankJson"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2016-01-04&#10;         Time: 23:26"/>
     </docblock>
-    <class final="false" abstract="false" namespace="SwedbankJson\Exception" line="5" package="Default">
+    <class final="false" abstract="false" namespace="SwedbankJson\Exception" line="17" package="SwedbankJson\Exception">
       <extends>\RuntimeException</extends>
       <implements>\SwedbankJson\Exception\SwedbankJsonException</implements>
       <name>ApiException</name>
       <full_name>\SwedbankJson\Exception\ApiException</full_name>
-      <docblock line="5">
-        <description></description>
+      <docblock line="17">
+        <description>Class ApiException</description>
         <long-description></long-description>
-        <tag name="package" line="5" description="Default"/>
+        <tag name="package" line="17" description="SwedbankJson\Exception"/>
       </docblock>
-      <property static="false" visibility="private" namespace="SwedbankJson\Exception" line="7" package="Default">
+      <property static="false" visibility="private" namespace="SwedbankJson\Exception" line="22" package="SwedbankJson\Exception">
         <name>$_response</name>
         <full_name>\SwedbankJson\Exception\ApiException::_response</full_name>
         <default></default>
-        <docblock line="7">
+        <docblock line="22">
           <description></description>
           <long-description></long-description>
+          <tag name="var" line="22" description="&lt;p&gt;Meddelande&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" namespace="SwedbankJson\Exception" line="9" package="Default">
+      <property static="false" visibility="private" namespace="SwedbankJson\Exception" line="27" package="SwedbankJson\Exception">
         <name>$_errorMessages</name>
         <full_name>\SwedbankJson\Exception\ApiException::_errorMessages</full_name>
         <default>array()</default>
-        <docblock line="9">
+        <docblock line="27">
           <description></description>
           <long-description></long-description>
+          <tag name="var" line="27" description="&lt;p&gt;Felmeddelanden&lt;/p&gt;" type="array" variable="">
+            <type>array</type>
+          </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="11" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="36" package="SwedbankJson\Exception">
         <name>__construct</name>
         <full_name>\SwedbankJson\Exception\ApiException::__construct()</full_name>
-        <docblock line="11">
-          <description></description>
+        <docblock line="36">
+          <description>ApiException constructor.</description>
           <long-description></long-description>
+          <tag name="param" line="36" description="&lt;p&gt;Meddelande&lt;/p&gt;" type="string" variable="$response">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="36" description="&lt;p&gt;Felkod&lt;/p&gt;" type="integer" variable="$code">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="36" description="&lt;p&gt;Exception föregående&lt;/p&gt;" type="\Exception|null" variable="$previous">
+            <type>\Exception</type>
+            <type>null</type>
+          </tag>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$response</name>
           <default></default>
-          <type/>
+          <type>string</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$code</name>
           <default>0</default>
-          <type/>
+          <type>integer</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$previous</name>
           <default>null</default>
-          <type>\Exception</type>
+          <type>\Exception|null</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="45" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="72" package="SwedbankJson\Exception">
         <name>getResponse</name>
         <full_name>\SwedbankJson\Exception\ApiException::getResponse()</full_name>
-        <docblock line="45">
-          <description></description>
+        <docblock line="72">
+          <description>Hämta meddelande</description>
           <long-description></long-description>
-          <tag name="return" line="45" description="" type="string">
+          <tag name="return" line="72" description="Meddelande" type="string">
             <type>string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="53" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="82" package="SwedbankJson\Exception">
         <name>getErrorMessages</name>
         <full_name>\SwedbankJson\Exception\ApiException::getErrorMessages()</full_name>
-        <docblock line="53">
-          <description></description>
+        <docblock line="82">
+          <description>Hämta felmeddelanden</description>
           <long-description></long-description>
-          <tag name="return" line="53" description="" type="array">
+          <tag name="return" line="82" description="Felmeddelanden" type="array">
             <type>array</type>
           </tag>
         </docblock>
       </method>
     </class>
-    <parse_markers>
-      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="5" code="PPC:ERR-50005">No summary for class \SwedbankJson\Exception\ApiException</error>
-      <error line="11" code="PPC:ERR-50015">Argument $response is missing from the Docblock of __construct</error>
-      <error line="11" code="PPC:ERR-50015">Argument $code is missing from the Docblock of __construct</error>
-      <error line="11" code="PPC:ERR-50015">Argument $previous is missing from the Docblock of __construct</error>
-      <error line="11" code="PPC:ERR-50008">No summary for method __construct()</error>
-      <error line="45" code="PPC:ERR-50008">No summary for method getResponse()</error>
-      <error line="53" code="PPC:ERR-50008">No summary for method getErrorMessages()</error>
-      <error line="7" code="PPC:ERR-50007">No summary for property $_response</error>
-      <error line="9" code="PPC:ERR-50007">No summary for property $_errorMessages</error>
-    </parse_markers>
-    <source>eJyFU1tvmzAUfudXHFVIgSy022sy2EXKS6UlEn1sK+TASeINjGWbLtHU/z7bkIBDqvgN+7v5w+frN77nnsdIhZKTHOHpLxYbwv48ypq9LA85ckVrtvC8vCRSwg9Oz5uAB4WskPCSNkzRCvsTWvESK2RKOoJngPfPA724oG9EIfiZ0PY1k6iN3AMUoha/UEqyQwkxPL+eIM2mpDlsG5ZbyyzLtYASTa4C/yQ3Az+vC9S8zzPorwM+F/hG68YosqYsQyvZhjLLV3sqo+QcS8P8i4gWVrXBzPGmLo5DWJTsUP3Um0G46An6tCkVaOBv3UdWoIkXWHI4EKZbCCxAl67aDoIQ4jiGx6f1Klum6TrNVuvVMjxT+vBmbWuBJN9D0DlGiVskkfqOR66TJ+AXRJHQobtiA8HAgi2dUku2uuEIP1aw96eswIOpSbM/wZfFdZTCipuO7tqMQUsL53A36Gi4TF9UStS/3uaJEtNrOI7lWtzHMMTfTyCCyQcWI0b37z+Ety/Iqf351VzdCI0v/u65X87n4KGZ0TJvZrKAyey6zeDBDXQ4EXog53NnUDrdbk5m/WB0Gh3/YTptdabwXaBqBAOtQNmu2324OpJ6ANJuGoLLCetULgftlisRghxvmS6HZdxydpo72b97/wGFCWW2</source>
+    <source>eJyFVNtu00AQffdXjFCk2CVu0oL6kOBAgSCo1BalSH1oq2hjb5Kl9traXZdW0L8pv8AP5MeYXTu+Jsq+5DJzzpy5vnufrBKrf3BgwQFcC5IkVMBi/U/A1S8azAm/lyDV+oUvCZx+/5aZonjOQnQlAlEa+CEh/j1Z0gJ0JmNuDCRVq1gATATz4ZqEYUR4QDUOiveZKDqE48HRiTs4cgdva8YfLNLGN8PjE/y/b1mcRFRivHqw28mjTxPFYj6yNul8ComUcJqwwrZT623VpW/5LSTQR0V5IOF2mnKFmkoLi5KQRpQrWaMsGX9bOhEjSj+U8EAEVlUwvoRzGgQ01EXJrX3zmQj2gGWBzkxgtjGXFPPaRkOEIE/whYZRQcR3MFEhYnFOpcTsJXhwc9fmrOXsY1wlUl/F4jB3KGJj80m0SaJ4nY3adl4bCOMKqq/jxwE13zCJ+zhouJed+cPTMIROIugDi1MJpU49lHS5/ktbVUznIc7dIuW+cZzNipTsQmovl+DBoFcJV4nkgQ7tGMqsmUa4WjHpjosGoVun0SzjFmUV1+Z5HDxV3dzxkqqP+KftjEoAWtMQi+TBT5yjWUC1PNuAnQoxW4BtHHBYVdZc2wHP8+Ds6vJiNplOL6ezi8uLiVNASvH6LWJBib8CO4/ojusTQiTm+JSg8jF0AqKIU4PXySqEtnE2cMYM2PA6Lf82g8mfYRsfdZkQ/RqORtu9FI0SXaNXmUY7gzlDeFWpUfXpejEpKbbe6HHHuq5OW1Y9xKEHVf/DLrjQ3RGihch7v9M9m6Ba2W/udOqaqJ34s1X/VftZGTR9kvTMdEfQ7W0PUxm4Cg/uHB6y4bC2KDlvvie9cjFyjufWFfm6folwAqLmDSh2W1CVCr7vBja2F3dlmi+O3VzGnLC5k3sELradzabI/Re2rXNSLfU+sbW+bBQ/W/8BZ6sgFg==</source>
   </file>
-  <file path="AppData.php" generated-path="AppData.html" hash="27c6f29fa06f4f6fab3ee6039b19afc2" package="Projectnamn">
+  <file path="AppData.php" generated-path="AppData.html" hash="28ab449031b9b422c138e1014891512f" package="SwedbankJson">
     <docblock line="0">
       <description>Inställningar för olika app-varianter från Swedbank.</description>
       <long-description></long-description>
-      <tag name="package" line="0" description="Projectnamn"/>
-      <tag name="author" line="0" description="walle&#10;Date: 2014-05-13&#10;Time: 21:40"/>
+      <tag name="package" line="0" description="SwedbankJson"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;Date: 2014-05-13&#10;Time: 21:40"/>
     </docblock>
     <namespace-alias name="UserException">\SwedbankJson\Exception\UserException</namespace-alias>
-    <class final="false" abstract="false" namespace="SwedbankJson" line="17" package="Projectnamn">
+    <class final="false" abstract="false" namespace="SwedbankJson" line="18" package="SwedbankJson">
       <extends/>
       <name>AppData</name>
       <full_name>\SwedbankJson\AppData</full_name>
-      <docblock line="17">
-        <description>Class appdata</description>
+      <docblock line="18">
+        <description>Class AppData</description>
         <long-description></long-description>
-        <tag name="package" line="17" description="Projectnamn"/>
+        <tag name="package" line="18" description="SwedbankJson"/>
       </docblock>
-      <property static="true" visibility="private" namespace="SwedbankJson" line="19" package="Projectnamn">
+      <property static="true" visibility="private" namespace="SwedbankJson" line="23" package="SwedbankJson">
         <name>$appData</name>
         <full_name>\SwedbankJson\AppData::appData</full_name>
         <default>array('swedbank' =&gt; array('appID' =&gt; 'tKiUJOc0fAdy9itb', 'useragent' =&gt; 'SwedbankMOBPrivateIOS/4.5.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'sparbanken' =&gt; array('appID' =&gt; 'ApXJOPzxuClYQ09o', 'useragent' =&gt; 'SavingbankMOBPrivateIOS/4.5.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'swedbank_ung' =&gt; array('appID' =&gt; 'SjH7oIgOqkGmqxUz', 'useragent' =&gt; 'SwedbankMOBYouthIOS/2.0.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'sparbanken_ung' =&gt; array('appID' =&gt; 'L9SJJQiYav1CvTtK', 'useragent' =&gt; 'SavingbankMOBYouthIOS/2.0.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'swedbank_foretag' =&gt; array('appID' =&gt; 'FXdVTYdzOGBvqe5l', 'useragent' =&gt; 'SwedbankMOBCorporateIOS/2.2.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'sparbanken_foretag' =&gt; array('appID' =&gt; 'SeUNIvpcNHnNPwvK', 'useragent' =&gt; 'SavingbankMOBCorporateIOS/2.2.0_(iOS;_9.2.1)_Apple/iPhone7,2'))</default>
-        <docblock line="19">
+        <docblock line="23">
           <description></description>
           <long-description></long-description>
+          <tag name="var" line="23" description="&lt;p&gt;Bankdata med appID och user-agent&lt;/p&gt;" type="array" variable="">
+            <type>array</type>
+          </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="SwedbankJson" line="28" package="Projectnamn">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="SwedbankJson" line="39" package="SwedbankJson">
         <name>bankAppId</name>
         <full_name>\SwedbankJson\AppData::bankAppId()</full_name>
-        <docblock line="28">
-          <description></description>
+        <docblock line="39">
+          <description>Banktyp specefika inställningar</description>
           <long-description></long-description>
+          <tag name="param" line="39" description="&lt;p&gt;string Banktyp&lt;/p&gt;" type="" variable="$bankApp"/>
+          <tag name="return" line="39" description="" type="array">
+            <type>array</type>
+          </tag>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$bankApp</name>
@@ -1302,41 +1294,33 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         </argument>
       </method>
     </class>
-    <parse_markers>
-      <error line="28" code="PPC:ERR-50015">Argument $bankApp is missing from the Docblock of bankAppId</error>
-      <error line="28" code="PPC:ERR-50008">No summary for method bankAppId()</error>
-      <error line="19" code="PPC:ERR-50007">No summary for property $appData</error>
-    </parse_markers>
-    <source>eJytlOFS2kAQx7/zFFvHmRAHQ6A6DljaIrYKtgYH6chYhzmTI5wcl3h3Cajj2+gr9AV4sd6FQBGrTrX36bK3u/fb/2X3w6ewH2bya2sZWIM6E3JyRykjzEccepNfHAJKBghQGK7HiBPEJFYHfHLPoDXC3jliA0uF6ujPIXIHyMfQ5MEFdiVDQ5bYUST7AQcYIUqxtuwiictQtAsb6/bmeuG9th2TobYVyhu2+sxnVDQWKiOe39MQAdvOZCLx0PTzy9jFoSRq1xaYz7+Ua1pWjSIhdAkekihJ7iaWahjuastNBtQKOYkVFwiJJHFhFU1PoQKnyflsGSK93FgwVj7CqaEi6ruG3hvygLQbjmv3qt5VichzIweGAudKHianLrMavjs7zenVdaeV37A2LbubJU5ru1uyilbB7CpMivOk2Q8Y3soVjbPcEk+IuE6EmfEkTzU8aTjN63FUo50juxT8jQfF6tn/D1FaWjdivvEEUetifyuo+87lYG94OW5fP69QJ1D/kKYpWvbr9fnDs0zzrdRqNI5IB8WFWnwsD17S5008M3V6AccSJUTLPF9PvB/HHe/a2duJL/EmfV6dWsDDgKfvVVQUr1dozvTovXD7sB6H7uE+O2yO4hcVegPTmWrdpCOjc6o6MW3IXsRc3degL1DRdS+7mm7NxP1mnoD0YH4Glcqi5GqkJfWZDxSQfR6MgOERPBghWWMnTbLyKMMKTO44EDUPgU7umM8x+IRK4ksLqixWJm8xairrilKtYKbl6YWpwJr2HRECy6zAtFcuz0bP6ayGM/MfcfGYCDWo0RQwBygFYpN7P5CAYj3b6QVinpq5hkWGIQ08nNVvqpw5R1fdAb4SSzymmYPiIr2qKeIMnqLeThxvM7e/AVcC8i4=</source>
+    <source>eJytlf9S2kAQx//PU2wdZwIOhB/VccDSFtAq2AoO0spYhzmTI5yES7wcQXR8G32FvgAv1r0kUMCqU+39k+Rub/ez383tffjk9T0ts7GhwQbUuC+n947DGbeJgN70lwDXYQMCxPPSARGMcElxQUwfOLTG1LogfGDgVrX7s0fMAbHpfKHuuzxcICPZdwXAnmAm/CCOMyTcokKt7RJJi5DP5jbT2a107r2aO2FDNZcrbmbxM6NxMqQ+Ol/2vKNpI3956ufetUk9yfCt7VMx/0LTOMOqQ3wfyp6Hcclz0BnNXDK91QBH6EUN3IhyABGCTKCC2yw0giG1lFK1XXDNPiCdSKNrLuM9mfDpCRZg0uBLIlGOdRJFgBKcRXbx0P2YSF+YLH2EMz0Moat3XR6ydr1hZntla1Jg8kJPga7ihmEjk1li3xqVZhS61mhlNo0tI9tNsEZrp1sw8kYu2cVUHZphzb7L6XYqr5+nVng8IpQjyvUnecreab3RvLkeVZ3Ocbbg/o2HBPh7/R+iOLXuiNv6E0Sty4Ntt2Y3rgb7w6vr9s3zCnVc/FUVTd7Ivl6fPzyrNF8LrXr9mHVIkKsGJ/LwJX3exDNTp+cKKklItMrz5dT6ftKxbhr7leCKbjnPq1N1heeKuF55pHi9QnOmR/Wi7aNa4JlHB/yoOQ5eVOgNTOfYF1ZOtTrKcuKB71GT9lTnY0s9MbabNwFMiAxhXbFgIDzTAs1mXlaNMeOR4FHTWG4JowsHW0HcEXojbqquBbHXmpWYBUiG5rfzDFgP5mtQKi3WHHt3KHByqQSyL9wxcDqGpQaZ0Cuxk7VHHtZgei9QBmxZzvSe24KCzRzJbGlAmQc4ZS3uiuq6hmXLJWN91aCOTxXtO+b7VCZ86vSKxVnvO5vlcJ78R1x6zXy8kUgEmAISA/Hpg+1KIIG6xJxLdd0UQTfY0HNciybUT5WKCtEd0Im/wpNMpiC/SB9X7inqndDwTrv7DVzsNPM=</source>
   </file>
-  <file path="Exception/UserException.php" generated-path="Exception.UserException.html" hash="b7e478d072989f9a1f86eee5ac07075e" package="Default">
+  <file path="Exception/UserException.php" generated-path="Exception.UserException.html" hash="e5b005636800d0067766867f734158c9" package="SwedbankJson">
     <docblock line="0">
-      <description></description>
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
-      <tag name="package" line="0" description="Default"/>
+      <tag name="package" line="0" description="SwedbankJson"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2016-01-04&#10;         Time: 23:26"/>
     </docblock>
-    <class final="false" abstract="false" namespace="SwedbankJson\Exception" line="5" package="Default">
+    <class final="false" abstract="false" namespace="SwedbankJson\Exception" line="17" package="SwedbankJson\Exception">
       <extends>\RuntimeException</extends>
       <implements>\SwedbankJson\Exception\SwedbankJsonException</implements>
       <name>UserException</name>
       <full_name>\SwedbankJson\Exception\UserException</full_name>
-      <docblock line="5">
-        <description></description>
+      <docblock line="17">
+        <description>Class UserException</description>
         <long-description></long-description>
-        <tag name="package" line="5" description="Default"/>
+        <tag name="package" line="17" description="SwedbankJson\Exception"/>
       </docblock>
     </class>
-    <parse_markers>
-      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="5" code="PPC:ERR-50005">No summary for class \SwedbankJson\Exception\UserException</error>
-    </parse_markers>
-    <source>eJxVjDEKgDAQBPt7Rf6hYGVjqdjZxLhgMDkPL2JA/LtdxHZmmLqRVYjYRqhYBzNcWGbLW6c7T212kOR3rohcsKpmVByFGuQEXtRM/cnJR3zGRwmI4KS/YwnopodeVMYugg==</source>
+    <source>eJx1j0FuwkAMRfdzCq8joQSKWFCktmpZlBWiRWyyMYkLI2ac0XgQSKi36Rm4ABfrBNRAhOqln5/9PXpya6fSJFGQwMKjc+Th63T08LGjcom8EZBw+uEVwsv0/YJstdQmjqKPVi0+Oyw2uKJGmkjFZ4DbsK48wNjrAhZojEUuqfagqTcMNIRe1h10sm4n67fgp7Y1fBj2BrGfKsVoSeK99rF8vC/IBV3xo/p759WgCMyFfAP/DZvfjqSquFeB9oG4FMhnWw4x1ZVo6wxZ4iCtndeVB/WtfgG60nWS</source>
   </file>
-  <file path="Auth/MobileBankID.php" generated-path="Auth.MobileBankID.html" hash="c3ceedfcb7028ce37ee5edbe52fb35b0" package="SwedbankJSON">
+  <file path="Auth/MobileBankID.php" generated-path="Auth.MobileBankID.html" hash="7ec597cab64d2606ad1bb44fe2c19ab7" package="SwedbankJson">
     <docblock line="0">
       <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
-      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="package" line="0" description="SwedbankJson"/>
       <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2014-02-25&#10;         Time: 21:36"/>
     </docblock>
     <namespace-alias name="AppData">\SwedbankJson\AppData</namespace-alias>
@@ -1388,7 +1372,7 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         <docblock line="30">
           <description></description>
           <long-description></long-description>
-          <tag name="var" line="30" description="" type="boolean" variable="">
+          <tag name="var" line="30" description="&lt;p&gt;Om BankId har tidigare bilvit verifierad eller ej&lt;/p&gt;" type="boolean" variable="">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -1517,7 +1501,7 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         <name>__construct</name>
         <full_name>\SwedbankJson\Auth\MobileBankID::__construct()</full_name>
         <docblock line="39">
-          <description>Grundläggande upgifter för mobilt BankID</description>
+          <description>MobileBankID constructor.</description>
           <long-description></long-description>
           <tag name="param" line="39" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
             <type>string</type>
@@ -1588,13 +1572,13 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="120" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="124" package="SwedbankJson\Auth">
         <name>__sleep</name>
         <full_name>\SwedbankJson\Auth\MobileBankID::__sleep()</full_name>
-        <docblock line="120">
-          <description></description>
-          <long-description></long-description>
-          <tag name="return" line="120" description="Lista på attribut som ska sparas" type="array">
+        <docblock line="124">
+          <description>För sparande av session</description>
+          <long-description>Modifierad för att inkludera $_verified</long-description>
+          <tag name="return" line="124" description="Lista på attribut som ska sparas" type="array">
             <type>array</type>
           </tag>
           <tag name="inherited_from" description="\SwedbankJson\Auth\AbstractAuth::__sleep()" refers="\SwedbankJson\Auth\AbstractAuth::__sleep()" link="/classes/SwedbankJson.Auth.AbstractAuth.html#method___sleep"/>
@@ -1885,38 +1869,38 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="341" package="SwedbankJson\Auth">
         <name>__sleep</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
-        <docblock line="339">
-          <description></description>
+        <docblock line="341">
+          <description>För sparande av session</description>
           <long-description></long-description>
-          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+          <tag name="return" line="341" description="Lista på attribut som ska sparas" type="array">
             <type>array</type>
           </tag>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="352" package="SwedbankJson\Auth">
         <name>dsid</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
-        <docblock line="350">
+        <docblock line="352">
           <description>Generering av dsid
 Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <long-description></long-description>
-          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+          <tag name="return" line="352" description="8 slumpvalda tecken" type="string">
             <type>string</type>
           </tag>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="368" package="SwedbankJson\Auth">
         <name>setBaseUri</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
-        <docblock line="366">
+        <docblock line="368">
           <description>Sätta en annan adress till API-server</description>
           <long-description></long-description>
-          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+          <tag name="param" line="368" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
             <type>string</type>
           </tag>
         </docblock>
@@ -1928,13 +1912,9 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
     </class>
-    <parse_markers>
-      <error line="120" code="PPC:ERR-50008">No summary for method __sleep()</error>
-      <error line="30" code="PPC:ERR-50007">No summary for property $_verified</error>
-    </parse_markers>
-    <source>eJy1Vl1y2zYQftcp1hnPUPLIke2mfZDrJG6iZtTYsSdym4c0o4HEFY0RCbIAKEdpcxv7CrmALtZd8FeUomk6LV4kAvv77bcL/PgsuU1avYODFhzAOy2SBDXMVl80jO7Qnwg1N2Ds6l4FAs6vh9lRFE9kSKJCkxYrPk/EdC4CLJV+GV29cQcitbexBhhoOYV3IgwjoXxkPSjXS2GxDydHx08Oj04OT75fO7yRER8e97/7gfZ7rZYSERryV3NmYvX7OTk6bbVS09xPErIvTt3J4OMUEytjRZJ5zi9CYQxcckb4EykNX25PqPDhgphuKAF+tKh8A+cTY7WYWif7Z4tTcJ54kd2F0CCVhaEK4yCQKgACnGyrNIoYFifWc7+JlgtCBvbHFLrmtCnqbfYmcRw2NGOLU4s+6S5Qy5mkv2cwE6HZYuOVTpUfru6DgEsDaRLImS1Y4EptoUDGaZTOiQAiInpoyuMvobVYwj6DRZgDECbOwkKGc1TA+2BiEp8LEErHiTBdwDAkT5lqREESqXyqFgWRR/G44YyxK9d+AQxc10DM3MoSYCvDkPVIFC2HgaphlAGsjPo4SQP+N1rdWwtWp5iZFPQV0B8BMwzN6stckfkuJaOENhm6eUIqDRsVSSchNcAsVVOmH4zH01gRcOnUtgvIulU+3SKKvGgdZyRjk4vR3kpz+NSgzendbu9JM3Y4lvY6HXgG+Xm/n28O/eoc+mW5OqdN2yXpKIb9ioBNqRKsM2gzjJ0s8A1BDtWNAvlJMAKvcdnedMq9IA01kh2hMSRWyHzeYC01ENIgqdWZ+XO5g64jknZc4DrmbcHMNVzcmV49EP+JnZIa3+SCakGTzxcalcmH3lc6QaNNtap3Ijy3tzq+M9XM2UkIqaQDqN0stZxBuwC76OVOecor9808zZvbIRqnNkktVy/HNjb2Lf6RorHtNX1P+gQ4GZ66yvSYEtLvuXzR667Jvl/7ctrEjYEwy4uYiuAVu2dPM+J2N+UDVKhprpVKQ9/bJc/cY5G1RfJNnq6rfujUsHAYZngQE62wqYG9M/B+HQ3ejkfDV2+8dURd5UDhXVW8tvdaKDdFYB4nCRFh4ojw2OvC8VHdWUF4scAaicvjtWrxxia1f6txk7wpq+NynPx3jHNkWv5/fAuwpNtOhvWyQLxmwTBK7LJZts4/KFR+Ia/udVavotWF74p1XHfU68EV32COEqzx6MXV5fXF4GbwqOu+fbQQLmkk+NWk2RiCtTt2g2dnxLPCpvftPGm62DEO68Ft4xJEqwfDeNCdB9SFccSDz6/utnlKN1l1IigGY6VG9ywgzQBkBYKhR8aU4i4v023MLAt1w5doHFXq9CLIYEXzVfry9s8Y0guiAB93UzrkcbKV0Xu7Kf1veHTyjV1d4JI9di7omhOQrB4YeS0n1DnF48jwo8TsTHQ8NiFispHqvts+J4vAN3LCN5ft90vx0y2S7z+QpFcC451uULAULVL73Pobm+efLg==</source>
+    <source>eJy1Vl1y2zYQftcp1hnPUPLIke2mfZCrJG6idNTYjSdym4c0o4HIFYWKBFkAlKO0uY19hVxAF+sCJEGRkjVNp+WLLWB/v/12F98/S+dpq3d01IIjeCdZmqKE2fqLhPEtBlMmFgqUXt+JkMHF9Si/ipMpj0iUSdIyis9T5i9YiE7pJ5UIe8EyPU8kwFByH96xKIqZCNDogfteMo19ODs5fXJ8cnZ89m3t8obH5vK0/813dN5rtQSLUZG/urPfLsjReauVqeZ5mpJ9dm5vhh99TDVPBEkWOb+ImFJwZTLCH0hp9PLBhKwPG4S/pQT4UaMIFFxMlZbM11b2z5ZJwXoyH9ldMglcaBiJKAlDLkIgwMm2yOLYwGLFevZvKvmSkIHDCYUuTdoU9S570ySJ4E0MNpIA5nSkecBDJhEowiXXsETJZxwlCwCjiEqMvzd8JRp9jQF5K2QDGMCMRWqH11rifiIo48zXiXxcCLjoiCEsJv5ISvQvJiVbwaFBk4oCQLqWTUseLVCAOQeVkPiCARMySZnqFtHmqjHFRKwLqJyQpWnIZxqdz9KZAdd9hyVycL2Bcu6WuwpoHkVGj0RRmzBQNIxahJ3RAKdZaP4br++0Bkoec5OMfoX0D4MZRmr9ZSHIfJeSEUyqHMwiIZFFUb0A2TSiDpllwjf8hMnE4douIetW+XTLKIoadayRnG42Rj3n6vipQl3wv90+4GpicXT2Oh14BsV9v18cjoLqHvquXJ3zpm3HSorhsGJoU8qBNYC2gbGTB74laEK1s4J/YgaB17hqbzs1zcIVdZoeo1IkVsp83iIpdRjSpNmos+GPpa6GstNrdB2jzLlg6lh2DCkqU9yZXN+HTBA7OU0GVQiKJY3GgBpNqGIq7jb9XKLOpLBEcmd6LpNbVQ2lvYTggluA2s1S8xm0S7DL1u24W/MVvg1Pi162iCaZTjNtqldgmyj9Fv/IUOl2Td/jAQFOhn1bmZ6hBA96Nl/0ujXZ97VfVpu4MWRqdZlQEbzydPA0J253Wz5EQYNKV0qjwNsnb7hnRGofyTd5Wlf90NnAwmKY40FM1ExnCg4G4P0yHr6djEc//uzVEbWVA4G3VfHa3msm7BSBRZKmRISpJcJjrwunJ5vOSsKzJW6Q2F3XqmUOtqn96wY3yZvQMnHj5L9jnCXT6v/jW4iObnsZ1ssD8ZoFwzjVq2bZOv+gUMXiWt/JvF7VcrTFOt101OuZzVpQwmg8evHm6vpyeDN81LW/A9QQrWgkBNWk2RqCGyt1i2cD4llp0/t6njRd7BmHm8Ht4hLE63tl8KCdB9SFSWwGX1DttkVGm6y6YRSD0lyiedIRRhgCr0BQ9KbwKW63THcx0xXqxizRJK7U6UWQw4rqQfqa41cY0QuiBB/3Uzoy42Qnow/2U/rf8OjsK7v6lYFZmQeHgZMtQeVVb8B3lQTlU84VhotFlNGyYxvPtwdQz59Sl7REGaTre6Mu+ZT6snx62QjUXhgnExUhpltAHtrjC7IIZt+nZi/qft+Jn++QfP+BJD0XtXe+RXAnWgL3ufU39eHG4g==</source>
   </file>
-  <file path="Auth/UnAuth.php" generated-path="Auth.UnAuth.html" hash="bc6e04d5790abe9c97ca0cc94f433e61" package="SwedbankJSON">
+  <file path="Auth/UnAuth.php" generated-path="Auth.UnAuth.html" hash="9d371112216800ce5b182aeb4c2312ab" package="SwedbankJSON">
     <docblock line="0">
       <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
@@ -2091,24 +2071,18 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="31" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="28" package="SwedbankJson\Auth">
         <name>__construct</name>
         <full_name>\SwedbankJson\Auth\UnAuth::__construct()</full_name>
-        <docblock line="31">
-          <description>Grundläggande upgifter</description>
+        <docblock line="28">
+          <description>UnAuth constructor.</description>
           <long-description></long-description>
-          <tag name="param" line="31" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
+          <tag name="param" line="28" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
             <type>string</type>
             <type>array</type>
           </tag>
-          <tag name="param" line="31" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
+          <tag name="param" line="28" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
             <type>boolean</type>
-          </tag>
-          <tag name="throws" line="31" description="" type="\Exception">
-            <type>\Exception</type>
-          </tag>
-          <tag name="throws" line="31" description="" type="\SwedbankJson\UserException">
-            <type>\SwedbankJson\UserException</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -2122,17 +2096,17 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="46" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="43" package="SwedbankJson\Auth">
         <name>login</name>
         <full_name>\SwedbankJson\Auth\UnAuth::login()</full_name>
-        <docblock line="46">
+        <docblock line="43">
           <description>Inlogging
 Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t</description>
           <long-description></long-description>
-          <tag name="return" line="46" description="True om inloggingen lyckades" type="boolean">
+          <tag name="return" line="43" description="True om inloggingen lyckades" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="46" description="Fel vid inloggen" type="\Exception">
+          <tag name="throws" line="43" description="Fel vid inloggen" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -2422,38 +2396,38 @@ Loggar in med personummer och personig kod för att få reda på bankID och den 
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="341" package="SwedbankJson\Auth">
         <name>__sleep</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
-        <docblock line="339">
-          <description></description>
+        <docblock line="341">
+          <description>För sparande av session</description>
           <long-description></long-description>
-          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+          <tag name="return" line="341" description="Lista på attribut som ska sparas" type="array">
             <type>array</type>
           </tag>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="352" package="SwedbankJson\Auth">
         <name>dsid</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
-        <docblock line="350">
+        <docblock line="352">
           <description>Generering av dsid
 Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <long-description></long-description>
-          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+          <tag name="return" line="352" description="8 slumpvalda tecken" type="string">
             <type>string</type>
           </tag>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="368" package="SwedbankJson\Auth">
         <name>setBaseUri</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
-        <docblock line="366">
+        <docblock line="368">
           <description>Sätta en annan adress till API-server</description>
           <long-description></long-description>
-          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+          <tag name="param" line="368" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
             <type>string</type>
           </tag>
         </docblock>
@@ -2465,9 +2439,9 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
     </class>
-    <source>eJx9VNtu2kAQffdXTKVIGAQ4SS8PpGlKGlrRVE0UQHmJhBZ7bVasd7d7yaVt/ob+Qn6AH+ussR0CVf1i786Z25kzfn+i5iqIWq0AWnCtiVJUQ7p60jC6o8mMiIUBY1dLkRHoXw7XplzOGEco0ejlHT8qEi9IRmunr6OL74WBODuXGmCgWQzXhPOciIR6P6ifM2JpDw73D9509g87h29fGMcs98aD3ut3eB8FgSA5NZhvI5mR4qaPiY6CwJnte6UwPjkqLIP7mCrLpEBk2fMnToyBifD+/26lil6kjzfgQO8tFYmB/sxYTWJboH4Fvuwiun9a8EU7kfDVMst86+BUxlLrKSjMFQrzapIj15qJ7DfRmjzAns+PDcDwbE38LeMLKsBfg5GIXhAgQktFTBso5zi7tWdOE8ABJdg5JiwzdrdyzaTkNc97CZ25DD9Gq6W1YLWj65wETxl+EEgpN6unhcAC25hWEG0gJRx5XacWjvPtruxcyzsDNzXzO5YXPE8M1dvQqHgrN+MoodSJ2NtgOo2lQLZcbMOKp3bVxfG6rmbhuR5I0aOdM9P5YKgtVRGGr5iZFpTVQZpNOIHS3uuVl8Pk2Q69ejDNo+3Y06qA0LPbXNezg/IVFIvBfhLfzTl9CHdjIeqUGDrRLGzMrVWmF0VO+I3qEsW6piSua2g0PhtMz/qX00upLeHTq8FoPL0enEaIixpl5MdgW5lDwWWW4Tiri294JBqYKASEvwKcictznK2M5+WZZbCQybM20tUf0DQhoPDD14Ni9egEhWoZ5+lqyTnD34fSMmW8w5Ke3VaJptZp8VKQY69A1DirisR4/AF3M6FmW0S1ZPz1Z8pxUZLSkf5fRghhItwRinRWOYtjLEeRUXtFfzhqbNhg2JllKYuL0UUJvWUxLViu/VkKYRkDx2iJdQZeHUPj4rzRrEH+KeoHQe+eWwgbE6UWUimOPUPOjKm6biPxwmrplw33flNAHYEYyruNNhzsb1ZSMuvXuVLBY/AXEMHejg==</source>
+    <source>eJx9U9tO20AQffdXTCWkOFESA708hFIKJZVSqoIIiJdK1sYeO6usd7e7ay5t+Rv6C/xAfqyzjm1CqLov9u6cmTOXM+8P9FwHUa8XQA+uDNMaDWTLRwPTG0xnTC4sWLd8kDmDw7PJylSoGRcEZYa8vONHzZIFy7F1+jI9/VYZWOnmygCMDU/giglRMJmi94P2HDOHI9jd3nkz2N4d7L59ZrzghTfujF6/o/coCCQr0BLfGplV8vshEe0FQWk337Wm+GyvsoxvE9SOK0nIuuZPglkLl9L7/7uUJnpFn6zBAW8dytTC4cw6wxJXoX4FPu0quj+9BpwoSagyccoMa1ODIE7DCuqz4TL/zYxhd7DluSl5mByvmn7NxQIl+GewitALBkwapZntAwpBc1t5FpgCDSelqqHUOueZw5ay4ZopJdoeb6U4K3P6mS4fnAPKElecjG45/TDIUNjl40JSgn2ilcxYyJignq6oZSlETRFVX13OBI08K2XiGw5x3DYgbGrrN8z7q1jdynPVwCovN+d28MGiq6cYhq+4jasy2yDdLhxAbR+N6sdJ+mSHUdvM7t5m7LhJIPQd6a7yeYHyGVRC5j+Zr+YE78KXsQh1xCxeGh525s5pO4qiUvoNGDLNh7YW1NBidHE8jo8Pz+IzZRwT8fl4ehFfjY8iwkWdOvJ9sKmkiRQqz2kEzcNXujIDXFZDp9UlrZZFQfNQyby+8xwWKn2aZ7b8AwZTBpp+fD4kMI9OSVyOC5EtH4TgtO7aqIyLAU9HblOvBl1p5HMRXXjVkC55kyTFE3e0Syna1tHNjbqxT3vonz+jIHGntSPK/8qIIFyGL4SiSqdLR2OsR5GjO8cfJVoXdjhV5njGk2p0UYrXPMGqy60/zyCsY9AYHXOlhVf70Dk96XRbkD9V/iDx5qmEsHOp9UJpLahmKLi1TdV9arx0RvkFoV1dF9BAEgbFsNOHne31TOrO+hVsVHAf/AV6XcSU</source>
   </file>
-  <file path="SwedbankJson.php" generated-path="SwedbankJson.html" hash="f612d52a5c47dc960974d3f42051c50b" package="SwedbankJSON">
+  <file path="SwedbankJson.php" generated-path="SwedbankJson.html" hash="a5c353f7b425905e4447d43d70e7e134" package="SwedbankJSON">
     <docblock line="0">
       <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
@@ -2493,7 +2467,7 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         <docblock line="24">
           <description></description>
           <long-description></long-description>
-          <tag name="var" line="24" description="" type="object" variable="">
+          <tag name="var" line="24" description="&lt;p&gt;Inlogging&lt;/p&gt;" type="object" variable="">
             <type>object</type>
           </tag>
         </docblock>
@@ -2510,13 +2484,13 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="34" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="36" package="SwedbankJSON">
         <name>__construct</name>
         <full_name>\SwedbankJson\SwedbankJson::__construct()</full_name>
-        <docblock line="34">
-          <description></description>
+        <docblock line="36">
+          <description>SwedbankJson constructor.</description>
           <long-description></long-description>
-          <tag name="param" line="34" description="&lt;p&gt;Instans en av inloggingsmetoderna&lt;/p&gt;" type="\SwedbankJson\Auth\AbstractAuth" variable="$auth">
+          <tag name="param" line="36" description="&lt;p&gt;Instans en av inloggingsmetoderna&lt;/p&gt;" type="\SwedbankJson\Auth\AbstractAuth" variable="$auth">
             <type>\SwedbankJson\Auth\AbstractAuth</type>
           </tag>
         </docblock>
@@ -2526,36 +2500,36 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type>\SwedbankJson\Auth\AbstractAuth</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="47" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="49" package="SwedbankJSON">
         <name>profileList</name>
         <full_name>\SwedbankJson\SwedbankJson::profileList()</full_name>
-        <docblock line="47">
+        <docblock line="49">
           <description>Profilinfomation</description>
           <long-description>Få tillgång till lista av profiler och respektive tillfälliga ID-nummer. Varje privatperson och företag har egna profiler.</long-description>
-          <tag name="return" line="47" description="JSON-avkodad data om profilen" type="array">
+          <tag name="return" line="49" description="JSON-avkodad data om profilen" type="array">
             <type>array</type>
           </tag>
-          <tag name="throws" line="47" description="Fel med anrop mot Swedbank API:et" type="\Exception">
+          <tag name="throws" line="49" description="Fel med anrop mot Swedbank API:et" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson" line="81" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson" line="83" package="SwedbankJSON">
         <name>selectProfile</name>
         <full_name>\SwedbankJson\SwedbankJson::selectProfile()</full_name>
-        <docblock line="81">
+        <docblock line="83">
           <description>Väljer profil</description>
           <long-description></long-description>
-          <tag name="param" line="81" description="" type="string" variable="$profileID">
+          <tag name="param" line="83" description="" type="string" variable="$profileID">
             <type>string</type>
           </tag>
-          <tag name="return" line="81" description="Då när profil är redan är vald" type="null">
+          <tag name="return" line="83" description="Då när profil är redan är vald" type="null">
             <type>null</type>
           </tag>
-          <tag name="throws" line="81" description="" type="\Exception">
+          <tag name="throws" line="83" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
-          <tag name="throws" line="81" description="" type="\SwedbankJson\Exception\UserException">
+          <tag name="throws" line="83" description="" type="\SwedbankJson\Exception\UserException">
             <type>\SwedbankJson\Exception\UserException</type>
           </tag>
         </docblock>
@@ -2565,47 +2539,47 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="108" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="110" package="SwedbankJSON">
         <name>reminders</name>
         <full_name>\SwedbankJson\SwedbankJson::reminders()</full_name>
-        <docblock line="108">
+        <docblock line="110">
           <description>Antal avvisade betalningar, osignerade betalningar, osignerade överförningar och inkommna e-fakturor</description>
           <long-description></long-description>
-          <tag name="return" line="108" description="Lista med antal" type="object">
+          <tag name="return" line="110" description="Lista med antal" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="108" description="" type="\Exception">
+          <tag name="throws" line="110" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="121" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="123" package="SwedbankJSON">
         <name>baseInfo</name>
         <full_name>\SwedbankJson\SwedbankJson::baseInfo()</full_name>
-        <docblock line="121">
+        <docblock line="123">
           <description>Lista på konton grupperade på typ</description>
           <long-description></long-description>
-          <tag name="return" line="121" description="Lista med grundläggande information om konton" type="object">
+          <tag name="return" line="123" description="Lista med grundläggande information om konton" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="121" description="" type="\Exception">
+          <tag name="throws" line="123" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="136" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="138" package="SwedbankJSON">
         <name>accountList</name>
         <full_name>\SwedbankJson\SwedbankJson::accountList()</full_name>
-        <docblock line="136">
+        <docblock line="138">
           <description>Listar alla bankkonton som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.</description>
           <long-description></long-description>
-          <tag name="param" line="136" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
+          <tag name="param" line="138" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
             <type>string</type>
           </tag>
-          <tag name="return" line="136" description="Lista på alla konton" type="object">
+          <tag name="return" line="138" description="Lista på alla konton" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="136" description="Något med API-anropet gör att kontorna inte listas" type="\Exception">
+          <tag name="throws" line="138" description="Något med API-anropet gör att kontorna inte listas" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -2615,19 +2589,19 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="156" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="158" package="SwedbankJSON">
         <name>portfolioList</name>
         <full_name>\SwedbankJson\SwedbankJson::portfolioList()</full_name>
-        <docblock line="156">
+        <docblock line="158">
           <description>Listar investeringssparande som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.</description>
           <long-description></long-description>
-          <tag name="param" line="156" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
+          <tag name="param" line="158" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
             <type>string</type>
           </tag>
-          <tag name="return" line="156" description="Lista på alla Investeringssparkonton" type="object">
+          <tag name="return" line="158" description="Lista på alla Investeringssparkonton" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="156" description="Något med API-anropet gör att kontorna inte listas" type="\Exception">
+          <tag name="throws" line="158" description="Något med API-anropet gör att kontorna inte listas" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -2637,19 +2611,19 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="178" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="180" package="SwedbankJSON">
         <name>accountDetails</name>
         <full_name>\SwedbankJson\SwedbankJson::accountDetails()</full_name>
-        <docblock line="178">
+        <docblock line="180">
           <description>Visar kontodetaljer och transaktioner för konto. Om inget kontoID anges väljs första kontot i listan.</description>
           <long-description></long-description>
-          <tag name="param" line="178" description="&lt;p&gt;string  Unik och slumpvis konto-id från Swedbank API&lt;/p&gt;" type="" variable="$accoutID"/>
-          <tag name="param" line="178" description="&lt;p&gt;int     Antal transaktioner som listas &quot;per sida&quot;. Måste vara ett heltal större eller lika med 1.&lt;/p&gt;" type="" variable="$transactionsPerPage"/>
-          <tag name="param" line="178" description="&lt;p&gt;int     Aktuell sida. Måste vara ett heltal större eller lika med 1. $transactionsPerPage måste anges.&lt;/p&gt;" type="" variable="$page"/>
-          <tag name="return" line="178" description="Avkodad JSON med kontinformationn" type="object">
+          <tag name="param" line="180" description="&lt;p&gt;string  Unik och slumpvis konto-id från Swedbank API&lt;/p&gt;" type="" variable="$accoutID"/>
+          <tag name="param" line="180" description="&lt;p&gt;int     Antal transaktioner som listas &quot;per sida&quot;. Måste vara ett heltal större eller lika med 1.&lt;/p&gt;" type="" variable="$transactionsPerPage"/>
+          <tag name="param" line="180" description="&lt;p&gt;int     Aktuell sida. Måste vara ett heltal större eller lika med 1. $transactionsPerPage måste anges.&lt;/p&gt;" type="" variable="$page"/>
+          <tag name="return" line="180" description="Avkodad JSON med kontinformationn" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="178" description="AccoutID inte stämmer" type="\Exception">
+          <tag name="throws" line="180" description="AccoutID inte stämmer" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -2669,34 +2643,34 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="208" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="210" package="SwedbankJSON">
         <name>registerTransfer</name>
         <full_name>\SwedbankJson\SwedbankJson::registerTransfer()</full_name>
-        <docblock line="208">
+        <docblock line="210">
           <description>Lägg till och förbered överförning</description>
           <long-description></long-description>
-          <tag name="param" line="208" description="&lt;p&gt;Belopp att överföra&lt;/p&gt;" type="float" variable="$amount">
+          <tag name="param" line="210" description="&lt;p&gt;Belopp att överföra&lt;/p&gt;" type="float" variable="$amount">
             <type>float</type>
           </tag>
-          <tag name="param" line="208" description="&lt;p&gt;ID för avsändarkonto&lt;/p&gt;" type="string" variable="$fromAccountId">
+          <tag name="param" line="210" description="&lt;p&gt;ID för avsändarkonto&lt;/p&gt;" type="string" variable="$fromAccountId">
             <type>string</type>
           </tag>
-          <tag name="param" line="208" description="&lt;p&gt;ID för kontomotagare&lt;/p&gt;" type="string" variable="$recipientAccountId">
+          <tag name="param" line="210" description="&lt;p&gt;ID för kontomotagare&lt;/p&gt;" type="string" variable="$recipientAccountId">
             <type>string</type>
           </tag>
-          <tag name="param" line="208" description="&lt;p&gt;Notering av transaktion&lt;/p&gt;" type="string" variable="$fromAccountNote">
+          <tag name="param" line="210" description="&lt;p&gt;Notering av transaktion&lt;/p&gt;" type="string" variable="$fromAccountNote">
             <type>string</type>
           </tag>
-          <tag name="param" line="208" description="&lt;p&gt;Meddelande för mottagare&lt;/p&gt;" type="string" variable="$recipientAccountMessage">
+          <tag name="param" line="210" description="&lt;p&gt;Meddelande för mottagare&lt;/p&gt;" type="string" variable="$recipientAccountMessage">
             <type>string</type>
           </tag>
-          <tag name="param" line="208" description="&lt;p&gt;Datum när överförningen ska ske i formatet YYYY-MM-DD (dagens datum och framåt). Om inget anges, görs den direkt&lt;/p&gt;" type="string" variable="$transferDate">
+          <tag name="param" line="210" description="&lt;p&gt;Datum när överförningen ska ske i formatet YYYY-MM-DD (dagens datum och framåt). Om inget anges, görs den direkt&lt;/p&gt;" type="string" variable="$transferDate">
             <type>string</type>
           </tag>
-          <tag name="param" line="208" description="&lt;p&gt;Periodicitet. För möjliga möjliga valbara perioder, se 'perodicity' från resultatet av @see baseInfo()&lt;/p&gt;" type="string" variable="$perodicity">
+          <tag name="param" line="210" description="&lt;p&gt;Periodicitet. För möjliga möjliga valbara perioder, se 'perodicity' från resultatet av @see baseInfo()&lt;/p&gt;" type="string" variable="$perodicity">
             <type>string</type>
           </tag>
-          <tag name="return" line="208" description="" type="object">
+          <tag name="return" line="210" description="" type="object">
             <type>object</type>
           </tag>
         </docblock>
@@ -2736,35 +2710,35 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="232" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="234" package="SwedbankJSON">
         <name>listRegisteredTransfers</name>
         <full_name>\SwedbankJson\SwedbankJson::listRegisteredTransfers()</full_name>
-        <docblock line="232">
+        <docblock line="234">
           <description>Översikt av ej bekräftade överförningar</description>
           <long-description></long-description>
-          <tag name="return" line="232" description="" type="object">
+          <tag name="return" line="234" description="" type="object">
             <type>object</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="244" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="246" package="SwedbankJSON">
         <name>listConfirmedTransfers</name>
         <full_name>\SwedbankJson\SwedbankJson::listConfirmedTransfers()</full_name>
-        <docblock line="244">
+        <docblock line="246">
           <description>Lista aktuella/framtida bekräftade överförningar</description>
           <long-description>Innehåller bland annat schemalagda och periodiska överförningar</long-description>
-          <tag name="return" line="244" description="" type="object">
+          <tag name="return" line="246" description="" type="object">
             <type>object</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="254" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="256" package="SwedbankJSON">
         <name>deleteTransfer</name>
         <full_name>\SwedbankJson\SwedbankJson::deleteTransfer()</full_name>
-        <docblock line="254">
+        <docblock line="256">
           <description>Ta bort överförning</description>
           <long-description></long-description>
-          <tag name="param" line="254" description="" type="" variable="$transfareId"/>
+          <tag name="param" line="256" description="" type="" variable="$transfareId"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$transfareId</name>
@@ -2772,30 +2746,30 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="265" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="267" package="SwedbankJSON">
         <name>confirmTransfer</name>
         <full_name>\SwedbankJson\SwedbankJson::confirmTransfer()</full_name>
-        <docblock line="265">
+        <docblock line="267">
           <description>Genomför transaktioner</description>
           <long-description></long-description>
-          <tag name="return" line="265" description="" type="object">
+          <tag name="return" line="267" description="" type="object">
             <type>object</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="289" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="291" package="SwedbankJSON">
         <name>quickBalanceAccounts</name>
         <full_name>\SwedbankJson\SwedbankJson::quickBalanceAccounts()</full_name>
-        <docblock line="289">
+        <docblock line="291">
           <description>Lista möjligar snabbsaldo konton.  Om ingen profil anges väljs första profilen i listan.</description>
           <long-description></long-description>
-          <tag name="param" line="289" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
+          <tag name="param" line="291" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
             <type>string</type>
           </tag>
-          <tag name="return" line="289" description="Lista på snabbsaldokonton med respektive quickbalanceSubscription ID" type="object">
+          <tag name="return" line="291" description="Lista på snabbsaldokonton med respektive quickbalanceSubscription ID" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="289" description="" type="\Exception">
+          <tag name="throws" line="291" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -2805,21 +2779,21 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="313" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="315" package="SwedbankJSON">
         <name>quickBalanceSubscription</name>
         <full_name>\SwedbankJson\SwedbankJson::quickBalanceSubscription()</full_name>
-        <docblock line="313">
+        <docblock line="315">
           <description>Aktiverar och kopplar snabbsaldo till konto.</description>
           <long-description>För att kunna visa (@see quickBalance()) och avaktivera (@see quickBalanceUnsubscription()) snabbsaldo måste man
 ange "subscriptionId" som finns med i resultatet. Man bör spara undan subscriptionId i en databas eller
 motsvarande.</long-description>
-          <tag name="param" line="313" description="&lt;p&gt;ID hämtad från @see quickBalanceAccounts(). Leta efter ID under quickbalanceSubscription&lt;/p&gt;" type="string" variable="$accountQuickBalanceSubID">
+          <tag name="param" line="315" description="&lt;p&gt;ID hämtad från @see quickBalanceAccounts(). Leta efter ID under quickbalanceSubscription&lt;/p&gt;" type="string" variable="$accountQuickBalanceSubID">
             <type>string</type>
           </tag>
-          <tag name="return" line="313" description="Bekräfltese med innehållande subscriptionId" type="object">
+          <tag name="return" line="315" description="Bekräfltese med innehållande subscriptionId" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="313" description="" type="\Exception">
+          <tag name="throws" line="315" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -2829,19 +2803,19 @@ motsvarande.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="331" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="333" package="SwedbankJSON">
         <name>quickBalance</name>
         <full_name>\SwedbankJson\SwedbankJson::quickBalance()</full_name>
-        <docblock line="331">
+        <docblock line="333">
           <description>Hämta snabbsaldo</description>
           <long-description></long-description>
-          <tag name="param" line="331" description="&lt;p&gt;SubscriptionId&lt;/p&gt;" type="string" variable="$quickBalanceSubscriptionId">
+          <tag name="param" line="333" description="&lt;p&gt;SubscriptionId&lt;/p&gt;" type="string" variable="$quickBalanceSubscriptionId">
             <type>string</type>
           </tag>
-          <tag name="return" line="331" description="Saldoinformation" type="object">
+          <tag name="return" line="333" description="Saldoinformation" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="331" description="" type="\Exception">
+          <tag name="throws" line="333" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -2851,22 +2825,22 @@ motsvarande.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="350" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="352" package="SwedbankJSON">
         <name>quickBalanceUnsubscription</name>
         <full_name>\SwedbankJson\SwedbankJson::quickBalanceUnsubscription()</full_name>
-        <docblock line="350">
+        <docblock line="352">
           <description>Avaktiverar snabbsaldo för konto</description>
           <long-description></long-description>
-          <tag name="param" line="350" description="&lt;p&gt;SubscriptionId&lt;/p&gt;" type="string" variable="$quickBalanceSubscriptionId">
+          <tag name="param" line="352" description="&lt;p&gt;SubscriptionId&lt;/p&gt;" type="string" variable="$quickBalanceSubscriptionId">
             <type>string</type>
           </tag>
-          <tag name="param" line="350" description="&lt;p&gt;ProfileID&lt;/p&gt;" type="string" variable="$profileID">
+          <tag name="param" line="352" description="&lt;p&gt;ProfileID&lt;/p&gt;" type="string" variable="$profileID">
             <type>string</type>
           </tag>
-          <tag name="return" line="350" description="" type="object">
+          <tag name="return" line="352" description="" type="object">
             <type>object</type>
           </tag>
-          <tag name="throws" line="350" description="" type="\Exception">
+          <tag name="throws" line="352" description="" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -2881,43 +2855,36 @@ motsvarande.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="365" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="367" package="SwedbankJSON">
         <name>terminate</name>
         <full_name>\SwedbankJson\SwedbankJson::terminate()</full_name>
-        <docblock line="365">
+        <docblock line="367">
           <description>Loggar ut från API:et</description>
           <long-description></long-description>
         </docblock>
       </method>
     </class>
-    <parse_markers>
-      <error line="34" code="PPC:ERR-50008">No summary for method __construct()</error>
-      <error line="24" code="PPC:ERR-50007">No summary for property $_auth</error>
-    </parse_markers>
-    <source>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</source>
+    <source>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</source>
   </file>
-  <file path="Exception/SwedbankJsonException.php" generated-path="Exception.SwedbankJsonException.html" hash="6e0e2d0f7b0f3aa874ce9e1128aadbbd" package="Default">
+  <file path="Exception/SwedbankJsonException.php" generated-path="Exception.SwedbankJsonException.html" hash="3d6e8fc8533ffaabe57dc29b5abc40b5" package="SwedbankJson">
     <docblock line="0">
-      <description></description>
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
-      <tag name="package" line="0" description="Default"/>
+      <tag name="package" line="0" description="SwedbankJson"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2016-01-04&#10;         Time: 23:26"/>
     </docblock>
-    <interface namespace="SwedbankJson\Exception" line="5" package="Default">
+    <interface namespace="SwedbankJson\Exception" line="17" package="SwedbankJson\Exception">
       <name>SwedbankJsonException</name>
       <full_name>\SwedbankJson\Exception\SwedbankJsonException</full_name>
-      <docblock line="5">
-        <description></description>
+      <docblock line="17">
+        <description>Interface SwedbankJsonException</description>
         <long-description></long-description>
-        <tag name="package" line="5" description="Default"/>
+        <tag name="package" line="17" description="SwedbankJson\Exception"/>
       </docblock>
     </interface>
-    <parse_markers>
-      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="5" code="PPC:ERR-50009">No summary for interface ""</error>
-    </parse_markers>
-    <source>eJyzsS/IKODiykvMTS0uSExOVQguT01JSszL9irOz4txrUhOLSjJzM+z5uLKzCtJLUpDVwJXoVBdCwAdLBwp</source>
+    <source>eJx9j8sKgkAUhvfzFGctiJfChQUV5MJWQYEbN0eddFDHYZwoiN6mZ+gFfLHGIsmgzvJ8/3cu84UoBLEMg4ABkUQhqIRDd5ewO9EsQV620KruxnOE1TZ8obpJWKWjKLXVi0uBaYk5HaRN2/AnwKMqGgkQSJZChFVVI89o78FQa1TUB9d2PNN2THs6gntW93Diu57uW4RwrGmr942XxcE5pUKxhs/I+52QKyoP38kh+PPw+DNiEfZ/DFyuD9JgZ/4=</source>
   </file>
-  <file path="Auth/PersonalCode.php" generated-path="Auth.PersonalCode.html" hash="8c6c1bf687d33d64c02f73eb83dc2c0f" package="SwedbankJSON">
+  <file path="Auth/PersonalCode.php" generated-path="Auth.PersonalCode.html" hash="877534e3a933fea7e3ef4bb045b6d650" package="SwedbankJSON">
     <docblock line="0">
       <description>Wrapper för Swedbanks stänga API för mobilappar</description>
       <long-description></long-description>
@@ -2926,14 +2893,14 @@ motsvarande.</long-description>
     </docblock>
     <namespace-alias name="AppData">\SwedbankJson\AppData</namespace-alias>
     <namespace-alias name="Exception">\Exception</namespace-alias>
-    <class final="false" abstract="false" namespace="SwedbankJson\Auth" line="16" package="SwedbankJSON">
+    <class final="false" abstract="false" namespace="SwedbankJson\Auth" line="20" package="SwedbankJson\Auth">
       <extends>\SwedbankJson\Auth\AbstractAuth</extends>
       <name>PersonalCode</name>
       <full_name>\SwedbankJson\Auth\PersonalCode</full_name>
-      <docblock line="16">
-        <description>Class AbstractAuth</description>
+      <docblock line="20">
+        <description>Class PersonalCode</description>
         <long-description></long-description>
-        <tag name="package" line="16" description="SwedbankJSON"/>
+        <tag name="package" line="20" description="SwedbankJson\Auth"/>
         <tag name="inherited_from" description="\SwedbankJson\Auth\AbstractAuth" refers="\SwedbankJson\Auth\AbstractAuth" link="/classes/SwedbankJson.Auth.AbstractAuth.html"/>
       </docblock>
       <constant namespace="SwedbankJson\Auth" line="34" package="SwedbankJson\Auth">
@@ -2954,26 +2921,26 @@ motsvarande.</long-description>
           <long-description></long-description>
         </docblock>
       </constant>
-      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="21" package="SwedbankJSON">
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="25" package="SwedbankJson\Auth">
         <name>$_username</name>
         <full_name>\SwedbankJson\Auth\PersonalCode::_username</full_name>
         <default></default>
-        <docblock line="21">
+        <docblock line="25">
           <description></description>
           <long-description></long-description>
-          <tag name="var" line="21" description="&lt;p&gt;Inlogging personnummer&lt;/p&gt;" type="integer" variable="">
+          <tag name="var" line="25" description="&lt;p&gt;Inlogging personnummer&lt;/p&gt;" type="integer" variable="">
             <type>integer</type>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="26" package="SwedbankJSON">
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="30" package="SwedbankJson\Auth">
         <name>$_password</name>
         <full_name>\SwedbankJson\Auth\PersonalCode::_password</full_name>
         <default></default>
-        <docblock line="26">
+        <docblock line="30">
           <description></description>
           <long-description></long-description>
-          <tag name="var" line="26" description="&lt;p&gt;Personlig kod.&lt;/p&gt;" type="string" variable="">
+          <tag name="var" line="30" description="&lt;p&gt;Personlig kod.&lt;/p&gt;" type="string" variable="">
             <type>string</type>
           </tag>
         </docblock>
@@ -3098,30 +3065,24 @@ motsvarande.</long-description>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="39" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="40" package="SwedbankJson\Auth">
         <name>__construct</name>
         <full_name>\SwedbankJson\Auth\PersonalCode::__construct()</full_name>
-        <docblock line="39">
-          <description>Grundläggande upgifter</description>
+        <docblock line="40">
+          <description>PersonalCode constructor.</description>
           <long-description></long-description>
-          <tag name="param" line="39" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
+          <tag name="param" line="40" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
             <type>string</type>
             <type>array</type>
           </tag>
-          <tag name="param" line="39" description="&lt;p&gt;Personnummer för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$username">
+          <tag name="param" line="40" description="&lt;p&gt;Personnummer för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$username">
             <type>integer</type>
           </tag>
-          <tag name="param" line="39" description="&lt;p&gt;Personlig kod för inlogging till internetbanken&lt;/p&gt;" type="string" variable="$password">
+          <tag name="param" line="40" description="&lt;p&gt;Personlig kod för inlogging till internetbanken&lt;/p&gt;" type="string" variable="$password">
             <type>string</type>
           </tag>
-          <tag name="param" line="39" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
+          <tag name="param" line="40" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
             <type>boolean</type>
-          </tag>
-          <tag name="throws" line="39" description="" type="\Exception">
-            <type>\Exception</type>
-          </tag>
-          <tag name="throws" line="39" description="" type="\SwedbankJson\UserException">
-            <type>\SwedbankJson\UserException</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -3145,17 +3106,17 @@ motsvarande.</long-description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="55" package="SwedbankJSON">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="56" package="SwedbankJson\Auth">
         <name>login</name>
         <full_name>\SwedbankJson\Auth\PersonalCode::login()</full_name>
-        <docblock line="55">
+        <docblock line="56">
           <description>Inlogging
 Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t</description>
           <long-description></long-description>
-          <tag name="return" line="55" description="True om inloggingen lyckades" type="boolean">
+          <tag name="return" line="56" description="True om inloggingen lyckades" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="55" description="Fel vid inloggen" type="\Exception">
+          <tag name="throws" line="56" description="Fel vid inloggen" type="\Exception">
             <type>\Exception</type>
           </tag>
         </docblock>
@@ -3445,38 +3406,38 @@ Loggar in med personummer och personig kod för att få reda på bankID och den 
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="341" package="SwedbankJson\Auth">
         <name>__sleep</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
-        <docblock line="339">
-          <description></description>
+        <docblock line="341">
+          <description>För sparande av session</description>
           <long-description></long-description>
-          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+          <tag name="return" line="341" description="Lista på attribut som ska sparas" type="array">
             <type>array</type>
           </tag>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="352" package="SwedbankJson\Auth">
         <name>dsid</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
-        <docblock line="350">
+        <docblock line="352">
           <description>Generering av dsid
 Slumpar 8 tecken som måste skickas med i varje anrop.</description>
           <long-description></long-description>
-          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+          <tag name="return" line="352" description="8 slumpvalda tecken" type="string">
             <type>string</type>
           </tag>
         </docblock>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="368" package="SwedbankJson\Auth">
         <name>setBaseUri</name>
         <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
-        <docblock line="366">
+        <docblock line="368">
           <description>Sätta en annan adress till API-server</description>
           <long-description></long-description>
-          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+          <tag name="param" line="368" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
             <type>string</type>
           </tag>
         </docblock>
@@ -3488,16 +3449,13 @@ Slumpar 8 tecken som måste skickas med i varje anrop.</description>
         <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
       </method>
     </class>
-    <parse_markers>
-      <error line="16" code="PPC:ERR-50005">No summary for class \SwedbankJson\Auth\PersonalCode</error>
-    </parse_markers>
-    <source>eJyVVtuO2zYQfddXTIAFLC9s76VNHrz1pttkW7gJ2iCbNg9NYdAiJbOmSJWkvHHa/I3zC/sD+rHM6GrLadHqxRLnfubM0N88zVZZcHZ6GsApvLUsy4SFuHiwcHcv+JLptQPni51OGNy8mlei1CylQlVm0YoMv81YtGaJaI1+vPv5p1LAcr8yFuDWygjeMqVSprkgO2if58yLKVyeX3w9Pr8cXz4+EL6RKQkvpl89wfOzINAsFQ7j7QVzRr+7wUBXQZC7/nmWoX92VUpu30ci89Jo1IwUcw5eCYtaTD0zXIB474XmDm6WzlsWefIZ/BVQGiVC9GBNG2ZBag9zrUySSJ1AVnrReZpSaaXaWfmbWbnB6uBkgeEtpY6Rv+QPA5KjKh0lE1gbPvkHVxkmfm8sP3b1g801V8UuSQhlyLNExr5NqQ2IjWNpHfJvZi3bwgkBhlgBzJ9XTd5ItRYa6BycQfU1A6atwegjEEohTyrTVHBAMnBEGSPWISe9YIRX+5w0YNT1VsBVYWULqpdKkR2qCk9pCP3FChqnDSyHIP5/r0tjVJcqF8u8DHFX7LwHb3NRuWT4leALg1goVzysNbofIUSaWQcxU8i3CiadK9VvgV9Zc+/gXcvII8kBi39BwPqqNS3ypcLRinMdkQwWi8hoBCaPfNg0ddQhPupwGjXFzapsh6W/iu5l6X4l3fjaCV/PUBg+km5RNr11PRzCU6jl02l9OOedHKYtt4ZXfd/tVGAOJ92E9LXazs667I+12k7NIKQeDqvyjhSpoHIryQ+MIHshtmGd2sejiWpnvDl4iZ/l/Je8rwa/oq+JVvX3PvOIJnHxCazgDDJ8ITBwxkib43wRH+Nip5CuKLcmlmos+dT3CWOFz60+JOcbIqNJO3ajP7XFTcyF6/OpZQ8dfy8UzjevDcW/MwpVpA6P2EHzvqgncAZ/YNkLoSNco+FvA2zlLXPbl2Q5gNl1RbARDJrulYf99qIccxEWt1xrPecH9sSR+aF1y+zf9/llcp/l9cqZNbqZcf61+DMXzocDieh7GcuoJMFZVl8EVMFgdFDesF609MgYwkcizTyOQBUD3e7dIc9WDNtAQSR2fDhsDekpWwFa3HfdCAffbXGps01NnWZrrW2x2zg6r3bUBH5F1iUosbSHWLXHuKBXBA1JQESjbjLiJhHtcMlNsKiLi/1ScGuJshzpcCS6cpTES398rfE2HF/nVv6XIrqrMEVvDQcn8MJobw1tQbo8Nvg/gjPqlh6BKh4cJo5TTaPA9idyrNGBUGXK5/sp10NAS7gZ2I/BZ36oytU=</source>
+    <source>eJyVVt1u2zYUvvdTnAIBLAd2/rruwpnTZWkGuC26YinWi20waImyOVMkR1JOvbZvk71CXsAvtnMoibLsDNh4Y4nn/zvfOfJ3L83S9E6Pj3twDB8tM4ZbyLePFu7ueTZnauXA+e2DWjC4fj+tRIWeC4mqzKIVGX5vWLpiCx6NXt/99C4IWOmX2gLcWpHCRyZlwVTGyQ7iecU8H8PF2fk3o7OL0cWLjvCDKEh4Pn7+Ld6f9nqKFdxhvJ1gTqvfrjHQZa9Xuv17Y9A/uwyS208pN15ohZp1zTeSOQfvuUVlJm90xp8uqIkRkkgPjIB/8lxlDq7nzluW+qD7uUclhEh00O+aWRDKw1RJvVgItQATvKiyKAiWoHYafo0Va0QGjmaYuqWyMeun/GFAclSlI8UCVjo7+RdXBhO/1zY7dNWpJtUKvZap17bxFENi21lRB/3CrGUbOCKIEGmA6auKImshV1wB3YPTqL5iwJTVGH8IXEpkWWVa8AyQShn2CEpjFiL3PMZsghFi8Rw1cNQpV9BVYUWE1QspyQ5Vuac0uHqygsZpA0wXxv/vda61bFPN+LwMIe62D94DQsorlwzfFvjAIOfSbR9XCt0PESLFrIOcSWRrBZMqpew2s5xLHKa8VClRGWaz2K2kacSwRWnY1jZsEppUEQbBX0XSkK5fCje6ctzXU5Mkz4SbhUZF14MBvIRaPh7Xl9OslcM48mFwue87chlzOGp5va8VuzFpsz/UiuhOICHcB1V5B4pUUNhD4i9GkL3hm6RO7evBHMTJbC7e4muY2sDValwryul0Wb/vsoVam2//BsszBgYfCAycC9LOcCaIQ/n2QSLFUG51LuRIZGO/P2eW+9KqLqE+EIF00TIS/ckNrqqMu2jol1bfu3bZ0fWPXOJMZrVhZO3TjEIVoZIDdtCMzuqpmcAfWPaMqxTXRfJrH1t5y9zmLVn2YXJVEWwI/aZ74XK/vSjHXLjF3RStp1nHnjgy7VpHZv++yy9delPWa2LS6Brt/M/8z5I7n/QFou9FLtJAglNTLzyqoD/slDeo1yMdkUPyjBfG4whUMdDtzq68WTJsAwUR2PHBIBrSCa0Axe/bbiT9Hza4itm6pk6zaVZ2+7B2dF/tlRP4BVm3QIml3cGq3ZNxekTQkARENOomI24S0bqL6QSLOj/fLQU3DQ/lCIcj0ZYjBX7mR1cKv2Gjq9KK/1JE+wEr0FvDwRN4o5W3mjYXLfw1/nPIGHVLDUFuHx0mjlNNo8B2J3Kk0AGXIeWz3ZTrIaDF2Qzs194/1RDF9Q==</source>
   </file>
   <package name="Default" full_name="Default"/>
-  <package name="Projectnamn" full_name="Projectnamn"/>
   <package name="SwedbankJSON" full_name="SwedbankJSON"/>
   <package name="SwedbankJson" full_name="SwedbankJson">
     <package name="Auth" full_name="SwedbankJson\Auth"/>
+    <package name="Exception" full_name="SwedbankJson\Exception"/>
   </package>
   <package name="global" full_name="global"/>
   <namespace name="SwedbankJson" full_name="SwedbankJson">

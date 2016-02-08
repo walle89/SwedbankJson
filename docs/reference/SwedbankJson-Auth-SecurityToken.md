@@ -1,7 +1,7 @@
 SwedbankJson\Auth\SecurityToken
 ===============
 
-Class AbstractAuth
+Class SecurityToken
 
 
 
@@ -198,7 +198,7 @@ Methods
 
     mixed SwedbankJson\Auth\SecurityToken::__construct(string|array $bankApp, integer $username, integer $challengeResponse, boolean $debug)
 
-Grundläggande upgifter
+SecurityToken constructor.
 
 
 
@@ -215,9 +215,9 @@ Grundläggande upgifter
 
 ### getchallenge
 
-    object SwedbankJson\Auth\SecurityToken::getchallenge()
+    string SwedbankJson\Auth\SecurityToken::getchallenge()
 
-
+Hämta kontrollkod från APIet
 
 
 
@@ -228,9 +228,9 @@ Grundläggande upgifter
 
 ### login
 
-    mixed SwedbankJson\Auth\AuthInterface::login()
+    boolean SwedbankJson\Auth\AuthInterface::login()
 
-
+Inled inloggon
 
 
 
@@ -242,9 +242,9 @@ Grundläggande upgifter
 
 ### setchallengeResponse
 
-    mixed SwedbankJson\Auth\SecurityToken::setchallengeResponse(integer $challengeResponse)
+    mixed SwedbankJson\Auth\SecurityToken::setchallengeResponse(string $challengeResponse)
 
-
+Sätt engångskod eller svarskod
 
 
 
@@ -252,7 +252,7 @@ Grundläggande upgifter
 
 
 #### Arguments
-* $challengeResponse **integer**
+* $challengeResponse **string** - &lt;p&gt;Engångskod eller svarskod&lt;/p&gt;
 
 
 
@@ -260,7 +260,7 @@ Grundläggande upgifter
 
     boolean SwedbankJson\Auth\SecurityToken::isUseOneTimePassword()
 
-
+Om det är en engångskod eller ej
 
 
 
@@ -514,7 +514,7 @@ Sparar auth session
 
     array SwedbankJson\Auth\AbstractAuth::__sleep()
 
-
+För sparande av session
 
 
 

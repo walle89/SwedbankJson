@@ -47,7 +47,7 @@ Methods
 
     mixed SwedbankJson\SwedbankJson::__construct(\SwedbankJson\Auth\AbstractAuth $auth)
 
-
+SwedbankJson constructor.
 
 
 

@@ -1,7 +1,7 @@
 SwedbankJson\Auth\AuthInterface
 ===============
 
-
+Interface AuthInterface
 
 
 
@@ -21,9 +21,9 @@ Methods
 
 ### login
 
-    mixed SwedbankJson\Auth\AuthInterface::login()
+    boolean SwedbankJson\Auth\AuthInterface::login()
 
-
+Inled inloggon
 
 
 

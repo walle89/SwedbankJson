@@ -1,7 +1,7 @@
 SwedbankJson\Exception\SwedbankJsonException
 ===============
 
-
+Interface SwedbankJsonException
 
 
 

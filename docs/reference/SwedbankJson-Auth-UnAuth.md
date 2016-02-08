@@ -154,7 +154,7 @@ Methods
 
     mixed SwedbankJson\Auth\UnAuth::__construct(string|array $bankApp, boolean $debug)
 
-Grundläggande upgifter
+UnAuth constructor.
 
 
 
@@ -169,9 +169,9 @@ Grundläggande upgifter
 
 ### login
 
-    mixed SwedbankJson\Auth\AuthInterface::login()
+    boolean SwedbankJson\Auth\AuthInterface::login()
 
-
+Inled inloggon
 
 
 
@@ -426,7 +426,7 @@ Sparar auth session
 
     array SwedbankJson\Auth\AbstractAuth::__sleep()
 
-
+För sparande av session
 
 
 

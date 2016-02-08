@@ -1,7 +1,7 @@
 SwedbankJson\Exception\UserException
 ===============
 
-
+Class UserException
 
 
 
