@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ebeee0c93ff08a93959a1c78e8b6bbe5",
-    "content-hash": "9a0143939d48d3a6ba1c89c417520c73",
+    "hash": "3c116307c4ad7417d610308ffac9f37c",
+    "content-hash": "83edcd80fa51a3e06e8a0ed8552067b4",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -294,7 +294,116 @@
             "time": "2015-12-17 16:54:24"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "evert/phpdoc-md",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evert/phpdoc-md.git",
+                "reference": "aefe4644cb672def0043e7625d9c2bda04b310d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/evert/phpdoc-md/zipball/aefe4644cb672def0043e7625d9c2bda04b310d8",
+                "reference": "aefe4644cb672def0043e7625d9c2bda04b310d8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1",
+                "twig/twig": "~1.18.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "~2.8.0"
+            },
+            "bin": [
+                "bin/phpdocmd"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPDocMD\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "evert@rooftopsolutions.nl",
+                    "homepage": "http://www.rooftopsolutions.nl/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP documentation generator, with markdown output",
+            "homepage": "https://github.com/evert/phpdoc-md",
+            "keywords": [
+                "markdown",
+                "php",
+                "phpdoc"
+            ],
+            "time": "2015-03-26 23:24:48"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.18.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e8e6575abf6102af53ec283f7f14b89e304fa602",
+                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.18-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "http://twig.sensiolabs.org",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2015-06-06 23:31:24"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],

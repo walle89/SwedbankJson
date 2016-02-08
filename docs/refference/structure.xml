@@ -1,0 +1,3508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="API Documentation" version="v2.8.5">
+  <partials/>
+  <file path="AppData.php" generated-path="AppData.html" hash="27c6f29fa06f4f6fab3ee6039b19afc2" package="Projectnamn">
+    <docblock line="0">
+      <description>Inställningar för olika app-varianter från Swedbank.</description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Projectnamn"/>
+      <tag name="author" line="0" description="walle&#10;Date: 2014-05-13&#10;Time: 21:40"/>
+    </docblock>
+    <namespace-alias name="UserException">\SwedbankJson\Exception\UserException</namespace-alias>
+    <class final="false" abstract="false" namespace="SwedbankJson" line="17" package="Projectnamn">
+      <extends/>
+      <name>AppData</name>
+      <full_name>\SwedbankJson\AppData</full_name>
+      <docblock line="17">
+        <description>Class appdata</description>
+        <long-description></long-description>
+        <tag name="package" line="17" description="Projectnamn"/>
+      </docblock>
+      <property static="true" visibility="private" namespace="SwedbankJson" line="19" package="Projectnamn">
+        <name>$appData</name>
+        <full_name>\SwedbankJson\AppData::appData</full_name>
+        <default>array('swedbank' =&gt; array('appID' =&gt; 'tKiUJOc0fAdy9itb', 'useragent' =&gt; 'SwedbankMOBPrivateIOS/4.5.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'sparbanken' =&gt; array('appID' =&gt; 'ApXJOPzxuClYQ09o', 'useragent' =&gt; 'SavingbankMOBPrivateIOS/4.5.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'swedbank_ung' =&gt; array('appID' =&gt; 'SjH7oIgOqkGmqxUz', 'useragent' =&gt; 'SwedbankMOBYouthIOS/2.0.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'sparbanken_ung' =&gt; array('appID' =&gt; 'L9SJJQiYav1CvTtK', 'useragent' =&gt; 'SavingbankMOBYouthIOS/2.0.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'swedbank_foretag' =&gt; array('appID' =&gt; 'FXdVTYdzOGBvqe5l', 'useragent' =&gt; 'SwedbankMOBCorporateIOS/2.2.0_(iOS;_9.2.1)_Apple/iPhone7,2'), 'sparbanken_foretag' =&gt; array('appID' =&gt; 'SeUNIvpcNHnNPwvK', 'useragent' =&gt; 'SavingbankMOBCorporateIOS/2.2.0_(iOS;_9.2.1)_Apple/iPhone7,2'))</default>
+        <docblock line="19">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="SwedbankJson" line="28" package="Projectnamn">
+        <name>bankAppId</name>
+        <full_name>\SwedbankJson\AppData::bankAppId()</full_name>
+        <docblock line="28">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$bankApp</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="28" code="PPC:ERR-50015">Argument $bankApp is missing from the Docblock of bankAppId</error>
+      <error line="28" code="PPC:ERR-50008">No summary for method bankAppId()</error>
+      <error line="19" code="PPC:ERR-50007">No summary for property $appData</error>
+    </parse_markers>
+    <source>eJytlOFS2kAQx7/zFFvHmRAHQ6A6DljaIrYKtgYH6chYhzmTI5wcl3h3Cajj2+gr9AV4sd6FQBGrTrX36bK3u/fb/2X3w6ewH2bya2sZWIM6E3JyRykjzEccepNfHAJKBghQGK7HiBPEJFYHfHLPoDXC3jliA0uF6ujPIXIHyMfQ5MEFdiVDQ5bYUST7AQcYIUqxtuwiictQtAsb6/bmeuG9th2TobYVyhu2+sxnVDQWKiOe39MQAdvOZCLx0PTzy9jFoSRq1xaYz7+Ua1pWjSIhdAkekihJ7iaWahjuastNBtQKOYkVFwiJJHFhFU1PoQKnyflsGSK93FgwVj7CqaEi6ruG3hvygLQbjmv3qt5VichzIweGAudKHianLrMavjs7zenVdaeV37A2LbubJU5ru1uyilbB7CpMivOk2Q8Y3soVjbPcEk+IuE6EmfEkTzU8aTjN63FUo50juxT8jQfF6tn/D1FaWjdivvEEUetifyuo+87lYG94OW5fP69QJ1D/kKYpWvbr9fnDs0zzrdRqNI5IB8WFWnwsD17S5008M3V6AccSJUTLPF9PvB/HHe/a2duJL/EmfV6dWsDDgKfvVVQUr1dozvTovXD7sB6H7uE+O2yO4hcVegPTmWrdpCOjc6o6MW3IXsRc3degL1DRdS+7mm7NxP1mnoD0YH4Glcqi5GqkJfWZDxSQfR6MgOERPBghWWMnTbLyKMMKTO44EDUPgU7umM8x+IRK4ksLqixWJm8xairrilKtYKbl6YWpwJr2HRECy6zAtFcuz0bP6ayGM/MfcfGYCDWo0RQwBygFYpN7P5CAYj3b6QVinpq5hkWGIQ08nNVvqpw5R1fdAb4SSzymmYPiIr2qKeIMnqLeThxvM7e/AVcC8i4=</source>
+  </file>
+  <file path="Auth/AbstractAuth.php" generated-path="Auth.AbstractAuth.html" hash="3c135081cd9d3ddb99a32edd71e703e5" package="SwedbankJSON">
+    <docblock line="0">
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2014-02-25&#10;         Time: 21:36"/>
+    </docblock>
+    <namespace-alias name="Exception">\Exception</namespace-alias>
+    <namespace-alias name="Uuid">\Rhumsaa\Uuid\Uuid</namespace-alias>
+    <namespace-alias name="Client">\GuzzleHttp\Client</namespace-alias>
+    <namespace-alias name="Request">\GuzzleHttp\Psr7\Request</namespace-alias>
+    <namespace-alias name="SetCookie">\GuzzleHttp\Cookie\SetCookie</namespace-alias>
+    <namespace-alias name="CookieJar">\GuzzleHttp\Cookie\CookieJar</namespace-alias>
+    <namespace-alias name="SessionCookieJar">\GuzzleHttp\Cookie\SessionCookieJar</namespace-alias>
+    <namespace-alias name="ClientException">\GuzzleHttp\Exception\ClientException</namespace-alias>
+    <namespace-alias name="ServerException">\GuzzleHttp\Exception\ServerException</namespace-alias>
+    <namespace-alias name="ApiException">\SwedbankJson\Exception\ApiException</namespace-alias>
+    <class final="false" abstract="true" namespace="SwedbankJson\Auth" line="29" package="SwedbankJson\Auth">
+      <extends/>
+      <implements>\SwedbankJson\Auth\AuthInterface</implements>
+      <name>AbstractAuth</name>
+      <full_name>\SwedbankJson\Auth\AbstractAuth</full_name>
+      <docblock line="29">
+        <description>Class AbstractAuth</description>
+        <long-description></long-description>
+        <tag name="package" line="29" description="SwedbankJson\Auth"/>
+      </docblock>
+      <constant namespace="SwedbankJson\Auth" line="34" package="SwedbankJson\Auth">
+        <name>authSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::authSession</full_name>
+        <value>'swedbankjson_auth'</value>
+        <docblock line="34">
+          <description>Namn för auth session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="SwedbankJson\Auth" line="39" package="SwedbankJson\Auth">
+        <name>cookieJarSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cookieJarSession</full_name>
+        <value>'swedbankjson_cookiejar'</value>
+        <docblock line="39">
+          <description>Namn för cookieJar session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="44" package="SwedbankJson\Auth">
+        <name>$_baseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_baseUri</full_name>
+        <default>'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/'</default>
+        <docblock line="44">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="44" description="&lt;p&gt;Adress till API-server&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="49" package="SwedbankJson\Auth">
+        <name>$_apiVersion</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_apiVersion</full_name>
+        <default>'v4'</default>
+        <docblock line="49">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="49" description="&lt;p&gt;API-version&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="54" package="SwedbankJson\Auth">
+        <name>$_appID</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_appID</full_name>
+        <default></default>
+        <docblock line="54">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="54" description="&lt;p&gt;AppID. Ett ID som finns i Swedbanks appar.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="59" package="SwedbankJson\Auth">
+        <name>$_userAgent</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_userAgent</full_name>
+        <default></default>
+        <docblock line="59">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="59" description="&lt;p&gt;User agent för appen&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="64" package="SwedbankJson\Auth">
+        <name>$_authorization</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_authorization</full_name>
+        <default></default>
+        <docblock line="64">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="64" description="&lt;p&gt;Auth-nyckel mot Swedbank&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="69" package="SwedbankJson\Auth">
+        <name>$_client</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_client</full_name>
+        <default></default>
+        <docblock line="69">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="69" description="&lt;p&gt;CURL-resurs&lt;/p&gt;" type="resource" variable="">
+            <type>resource</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="74" package="SwedbankJson\Auth">
+        <name>$_profileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_profileType</full_name>
+        <default></default>
+        <docblock line="74">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="74" description="&lt;p&gt;Profiltyp (företag eller privatperson)&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="79" package="SwedbankJson\Auth">
+        <name>$_debug</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_debug</full_name>
+        <default></default>
+        <docblock line="79">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="79" description="&lt;p&gt;Debugging&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="84" package="SwedbankJson\Auth">
+        <name>$_cookieJar</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_cookieJar</full_name>
+        <default></default>
+        <docblock line="84">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="84" description="&lt;p&gt;Guzzle Cookie Jar&lt;/p&gt;" type="object" variable="">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="89" package="SwedbankJson\Auth">
+        <name>$_persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_persistentSession</full_name>
+        <default>false</default>
+        <docblock line="89">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="89" description="&lt;p&gt;Om inlogningstypen behöver sparas mellan sessioner&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="98" package="SwedbankJson\Auth">
+        <name>setAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAuthorizationKey()</full_name>
+        <docblock line="98">
+          <description>Ange AuthorizationKey</description>
+          <long-description>Om ingen nyckel anges, genereras automaiskt en nyckel.</long-description>
+          <tag name="param" line="98" description="&lt;p&gt;Sätta en egen AuthorizationKey&lt;/p&gt;" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="108" package="SwedbankJson\Auth">
+        <name>genAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::genAuthorizationKey()</full_name>
+        <docblock line="108">
+          <description>Generera auth-nyckel för att kunna kommunicera med Swedbanks servrar</description>
+          <long-description></long-description>
+          <tag name="return" line="108" description="en slumpad auth-nyckel" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="116" package="SwedbankJson\Auth">
+        <name>terminate</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::terminate()</full_name>
+        <docblock line="116">
+          <description>Loggar ut från API:et</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="128" package="SwedbankJson\Auth">
+        <name>cleanup</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cleanup()</full_name>
+        <docblock line="128">
+          <description>Uppresning av cookiejar och sessioner</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="146" package="SwedbankJson\Auth">
+        <name>setAppData</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAppData()</full_name>
+        <docblock line="146">
+          <description>Lägger nödvändig appdata för att kommunicera med API:et. Bland annat appID för att generera nycklar.</description>
+          <long-description></long-description>
+          <tag name="param" line="146" description="" type="array" variable="$appdata">
+            <type>array</type>
+          </tag>
+          <tag name="throws" line="146" description="Om rätt fält inte existerar eller är tomma" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$appdata</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="164" package="SwedbankJson\Auth">
+        <name>getRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getRequest()</full_name>
+        <docblock line="164">
+          <description>Skickar GET-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="164" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="164" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="164" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="179" package="SwedbankJson\Auth">
+        <name>postRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::postRequest()</full_name>
+        <docblock line="179">
+          <description>Skickar POST-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="179" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="179" description="&lt;p&gt;Data som ska skickas i strängformat&lt;/p&gt;" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="179" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$data</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="200" package="SwedbankJson\Auth">
+        <name>putRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::putRequest()</full_name>
+        <docblock line="200">
+          <description>Skickar PUT-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="200" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="200" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="214" package="SwedbankJson\Auth">
+        <name>deleteRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::deleteRequest()</full_name>
+        <docblock line="214">
+          <description>Skickar DELETE-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="214" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="214" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="226" package="SwedbankJson\Auth">
+        <name>getProfileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getProfileType()</full_name>
+        <docblock line="226">
+          <description>Retunterar inställd profil</description>
+          <long-description></long-description>
+          <tag name="return" line="226" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="236" package="SwedbankJson\Auth">
+        <name>getClient</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getClient()</full_name>
+        <docblock line="236">
+          <description>Guzzle klientobjekt</description>
+          <long-description></long-description>
+          <tag name="return" line="236" description="" type="resource">
+            <type>resource</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="251" package="SwedbankJson\Auth">
+        <name>createRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::createRequest()</full_name>
+        <docblock line="251">
+          <description>Gemensam hantering av HTTP requests</description>
+          <long-description></long-description>
+          <tag name="param" line="251" description="&lt;p&gt;Typ av HTTP förfrågan (ex. GET, POST)&lt;/p&gt;" type="string" variable="$method">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Requesttyp till API&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Extra HTTP headers&lt;/p&gt;" type="array" variable="$headers">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Body innehåll&lt;/p&gt;" type="string" variable="$body">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="251" description="" type="\GuzzleHttp\Psr7\Request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$method</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$headers</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$body</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="287" package="SwedbankJson\Auth">
+        <name>sendRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::sendRequest()</full_name>
+        <docblock line="287">
+          <description>Skicka/verkställ HTTP request</description>
+          <long-description></long-description>
+          <tag name="param" line="287" description="" type="\GuzzleHttp\Psr7\Request" variable="$request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Guzzle konfiguration&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="287" description="Json-objekt med data från API:et @see json_decode();" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$request</name>
+          <default></default>
+          <type>\GuzzleHttp\Psr7\Request</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="320" package="SwedbankJson\Auth">
+        <name>persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::persistentSession()</full_name>
+        <docblock line="320">
+          <description>Slår på sessions-data ska sparas mellan sessioner</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="331" package="SwedbankJson\Auth">
+        <name>saveSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::saveSession()</full_name>
+        <docblock line="331">
+          <description>Sparar auth session</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+        <name>__sleep</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
+        <docblock line="339">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+        <name>dsid</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
+        <docblock line="350">
+          <description>Generering av dsid
+Slumpar 8 tecken som måste skickas med i varje anrop.</description>
+          <long-description></long-description>
+          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+        <name>setBaseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
+        <docblock line="366">
+          <description>Sätta en annan adress till API-server</description>
+          <long-description></long-description>
+          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$baseUri</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="339" code="PPC:ERR-50008">No summary for method __sleep()</error>
+    </parse_markers>
+    <source>eJzVWmtuGzkS/u9TMICBbhl6JDPe2cBez8SJlcQZIzEsO/nhGAKlpqS2+jUkW7GzyG2SK+QCuthWkex3U3I2mAVWP2x1k6wqFqu+elD/+iNZJDuDvb0dskc+cJokjJPZ+jsno0/Mm9BoKYiQ66/RnJLj81M9FMYTP4CplMMqXPgsodMlnbN80ZvRu7dqgKZyEXNChtyfkg80CEIaeQzXkfxzQiU7IL88frLfe/xL75d/VAYv/RAHnxz8+hu8H+zsRDRkAviVmIk4+ngMjA53dlLByPBuyhLpx5F5vlikoaD041Xqe+rPoXr9Kv38OWCvpUw+vgh8FsnG63PB//nxgv2VMtEcfBHHS599HDGpv9km6H9vKLdTEAKEtc/L92PkLO3POnPE+Irx2syKwoq5x4lfVpkxhhcBFYIcT4TkdCpRve0nnSlfnQ4108m0sZr4YRKwEOSH9/B8GknGZ3COO//ewYNWbPGzR97SMNKWhuZDhFaQGR2o/9M4ElING/WRI+III9MtyDTGMQe2Y6U9zRS+gUE+x8ZFT7ilvIXVsxXSltyP5uTY40CBSD8I0I96Qp1PhWPC/RV4AtkdT6hgV9xHZgs4VnEwGOBu+jTx+xn3vmCDy5Ph+OT4fHwec0mD8cVwdDn+MHw+gHmDbfKADCBAY9uFEEDkvZ6Acqz2txFMktOTPhlKSU5PiIhDMvOjSBC/BCQKMvo1frFkU8k8xRFIbOZCrkBxBOwvksZAALDqOygogtHz47ly7Y2yg3J70f10yQLANplLbJdUoZr/mRqXaaMN5x2nHGDqxdXFWQ+eUi6sBKcGgDZJec7jmR/I+4S4uHUm6ZywIAB96EMD5AaL7Fh5JGo9u7xPmIXRJI4DcsIm6XwODK2EPJxhIRFPbmGawSSiMY28oXVLL+28gD27TO9C4kdBPI9ALAEaYBGZsMX6O1gwgVjAqSAhqIJGmSs3XKukBjRqIUHdhU/PaCBalHIcAdAdl8/6T3ZvBrM5SjQwMWLsh8KD6BJ4wzhDwcBW4pD6YilJPqtfI/IM9xBmB727ZPdktP4qJcUlDKlbpDDbSycBhNdZGk1xGJQg6/NdRRQc2dEGojEXP7ty4Yve71WbhpkuCxOp13U65I9sHgjToN0hB0roQ0X0S0OPr4wyFF5njqbdF+BimUYRJcs4DNPIn+K0EA6qlH4AVPLcgnKVgQOkPMp0BioSQRom1Csz2ail1p3UlGOYICD/tj9m0TT2mJtrTEGec+D0QQgZp5g7uZhfHByk8Hff7XQ6NpWcxfM5WHcKMMbX3yLE4wMmN8oL4TL0IwDnhpS7iC6BhEMzoiWpNGmL6/gemLo/86dqkwPwojiVTsdYe8kCpgGjUZq45SGzf8PAtpmrJIEJ6JyErkgeEkk8XVgdUoeZfHM589rWBgNIRNRQw2Bz5NCic9coe9OcSq4lyivSCLwmP1qNx2VN+DOSjzYh5PjtCfGFojAeDUej03dvrwULZgcHpRTlptPJyZVYblpgNZ/11/kcwC9af/dWkJ17/hxDoUcBMgrHqrmUtrE+eQ5ACW4CXieJsuFiSQZbCqeCIljXgIpyTu/JruFYnyMXPP4kSJFhmv0CVHJENWD3FazVhwSQsDtUJLi3CWXrr5wAXoa0Zi4ZflcwLkmgdKBuJkfddvDIHvlirKQtZpF3F8Rgm3l17Sg1ODetY5hEqIzDqR+g2iiJ2Kei5HCdl4BtfhRSmfmDEfNRm89pDDHvjkhDoKZF5ylNbUFJyuaiUuhHZAe4SmLhNkh2ifMihiEOruko0Hem2bPOPphwAOsd477mnXOIbvoSbUhIMC3KPc3QYryjpQ81BCevhpc9tDxEwDmN2k0ti4mQjhpII7AN1CuNeJyofK0CnlUbJbuwht9rdbxUjLS1I3NFwRJXTCIDH6xle3S1jD0ILn40i3moY+SDkXvOcjgu7aObyXZErm9aIF1vNsf0KWeg8hzWgabTLaulDbb1SsEiL+fPq8ytCJMd0vm70X93Sg88pmylgi70E1U7iCX8VxJgBQFzsAOhNf8/OC9wDsuBKSmPSJQGQePEFox6EBjUcR42QAiXuGp9DUSyddfgexHGlB66qXODyRp4d5AFbiw3D8l0QTlA39HV5cveU6cSn9wC6trYGNFV1ZolMmpeGZW2WR1qpmp23XwDRj0/Zofb7e/q7wAJu/UcG8NRVqTj6YPNJm2zmh/2bCDzM569VaMnw7Ph5fD/RakeC1ihnJ/Rq6b0t6j2ApZGOo3xI2yXBoFHSjHQVrZsixrnRdy2lSYtId5ahumifKlyWzycpe3kst7FNvl0P3KbaFlzwyIV9gQF2NuCogpN0vT68vKcGLWLzfYZMijiPDVm7FMtLtk31LJ3fYz4XRXOOtsN3fzHZkvWsrOkFxnqw2d4JyFzVszNWwujSeyZjIQ8x69+FLHF+ltgMxYjzZYKqmLtRisWqFYxqmsEaQ9nGLdMJlytiYqwUkxW/lcvuTDTtFZMmFxi4lxvfru6CKr3XbtE8pRhnwEXFbPL/lsRQsmKW8Pp2kqvKzPx42BdP06572Rvjn7PSZgmbL/I1LN+aN8ZON0mMaPbnBYSa/JUUyt9B6fGuNKIafLRBKZYbzilV0DA2RvstQhWWtA7o9E8hTLB0QvEqifYliVDzBXAbM2S+Wc/6QIqzwIsEixLIZOJ2DTfnBFvyVjSo4G/sq4DvLu775VXP2wddoV7qoQp8WuWN43FNy3HqE2veowN225ZR4Mg/jTmzPM5CC+U6NdOSO/UtyePobjibIbVtXqB9tzGfgUQOLsvnSzMVe3JLhZZEMOxh05Go7PeMgZgArQrOmV4QQfVPnZ7lhQK/WE0odw0ylXLeHI/n+P9GxH3M8n6Te6qtVszq2zzaqwq8U2pgfKlEUnR9x6GRwaKtqQuA9DNUkfXSnxoDw8ZlO9WZ9Xwu6gPNxWHjUWxKvZFHlLjaObPU65c1gLioX/HVJTCG7OeDr+qLdPIh8gzwZhO1D2mEvVMzTbsLycr9X13s25NUWzmr7JttFagnvC9IpnCJ7etg1FqsYnsLtTV0J49VVHQeUtDBCDl20i25tXOexqkBqGUELXhcyoX2fI6EDsn2GvXuPG4GLrpVCQ3277Off2m2Gf5QqK5QOkQpmPvRelwHDI+h0pKDXTB4dWGctFvynwlv7fFTki4EmDAynKoqKUT0XLZbmQpex6BEnG6IG7t0pfssi3ButTyLY8Wfa3y1bC7y7D9DzWOltXttMlQu6LeLkOprf3zUjQwqOxFuZYVAcy8XHuDnoyC9TdOkvW3rIUtdOWiWhM/dOdUFIj1LKiROWPWZciNhaQyFW6HPDo6Iuevz7M+8fj4xeXp+yG2Kh/Ves4P6U/+CRKzW9xGQjPR++CsOtHFJnBJAA7JverJChjot3Yw2+7TMLhZsRx1t+Fmv63XS1fMprFN7XOQBGK/D6nDZ3NrYz3uDKU1MJ7Bhqg6e9g29yepLLpS6ug3FkbjsQggZbGVRdeO7vpCJeoUyYl6qqR+6k2prFPPOkCrkbrene7Nlgs4U1shMOWnoS7NOHlKQOlLvEWDfYbrb0A4b8BhkPLJivJbpkv/xq1A9S6OADV1GbeigUcN4c0BTEeXmr4g33kPwf42F64Rm0SKPzBxxYI+cUM55pDbgEt3ifrypEt+fQwPT8tWCzRfYYTfz/arrB5/CUGDzIGbDHQYgohC9jvly77q8D4Ot3QUYMpYLNLZLGB6qj3PyS998XYG/m761YituDQ/Hrm6OK0vJO7wLkgFJNLE/PbD9muB8jXLc03QzSjbLpCLX61kM7NtfvkPVRZedw==</source>
+  </file>
+  <file path="Auth/AuthInterface.php" generated-path="Auth.AuthInterface.html" hash="c4e0d096011913da34f021c9f708bcda" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: walle
+Date: 15-02-28
+Time: 20:19</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <interface namespace="SwedbankJson\Auth" line="11" package="Default">
+      <name>AuthInterface</name>
+      <full_name>\SwedbankJson\Auth\AuthInterface</full_name>
+      <docblock line="11">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="11" description="Default"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="13" package="Default">
+        <name>login</name>
+        <full_name>\SwedbankJson\Auth\AuthInterface::login()</full_name>
+        <docblock line="13">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="11" code="PPC:ERR-50009">No summary for interface ""</error>
+      <error line="13" code="PPC:ERR-50008">No summary for method login()</error>
+    </parse_markers>
+    <source>eJw1yj8LwjAQh+H9PsWNWqj9A4K2goguOgnVzSVtrzaYXkKaUkT87iaDt73P73Z70xtIoggwwqMl4ajF+o3X3lRO22EV/D6SLXAWSlHIk38qMFvHaR7nmyA3OXjJ0yLb+kwAWAw0GtEQVjO1teDXZdT8OEyuLwEkO7JdWAOc/wUfQH9mqpVssJu4cVIzKv2UvFiW8P0B+As0fg==</source>
+  </file>
+  <file path="Auth/MobileBankID.php" generated-path="Auth.MobileBankID.html" hash="c3ceedfcb7028ce37ee5edbe52fb35b0" package="SwedbankJSON">
+    <docblock line="0">
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2014-02-25&#10;         Time: 21:36"/>
+    </docblock>
+    <namespace-alias name="AppData">\SwedbankJson\AppData</namespace-alias>
+    <namespace-alias name="Exception">\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="SwedbankJson\Auth" line="20" package="SwedbankJson\Auth">
+      <extends>\SwedbankJson\Auth\AbstractAuth</extends>
+      <name>MobileBankID</name>
+      <full_name>\SwedbankJson\Auth\MobileBankID</full_name>
+      <docblock line="20">
+        <description>Class MobileBankID</description>
+        <long-description></long-description>
+        <tag name="package" line="20" description="SwedbankJson\Auth"/>
+        <tag name="inherited_from" description="\SwedbankJson\Auth\AbstractAuth" refers="\SwedbankJson\Auth\AbstractAuth" link="/classes/SwedbankJson.Auth.AbstractAuth.html"/>
+      </docblock>
+      <constant namespace="SwedbankJson\Auth" line="34" package="SwedbankJson\Auth">
+        <name>authSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::authSession</full_name>
+        <value>'swedbankjson_auth'</value>
+        <docblock line="34">
+          <description>Namn för auth session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="SwedbankJson\Auth" line="39" package="SwedbankJson\Auth">
+        <name>cookieJarSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cookieJarSession</full_name>
+        <value>'swedbankjson_cookiejar'</value>
+        <docblock line="39">
+          <description>Namn för cookieJar session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="25" package="SwedbankJson\Auth">
+        <name>$_username</name>
+        <full_name>\SwedbankJson\Auth\MobileBankID::_username</full_name>
+        <default></default>
+        <docblock line="25">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="25" description="&lt;p&gt;Inlogging personnummer&lt;/p&gt;" type="integer" variable="">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="30" package="SwedbankJson\Auth">
+        <name>$_verified</name>
+        <full_name>\SwedbankJson\Auth\MobileBankID::_verified</full_name>
+        <default>false</default>
+        <docblock line="30">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="30" description="" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="44" package="SwedbankJson\Auth">
+        <name>$_baseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_baseUri</full_name>
+        <default>'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/'</default>
+        <docblock line="44">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="44" description="&lt;p&gt;Adress till API-server&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="49" package="SwedbankJson\Auth">
+        <name>$_apiVersion</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_apiVersion</full_name>
+        <default>'v4'</default>
+        <docblock line="49">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="49" description="&lt;p&gt;API-version&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="54" package="SwedbankJson\Auth">
+        <name>$_appID</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_appID</full_name>
+        <default></default>
+        <docblock line="54">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="54" description="&lt;p&gt;AppID. Ett ID som finns i Swedbanks appar.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="59" package="SwedbankJson\Auth">
+        <name>$_userAgent</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_userAgent</full_name>
+        <default></default>
+        <docblock line="59">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="59" description="&lt;p&gt;User agent för appen&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="64" package="SwedbankJson\Auth">
+        <name>$_authorization</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_authorization</full_name>
+        <default></default>
+        <docblock line="64">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="64" description="&lt;p&gt;Auth-nyckel mot Swedbank&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="69" package="SwedbankJson\Auth">
+        <name>$_client</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_client</full_name>
+        <default></default>
+        <docblock line="69">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="69" description="&lt;p&gt;CURL-resurs&lt;/p&gt;" type="resource" variable="">
+            <type>resource</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="74" package="SwedbankJson\Auth">
+        <name>$_profileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_profileType</full_name>
+        <default></default>
+        <docblock line="74">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="74" description="&lt;p&gt;Profiltyp (företag eller privatperson)&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="79" package="SwedbankJson\Auth">
+        <name>$_debug</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_debug</full_name>
+        <default></default>
+        <docblock line="79">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="79" description="&lt;p&gt;Debugging&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="84" package="SwedbankJson\Auth">
+        <name>$_cookieJar</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_cookieJar</full_name>
+        <default></default>
+        <docblock line="84">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="84" description="&lt;p&gt;Guzzle Cookie Jar&lt;/p&gt;" type="object" variable="">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="89" package="SwedbankJson\Auth">
+        <name>$_persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_persistentSession</full_name>
+        <default>false</default>
+        <docblock line="89">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="89" description="&lt;p&gt;Om inlogningstypen behöver sparas mellan sessioner&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="39" package="SwedbankJson\Auth">
+        <name>__construct</name>
+        <full_name>\SwedbankJson\Auth\MobileBankID::__construct()</full_name>
+        <docblock line="39">
+          <description>Grundläggande upgifter för mobilt BankID</description>
+          <long-description></long-description>
+          <tag name="param" line="39" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
+            <type>string</type>
+            <type>array</type>
+          </tag>
+          <tag name="param" line="39" description="&lt;p&gt;Personnummer för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$username">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="39" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$bankApp</name>
+          <default></default>
+          <type>string|array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$username</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$debug</name>
+          <default>false</default>
+          <type>boolean</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="56" package="SwedbankJson\Auth">
+        <name>initAuth</name>
+        <full_name>\SwedbankJson\Auth\MobileBankID::initAuth()</full_name>
+        <docblock line="56">
+          <description>Inleder inlogging med Mobilt BankID</description>
+          <long-description>Ser till att verifieringsförfrågan skickas till användarens mobila BankID</long-description>
+          <tag name="return" line="56" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="56" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="83" package="SwedbankJson\Auth">
+        <name>verify</name>
+        <full_name>\SwedbankJson\Auth\MobileBankID::verify()</full_name>
+        <docblock line="83">
+          <description>Verifierings kontroll</description>
+          <long-description></long-description>
+          <tag name="return" line="83" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="83" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="109" package="SwedbankJson\Auth">
+        <name>login</name>
+        <full_name>\SwedbankJson\Auth\MobileBankID::login()</full_name>
+        <docblock line="109">
+          <description>Inlogging</description>
+          <long-description>Verifiering måste vara genomförd för att kunna genomföra restireande steg i inloggingsprocessen</long-description>
+          <tag name="return" line="109" description="True om inloggingen lyckades" type="boolean">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="109" description="Fel vid inloggen" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="120" package="SwedbankJson\Auth">
+        <name>__sleep</name>
+        <full_name>\SwedbankJson\Auth\MobileBankID::__sleep()</full_name>
+        <docblock line="120">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="120" description="Lista på attribut som ska sparas" type="array">
+            <type>array</type>
+          </tag>
+          <tag name="inherited_from" description="\SwedbankJson\Auth\AbstractAuth::__sleep()" refers="\SwedbankJson\Auth\AbstractAuth::__sleep()" link="/classes/SwedbankJson.Auth.AbstractAuth.html#method___sleep"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="98" package="SwedbankJson\Auth">
+        <name>setAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAuthorizationKey()</full_name>
+        <docblock line="98">
+          <description>Ange AuthorizationKey</description>
+          <long-description>Om ingen nyckel anges, genereras automaiskt en nyckel.</long-description>
+          <tag name="param" line="98" description="&lt;p&gt;Sätta en egen AuthorizationKey&lt;/p&gt;" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="108" package="SwedbankJson\Auth">
+        <name>genAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::genAuthorizationKey()</full_name>
+        <docblock line="108">
+          <description>Generera auth-nyckel för att kunna kommunicera med Swedbanks servrar</description>
+          <long-description></long-description>
+          <tag name="return" line="108" description="en slumpad auth-nyckel" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="116" package="SwedbankJson\Auth">
+        <name>terminate</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::terminate()</full_name>
+        <docblock line="116">
+          <description>Loggar ut från API:et</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="128" package="SwedbankJson\Auth">
+        <name>cleanup</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cleanup()</full_name>
+        <docblock line="128">
+          <description>Uppresning av cookiejar och sessioner</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="146" package="SwedbankJson\Auth">
+        <name>setAppData</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAppData()</full_name>
+        <docblock line="146">
+          <description>Lägger nödvändig appdata för att kommunicera med API:et. Bland annat appID för att generera nycklar.</description>
+          <long-description></long-description>
+          <tag name="param" line="146" description="" type="array" variable="$appdata">
+            <type>array</type>
+          </tag>
+          <tag name="throws" line="146" description="Om rätt fält inte existerar eller är tomma" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$appdata</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="164" package="SwedbankJson\Auth">
+        <name>getRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getRequest()</full_name>
+        <docblock line="164">
+          <description>Skickar GET-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="164" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="164" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="164" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="179" package="SwedbankJson\Auth">
+        <name>postRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::postRequest()</full_name>
+        <docblock line="179">
+          <description>Skickar POST-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="179" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="179" description="&lt;p&gt;Data som ska skickas i strängformat&lt;/p&gt;" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="179" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$data</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="200" package="SwedbankJson\Auth">
+        <name>putRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::putRequest()</full_name>
+        <docblock line="200">
+          <description>Skickar PUT-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="200" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="200" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="214" package="SwedbankJson\Auth">
+        <name>deleteRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::deleteRequest()</full_name>
+        <docblock line="214">
+          <description>Skickar DELETE-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="214" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="214" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="226" package="SwedbankJson\Auth">
+        <name>getProfileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getProfileType()</full_name>
+        <docblock line="226">
+          <description>Retunterar inställd profil</description>
+          <long-description></long-description>
+          <tag name="return" line="226" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="236" package="SwedbankJson\Auth">
+        <name>getClient</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getClient()</full_name>
+        <docblock line="236">
+          <description>Guzzle klientobjekt</description>
+          <long-description></long-description>
+          <tag name="return" line="236" description="" type="resource">
+            <type>resource</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="251" package="SwedbankJson\Auth">
+        <name>createRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::createRequest()</full_name>
+        <docblock line="251">
+          <description>Gemensam hantering av HTTP requests</description>
+          <long-description></long-description>
+          <tag name="param" line="251" description="&lt;p&gt;Typ av HTTP förfrågan (ex. GET, POST)&lt;/p&gt;" type="string" variable="$method">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Requesttyp till API&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Extra HTTP headers&lt;/p&gt;" type="array" variable="$headers">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Body innehåll&lt;/p&gt;" type="string" variable="$body">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="251" description="" type="\GuzzleHttp\Psr7\Request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$method</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$headers</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$body</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="287" package="SwedbankJson\Auth">
+        <name>sendRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::sendRequest()</full_name>
+        <docblock line="287">
+          <description>Skicka/verkställ HTTP request</description>
+          <long-description></long-description>
+          <tag name="param" line="287" description="" type="\GuzzleHttp\Psr7\Request" variable="$request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Guzzle konfiguration&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="287" description="Json-objekt med data från API:et @see json_decode();" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$request</name>
+          <default></default>
+          <type>\GuzzleHttp\Psr7\Request</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="320" package="SwedbankJson\Auth">
+        <name>persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::persistentSession()</full_name>
+        <docblock line="320">
+          <description>Slår på sessions-data ska sparas mellan sessioner</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="331" package="SwedbankJson\Auth">
+        <name>saveSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::saveSession()</full_name>
+        <docblock line="331">
+          <description>Sparar auth session</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+        <name>__sleep</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
+        <docblock line="339">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+        <name>dsid</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
+        <docblock line="350">
+          <description>Generering av dsid
+Slumpar 8 tecken som måste skickas med i varje anrop.</description>
+          <long-description></long-description>
+          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+        <name>setBaseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
+        <docblock line="366">
+          <description>Sätta en annan adress till API-server</description>
+          <long-description></long-description>
+          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$baseUri</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="120" code="PPC:ERR-50008">No summary for method __sleep()</error>
+      <error line="30" code="PPC:ERR-50007">No summary for property $_verified</error>
+    </parse_markers>
+    <source>eJy1Vl1y2zYQftcp1hnPUPLIke2mfZDrJG6iZtTYsSdym4c0o4HEFY0RCbIAKEdpcxv7CrmALtZd8FeUomk6LV4kAvv77bcL/PgsuU1avYODFhzAOy2SBDXMVl80jO7Qnwg1N2Ds6l4FAs6vh9lRFE9kSKJCkxYrPk/EdC4CLJV+GV29cQcitbexBhhoOYV3IgwjoXxkPSjXS2GxDydHx08Oj04OT75fO7yRER8e97/7gfZ7rZYSERryV3NmYvX7OTk6bbVS09xPErIvTt3J4OMUEytjRZJ5zi9CYQxcckb4EykNX25PqPDhgphuKAF+tKh8A+cTY7WYWif7Z4tTcJ54kd2F0CCVhaEK4yCQKgACnGyrNIoYFifWc7+JlgtCBvbHFLrmtCnqbfYmcRw2NGOLU4s+6S5Qy5mkv2cwE6HZYuOVTpUfru6DgEsDaRLImS1Y4EptoUDGaZTOiQAiInpoyuMvobVYwj6DRZgDECbOwkKGc1TA+2BiEp8LEErHiTBdwDAkT5lqREESqXyqFgWRR/G44YyxK9d+AQxc10DM3MoSYCvDkPVIFC2HgaphlAGsjPo4SQP+N1rdWwtWp5iZFPQV0B8BMwzN6stckfkuJaOENhm6eUIqDRsVSSchNcAsVVOmH4zH01gRcOnUtgvIulU+3SKKvGgdZyRjk4vR3kpz+NSgzendbu9JM3Y4lvY6HXgG+Xm/n28O/eoc+mW5OqdN2yXpKIb9ioBNqRKsM2gzjJ0s8A1BDtWNAvlJMAKvcdnedMq9IA01kh2hMSRWyHzeYC01ENIgqdWZ+XO5g64jknZc4DrmbcHMNVzcmV49EP+JnZIa3+SCakGTzxcalcmH3lc6QaNNtap3Ijy3tzq+M9XM2UkIqaQDqN0stZxBuwC76OVOecor9808zZvbIRqnNkktVy/HNjb2Lf6RorHtNX1P+gQ4GZ66yvSYEtLvuXzR667Jvl/7ctrEjYEwy4uYiuAVu2dPM+J2N+UDVKhprpVKQ9/bJc/cY5G1RfJNnq6rfujUsHAYZngQE62wqYG9M/B+HQ3ejkfDV2+8dURd5UDhXVW8tvdaKDdFYB4nCRFh4ojw2OvC8VHdWUF4scAaicvjtWrxxia1f6txk7wpq+NynPx3jHNkWv5/fAuwpNtOhvWyQLxmwTBK7LJZts4/KFR+Ia/udVavotWF74p1XHfU68EV32COEqzx6MXV5fXF4GbwqOu+fbQQLmkk+NWk2RiCtTt2g2dnxLPCpvftPGm62DEO68Ft4xJEqwfDeNCdB9SFccSDz6/utnlKN1l1IigGY6VG9ywgzQBkBYKhR8aU4i4v023MLAt1w5doHFXq9CLIYEXzVfry9s8Y0guiAB93UzrkcbKV0Xu7Kf1veHTyjV1d4JI9di7omhOQrB4YeS0n1DnF48jwo8TsTHQ8NiFispHqvts+J4vAN3LCN5ft90vx0y2S7z+QpFcC451uULAULVL73Pobm+efLg==</source>
+  </file>
+  <file path="Auth/PersonalCode.php" generated-path="Auth.PersonalCode.html" hash="8c6c1bf687d33d64c02f73eb83dc2c0f" package="SwedbankJSON">
+    <docblock line="0">
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2014-02-25&#10;         Time: 21:36"/>
+    </docblock>
+    <namespace-alias name="AppData">\SwedbankJson\AppData</namespace-alias>
+    <namespace-alias name="Exception">\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="SwedbankJson\Auth" line="16" package="SwedbankJSON">
+      <extends>\SwedbankJson\Auth\AbstractAuth</extends>
+      <name>PersonalCode</name>
+      <full_name>\SwedbankJson\Auth\PersonalCode</full_name>
+      <docblock line="16">
+        <description>Class AbstractAuth</description>
+        <long-description></long-description>
+        <tag name="package" line="16" description="SwedbankJSON"/>
+        <tag name="inherited_from" description="\SwedbankJson\Auth\AbstractAuth" refers="\SwedbankJson\Auth\AbstractAuth" link="/classes/SwedbankJson.Auth.AbstractAuth.html"/>
+      </docblock>
+      <constant namespace="SwedbankJson\Auth" line="34" package="SwedbankJson\Auth">
+        <name>authSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::authSession</full_name>
+        <value>'swedbankjson_auth'</value>
+        <docblock line="34">
+          <description>Namn för auth session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="SwedbankJson\Auth" line="39" package="SwedbankJson\Auth">
+        <name>cookieJarSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cookieJarSession</full_name>
+        <value>'swedbankjson_cookiejar'</value>
+        <docblock line="39">
+          <description>Namn för cookieJar session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="21" package="SwedbankJSON">
+        <name>$_username</name>
+        <full_name>\SwedbankJson\Auth\PersonalCode::_username</full_name>
+        <default></default>
+        <docblock line="21">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="21" description="&lt;p&gt;Inlogging personnummer&lt;/p&gt;" type="integer" variable="">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="26" package="SwedbankJSON">
+        <name>$_password</name>
+        <full_name>\SwedbankJson\Auth\PersonalCode::_password</full_name>
+        <default></default>
+        <docblock line="26">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="26" description="&lt;p&gt;Personlig kod.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="44" package="SwedbankJson\Auth">
+        <name>$_baseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_baseUri</full_name>
+        <default>'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/'</default>
+        <docblock line="44">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="44" description="&lt;p&gt;Adress till API-server&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="49" package="SwedbankJson\Auth">
+        <name>$_apiVersion</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_apiVersion</full_name>
+        <default>'v4'</default>
+        <docblock line="49">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="49" description="&lt;p&gt;API-version&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="54" package="SwedbankJson\Auth">
+        <name>$_appID</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_appID</full_name>
+        <default></default>
+        <docblock line="54">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="54" description="&lt;p&gt;AppID. Ett ID som finns i Swedbanks appar.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="59" package="SwedbankJson\Auth">
+        <name>$_userAgent</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_userAgent</full_name>
+        <default></default>
+        <docblock line="59">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="59" description="&lt;p&gt;User agent för appen&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="64" package="SwedbankJson\Auth">
+        <name>$_authorization</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_authorization</full_name>
+        <default></default>
+        <docblock line="64">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="64" description="&lt;p&gt;Auth-nyckel mot Swedbank&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="69" package="SwedbankJson\Auth">
+        <name>$_client</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_client</full_name>
+        <default></default>
+        <docblock line="69">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="69" description="&lt;p&gt;CURL-resurs&lt;/p&gt;" type="resource" variable="">
+            <type>resource</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="74" package="SwedbankJson\Auth">
+        <name>$_profileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_profileType</full_name>
+        <default></default>
+        <docblock line="74">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="74" description="&lt;p&gt;Profiltyp (företag eller privatperson)&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="79" package="SwedbankJson\Auth">
+        <name>$_debug</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_debug</full_name>
+        <default></default>
+        <docblock line="79">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="79" description="&lt;p&gt;Debugging&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="84" package="SwedbankJson\Auth">
+        <name>$_cookieJar</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_cookieJar</full_name>
+        <default></default>
+        <docblock line="84">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="84" description="&lt;p&gt;Guzzle Cookie Jar&lt;/p&gt;" type="object" variable="">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="89" package="SwedbankJson\Auth">
+        <name>$_persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_persistentSession</full_name>
+        <default>false</default>
+        <docblock line="89">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="89" description="&lt;p&gt;Om inlogningstypen behöver sparas mellan sessioner&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="39" package="SwedbankJSON">
+        <name>__construct</name>
+        <full_name>\SwedbankJson\Auth\PersonalCode::__construct()</full_name>
+        <docblock line="39">
+          <description>Grundläggande upgifter</description>
+          <long-description></long-description>
+          <tag name="param" line="39" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
+            <type>string</type>
+            <type>array</type>
+          </tag>
+          <tag name="param" line="39" description="&lt;p&gt;Personnummer för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$username">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="39" description="&lt;p&gt;Personlig kod för inlogging till internetbanken&lt;/p&gt;" type="string" variable="$password">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="39" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="39" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+          <tag name="throws" line="39" description="" type="\SwedbankJson\UserException">
+            <type>\SwedbankJson\UserException</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$bankApp</name>
+          <default></default>
+          <type>string|array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$username</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$password</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$debug</name>
+          <default>false</default>
+          <type>boolean</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="55" package="SwedbankJSON">
+        <name>login</name>
+        <full_name>\SwedbankJson\Auth\PersonalCode::login()</full_name>
+        <docblock line="55">
+          <description>Inlogging
+Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t</description>
+          <long-description></long-description>
+          <tag name="return" line="55" description="True om inloggingen lyckades" type="boolean">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="55" description="Fel vid inloggen" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="98" package="SwedbankJson\Auth">
+        <name>setAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAuthorizationKey()</full_name>
+        <docblock line="98">
+          <description>Ange AuthorizationKey</description>
+          <long-description>Om ingen nyckel anges, genereras automaiskt en nyckel.</long-description>
+          <tag name="param" line="98" description="&lt;p&gt;Sätta en egen AuthorizationKey&lt;/p&gt;" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="108" package="SwedbankJson\Auth">
+        <name>genAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::genAuthorizationKey()</full_name>
+        <docblock line="108">
+          <description>Generera auth-nyckel för att kunna kommunicera med Swedbanks servrar</description>
+          <long-description></long-description>
+          <tag name="return" line="108" description="en slumpad auth-nyckel" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="116" package="SwedbankJson\Auth">
+        <name>terminate</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::terminate()</full_name>
+        <docblock line="116">
+          <description>Loggar ut från API:et</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="128" package="SwedbankJson\Auth">
+        <name>cleanup</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cleanup()</full_name>
+        <docblock line="128">
+          <description>Uppresning av cookiejar och sessioner</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="146" package="SwedbankJson\Auth">
+        <name>setAppData</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAppData()</full_name>
+        <docblock line="146">
+          <description>Lägger nödvändig appdata för att kommunicera med API:et. Bland annat appID för att generera nycklar.</description>
+          <long-description></long-description>
+          <tag name="param" line="146" description="" type="array" variable="$appdata">
+            <type>array</type>
+          </tag>
+          <tag name="throws" line="146" description="Om rätt fält inte existerar eller är tomma" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$appdata</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="164" package="SwedbankJson\Auth">
+        <name>getRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getRequest()</full_name>
+        <docblock line="164">
+          <description>Skickar GET-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="164" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="164" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="164" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="179" package="SwedbankJson\Auth">
+        <name>postRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::postRequest()</full_name>
+        <docblock line="179">
+          <description>Skickar POST-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="179" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="179" description="&lt;p&gt;Data som ska skickas i strängformat&lt;/p&gt;" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="179" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$data</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="200" package="SwedbankJson\Auth">
+        <name>putRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::putRequest()</full_name>
+        <docblock line="200">
+          <description>Skickar PUT-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="200" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="200" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="214" package="SwedbankJson\Auth">
+        <name>deleteRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::deleteRequest()</full_name>
+        <docblock line="214">
+          <description>Skickar DELETE-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="214" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="214" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="226" package="SwedbankJson\Auth">
+        <name>getProfileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getProfileType()</full_name>
+        <docblock line="226">
+          <description>Retunterar inställd profil</description>
+          <long-description></long-description>
+          <tag name="return" line="226" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="236" package="SwedbankJson\Auth">
+        <name>getClient</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getClient()</full_name>
+        <docblock line="236">
+          <description>Guzzle klientobjekt</description>
+          <long-description></long-description>
+          <tag name="return" line="236" description="" type="resource">
+            <type>resource</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="251" package="SwedbankJson\Auth">
+        <name>createRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::createRequest()</full_name>
+        <docblock line="251">
+          <description>Gemensam hantering av HTTP requests</description>
+          <long-description></long-description>
+          <tag name="param" line="251" description="&lt;p&gt;Typ av HTTP förfrågan (ex. GET, POST)&lt;/p&gt;" type="string" variable="$method">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Requesttyp till API&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Extra HTTP headers&lt;/p&gt;" type="array" variable="$headers">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Body innehåll&lt;/p&gt;" type="string" variable="$body">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="251" description="" type="\GuzzleHttp\Psr7\Request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$method</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$headers</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$body</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="287" package="SwedbankJson\Auth">
+        <name>sendRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::sendRequest()</full_name>
+        <docblock line="287">
+          <description>Skicka/verkställ HTTP request</description>
+          <long-description></long-description>
+          <tag name="param" line="287" description="" type="\GuzzleHttp\Psr7\Request" variable="$request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Guzzle konfiguration&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="287" description="Json-objekt med data från API:et @see json_decode();" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$request</name>
+          <default></default>
+          <type>\GuzzleHttp\Psr7\Request</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="320" package="SwedbankJson\Auth">
+        <name>persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::persistentSession()</full_name>
+        <docblock line="320">
+          <description>Slår på sessions-data ska sparas mellan sessioner</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="331" package="SwedbankJson\Auth">
+        <name>saveSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::saveSession()</full_name>
+        <docblock line="331">
+          <description>Sparar auth session</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+        <name>__sleep</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
+        <docblock line="339">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+        <name>dsid</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
+        <docblock line="350">
+          <description>Generering av dsid
+Slumpar 8 tecken som måste skickas med i varje anrop.</description>
+          <long-description></long-description>
+          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+        <name>setBaseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
+        <docblock line="366">
+          <description>Sätta en annan adress till API-server</description>
+          <long-description></long-description>
+          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$baseUri</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="16" code="PPC:ERR-50005">No summary for class \SwedbankJson\Auth\PersonalCode</error>
+    </parse_markers>
+    <source>eJyVVtuO2zYQfddXTIAFLC9s76VNHrz1pttkW7gJ2iCbNg9NYdAiJbOmSJWkvHHa/I3zC/sD+rHM6GrLadHqxRLnfubM0N88zVZZcHZ6GsApvLUsy4SFuHiwcHcv+JLptQPni51OGNy8mlei1CylQlVm0YoMv81YtGaJaI1+vPv5p1LAcr8yFuDWygjeMqVSprkgO2if58yLKVyeX3w9Pr8cXz4+EL6RKQkvpl89wfOzINAsFQ7j7QVzRr+7wUBXQZC7/nmWoX92VUpu30ci89Jo1IwUcw5eCYtaTD0zXIB474XmDm6WzlsWefIZ/BVQGiVC9GBNG2ZBag9zrUySSJ1AVnrReZpSaaXaWfmbWbnB6uBkgeEtpY6Rv+QPA5KjKh0lE1gbPvkHVxkmfm8sP3b1g801V8UuSQhlyLNExr5NqQ2IjWNpHfJvZi3bwgkBhlgBzJ9XTd5ItRYa6BycQfU1A6atwegjEEohTyrTVHBAMnBEGSPWISe9YIRX+5w0YNT1VsBVYWULqpdKkR2qCk9pCP3FChqnDSyHIP5/r0tjVJcqF8u8DHFX7LwHb3NRuWT4leALg1goVzysNbofIUSaWQcxU8i3CiadK9VvgV9Zc+/gXcvII8kBi39BwPqqNS3ypcLRinMdkQwWi8hoBCaPfNg0ddQhPupwGjXFzapsh6W/iu5l6X4l3fjaCV/PUBg+km5RNr11PRzCU6jl02l9OOedHKYtt4ZXfd/tVGAOJ92E9LXazs667I+12k7NIKQeDqvyjhSpoHIryQ+MIHshtmGd2sejiWpnvDl4iZ/l/Je8rwa/oq+JVvX3PvOIJnHxCazgDDJ8ITBwxkib43wRH+Nip5CuKLcmlmos+dT3CWOFz60+JOcbIqNJO3ajP7XFTcyF6/OpZQ8dfy8UzjevDcW/MwpVpA6P2EHzvqgncAZ/YNkLoSNco+FvA2zlLXPbl2Q5gNl1RbARDJrulYf99qIccxEWt1xrPecH9sSR+aF1y+zf9/llcp/l9cqZNbqZcf61+DMXzocDieh7GcuoJMFZVl8EVMFgdFDesF609MgYwkcizTyOQBUD3e7dIc9WDNtAQSR2fDhsDekpWwFa3HfdCAffbXGps01NnWZrrW2x2zg6r3bUBH5F1iUosbSHWLXHuKBXBA1JQESjbjLiJhHtcMlNsKiLi/1ScGuJshzpcCS6cpTES398rfE2HF/nVv6XIrqrMEVvDQcn8MJobw1tQbo8Nvg/gjPqlh6BKh4cJo5TTaPA9idyrNGBUGXK5/sp10NAS7gZ2I/BZ36oytU=</source>
+  </file>
+  <file path="Auth/SecurityToken.php" generated-path="Auth.SecurityToken.html" hash="3a28880b3bf15e59dec76c32a0ebce8c" package="SwedbankJSON">
+    <docblock line="0">
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2014-02-25&#10;         Time: 21:36"/>
+    </docblock>
+    <namespace-alias name="AppData">\SwedbankJson\AppData</namespace-alias>
+    <namespace-alias name="Exception">\Exception</namespace-alias>
+    <namespace-alias name="UserException">\SwedbankJson\Exception\UserException</namespace-alias>
+    <class final="false" abstract="false" namespace="SwedbankJson\Auth" line="17" package="SwedbankJSON">
+      <extends>\SwedbankJson\Auth\AbstractAuth</extends>
+      <name>SecurityToken</name>
+      <full_name>\SwedbankJson\Auth\SecurityToken</full_name>
+      <docblock line="17">
+        <description>Class AbstractAuth</description>
+        <long-description></long-description>
+        <tag name="package" line="17" description="SwedbankJSON"/>
+        <tag name="inherited_from" description="\SwedbankJson\Auth\AbstractAuth" refers="\SwedbankJson\Auth\AbstractAuth" link="/classes/SwedbankJson.Auth.AbstractAuth.html"/>
+      </docblock>
+      <constant namespace="SwedbankJson\Auth" line="34" package="SwedbankJson\Auth">
+        <name>authSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::authSession</full_name>
+        <value>'swedbankjson_auth'</value>
+        <docblock line="34">
+          <description>Namn för auth session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="SwedbankJson\Auth" line="39" package="SwedbankJson\Auth">
+        <name>cookieJarSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cookieJarSession</full_name>
+        <value>'swedbankjson_cookiejar'</value>
+        <docblock line="39">
+          <description>Namn för cookieJar session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="23" package="SwedbankJSON">
+        <name>$_username</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::_username</full_name>
+        <default></default>
+        <docblock line="23">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="23" description="&lt;p&gt;Inlogging personnummer&lt;/p&gt;" type="integer" variable="">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="28" package="SwedbankJSON">
+        <name>$_challengeResponse</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::_challengeResponse</full_name>
+        <default></default>
+        <docblock line="28">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="28" description="" type="integer" variable="">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="33" package="SwedbankJSON">
+        <name>$_challenge</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::_challenge</full_name>
+        <default>null</default>
+        <docblock line="33">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="33" description="" type="integer" variable="">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="38" package="SwedbankJSON">
+        <name>$_useOneTimePassword</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::_useOneTimePassword</full_name>
+        <default></default>
+        <docblock line="38">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="38" description="" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="44" package="SwedbankJson\Auth">
+        <name>$_baseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_baseUri</full_name>
+        <default>'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/'</default>
+        <docblock line="44">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="44" description="&lt;p&gt;Adress till API-server&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="49" package="SwedbankJson\Auth">
+        <name>$_apiVersion</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_apiVersion</full_name>
+        <default>'v4'</default>
+        <docblock line="49">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="49" description="&lt;p&gt;API-version&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="54" package="SwedbankJson\Auth">
+        <name>$_appID</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_appID</full_name>
+        <default></default>
+        <docblock line="54">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="54" description="&lt;p&gt;AppID. Ett ID som finns i Swedbanks appar.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="59" package="SwedbankJson\Auth">
+        <name>$_userAgent</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_userAgent</full_name>
+        <default></default>
+        <docblock line="59">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="59" description="&lt;p&gt;User agent för appen&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="64" package="SwedbankJson\Auth">
+        <name>$_authorization</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_authorization</full_name>
+        <default></default>
+        <docblock line="64">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="64" description="&lt;p&gt;Auth-nyckel mot Swedbank&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="69" package="SwedbankJson\Auth">
+        <name>$_client</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_client</full_name>
+        <default></default>
+        <docblock line="69">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="69" description="&lt;p&gt;CURL-resurs&lt;/p&gt;" type="resource" variable="">
+            <type>resource</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="74" package="SwedbankJson\Auth">
+        <name>$_profileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_profileType</full_name>
+        <default></default>
+        <docblock line="74">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="74" description="&lt;p&gt;Profiltyp (företag eller privatperson)&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="79" package="SwedbankJson\Auth">
+        <name>$_debug</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_debug</full_name>
+        <default></default>
+        <docblock line="79">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="79" description="&lt;p&gt;Debugging&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="84" package="SwedbankJson\Auth">
+        <name>$_cookieJar</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_cookieJar</full_name>
+        <default></default>
+        <docblock line="84">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="84" description="&lt;p&gt;Guzzle Cookie Jar&lt;/p&gt;" type="object" variable="">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="89" package="SwedbankJson\Auth">
+        <name>$_persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_persistentSession</full_name>
+        <default>false</default>
+        <docblock line="89">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="89" description="&lt;p&gt;Om inlogningstypen behöver sparas mellan sessioner&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="51" package="SwedbankJSON">
+        <name>__construct</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::__construct()</full_name>
+        <docblock line="51">
+          <description>Grundläggande upgifter</description>
+          <long-description></long-description>
+          <tag name="param" line="51" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
+            <type>string</type>
+            <type>array</type>
+          </tag>
+          <tag name="param" line="51" description="&lt;p&gt;Personnummer för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$username">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="51" description="&lt;p&gt;Personlig kod för inlogging till internetbanken&lt;/p&gt;" type="integer" variable="$challengeResponse">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="51" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="51" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+          <tag name="throws" line="51" description="" type="\SwedbankJson\UserException">
+            <type>\SwedbankJson\UserException</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$bankApp</name>
+          <default></default>
+          <type>string|array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$username</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$challengeResponse</name>
+          <default>0</default>
+          <type>integer</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$debug</name>
+          <default>false</default>
+          <type>boolean</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="64" package="SwedbankJSON">
+        <name>getchallenge</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::getchallenge()</full_name>
+        <docblock line="64">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="64" description="" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="64" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="96" package="SwedbankJSON">
+        <name>login</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::login()</full_name>
+        <docblock line="96">
+          <description>Inlogging
+Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t</description>
+          <long-description></long-description>
+          <tag name="param" line="96" description="" type="integer" variable="$challengeResponse">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="96" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="96" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$challengeResponse</name>
+          <default>0</default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="123" package="SwedbankJSON">
+        <name>setchallengeResponse</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::setchallengeResponse()</full_name>
+        <docblock line="123">
+          <description></description>
+          <long-description></long-description>
+          <tag name="param" line="123" description="" type="integer" variable="$challengeResponse">
+            <type>integer</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$challengeResponse</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="131" package="SwedbankJSON">
+        <name>isUseOneTimePassword</name>
+        <full_name>\SwedbankJson\Auth\SecurityToken::isUseOneTimePassword()</full_name>
+        <docblock line="131">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="131" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="98" package="SwedbankJson\Auth">
+        <name>setAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAuthorizationKey()</full_name>
+        <docblock line="98">
+          <description>Ange AuthorizationKey</description>
+          <long-description>Om ingen nyckel anges, genereras automaiskt en nyckel.</long-description>
+          <tag name="param" line="98" description="&lt;p&gt;Sätta en egen AuthorizationKey&lt;/p&gt;" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="108" package="SwedbankJson\Auth">
+        <name>genAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::genAuthorizationKey()</full_name>
+        <docblock line="108">
+          <description>Generera auth-nyckel för att kunna kommunicera med Swedbanks servrar</description>
+          <long-description></long-description>
+          <tag name="return" line="108" description="en slumpad auth-nyckel" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="116" package="SwedbankJson\Auth">
+        <name>terminate</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::terminate()</full_name>
+        <docblock line="116">
+          <description>Loggar ut från API:et</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="128" package="SwedbankJson\Auth">
+        <name>cleanup</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cleanup()</full_name>
+        <docblock line="128">
+          <description>Uppresning av cookiejar och sessioner</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="146" package="SwedbankJson\Auth">
+        <name>setAppData</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAppData()</full_name>
+        <docblock line="146">
+          <description>Lägger nödvändig appdata för att kommunicera med API:et. Bland annat appID för att generera nycklar.</description>
+          <long-description></long-description>
+          <tag name="param" line="146" description="" type="array" variable="$appdata">
+            <type>array</type>
+          </tag>
+          <tag name="throws" line="146" description="Om rätt fält inte existerar eller är tomma" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$appdata</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="164" package="SwedbankJson\Auth">
+        <name>getRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getRequest()</full_name>
+        <docblock line="164">
+          <description>Skickar GET-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="164" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="164" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="164" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="179" package="SwedbankJson\Auth">
+        <name>postRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::postRequest()</full_name>
+        <docblock line="179">
+          <description>Skickar POST-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="179" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="179" description="&lt;p&gt;Data som ska skickas i strängformat&lt;/p&gt;" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="179" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$data</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="200" package="SwedbankJson\Auth">
+        <name>putRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::putRequest()</full_name>
+        <docblock line="200">
+          <description>Skickar PUT-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="200" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="200" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="214" package="SwedbankJson\Auth">
+        <name>deleteRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::deleteRequest()</full_name>
+        <docblock line="214">
+          <description>Skickar DELETE-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="214" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="214" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="226" package="SwedbankJson\Auth">
+        <name>getProfileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getProfileType()</full_name>
+        <docblock line="226">
+          <description>Retunterar inställd profil</description>
+          <long-description></long-description>
+          <tag name="return" line="226" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="236" package="SwedbankJson\Auth">
+        <name>getClient</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getClient()</full_name>
+        <docblock line="236">
+          <description>Guzzle klientobjekt</description>
+          <long-description></long-description>
+          <tag name="return" line="236" description="" type="resource">
+            <type>resource</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="251" package="SwedbankJson\Auth">
+        <name>createRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::createRequest()</full_name>
+        <docblock line="251">
+          <description>Gemensam hantering av HTTP requests</description>
+          <long-description></long-description>
+          <tag name="param" line="251" description="&lt;p&gt;Typ av HTTP förfrågan (ex. GET, POST)&lt;/p&gt;" type="string" variable="$method">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Requesttyp till API&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Extra HTTP headers&lt;/p&gt;" type="array" variable="$headers">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Body innehåll&lt;/p&gt;" type="string" variable="$body">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="251" description="" type="\GuzzleHttp\Psr7\Request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$method</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$headers</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$body</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="287" package="SwedbankJson\Auth">
+        <name>sendRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::sendRequest()</full_name>
+        <docblock line="287">
+          <description>Skicka/verkställ HTTP request</description>
+          <long-description></long-description>
+          <tag name="param" line="287" description="" type="\GuzzleHttp\Psr7\Request" variable="$request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Guzzle konfiguration&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="287" description="Json-objekt med data från API:et @see json_decode();" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$request</name>
+          <default></default>
+          <type>\GuzzleHttp\Psr7\Request</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="320" package="SwedbankJson\Auth">
+        <name>persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::persistentSession()</full_name>
+        <docblock line="320">
+          <description>Slår på sessions-data ska sparas mellan sessioner</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="331" package="SwedbankJson\Auth">
+        <name>saveSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::saveSession()</full_name>
+        <docblock line="331">
+          <description>Sparar auth session</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+        <name>__sleep</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
+        <docblock line="339">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+        <name>dsid</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
+        <docblock line="350">
+          <description>Generering av dsid
+Slumpar 8 tecken som måste skickas med i varje anrop.</description>
+          <long-description></long-description>
+          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+        <name>setBaseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
+        <docblock line="366">
+          <description>Sätta en annan adress till API-server</description>
+          <long-description></long-description>
+          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$baseUri</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="17" code="PPC:ERR-50005">No summary for class \SwedbankJson\Auth\SecurityToken</error>
+      <error line="64" code="PPC:ERR-50008">No summary for method getchallenge()</error>
+      <error line="123" code="PPC:ERR-50008">No summary for method setchallengeResponse()</error>
+      <error line="131" code="PPC:ERR-50008">No summary for method isUseOneTimePassword()</error>
+      <error line="28" code="PPC:ERR-50007">No summary for property $_challengeResponse</error>
+      <error line="33" code="PPC:ERR-50007">No summary for property $_challenge</error>
+      <error line="38" code="PPC:ERR-50007">No summary for property $_useOneTimePassword</error>
+    </parse_markers>
+    <source>eJylV11y2zYQfucpNjPukPRItuW0fZBqp27j6bjuNJ44mTwkGQ9EQhQiCGQB0I6b+jb2FXwBXay7/BdJqfYUL5IA7N+3u99CP71K5omzv7vrwC580CxJuIbZ6lHD5Q0Pp0wtDBi7ulcRg5OLs/xoGU+FxKtMoxQJ/pywYMEiXgn9fvnmz+yApXYea4BTLQL4wKRcMhVykoNqvWaWj+HwYPT98OBwePjD2uE7saTD0fjlj7i/7ziKLblBew1jJlafTtDQxHFS095PEtTPJtnJ6deAJ1bEatK9WJ19em+4btx0AsmMgUsepFrY23fxgivgXy1XoYGTqbGaBZbMO98ch1zO0KSF8V8zDUJZOFMyjiKhIkCA0ZxKl0uCIbu2n30mWlwjErBzhb5pCnOyUd8GwWCOCHMV8bcIUazM/9AAR6BSKTcomMax3Oz8G8UpbRcI202sw66O33SqQrm6jyKqBkiTSMxsBUdlCQuMLbH8NOL2D9Oa3cIO5QtzWhcInL3Oq/JaSMoMXQATo9yCAVM6TpgZAMeoNOQ6ljwErN4QywJNF7b3WlYpadXaKTNSb1000pjbF1WKrZCSFKAMt+QPV1u1d9JWaJcigkUcPl89padWH/JpGkFzXa7urQWrU57rZvgrwi8MZlya1eNCoZ0BoqeYNjBjEl3KEaSaaKfJznV8Y6DuoM7JWqOttdd6EaVTiTQxS1VAZ3B1FSAa6GZgvTLxgzoZgz7kjuBgUIZ8lLvuZ8q/ORUgdi7M8NhwW5CD570Q5iorjsqO78MrKM7H42LzLKzPYVwVoz9p665aGH3Yqdu560EnAK8bU4/6Mj6PMu3n4fapP8noV/zNCM9zfusVuu66ba25TbWCePqFB7adwaflK2rE47VRFzPw+DKxCHERRHXX96tb9f0skDi1SWoJxFwmiY19y/9KubHe2k1argi5smImgizcfVMwtiXG3q+suYOO5MfOTqYPE3fKzO0fMbadW+4eHedV1dWSyURccY1MWAmehe5/yVCB0LW1hTLtYuqKf17b8QumLRdBjpWNdeAVSA6PpcCRPjxWOMCGxwhPA/tyZTkHxW/qtHtuPcCWqFHe4rwPudmD81hZHRM3ENte40shZOQsVlIwB9asv6FCKS733AGMDtq+doqigQR4yHZ+FUJ1ZdKroTuA6kYpVfQNqVLPXe1Y0RMd3zY1UQVSuYEVEGXzNhs6+ejPRwahk/9ukjwR8Wz1gIZDBgl+IYbBAUe3sbgz6p+t7iVOBjzX8UzIoQjHZb/2TJkunbTvFkE2Rvoz215SmffwFnFxHwu8KGigS3R+X0KfzpJrVpDRaVhtZZuGlXXuaunawFsb/K77Z23UeS6O3QXXc25NGBumTJZ3wxaKXijUOphWTLLJpjOlW+AAVvXkzzpn1HRuK0Fu5UNU9dHVRQAZQ3n5Q8vfGObgcxuXZ5BLi9iDOCw6HHuzsCjM+05betkcdtGN1YOKjFw9Gq5w38XxW7qPKLotKuBax/pXsvEU9aND1DZ62WKkPho0+M5Vdua555gX/oVKHxtRqBfwC0eLQFSY5ZB6F9tCWuzu/OVE/b16kKFmIXxnKJUZCP6g4a2/jYXoubZxej+h4fub96nd1f+G6hYJlWLP35ANbje4h7PtLNOfvpZbLcLeRPN3zp3zLy65g2A=</source>
+  </file>
+  <file path="Auth/UnAuth.php" generated-path="Auth.UnAuth.html" hash="bc6e04d5790abe9c97ca0cc94f433e61" package="SwedbankJSON">
+    <docblock line="0">
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2014-02-25&#10;         Time: 21:36"/>
+    </docblock>
+    <namespace-alias name="AppData">\SwedbankJson\AppData</namespace-alias>
+    <namespace-alias name="Exception">\Exception</namespace-alias>
+    <class final="false" abstract="false" namespace="SwedbankJson\Auth" line="20" package="SwedbankJson\Auth">
+      <extends>\SwedbankJson\Auth\AbstractAuth</extends>
+      <name>UnAuth</name>
+      <full_name>\SwedbankJson\Auth\UnAuth</full_name>
+      <docblock line="20">
+        <description>Class UnAuth</description>
+        <long-description></long-description>
+        <tag name="package" line="20" description="SwedbankJson\Auth"/>
+        <tag name="inherited_from" description="\SwedbankJson\Auth\AbstractAuth" refers="\SwedbankJson\Auth\AbstractAuth" link="/classes/SwedbankJson.Auth.AbstractAuth.html"/>
+      </docblock>
+      <constant namespace="SwedbankJson\Auth" line="34" package="SwedbankJson\Auth">
+        <name>authSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::authSession</full_name>
+        <value>'swedbankjson_auth'</value>
+        <docblock line="34">
+          <description>Namn för auth session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="SwedbankJson\Auth" line="39" package="SwedbankJson\Auth">
+        <name>cookieJarSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cookieJarSession</full_name>
+        <value>'swedbankjson_cookiejar'</value>
+        <docblock line="39">
+          <description>Namn för cookieJar session</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="44" package="SwedbankJson\Auth">
+        <name>$_baseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_baseUri</full_name>
+        <default>'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/'</default>
+        <docblock line="44">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="44" description="&lt;p&gt;Adress till API-server&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Auth" line="49" package="SwedbankJson\Auth">
+        <name>$_apiVersion</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_apiVersion</full_name>
+        <default>'v4'</default>
+        <docblock line="49">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="49" description="&lt;p&gt;API-version&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="54" package="SwedbankJson\Auth">
+        <name>$_appID</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_appID</full_name>
+        <default></default>
+        <docblock line="54">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="54" description="&lt;p&gt;AppID. Ett ID som finns i Swedbanks appar.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="59" package="SwedbankJson\Auth">
+        <name>$_userAgent</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_userAgent</full_name>
+        <default></default>
+        <docblock line="59">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="59" description="&lt;p&gt;User agent för appen&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="64" package="SwedbankJson\Auth">
+        <name>$_authorization</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_authorization</full_name>
+        <default></default>
+        <docblock line="64">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="64" description="&lt;p&gt;Auth-nyckel mot Swedbank&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="69" package="SwedbankJson\Auth">
+        <name>$_client</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_client</full_name>
+        <default></default>
+        <docblock line="69">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="69" description="&lt;p&gt;CURL-resurs&lt;/p&gt;" type="resource" variable="">
+            <type>resource</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="74" package="SwedbankJson\Auth">
+        <name>$_profileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_profileType</full_name>
+        <default></default>
+        <docblock line="74">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="74" description="&lt;p&gt;Profiltyp (företag eller privatperson)&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="79" package="SwedbankJson\Auth">
+        <name>$_debug</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_debug</full_name>
+        <default></default>
+        <docblock line="79">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="79" description="&lt;p&gt;Debugging&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="84" package="SwedbankJson\Auth">
+        <name>$_cookieJar</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_cookieJar</full_name>
+        <default></default>
+        <docblock line="84">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="84" description="&lt;p&gt;Guzzle Cookie Jar&lt;/p&gt;" type="object" variable="">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" namespace="SwedbankJson\Auth" line="89" package="SwedbankJson\Auth">
+        <name>$_persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::_persistentSession</full_name>
+        <default>false</default>
+        <docblock line="89">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="89" description="&lt;p&gt;Om inlogningstypen behöver sparas mellan sessioner&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="31" package="SwedbankJson\Auth">
+        <name>__construct</name>
+        <full_name>\SwedbankJson\Auth\UnAuth::__construct()</full_name>
+        <docblock line="31">
+          <description>Grundläggande upgifter</description>
+          <long-description></long-description>
+          <tag name="param" line="31" description="&lt;p&gt;ID för vilken bank som ska anropas, eller array med appdata uppgifter.&lt;/p&gt;" type="string|array" variable="$bankApp">
+            <type>string</type>
+            <type>array</type>
+          </tag>
+          <tag name="param" line="31" description="&lt;p&gt;Sätt true för att göra felsökning, annars false eller null&lt;/p&gt;" type="boolean" variable="$debug">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="31" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+          <tag name="throws" line="31" description="" type="\SwedbankJson\UserException">
+            <type>\SwedbankJson\UserException</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$bankApp</name>
+          <default></default>
+          <type>string|array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$debug</name>
+          <default>false</default>
+          <type>boolean</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="46" package="SwedbankJson\Auth">
+        <name>login</name>
+        <full_name>\SwedbankJson\Auth\UnAuth::login()</full_name>
+        <docblock line="46">
+          <description>Inlogging
+Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t</description>
+          <long-description></long-description>
+          <tag name="return" line="46" description="True om inloggingen lyckades" type="boolean">
+            <type>boolean</type>
+          </tag>
+          <tag name="throws" line="46" description="Fel vid inloggen" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="98" package="SwedbankJson\Auth">
+        <name>setAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAuthorizationKey()</full_name>
+        <docblock line="98">
+          <description>Ange AuthorizationKey</description>
+          <long-description>Om ingen nyckel anges, genereras automaiskt en nyckel.</long-description>
+          <tag name="param" line="98" description="&lt;p&gt;Sätta en egen AuthorizationKey&lt;/p&gt;" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="108" package="SwedbankJson\Auth">
+        <name>genAuthorizationKey</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::genAuthorizationKey()</full_name>
+        <docblock line="108">
+          <description>Generera auth-nyckel för att kunna kommunicera med Swedbanks servrar</description>
+          <long-description></long-description>
+          <tag name="return" line="108" description="en slumpad auth-nyckel" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="116" package="SwedbankJson\Auth">
+        <name>terminate</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::terminate()</full_name>
+        <docblock line="116">
+          <description>Loggar ut från API:et</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="128" package="SwedbankJson\Auth">
+        <name>cleanup</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::cleanup()</full_name>
+        <docblock line="128">
+          <description>Uppresning av cookiejar och sessioner</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="146" package="SwedbankJson\Auth">
+        <name>setAppData</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setAppData()</full_name>
+        <docblock line="146">
+          <description>Lägger nödvändig appdata för att kommunicera med API:et. Bland annat appID för att generera nycklar.</description>
+          <long-description></long-description>
+          <tag name="param" line="146" description="" type="array" variable="$appdata">
+            <type>array</type>
+          </tag>
+          <tag name="throws" line="146" description="Om rätt fält inte existerar eller är tomma" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$appdata</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="164" package="SwedbankJson\Auth">
+        <name>getRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getRequest()</full_name>
+        <docblock line="164">
+          <description>Skickar GET-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="164" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="164" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="164" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="179" package="SwedbankJson\Auth">
+        <name>postRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::postRequest()</full_name>
+        <docblock line="179">
+          <description>Skickar POST-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="179" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="179" description="&lt;p&gt;Data som ska skickas i strängformat&lt;/p&gt;" type="string" variable="$data">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="179" description="JSON-avkodad information från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$data</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="200" package="SwedbankJson\Auth">
+        <name>putRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::putRequest()</full_name>
+        <docblock line="200">
+          <description>Skickar PUT-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="200" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="200" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="214" package="SwedbankJson\Auth">
+        <name>deleteRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::deleteRequest()</full_name>
+        <docblock line="214">
+          <description>Skickar DELETE-förfrågan</description>
+          <long-description></long-description>
+          <tag name="param" line="214" description="&lt;p&gt;Typ av anrop mot API:et&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="214" description="Avkodad JSON-data från API:et" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="226" package="SwedbankJson\Auth">
+        <name>getProfileType</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getProfileType()</full_name>
+        <docblock line="226">
+          <description>Retunterar inställd profil</description>
+          <long-description></long-description>
+          <tag name="return" line="226" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="236" package="SwedbankJson\Auth">
+        <name>getClient</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::getClient()</full_name>
+        <docblock line="236">
+          <description>Guzzle klientobjekt</description>
+          <long-description></long-description>
+          <tag name="return" line="236" description="" type="resource">
+            <type>resource</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="251" package="SwedbankJson\Auth">
+        <name>createRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::createRequest()</full_name>
+        <docblock line="251">
+          <description>Gemensam hantering av HTTP requests</description>
+          <long-description></long-description>
+          <tag name="param" line="251" description="&lt;p&gt;Typ av HTTP förfrågan (ex. GET, POST)&lt;/p&gt;" type="string" variable="$method">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Requesttyp till API&lt;/p&gt;" type="string" variable="$apiRequest">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Extra HTTP headers&lt;/p&gt;" type="array" variable="$headers">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="251" description="&lt;p&gt;Body innehåll&lt;/p&gt;" type="string" variable="$body">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="251" description="" type="\GuzzleHttp\Psr7\Request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$method</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$apiRequest</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$headers</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$body</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="287" package="SwedbankJson\Auth">
+        <name>sendRequest</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::sendRequest()</full_name>
+        <docblock line="287">
+          <description>Skicka/verkställ HTTP request</description>
+          <long-description></long-description>
+          <tag name="param" line="287" description="" type="\GuzzleHttp\Psr7\Request" variable="$request">
+            <type>\GuzzleHttp\Psr7\Request</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Fråga för GET-anrop&lt;/p&gt;" type="array" variable="$query">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="287" description="&lt;p&gt;Guzzle konfiguration&lt;/p&gt;" type="array" variable="$options">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="287" description="Json-objekt med data från API:et @see json_decode();" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$request</name>
+          <default></default>
+          <type>\GuzzleHttp\Psr7\Request</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$query</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="320" package="SwedbankJson\Auth">
+        <name>persistentSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::persistentSession()</full_name>
+        <docblock line="320">
+          <description>Slår på sessions-data ska sparas mellan sessioner</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="331" package="SwedbankJson\Auth">
+        <name>saveSession</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::saveSession()</full_name>
+        <docblock line="331">
+          <description>Sparar auth session</description>
+          <long-description></long-description>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Auth" line="339" package="SwedbankJson\Auth">
+        <name>__sleep</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::__sleep()</full_name>
+        <docblock line="339">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="339" description="Lista på attribut som ska sparas" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson\Auth" line="350" package="SwedbankJson\Auth">
+        <name>dsid</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::dsid()</full_name>
+        <docblock line="350">
+          <description>Generering av dsid
+Slumpar 8 tecken som måste skickas med i varje anrop.</description>
+          <long-description></long-description>
+          <tag name="return" line="350" description="8 slumpvalda tecken" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SwedbankJson\Auth" line="366" package="SwedbankJson\Auth">
+        <name>setBaseUri</name>
+        <full_name>\SwedbankJson\Auth\AbstractAuth::setBaseUri()</full_name>
+        <docblock line="366">
+          <description>Sätta en annan adress till API-server</description>
+          <long-description></long-description>
+          <tag name="param" line="366" description="&lt;p&gt;URI till API-server (Exlusive version)&lt;/p&gt;" type="string" variable="$baseUri">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$baseUri</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\SwedbankJson\Auth\AbstractAuth</inherited_from>
+      </method>
+    </class>
+    <source>eJx9VNtu2kAQffdXTKVIGAQ4SS8PpGlKGlrRVE0UQHmJhBZ7bVasd7d7yaVt/ob+Qn6AH+ussR0CVf1i786Z25kzfn+i5iqIWq0AWnCtiVJUQ7p60jC6o8mMiIUBY1dLkRHoXw7XplzOGEco0ejlHT8qEi9IRmunr6OL74WBODuXGmCgWQzXhPOciIR6P6ifM2JpDw73D9509g87h29fGMcs98aD3ut3eB8FgSA5NZhvI5mR4qaPiY6CwJnte6UwPjkqLIP7mCrLpEBk2fMnToyBifD+/26lil6kjzfgQO8tFYmB/sxYTWJboH4Fvuwiun9a8EU7kfDVMst86+BUxlLrKSjMFQrzapIj15qJ7DfRmjzAns+PDcDwbE38LeMLKsBfg5GIXhAgQktFTBso5zi7tWdOE8ABJdg5JiwzdrdyzaTkNc97CZ25DD9Gq6W1YLWj65wETxl+EEgpN6unhcAC25hWEG0gJRx5XacWjvPtruxcyzsDNzXzO5YXPE8M1dvQqHgrN+MoodSJ2NtgOo2lQLZcbMOKp3bVxfG6rmbhuR5I0aOdM9P5YKgtVRGGr5iZFpTVQZpNOIHS3uuVl8Pk2Q69ejDNo+3Y06qA0LPbXNezg/IVFIvBfhLfzTl9CHdjIeqUGDrRLGzMrVWmF0VO+I3qEsW6piSua2g0PhtMz/qX00upLeHTq8FoPL0enEaIixpl5MdgW5lDwWWW4Tiri294JBqYKASEvwKcictznK2M5+WZZbCQybM20tUf0DQhoPDD14Ni9egEhWoZ5+lqyTnD34fSMmW8w5Ke3VaJptZp8VKQY69A1DirisR4/AF3M6FmW0S1ZPz1Z8pxUZLSkf5fRghhItwRinRWOYtjLEeRUXtFfzhqbNhg2JllKYuL0UUJvWUxLViu/VkKYRkDx2iJdQZeHUPj4rzRrEH+KeoHQe+eWwgbE6UWUimOPUPOjKm6biPxwmrplw33flNAHYEYyruNNhzsb1ZSMuvXuVLBY/AXEMHejg==</source>
+  </file>
+  <file path="Exception/ApiException.php" generated-path="Exception.ApiException.html" hash="b1c81a47d495b84c0a8b91d37e123376" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="SwedbankJson\Exception" line="5" package="Default">
+      <extends>\RuntimeException</extends>
+      <implements>\SwedbankJson\Exception\SwedbankJsonException</implements>
+      <name>ApiException</name>
+      <full_name>\SwedbankJson\Exception\ApiException</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="5" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="SwedbankJson\Exception" line="7" package="Default">
+        <name>$_response</name>
+        <full_name>\SwedbankJson\Exception\ApiException::_response</full_name>
+        <default></default>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson\Exception" line="9" package="Default">
+        <name>$_errorMessages</name>
+        <full_name>\SwedbankJson\Exception\ApiException::_errorMessages</full_name>
+        <default>array()</default>
+        <docblock line="9">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="11" package="Default">
+        <name>__construct</name>
+        <full_name>\SwedbankJson\Exception\ApiException::__construct()</full_name>
+        <docblock line="11">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$code</name>
+          <default>0</default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$previous</name>
+          <default>null</default>
+          <type>\Exception</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="45" package="Default">
+        <name>getResponse</name>
+        <full_name>\SwedbankJson\Exception\ApiException::getResponse()</full_name>
+        <docblock line="45">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="45" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson\Exception" line="53" package="Default">
+        <name>getErrorMessages</name>
+        <full_name>\SwedbankJson\Exception\ApiException::getErrorMessages()</full_name>
+        <docblock line="53">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="53" description="" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50005">No summary for class \SwedbankJson\Exception\ApiException</error>
+      <error line="11" code="PPC:ERR-50015">Argument $response is missing from the Docblock of __construct</error>
+      <error line="11" code="PPC:ERR-50015">Argument $code is missing from the Docblock of __construct</error>
+      <error line="11" code="PPC:ERR-50015">Argument $previous is missing from the Docblock of __construct</error>
+      <error line="11" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="45" code="PPC:ERR-50008">No summary for method getResponse()</error>
+      <error line="53" code="PPC:ERR-50008">No summary for method getErrorMessages()</error>
+      <error line="7" code="PPC:ERR-50007">No summary for property $_response</error>
+      <error line="9" code="PPC:ERR-50007">No summary for property $_errorMessages</error>
+    </parse_markers>
+    <source>eJyFU1tvmzAUfudXHFVIgSy022sy2EXKS6UlEn1sK+TASeINjGWbLtHU/z7bkIBDqvgN+7v5w+frN77nnsdIhZKTHOHpLxYbwv48ypq9LA85ckVrtvC8vCRSwg9Oz5uAB4WskPCSNkzRCvsTWvESK2RKOoJngPfPA724oG9EIfiZ0PY1k6iN3AMUoha/UEqyQwkxPL+eIM2mpDlsG5ZbyyzLtYASTa4C/yQ3Az+vC9S8zzPorwM+F/hG68YosqYsQyvZhjLLV3sqo+QcS8P8i4gWVrXBzPGmLo5DWJTsUP3Um0G46An6tCkVaOBv3UdWoIkXWHI4EKZbCCxAl67aDoIQ4jiGx6f1Klum6TrNVuvVMjxT+vBmbWuBJN9D0DlGiVskkfqOR66TJ+AXRJHQobtiA8HAgi2dUku2uuEIP1aw96eswIOpSbM/wZfFdZTCipuO7tqMQUsL53A36Gi4TF9UStS/3uaJEtNrOI7lWtzHMMTfTyCCyQcWI0b37z+Ety/Iqf351VzdCI0v/u65X87n4KGZ0TJvZrKAyey6zeDBDXQ4EXog53NnUDrdbk5m/WB0Gh3/YTptdabwXaBqBAOtQNmu2324OpJ6ANJuGoLLCetULgftlisRghxvmS6HZdxydpo72b97/wGFCWW2</source>
+  </file>
+  <file path="Exception/SwedbankJsonException.php" generated-path="Exception.SwedbankJsonException.html" hash="6e0e2d0f7b0f3aa874ce9e1128aadbbd" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <interface namespace="SwedbankJson\Exception" line="5" package="Default">
+      <name>SwedbankJsonException</name>
+      <full_name>\SwedbankJson\Exception\SwedbankJsonException</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="5" description="Default"/>
+      </docblock>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50009">No summary for interface ""</error>
+    </parse_markers>
+    <source>eJyzsS/IKODiykvMTS0uSExOVQguT01JSszL9irOz4txrUhOLSjJzM+z5uLKzCtJLUpDVwJXoVBdCwAdLBwp</source>
+  </file>
+  <file path="Exception/UserException.php" generated-path="Exception.UserException.html" hash="b7e478d072989f9a1f86eee5ac07075e" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="SwedbankJson\Exception" line="5" package="Default">
+      <extends>\RuntimeException</extends>
+      <implements>\SwedbankJson\Exception\SwedbankJsonException</implements>
+      <name>UserException</name>
+      <full_name>\SwedbankJson\Exception\UserException</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+        <tag name="package" line="5" description="Default"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50005">No summary for class \SwedbankJson\Exception\UserException</error>
+    </parse_markers>
+    <source>eJxVjDEKgDAQBPt7Rf6hYGVjqdjZxLhgMDkPL2JA/LtdxHZmmLqRVYjYRqhYBzNcWGbLW6c7T212kOR3rohcsKpmVByFGuQEXtRM/cnJR3zGRwmI4KS/YwnopodeVMYugg==</source>
+  </file>
+  <file path="SwedbankJson.php" generated-path="SwedbankJson.html" hash="f612d52a5c47dc960974d3f42051c50b" package="SwedbankJSON">
+    <docblock line="0">
+      <description>Wrapper för Swedbanks stänga API för mobilappar</description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="SwedbankJSON"/>
+      <tag name="author" line="0" description="Eric Wallmander&#10;         Date: 2012-01-01&#10;         Time: 21:36"/>
+    </docblock>
+    <namespace-alias name="Exception">\Exception</namespace-alias>
+    <namespace-alias name="AbstractAuth">\SwedbankJson\Auth\AbstractAuth</namespace-alias>
+    <namespace-alias name="UserException">\SwedbankJson\Exception\UserException</namespace-alias>
+    <class final="false" abstract="false" namespace="SwedbankJson" line="19" package="SwedbankJSON">
+      <extends/>
+      <name>SwedbankJson</name>
+      <full_name>\SwedbankJson\SwedbankJson</full_name>
+      <docblock line="19">
+        <description>Class SwedbankJson</description>
+        <long-description></long-description>
+        <tag name="package" line="19" description="SwedbankJSON"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="SwedbankJson" line="24" package="SwedbankJSON">
+        <name>$_auth</name>
+        <full_name>\SwedbankJson\SwedbankJson::_auth</full_name>
+        <default></default>
+        <docblock line="24">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="24" description="" type="object" variable="">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="SwedbankJson" line="29" package="SwedbankJSON">
+        <name>$_selectedProfileID</name>
+        <full_name>\SwedbankJson\SwedbankJson::_selectedProfileID</full_name>
+        <default></default>
+        <docblock line="29">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="29" description="&lt;p&gt;Håller koll på om profil är satt&lt;/p&gt;" type="boolean" variable="">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="34" package="SwedbankJSON">
+        <name>__construct</name>
+        <full_name>\SwedbankJson\SwedbankJson::__construct()</full_name>
+        <docblock line="34">
+          <description></description>
+          <long-description></long-description>
+          <tag name="param" line="34" description="&lt;p&gt;Instans en av inloggingsmetoderna&lt;/p&gt;" type="\SwedbankJson\Auth\AbstractAuth" variable="$auth">
+            <type>\SwedbankJson\Auth\AbstractAuth</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$auth</name>
+          <default></default>
+          <type>\SwedbankJson\Auth\AbstractAuth</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="47" package="SwedbankJSON">
+        <name>profileList</name>
+        <full_name>\SwedbankJson\SwedbankJson::profileList()</full_name>
+        <docblock line="47">
+          <description>Profilinfomation</description>
+          <long-description>Få tillgång till lista av profiler och respektive tillfälliga ID-nummer. Varje privatperson och företag har egna profiler.</long-description>
+          <tag name="return" line="47" description="JSON-avkodad data om profilen" type="array">
+            <type>array</type>
+          </tag>
+          <tag name="throws" line="47" description="Fel med anrop mot Swedbank API:et" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="SwedbankJson" line="81" package="SwedbankJSON">
+        <name>selectProfile</name>
+        <full_name>\SwedbankJson\SwedbankJson::selectProfile()</full_name>
+        <docblock line="81">
+          <description>Väljer profil</description>
+          <long-description></long-description>
+          <tag name="param" line="81" description="" type="string" variable="$profileID">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="81" description="Då när profil är redan är vald" type="null">
+            <type>null</type>
+          </tag>
+          <tag name="throws" line="81" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+          <tag name="throws" line="81" description="" type="\SwedbankJson\Exception\UserException">
+            <type>\SwedbankJson\Exception\UserException</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$profileID</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="108" package="SwedbankJSON">
+        <name>reminders</name>
+        <full_name>\SwedbankJson\SwedbankJson::reminders()</full_name>
+        <docblock line="108">
+          <description>Antal avvisade betalningar, osignerade betalningar, osignerade överförningar och inkommna e-fakturor</description>
+          <long-description></long-description>
+          <tag name="return" line="108" description="Lista med antal" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="108" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="121" package="SwedbankJSON">
+        <name>baseInfo</name>
+        <full_name>\SwedbankJson\SwedbankJson::baseInfo()</full_name>
+        <docblock line="121">
+          <description>Lista på konton grupperade på typ</description>
+          <long-description></long-description>
+          <tag name="return" line="121" description="Lista med grundläggande information om konton" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="121" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="136" package="SwedbankJSON">
+        <name>accountList</name>
+        <full_name>\SwedbankJson\SwedbankJson::accountList()</full_name>
+        <docblock line="136">
+          <description>Listar alla bankkonton som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.</description>
+          <long-description></long-description>
+          <tag name="param" line="136" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="136" description="Lista på alla konton" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="136" description="Något med API-anropet gör att kontorna inte listas" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$profileID</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="156" package="SwedbankJSON">
+        <name>portfolioList</name>
+        <full_name>\SwedbankJson\SwedbankJson::portfolioList()</full_name>
+        <docblock line="156">
+          <description>Listar investeringssparande som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.</description>
+          <long-description></long-description>
+          <tag name="param" line="156" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="156" description="Lista på alla Investeringssparkonton" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="156" description="Något med API-anropet gör att kontorna inte listas" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$profileID</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="178" package="SwedbankJSON">
+        <name>accountDetails</name>
+        <full_name>\SwedbankJson\SwedbankJson::accountDetails()</full_name>
+        <docblock line="178">
+          <description>Visar kontodetaljer och transaktioner för konto. Om inget kontoID anges väljs första kontot i listan.</description>
+          <long-description></long-description>
+          <tag name="param" line="178" description="&lt;p&gt;string  Unik och slumpvis konto-id från Swedbank API&lt;/p&gt;" type="" variable="$accoutID"/>
+          <tag name="param" line="178" description="&lt;p&gt;int     Antal transaktioner som listas &quot;per sida&quot;. Måste vara ett heltal större eller lika med 1.&lt;/p&gt;" type="" variable="$transactionsPerPage"/>
+          <tag name="param" line="178" description="&lt;p&gt;int     Aktuell sida. Måste vara ett heltal större eller lika med 1. $transactionsPerPage måste anges.&lt;/p&gt;" type="" variable="$page"/>
+          <tag name="return" line="178" description="Avkodad JSON med kontinformationn" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="178" description="AccoutID inte stämmer" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$accoutID</name>
+          <default>''</default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$transactionsPerPage</name>
+          <default>0</default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$page</name>
+          <default>1</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="208" package="SwedbankJSON">
+        <name>registerTransfer</name>
+        <full_name>\SwedbankJson\SwedbankJson::registerTransfer()</full_name>
+        <docblock line="208">
+          <description>Lägg till och förbered överförning</description>
+          <long-description></long-description>
+          <tag name="param" line="208" description="&lt;p&gt;Belopp att överföra&lt;/p&gt;" type="float" variable="$amount">
+            <type>float</type>
+          </tag>
+          <tag name="param" line="208" description="&lt;p&gt;ID för avsändarkonto&lt;/p&gt;" type="string" variable="$fromAccountId">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="208" description="&lt;p&gt;ID för kontomotagare&lt;/p&gt;" type="string" variable="$recipientAccountId">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="208" description="&lt;p&gt;Notering av transaktion&lt;/p&gt;" type="string" variable="$fromAccountNote">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="208" description="&lt;p&gt;Meddelande för mottagare&lt;/p&gt;" type="string" variable="$recipientAccountMessage">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="208" description="&lt;p&gt;Datum när överförningen ska ske i formatet YYYY-MM-DD (dagens datum och framåt). Om inget anges, görs den direkt&lt;/p&gt;" type="string" variable="$transferDate">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="208" description="&lt;p&gt;Periodicitet. För möjliga möjliga valbara perioder, se 'perodicity' från resultatet av @see baseInfo()&lt;/p&gt;" type="string" variable="$perodicity">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="208" description="" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$amount</name>
+          <default></default>
+          <type>float</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$fromAccountId</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$recipientAccountId</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$fromAccountNote</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$recipientAccountMessage</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$transferDate</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$perodicity</name>
+          <default>'NONE'</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="232" package="SwedbankJSON">
+        <name>listRegisteredTransfers</name>
+        <full_name>\SwedbankJson\SwedbankJson::listRegisteredTransfers()</full_name>
+        <docblock line="232">
+          <description>Översikt av ej bekräftade överförningar</description>
+          <long-description></long-description>
+          <tag name="return" line="232" description="" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="244" package="SwedbankJSON">
+        <name>listConfirmedTransfers</name>
+        <full_name>\SwedbankJson\SwedbankJson::listConfirmedTransfers()</full_name>
+        <docblock line="244">
+          <description>Lista aktuella/framtida bekräftade överförningar</description>
+          <long-description>Innehåller bland annat schemalagda och periodiska överförningar</long-description>
+          <tag name="return" line="244" description="" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="254" package="SwedbankJSON">
+        <name>deleteTransfer</name>
+        <full_name>\SwedbankJson\SwedbankJson::deleteTransfer()</full_name>
+        <docblock line="254">
+          <description>Ta bort överförning</description>
+          <long-description></long-description>
+          <tag name="param" line="254" description="" type="" variable="$transfareId"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$transfareId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="265" package="SwedbankJSON">
+        <name>confirmTransfer</name>
+        <full_name>\SwedbankJson\SwedbankJson::confirmTransfer()</full_name>
+        <docblock line="265">
+          <description>Genomför transaktioner</description>
+          <long-description></long-description>
+          <tag name="return" line="265" description="" type="object">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="289" package="SwedbankJSON">
+        <name>quickBalanceAccounts</name>
+        <full_name>\SwedbankJson\SwedbankJson::quickBalanceAccounts()</full_name>
+        <docblock line="289">
+          <description>Lista möjligar snabbsaldo konton.  Om ingen profil anges väljs första profilen i listan.</description>
+          <long-description></long-description>
+          <tag name="param" line="289" description="&lt;p&gt;ProfilID&lt;/p&gt;" type="string" variable="$profileID">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="289" description="Lista på snabbsaldokonton med respektive quickbalanceSubscription ID" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="289" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$profileID</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="313" package="SwedbankJSON">
+        <name>quickBalanceSubscription</name>
+        <full_name>\SwedbankJson\SwedbankJson::quickBalanceSubscription()</full_name>
+        <docblock line="313">
+          <description>Aktiverar och kopplar snabbsaldo till konto.</description>
+          <long-description>För att kunna visa (@see quickBalance()) och avaktivera (@see quickBalanceUnsubscription()) snabbsaldo måste man
+ange "subscriptionId" som finns med i resultatet. Man bör spara undan subscriptionId i en databas eller
+motsvarande.</long-description>
+          <tag name="param" line="313" description="&lt;p&gt;ID hämtad från @see quickBalanceAccounts(). Leta efter ID under quickbalanceSubscription&lt;/p&gt;" type="string" variable="$accountQuickBalanceSubID">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="313" description="Bekräfltese med innehållande subscriptionId" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="313" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$accountQuickBalanceSubID</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="331" package="SwedbankJSON">
+        <name>quickBalance</name>
+        <full_name>\SwedbankJson\SwedbankJson::quickBalance()</full_name>
+        <docblock line="331">
+          <description>Hämta snabbsaldo</description>
+          <long-description></long-description>
+          <tag name="param" line="331" description="&lt;p&gt;SubscriptionId&lt;/p&gt;" type="string" variable="$quickBalanceSubscriptionId">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="331" description="Saldoinformation" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="331" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$quickBalanceSubscriptionId</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="350" package="SwedbankJSON">
+        <name>quickBalanceUnsubscription</name>
+        <full_name>\SwedbankJson\SwedbankJson::quickBalanceUnsubscription()</full_name>
+        <docblock line="350">
+          <description>Avaktiverar snabbsaldo för konto</description>
+          <long-description></long-description>
+          <tag name="param" line="350" description="&lt;p&gt;SubscriptionId&lt;/p&gt;" type="string" variable="$quickBalanceSubscriptionId">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="350" description="&lt;p&gt;ProfileID&lt;/p&gt;" type="string" variable="$profileID">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="350" description="" type="object">
+            <type>object</type>
+          </tag>
+          <tag name="throws" line="350" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$quickBalanceSubscriptionId</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$profileID</name>
+          <default>''</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SwedbankJson" line="365" package="SwedbankJSON">
+        <name>terminate</name>
+        <full_name>\SwedbankJson\SwedbankJson::terminate()</full_name>
+        <docblock line="365">
+          <description>Loggar ut från API:et</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="34" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="24" code="PPC:ERR-50007">No summary for property $_auth</error>
+    </parse_markers>
+    <source>eJzVWuty00gW/s9T9GSossz6ksDu/CBLmEBgyQ4J7ARmagsoqm217Y6llqa7ZSZF8W+fYZ8geQVewC+253S35NbNdgLszrqoIpbU5/qdq/zXh+ksvTW8c+cWuUN+lTRNmSST5WdJzj6wcETFXBGll5diSsnhy2N7K05GPIJHqYRTePDHlI7ndMqKQ38/e3FqbtBMzxJJyBPJx+RXGkUxFSHDc6T4HFHN7pO7u3t3+7t78K908xWP8ebe/Xs/wPXhLUFjpoCdx0slYv/WrUwx8uT3MUs1x+/41X/i7SFI8vZwpLSkY41fGp4pzr99rZj0qOUWehxRpUpnjFDj+uWPt1B6cww/YIoFlSQZnbOxdpeG5v9U8gUYgNx+T41QjedGSRKRZ8urKAL3zJMoIunyiiQxnE4mPCLLS0kU1W2UFYuALQtfmqfZ8VEDG/AmjYlvIHIbJSLHQmkqFGGC0AXhIkqmUy6mKmY6AVcKWmaajSJw9SQTYzQdef9+nAABmY11UCfeNWesrfBzW8+46h8YU5AH9pl9c/dTTWKrDBeTJKbIyl3Pbz8FA2keRdPllZiav0jEQRNUwloNTJmMZ0QCnthc8wUzT02Wl1HEAe7HR32RxTGTA/ILlefM2RMCBPxrTmIwME2nZAYuYlNBC8KDijA/wnOZBANKSS9yZTFI+nQxT0IakpCCaIVDmShO6plMPqgVtPHyUxaRmIWECpmkEI66wB4G6X2m17rEsXgO1ghqDhhHnAmNtvdc0T+YMv3Y3Am6+8XDfEICFqf6InDHut3iXtWb/QPADRd4fMUsyXSaNTL7mf2WMZCv44QddvyDyPg7rhTTgaPRP5hRlRvBwbwijTEkEezDypZB53R5NQXzoTEtJ8VDKkw8TVg06PQgL23ibLLkm9139q/j0OP7sSSBObxGYHJ4ekRK9+kCI83XqUSwrFYpZwWdnxKhQTVUhQtIA/MkTSNAmgmFnDNgG/B+TpjWgCZBNXkEVw/TFDXf8zXHD4sUQyU26fDdt1MiEyHh5AyyFRJkYq0Cd5sUWMPcY/zSQwMXgsmZy74cSyHynqNowkDknhcUn4q/XMzXcNKW0IwiwMECsZpBbH6GBAoCkNtpnslbEo3IwMlHkAIFms6rEpLl+F7QKGzNMtUbJbc0Vpkivdhi41wdrCSFMO90qvlmOCQviipmPIyihWzCweQ07JHZ8jKGzIglKKQy9G1DShmo4NMafsBr+a/cGCgQVsyH5BnEBSXLzwswfUn2WuzmWapWTuuA9txQgWAuqMIvReYr5eT9xgNHWCEerM73Dz7W0qaT6NVFyoLup31UeYUq9FMfQiByLR6WLmVQTEZMJgwaM9NWUDGFYgjFKk1NVYI2SfahuxO6WRPj2sAlRU/Y/gGHXEgekupFcr90yaROHvoh5OOjKSxItbikiWqoGQMPFX7dafOjZ17skTxZvDA9FJpG0EUsuKJgsRGYMRKYFWSPJIpPDXDbrxugofntPdNIcDFP4hj6B9af0DkgJ5EtcW0bSKfHc9PP2EYAmG0K5uZuQLKYY0uu6r2ANVM5nn075gmutXhDq64AOMOCR6fbZlWrC8LP5lUylRkOI9SBUl+k1zMJnBdhtLycTnHiINgnStsoYptlmdzMYiOq2DGQ+wYGg/ZYqAmTQ+SBIm8wmCQwUvnliChQDpIn9Ou2+YXJzXSzZnDLm8sBJl2AH8ubQYx5yEgLDDVlnjXecI9DwTWts6i1tS1FyfXmrdWp5LL8s0KA0anZQ29LfbD7eE0ctL990xUzTaaoMqR4SwoGFVtgjCpqrYfpeJxkQptsvKGANfq8Je1s0e4yyAlTFkOuHSaQJxacfdjY+RrQUCP5oRVcbdP6PlqBBrsq5lsHu5p7u03QtUw3gJKLBWjDEBVKIUaQ/P8nMiuoPK5otiVKvzpC00TqSRLx5H+A0YL3cJZEIVpiI0SVnQGuA89mSzdD9c83gOovUL6lNXyIpfrcrQNsNM1RiHwVZh4qkOm8BbZuhObcTiwbgHnbpBgNRPyPgyt5LfjcCKOiLE6h0bBU+9A6TeTySpTG/SplLx2ol0y+xL0cGsw8ZpuXso4YmNaWZAfXfzj07AzIyfIK7A9jgqRmupqxCM8qDYpK5vrIiM9tud0bVOVIDePKp5ADuhygYHhdn1WzkrGlYrzStoCpxfeh27/gMsZQR0t7zcL6RYyhkHvSgBKXpbg02qa+HAHuYMYMVmDA6O01a/eA7PacUR+QvWqIe4NQTqy6jPGYuNj2y1y3sY4UrfkqQUASkBdA48278iKoUegDsmuXGkbug0LwOrVOw/EOeXAAg4XQ3SbiPdJJyw/h1967m1dcnwkOD7nFek7OaxTirVKcszJOog41BkOAgL/cpPZir2u3O/lyEsY6QHRp4mhOR5MooRoxEqNAtaglj1gEU7IpVQU1WqGR19qJTOJcs9CjAWqabEoXCmp/6DJ6CxHJxjzFlWKFUk7EnI0TmGCpZJsFOU30KhfhF/MEXfiZcEtJTuxMQ05YGLLIdDbupYheK03e2uPbDt+08D2L7Zqm5ChobhQkPDWHakdsOoLS80/49E9O+kdHJAhxJle4OQYCxuXAb3mlu16pMsmwZxoNeBJohlyyuW6REbJ/EvIx1xek9IGI4/YG0wPy1Ki7/Hxu2rfijwWNRpjAU/Mwg6lXMQjRgmTH1S7JVAbpHbUBB/yoGKtOVG1pe8McO+XYL7xydg4cmHsVRPaawNWro8Wl4jb3+5k696q75lkRrpy+OH1S78hCu8x5U0oSHStxp2R7yG4iiyGS31sQBIEJ1m6h3l1IhD3gC31fr0xOgB5lYoZcVdXKqdQ5m0aPwY2d4tRKrcoBN+WXOOGBFtNVTted0Wk8DU4qHyx5tdOonX/mXTV5u3Lpe7BaMtFLbzr+E513pph4Vxr2Sg0rqWKwz2HKQoQKMmhfEGBT9nPxfA5sFbTuBJb/hgSi+NxEFjsnIzaXy8uJbtg73TzQWqWqYHz7ZYdnkw37IWrbRjrEVKehd7yGisdCsHyJP8LE7d4XqPGMxTSiU6CGWdThH5PvV7XZ40RMuIy/jsnGObF2i70C48Cktk35d4CG4nUcrtUDKh7TbJVivXPrXuW2KAEtlk9gv+WsZbrl8bod/sZEEpsSXRp7bu5MZ/vCCnXNvT5w1XuuieamNt4ngofFHP4T7HfoMzPJW9vLyvszGDHc0sW8tyoPftjOFfFTmuGHw6qWOTDQHhCv76ESjWdB5/s6IofB4E/d73lWHWTqSsADse/1Gks0Xvxmb5uWHq6tiRLESo36DddbRccDk7Kgo5GiUZi4deWA/HH3Vyth3SoFp13vxw+/ZXw8H0EiFGN2lo3UWHI75xbMrrknNwQfWYL5QPlfXlX5Og3duLt5W0WvsaY6q1p1bl4Yl9ZTP9xgmjs0TpHuBZF9d18CnBn07GaqgoWnxVYxgwJH8D0VCUyf7Xsk6HYNabqgjlXDQ6+F8pCARzwJ3L4lpsXohFgnO/6R43DHW/wi4rg3AAzICVhrhPKaNTHJBL6dLhOAEzi3QKcEY4LdBeX8YOZSC7te3hBAzqX/8HQDjAMI4Z99xZyv1mo2KKALc9VzBsHEJpDB8SCuImVr3GwbodXPI5uRI81gfjIWyxsXu0YvGefLI9MXOWi1Uy1O29Kw3/SWos+Xu1iuNHHatEou6b9NiP4EkIJmWC0vtUm9DOYpgDve7JmMHCch5HMA2YRF6FdonnfavLqD8bx3/Xh+5n7HUITPery2eQjC4awJANdC2Rny93acXw6iYI3A20KnNW8DWNZQ3/jjLHPoGjiZVT01IPgrJJlg5sGfBSIC7t4goxeJtpTHV+usr4uI9hai9il+/7BNT/wFKKlUkzUq9ci37xMqY8XaZHVz/P0R0tW9G3S6yRQbXDCbrYpb/KwUimLMYaBm24213uO5EJ/+A4d5iCM=</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="Projectnamn" full_name="Projectnamn"/>
+  <package name="SwedbankJSON" full_name="SwedbankJSON"/>
+  <package name="SwedbankJson" full_name="SwedbankJson">
+    <package name="Auth" full_name="SwedbankJson\Auth"/>
+  </package>
+  <package name="global" full_name="global"/>
+  <namespace name="SwedbankJson" full_name="SwedbankJson">
+    <namespace name="Auth" full_name="SwedbankJson\Auth"/>
+    <namespace name="Exception" full_name="SwedbankJson\Exception"/>
+  </namespace>
+  <deprecated count="0"/>
+</project>

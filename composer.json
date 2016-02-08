@@ -22,6 +22,9 @@
         "ramsey/uuid": "~2.8",
         "guzzlehttp/guzzle": "~6.0"
     },
+    "require-dev": {
+        "evert/phpdoc-md": "~0.1.1"
+    },
     "autoload": {
         "psr-4": {
             "SwedbankJson\\":"src/"
