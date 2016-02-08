@@ -19,7 +19,7 @@ use SwedbankJson\Exception\UserException;
 class SwedbankJson
 {
     /**
-     * @var object
+     * @var object Inlogging
      */
     private $_auth;
 
@@ -29,6 +29,8 @@ class SwedbankJson
     private $_selectedProfileID;
 
     /**
+     * SwedbankJson constructor.
+     *
      * @param AbstractAuth $auth Instans en av inloggingsmetoderna
      */
     public function __construct(AbstractAuth $auth)

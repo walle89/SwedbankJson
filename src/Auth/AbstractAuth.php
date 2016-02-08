@@ -2,7 +2,7 @@
 /**
  * Wrapper för Swedbanks stänga API för mobilappar
  *
- * @package SwedbankJSON
+ * @package SwedbankJson
  * @author  Eric Wallmander
  *          Date: 2014-02-25
  *          Time: 21:36
@@ -334,6 +334,8 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
+     * För sparande av session
+     *
      * @return array Lista på attribut som ska sparas
      */
     public function __sleep()
