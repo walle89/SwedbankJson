@@ -60,10 +60,10 @@ class SwedbankJson
         if (!isset($output->banks[0]->bankId))
         {
             if (!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
-                throw new UserException('Kontot är inte kopplad till Swedbank. Välj ett annat BankApp', 21);
+                throw new UserException('Kontot är inte kopplat till Swedbank. Välj istället en av Sparbankens banktyper (sparbanken, sparbanken_foretag eller sparbanken_ung)', 21);
 
             elseif ($output->hasSwedbankProfile AND !$output->hasSavingsbankProfile)
-                throw new UserException('Kontot är inte kund i Sparbanken. Välj ett annat BankApp', 22);
+                throw new UserException('Kontot är inte kopplat till Sparbanken. Välj istället en av Swedbanks banktyper (swedbank, swedbank_foretag eller swedbank_ung)', 22);
 
             else
                 throw new Exception('Profilsidan innerhåller inga bankkonton.', 23);

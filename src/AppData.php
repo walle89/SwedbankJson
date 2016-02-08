@@ -39,10 +39,10 @@ class AppData
     public static function bankAppId($bankApp)
     {
         if ($bankApp == 'swedbank_företag')
-            throw new UserException('BankApp "swedbank_företag" är inte längre giltigt. Använd "swedbank_foretag"', 1);
+            throw new UserException('Banktyp "swedbank_företag" är inte längre giltigt. Använd "swedbank_foretag"', 1);
 
         elseif (!isset(self::$appData[$bankApp]))
-            throw new UserException('BankApp existerar inte, använd något av följande: '.implode(', ', array_keys(self::$appData)), 2);
+            throw new UserException('Banktyp existerar inte, använd något av följande: '.implode(', ', array_keys(self::$appData)), 2);
 
         return self::$appData[$bankApp];
     }

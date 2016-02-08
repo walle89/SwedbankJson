@@ -44,7 +44,7 @@ class SecurityToken extends AbstractAuth
     /**
      * SecurityToken constructor.
      *
-     * @param string|array $bankApp           ID för vilken bank som ska anropas, eller array med appdata uppgifter.
+     * @param string|array $bankApp           Banktyp för vilken bankapp som ska användas, eller array med appdata uppgifter.
      * @param int          $username          Personnummer för inlogging till internetbanken
      * @param int          $challengeResponse Personlig kod för inlogging till internetbanken
      * @param bool         $debug             Sätt true för att göra felsökning, annars false eller null
