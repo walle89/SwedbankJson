@@ -20,13 +20,10 @@ use Exception;
 class UnAuth extends AbstractAuth
 {
     /**
-     * Grundläggande upgifter
+     * UnAuth constructor.
      *
      * @param string|array $bankApp ID för vilken bank som ska anropas, eller array med appdata uppgifter.
      * @param bool         $debug   Sätt true för att göra felsökning, annars false eller null
-     *
-     * @throws \Exception
-     * @throws \SwedbankJson\UserException
      */
     public function __construct($bankApp, $debug = false)
     {

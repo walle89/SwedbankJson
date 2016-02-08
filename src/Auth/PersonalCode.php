@@ -13,6 +13,10 @@ namespace SwedbankJson\Auth;
 use SwedbankJson\AppData;
 use Exception;
 
+/**
+ * Class PersonalCode
+ * @package SwedbankJson\Auth
+ */
 class PersonalCode extends AbstractAuth
 {
     /**
@@ -26,15 +30,12 @@ class PersonalCode extends AbstractAuth
     private $_password;
 
     /**
-     * Grundläggande upgifter
+     * PersonalCode constructor.
      *
      * @param string|array $bankApp  ID för vilken bank som ska anropas, eller array med appdata uppgifter.
      * @param int          $username Personnummer för inlogging till internetbanken
      * @param string       $password Personlig kod för inlogging till internetbanken
      * @param bool         $debug    Sätt true för att göra felsökning, annars false eller null
-     *
-     * @throws \Exception
-     * @throws \SwedbankJson\UserException
      */
     public function __construct($bankApp, $username, $password, $debug = false)
     {

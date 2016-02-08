@@ -1,13 +1,38 @@
 <?php
+/**
+ * Wrapper för Swedbanks stänga API för mobilappar
+ *
+ * @package SwedbankJson
+ * @author  Eric Wallmander
+ *          Date: 2016-01-04
+ *          Time: 23:26
+ */
 
 namespace SwedbankJson\Exception;
 
+/**
+ * Class ApiException
+ * @package SwedbankJson\Exception
+ */
 class ApiException extends \RuntimeException implements SwedbankJsonException
 {
+    /**
+     * @var string Meddelande
+     */
     private $_response;
 
+    /**
+     * @var array Felmeddelanden
+     */
     private $_errorMessages = [];
 
+    /**
+     * ApiException constructor.
+     *
+     * @param string          $response Meddelande
+     * @param int             $code     Felkod
+     * @param \Exception|null $previous Exception föregående
+     */
     public function __construct($response, $code = 0, \Exception $previous = null)
     {
         $this->_response = $response;
@@ -40,7 +65,9 @@ class ApiException extends \RuntimeException implements SwedbankJsonException
     }
 
     /**
-     * @return string
+     * Hämta meddelande
+     *
+     * @return string Meddelande
      */
     public function getResponse()
     {
@@ -48,7 +75,9 @@ class ApiException extends \RuntimeException implements SwedbankJsonException
     }
 
     /**
-     * @return array
+     * Hämta felmeddelanden
+     *
+     * @return array Felmeddelanden
      */
     public function getErrorMessages()
     {

@@ -2,7 +2,7 @@
 /**
  * Wrapper för Swedbanks stänga API för mobilappar
  *
- * @package SwedbankJSON
+ * @package SwedbankJson
  * @author  Eric Wallmander
  *          Date: 2014-02-25
  *          Time: 21:36
@@ -14,6 +14,10 @@ use SwedbankJson\AppData;
 use Exception;
 use SwedbankJson\Exception\UserException;
 
+/**
+ * Class SecurityToken
+ * @package SwedbankJson\Auth
+ */
 class SecurityToken extends AbstractAuth
 {
 
@@ -23,30 +27,27 @@ class SecurityToken extends AbstractAuth
     private $_username;
 
     /**
-     * @var int
+     * @var int Engångskod eller svarskod
      */
     private $_challengeResponse;
 
     /**
-     * @var int
+     * @var int Kontrolkod från APIet
      */
     private $_challenge = null;
 
     /**
-     * @var bool
+     * @var bool Om det är engångskod eller ej
      */
     private $_useOneTimePassword;
 
     /**
-     * Grundläggande upgifter
+     * SecurityToken constructor.
      *
      * @param string|array $bankApp           ID för vilken bank som ska anropas, eller array med appdata uppgifter.
      * @param int          $username          Personnummer för inlogging till internetbanken
      * @param int          $challengeResponse Personlig kod för inlogging till internetbanken
      * @param bool         $debug             Sätt true för att göra felsökning, annars false eller null
-     *
-     * @throws \Exception
-     * @throws \SwedbankJson\UserException
      */
     public function __construct($bankApp, $username, $challengeResponse = 0, $debug = false)
     {
@@ -58,7 +59,9 @@ class SecurityToken extends AbstractAuth
     }
 
     /**
-     * @return object
+     * Hämta kontrollkod från APIet
+     *
+     * @return string Kontrollkoden
      * @throws Exception
      */
     public function getchallenge()
@@ -77,7 +80,7 @@ class SecurityToken extends AbstractAuth
             if (!isset($output->links->next->uri))
                 throw new Exception('Inlogging misslyckades. Kontrollera användarnamn och authorization-nyckel.', 10);
 
-            $this->_challenge          = (int)$output->challenge;
+            $this->_challenge          = $output->challenge;
             $this->_useOneTimePassword = (bool)$output->useOneTimePassword;
         }
 
@@ -86,11 +89,12 @@ class SecurityToken extends AbstractAuth
 
     /**
      * Inlogging
+     *
      * Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t
      *
-     * @param int $challengeResponse
+     * @param int $challengeResponse Engångskod eller svarskod
      *
-     * @return bool
+     * @return bool Om inloggingen lyckades eller ej
      * @throws Exception
      */
     public function login($challengeResponse = 0)
@@ -118,7 +122,9 @@ class SecurityToken extends AbstractAuth
     }
 
     /**
-     * @param int $challengeResponse
+     * Sätt engångskod eller svarskod
+     *
+     * @param string $challengeResponse Engångskod eller svarskod
      */
     public function setchallengeResponse($challengeResponse)
     {
@@ -126,7 +132,9 @@ class SecurityToken extends AbstractAuth
     }
 
     /**
-     * @return boolean
+     * Om det är en engångskod eller ej
+     *
+     * @return boolean Om det är en engångskod eller ej
      */
     public function isUseOneTimePassword()
     {

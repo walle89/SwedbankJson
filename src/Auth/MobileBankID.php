@@ -2,7 +2,7 @@
 /**
  * Wrapper för Swedbanks stänga API för mobilappar
  *
- * @package SwedbankJSON
+ * @package SwedbankJson
  * @author  Eric Wallmander
  *          Date: 2014-02-25
  *          Time: 21:36
@@ -25,12 +25,12 @@ class MobileBankID extends AbstractAuth
     private $_username;
 
     /**
-     * @var bool
+     * @var bool Om BankId har tidigare bilvit verifierad eller ej
      */
     protected $_verified = false;
 
     /**
-     * Grundläggande upgifter för mobilt BankID
+     * MobileBankID constructor.
      *
      * @param string|array $bankApp  ID för vilken bank som ska anropas, eller array med appdata uppgifter.
      * @param int          $username Personnummer för inlogging till internetbanken
@@ -115,6 +115,10 @@ class MobileBankID extends AbstractAuth
     }
 
     /**
+     * För sparande av session
+     *
+     * Modifierad för att inkludera $_verified
+     *
      * @return array Lista på attribut som ska sparas
      */
     public function __sleep()
