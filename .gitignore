@@ -3,7 +3,8 @@ exmaple.php
 composer.phar
 vendor/
 .DS_Store
-docs/refference/phpdoc-cache-*
+phpdoc-cache-*
+phpdoc.dist.xml
 
 ### Local Vagrant dev ###
 tests/

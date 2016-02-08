@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>SwedbankJson</title>
+    <transformations>
+        <template name="xml"/>
+    </transformations>
+</phpdoc>
