@@ -146,7 +146,7 @@ abstract class AbstractAuth implements AuthInterface
     protected function setAppData($appdata)
     {
         if (!is_array($appdata) OR empty($appdata['appID']) OR empty($appdata['useragent']))
-            throw new Exception('Fel inmatning av AppData!');
+            throw new Exception('Fel inmatning av AppData!', 3);
 
         $this->_appID       = $appdata['appID'];
         $this->_userAgent   = $appdata['useragent'];
@@ -320,7 +320,7 @@ abstract class AbstractAuth implements AuthInterface
     protected function persistentSession()
     {
         if (session_status() !== PHP_SESSION_ACTIVE OR !isset($_SESSION))
-            throw new Exception('Kan ej skapa session. Se till att session_start() är satt.');
+            throw new Exception('Kan ej skapa session. Se till att session_start() är satt.',4);
 
         $this->_persistentSession = true;
     }

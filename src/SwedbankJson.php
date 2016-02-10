@@ -269,7 +269,7 @@ class SwedbankJson
         $transactions = $this->listRegisteredTransfers();
 
         if (empty($transactions->links->next->uri))
-            throw new UserException('Det finns inga transaktioner att bekräfta');
+            throw new UserException('Det finns inga transaktioner att bekräfta', 55);
 
         // confirmTransferId
         preg_match('#transfer/confirmed/(.+)#iu', $transactions->links->next->uri, $m);
