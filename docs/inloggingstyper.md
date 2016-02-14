@@ -34,7 +34,7 @@ Swedbank har valt att dela upp sina tjänster i flera olika mobilappar. Man beh�
 | sparbanken_ung | Sparbanken Ung |
 
 ## Ingen inlogging
-Absoult den enklaste inloggingstypen som enbart kräver att man anger banktyp. Detta gör att den går att automatisera utan användarens inverkan. Dock kan denna inloggningstyp enbart användas till ett fåtal förfrågningar så som snabbsaldo.
+Absoult den enklaste inloggingstypen som enbart kräver att man anger banktyp. Detta gör att den går att automatisera utan användarens inverkan. Dock kan denna inloggningstyp enbart användas till ett fåtal förfrågningar så som [snabbsaldo](introduktion.md#snabbsaldo).
 
 ```php
 $auth     = new SwedbankJson\Auth\UnAuth($bankApp);
