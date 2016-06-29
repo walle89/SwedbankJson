@@ -105,10 +105,4 @@ Tanken med flödet med exempelkoden ovan blir som följande:
 För en mer elegant lösning rekommenderas att man lägger inloggingsverifieringen i ett ajax-anrop som kontrolleras exempelvis var femte sekund och skickar vidare användaren när inloggingen är verifierad. 
 
 ## Personlig kod (nedlagd)
-Swedbank hade fram till februari 2016 en inloggingstyp som innebar att det räckte med personnummer och ett kortare lösenord för att kunna logga in och exempelvis titta på transaktioner.
-
-```php
-$password = 'fakePW';
-$auth     = new SwedbankJson\Auth\PersonalCode($bankApp, $username, $password);
-$bankConn = new SwedbankJson\SwedbankJson($auth);
-```
+Swedbank hade fram till februari 2016 en inloggingstyp som gjorde det möjligt att logga in med personnummer och ett kortare lösenord för att exampelvis kunna visa transaktioner.
