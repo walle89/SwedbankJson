@@ -22,6 +22,11 @@
         "ramsey/uuid": "~2.8",
         "guzzlehttp/guzzle": "~6.0"
     },
+    "require-dev": {
+        "rtheunissen/guzzle-log-middleware": "^0.4.0",
+        "monolog/monolog": "^1.17",
+        "cogpowered/finediff": "0.3.*"
+    },
     "autoload": {
         "psr-4": {
             "SwedbankJson\\":"src/"

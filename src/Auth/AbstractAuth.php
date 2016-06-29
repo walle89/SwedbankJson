@@ -11,9 +11,11 @@
 namespace SwedbankJson\Auth;
 
 use Exception;
-
 use Rhumsaa\Uuid\Uuid;
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Cookie\SetCookie;
 use GuzzleHttp\Cookie\CookieJar;
@@ -21,6 +23,10 @@ use GuzzleHttp\Cookie\SessionCookieJar;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use SwedbankJson\Exception\ApiException;
+use SwedbankJson\Exception\UserException;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Formatter\LineFormatter;
 
 /**
  * Class AbstractAuth
@@ -254,6 +260,22 @@ abstract class AbstractAuth implements AuthInterface
         {
             $this->_cookieJar = ($this->_persistentSession) ? new SessionCookieJar(self::cookieJarSession, true) : new CookieJar();
 
+            $stack = HandlerStack::create();
+
+            if ($this->_debug)
+            {
+                if(!class_exists(Logger::class))
+                    throw new UserException('Komponenter för logging saknas (Monolog) som krävs för debugging.', 1);
+
+                $log   = new Logger('Log');
+
+                $stream = new StreamHandler('swedbankjson.log');
+                $stream->setFormatter(new LineFormatter("[%datetime%]\n\t%message%\n", null, true));
+                $log->pushHandler($stream);
+
+                $stack->push(Middleware::log($log, new MessageFormatter("{req_headers}\n\n{req_body}\n\t{res_headers}\n\n{res_body}\n")));
+            }
+
             $this->_client = new Client([
                 'base_uri'        => $this->_baseUri.$this->_apiVersion.'/',
                 'headers'         => [
@@ -265,10 +287,10 @@ abstract class AbstractAuth implements AuthInterface
                     'Proxy-Connection' => 'keep-alive',
                     'User-Agent'       => $this->_userAgent,
                 ],
-                'cookies'         => $this->_cookieJar,
                 'allow_redirects' => ['max' => 10, 'referer' => true],
                 'verify'          => false, // Skippar SSL-koll av Swedbanks API certifikat. Enbart för förebyggande syfte.
-                'debug'           => $this->_debug,
+                'handler'         => $stack,
+                //'debug'           => $this->_debug,
             ]);
         }
 

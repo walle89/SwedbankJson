@@ -4,6 +4,7 @@ Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här
 ## [Unreleased][unreleased]
 ### Added
 - Överför pengar mellan konton
+- Möjligt att logga HTTP transaktioner till fil för debuggning
 
 ### Changed
 - Uppdatering av appversion för samtliga Swedbank-appar.
@@ -35,7 +36,7 @@ Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här
 
 ## [0.5.2] - 2015-04-21
 ### Changed
-- Uppdatering av Guzzle beroende.
+- Uppdatering av Guzzle beroenden.
 
 ### Fixed
 - Getchallenge() sparar inte utmaningen inom en session. Issue #22
@@ -74,7 +75,7 @@ Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här
 ### Changed
 - Uppdaterad appversion för Swedbank och Sparbanken
 - Uppdaterad dokumenation
-- Testad med Guzzle 4.1 och fungerar
+- Testad med Guzzle 4.1
 
 ### Deprecated
 - BankID "swedbank_företag" har bytt namn till "swedbank_foretag"
@@ -85,7 +86,7 @@ Alla märkbara förändringar i detta projekt kommer att dokumenteras i den här
 
 ### Changed
 - Småfix av dokumenation
-- Testad med Guzzle 4.1 och fungerar
+- Testad med Guzzle 4.1
 
 ### Fixed
 - Fix för att radera cookie-fil efter kör förfrågan.
