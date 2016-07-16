@@ -1,72 +1,59 @@
 # SwedbankJson
 
-Inofficiell wrapper för det API som används för Swedbanks och Sparbankernas mobilappar (privatperson, ungdom och företag). Det finns flertalet stöd för olika inloggningstyper:
+Unoffical API client for the Swedbank's and Sparbankerna's mobile apps in Sweden. With this API client, you can do the following:
 
-* Mobilt BankID
-* Säkerhetsdosa med engångskod
-* Ingen inlogging (för vissa funktioner, tex. snabbsaldo) 
+* Overview of your bank accounts, lones and loans, debit and credit cards.
+* List account transactions
+* Transfer money between accounts
+* Login with different profiles, ideal for Swedbank Företag customers.
+* Activate, deactivate, and view quick balance (aka. snabbsaldo)
 
-**Detta kan wrappen göra**
+Supported authentication methods
 
-* Översikt av tillgängliga konton så som lönekonto, sparkonton investeringsbesparningar, lån, bankkort och kreditkort.
-* Lista ett kontos samtliga transaktioner.
-* Företagsinloggingar kan välja att lista konton utifrån en vald profil.
-* Aktivera, avaktivera och visa snabbsaldo.
-* Kommunicationen sker krypterat enbart med Swedbankds servrar utan mellanhänder.
-* Autentiseringsnyckel som krävs för inlogging genereras automatiskt per session (standard) eller manuellt sätta en statisk nykel.
+* Mobile BankID
+* Security Token with single-use code
+* No login (used for some functionality eg. quick balance)
 
-[Fler funktioner finns planerade](https://github.com/walle89/SwedbankJson/labels/todo).
+Traffic between Swedbank servers and the API client uses the same encryption that Swedbank apps using and without middlemen.
 
-## Kodexempel
-Ett exempel på hur man listar transaktioner för ett konto. Inloggingstypen är [säkerhetsdosa med engångskod](docs/inloggingstyper.md#säkerhetsdosa-med-engångskod). 
+## Installation instructions and documentation
+
+* [Installation and introduction](INSTALL.md)
+* [Authentication methods](docs/authentication.md)
+* [Reference](docs/reference.md)
+
+## Code example
+Show bank statements with authentication method [security token with one time code](docs/authentication.md#security-token-with-one-time-code).
 
 ```php
 $auth     = new SwedbankJson\Auth\SecurityToken($bankApp, $username, $challengeResponse);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 
 $accountInfo = $bankConn->accountDetails();
-$bankConn->terminate(); // Utlogging
+$bankConn->terminate(); // Sign out
 
-echo 'Kontoutdrag
+echo 'Bank statements
 <pre>';
 print_r($accountInfo);
 ```
 
-Alla API:er kräver inte någon inlogging. Ett exempel är snabbsaldo.
+All APIs does not require login. Quick balance example.
 ```php
 $auth     = new SwedbankJson\Auth\UnAuth($bankApp);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 
 $quickBalance = $bankConn->quickBalance($subID);
 
-echo 'Snabbslado
+echo 'Quick balance
 <pre>';
 print_r($quickBalance);
 ```
 
-## Dokumentation
+## Feedback, questions, bugs, etc.
 
-* [Introduktion](docs/introduktion.md)
-* [Inloggingstyper](docs/inloggingstyper.md)
-* [Refferens](docs/refferens.md)
+Please search for similar issues before [creating a new issue](https://github.com/walle89/SwedbankJson/issues). It's most your question have alredy been awnsered or it's a know bug or issue. Also check the documentation.
 
-## Uppdateringar
+Github issues is the only way to get support. 
 
-Främsta anledningen till uppdateringar behöver göras är att Swedbank ändrar AppID och User Agent för varje uppdatering av sina appar. AppID och User Agent används som en del av atuetensierings prosessen.
-Eventuellt justera versionen i composer.json och kör sedan `composer update`.
-
-## Feedback, frågor, buggar, etc.
-
-Skapa en [Github Issue](https://github.com/walle89/SwedbankJson/issues), men var god kontrollera att det inte finns någon annan som skapat en likande issue (sökfunktinen är din vän).
-
-## Andra projekt med Swedbanks API
-* [SwedbankSharp](https://github.com/DarkTwisterr/SwedbankSharp) av [DarkTwisterr](https://github.com/DarkTwisterr) - C# med .NET implementation.
-* [Swedbank-Cli](https://github.com/spaam/swedbank-cli) av [Spaam](https://github.com/spaam) - Swedbank i terminalen. Skriven i Python.
-* [SwedbankJson](https://github.com/viktorgardart/SwedbankJson) av [Viktor Gardart](https://github.com/viktorgardart) - Objective-C implementation (för iOS).
-
-## Licens (MIT)
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+## Licens
+[MIT](LICENSE)

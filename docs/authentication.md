@@ -1,13 +1,13 @@
-# Inloggingstyper
+# Authentication methods
 
-* [Inledning](#inledning)
+* [Intro](#intro)
 * [Ingen inlogging](#ingen-inlogging)
-* [Säkerhetsdosa med engångskod](#säkerhetsdosa-med-engångskod)
+* [Security token with one time code](#security-token-with-one-time-code)
 * [Säkerhetsdosa med kontrollnummer och svarskod](#säkerhetsdosa-med-kontrollnummer-och-svarskod)
 * [Mobilt BankID](#mobilt-bankid)
 * [Personlig kod](#personlig-kod-nedlagd)
 
-## Inledning
+## Intro
 Gemensama instälningar för kodexempelen nedan.
 
 ```php
@@ -41,7 +41,7 @@ $auth     = new SwedbankJson\Auth\UnAuth($bankApp);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 
-## Säkerhetsdosa med engångskod
+## Security token with one time code
 Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dessa är engångskod, som ger ett 8-siffrig kod när man har låst upp dosan och väljer 1 när "Appli" visas.
 
 Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
