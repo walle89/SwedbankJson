@@ -1,108 +1,128 @@
 # Authentication methods
 
-* [Intro](#intro)
-* [Ingen inlogging](#ingen-inlogging)
-* [Security token with one time code](#security-token-with-one-time-code)
-* [Säkerhetsdosa med kontrollnummer och svarskod](#säkerhetsdosa-med-kontrollnummer-och-svarskod)
-* [Mobilt BankID](#mobilt-bankid)
-* [Personlig kod](#personlig-kod-nedlagd)
+* [Introduction](#introduction)
+* [No authentication](#no-authentication)
+* [Mobile BankID](#mobile-bankid)
+* [Security token](#security-token)
+* [Personal code - Discontinued](#personal-code-discontinued)
 
-## Intro
-Gemensama instälningar för kodexempelen nedan.
+## Introduction
+Common settings for code examples below.
 
 ```php
-// Inställningar
-$username = 198903060000; // Person- eller organisationsnummer
-$bankApp  = 'swedbank';   // Banktyp 
+// Settings
+$username = 198903060000; // Personal identity number or corporate identity number (personnummer/organisationsnummer)
+$bankApp  = 'swedbank';   // Bank type
 ```
 
-### Banktyper
-Swedbank har valt att dela upp sina tjänster i flera olika mobilappar. Man behöver välja banktyp beroende på om man är kund i Swedbank eller Sparbanken samt om man är privatperson, privat eller ungdom. $bankApp har enbart stöd för exakt en banktyp i taget och ska ange som en sträng.
+### Bank types
+This API client is based on the same API that Swedbank using for there mobile apps. Before first run, you need to set $bankApp to one of the 6 apps form the list below.
+What to $bankApp value to choose depends on the bank that the user is customer of. The rule of thumb is to choose whatever Swedbank's or Sparbanken's mobile app the user is using.
 
 #### Swedbank
-| $bankApp | Mobilapp |
-| --- | --- |
-| swedbank | Swedbank (för privatpersoner) |
-| swedbank_foretag | Swedbank Företag |
-| swedbank_ung | Swedbank Ung |
+| $bankApp | Intended for | Mobile app name |
+| --- | --- | --- |
+| swedbank | Private individual | Swedbank | 
+| swedbank_foretag | Organisation | Swedbank Företag | 
+| swedbank_ung | Youth | Swedbank Ung |
 
 #### Sparbanken
-| $bankApp | Mobilapp |
-| --- | --- |
-| sparbanken | Sparbanken (för privatpersoner) |
-| sparbanken_foretag | Sparbanken Företag |
-| sparbanken_ung | Sparbanken Ung |
+| $bankApp | Intended for | Mobile app name |
+| --- | --- | --- |
+| sparbanken | Private individual | Sparbanken | 
+| sparbanken_foretag | Organisation | Sparbanken Företag | 
+| sparbanken_ung | Youth | Sparbanken Ung |
 
-## Ingen inlogging
-Absoult den enklaste inloggingstypen som enbart kräver att man anger banktyp. Detta gör att den går att automatisera utan användarens inverkan. Dock kan denna inloggningstyp enbart användas till ett fåtal förfrågningar så som [snabbsaldo](introduktion.md#snabbsaldo).
+If you are unsure, 'swedbank' or 'swedbank_foretag' is often a quite a safe bet. There is no reliable way to find out in which bank the user is a customer of.
+
+## No authentication
+As the name suggests, for some API requests (eg. [Quick balance](../INSTALL.md#quick-balance)) there is no authentication required.
+This makes it very easy to automatically fetch information with a cron job.
+But most of Swedbank's APIs requires authentication with Mobile BankID or security token. 
 
 ```php
 $auth     = new SwedbankJson\Auth\UnAuth($bankApp);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 
-## Security token with one time code
-Det finns två typer av varianter för inlogging med säkerhetsdosa. Ett av dessa är engångskod, som ger ett 8-siffrig kod när man har låst upp dosan och väljer 1 när "Appli" visas.
+## Mobile BankID
+Mobile [BankID](https://www.bankid.com/en/) is a electronic identification (eID) issued by Swedish banks to authenticate persons and organizations with a smartphone app.
+To use this authentication method, you must download the "BankID säkerhetsapp" app by Finansiell ID-Teknik BID AB for [IOS](https://itunes.apple.com/us/app/bankid-sakerhetsapp/id433151512?mt=8) or [Andorid](https://play.google.com/store/apps/details?id=com.bankid.bus&hl=en)
+and follow the instructions in the app to activate BankID. If you use Mobile BankId today for sign in into one of the Swedbank apps, you are all set.
 
-Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
+The authentication process takes several steps to complete and between each step requires the session is saved. 
 
-**Välj säkerhetsdosa -> Fyll i engångskod från säkerhetsdosan -> Inloggad**
+```php
+session_start();
+
+// Step 1 - Start the authentication process
+if (!isset($_SESSION['swedbankjson_auth']))
+{
+    $auth = new SwedbankJson\Auth\MobileBankID($bankApp, $username);
+    $auth->initAuth();
+    exit("Open the BankID app and confirm the login. Then refresh the page.");
+}
+
+// Step 2 - Verify authentication
+$auth = unserialize($_SESSION['swedbankjson_auth']);
+if (!$auth->verify())
+    exit("You updated the page, but the login is not approved in the BankID app. Please try again.");
+
+// Steg 3 - You are in!
+$bankConn = new SwedbankJson\SwedbankJson($auth);
+```
+
+The idea of the flow of the sample code above is as follows:
+
+**Visit site -> Open the BankID app and verify -> Refresh page -> Authenticated**
+
+This sample code is not an elegant solution. To make it more user friendly, use Javascript and Ajax to check login verification every 5 secounds and automatically forward the user to the next page when verified.
+
+## Security token
+Swedbank provides a hardware security token for all its Internet Bank customers. There are two main variations of the security tokens isssued by the bank:
+
+1. [Security token with one time code.](#security-token-with-one-time-code)
+1. [Security token with control number and reply code.](#security-token-with-control-number-and-reply-code)
+
+Both requires a pin number to unlock the security token before any codes can be generated. 
+
+[Read more about Swedbank security tokens](https://hjalp.swedbank.se/sidhjalp-internetbanken-privat/sakerhetsdosa/svarta-ovala-dosan/index.htm) (in Swedish).
+
+### Security token with one time code
+This type of security token generates a one time use 8 digit code. To generate this code, you need to press 1 when "Appli" displays on the screen.
+
+From the perspective of login in into one of the mobile apps, the flow should look like this:
+
+**Choose "Säkerhetsdosa" -> Enter the code from security token -> Authenticated**
 
 ```php
 if(empty($_POST['challengeResponse'])
 {
     echo '
     <form action="" method="post">
-        <p>Fyll i 8-siffrig engångskod från säkerhetsdosa</p>
+        <p>Please enter the 8 digit time code from the security token</p>
         <input name="challengeResponse" type="text" />
-        <button>Logga in</button>
+        <button>Sign in</button>
     </form>';
     exit;
 }
 if(!is_numeric($_POST['challengeResponse']))
-    exit('Fel indata!');
+    exit('Wrong code!');
 
 $auth     = new SwedbankJson\Auth\SecurityToken($bankApp, $username, $_POST['challengeResponse']);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 
-## Säkerhetsdosa med kontrollnummer och svarskod
-Den andra typen av inlogginsmetod för säkerhetsdosa är kontrollnummer med svarskod. Denna metod innebär att man får en 8-siffrigt kontrollnummer som ska matas in i dosan och som svar får man ett nytt 8-siffrigt svarskod som skrivs in i antingen appen eller i internetbanken.
+### Security token with control number and reply code
+Unlike security token with one time code, this type of token needs a 8 digit control number before it can generate a reply code.
+The reply code is a 8 digit number used to enter into the app to verify authentication.
 
-Utgår man från inlogginsflöde i mobilappen ser den ut som följande:
+From the perspective of login in into one of the mobile apps, the flow should look like this:
 
-**Välj säkerhetsdosa -> Mata in kontrollnummer i dosan -> Skriv av savarskod -> Inloggad**
+**Choose "Säkerhetsdosa" -> Enter control number into security token -> Enter reply code -> Authenticated**
 
-För närvarande finns det inte stöd i wrappern för denna typ av inlogging.
+Currenty there is only an alfa implementation of this authentication method. If you are intrested to try it out, [send me an email](http://wallmander.net/contact/) (NOTE: *Not* for support, [create an issue for that](https://github.com/walle89/SwedbankJson/issues)).
 
-## Mobilt BankID
-Inloggingsprocessen för mobilt BankID sker i flera steg som kräver att sessionen sparas mellan förfrågningarna.
-
-```php
-session_start();
-
-// Inled inloggning
-if (!isset($_SESSION['swedbankjson_auth']))
-{
-    $auth = new SwedbankJson\Auth\MobileBankID($bankApp, $username);
-    $auth->initAuth();
-    exit('Öppna BankID-appen och godkänn inloggingen. Därefter uppdatera sidan.');
-}
-
-// Verifiera inlogging
-$auth = unserialize($_SESSION['swedbankjson_auth']);
-if (!$auth->verify())
-    exit("Du uppdaterade sidan, men inloggningen är inte godkänd i BankID-appen. Försök igen.");
-
-// Inloggad
-$bankConn = new SwedbankJson\SwedbankJson($auth);
-```
-
-Tanken med flödet med exempelkoden ovan blir som följande:
-
-**Gå till sidan -> Öppna BankID appen och verifiera -> Uppdatera sidan -> Inloggad**
-
-För en mer elegant lösning rekommenderas att man lägger inloggingsverifieringen i ett ajax-anrop som kontrolleras exempelvis var femte sekund och skickar vidare användaren när inloggingen är verifierad. 
-
-## Personlig kod (nedlagd)
-Swedbank hade fram till februari 2016 en inloggingstyp som gjorde det möjligt att logga in med personnummer och ett kortare lösenord för att exampelvis kunna visa transaktioner.
+## Personal code - Discontinued
+Swedbank shuted down personal code authentication method in February 2016.
+This authentication type allowed to sign in with personal identity number or corporate identity number as username and a password to show bank statements.
