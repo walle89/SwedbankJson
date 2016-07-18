@@ -2,12 +2,12 @@
 
 * [System requirements](#system-requirements)
 * [Installation with Composer](#installation-with-composer)
-* [Example code](#dxample-code)
+* [Example code](#example-code)
 * [Bank statements](#bank-statements)
-* [Välja konto](#välja-konto)
-* [Profilväljare (företag)](#profilväljare-företag)
-* [Snabbsaldo](#snabbsaldo)
-* [Flytta pengar](#flytta-pengar)
+* [Selecting specific account](#selecting-specific-account)
+* [Profile selector](#profile-selector)
+* [Quick balance](#quick-balance)
+* [Transfer money](#transfer-money)
 
 ## System requirements
 
@@ -74,59 +74,59 @@ echo '<strong>Bank statements</strong>';
 print_r($accountInfo);
 ```
 
-## Välja konto
-För att lista och välja ett specifikt konto som man hämtar sina transaktioner kan man modifiera ovanstående kod till följande:
+## Selecting specific account
+To choose a specific account to get bank statements from, you can modify the above code to the following:
 
 ```php
-$accounts = $bankConn->accountList(); // Lista på tillgängliga konton
+$accounts = $bankConn->accountList(); // Account list
 
-$accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[1]->id); // För konto #2 (gissningsvis något sparkonto)
+$accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[1]->id); // Select account 2
 
-$bankConn->terminate(); // Utlogging
+$bankConn->terminate(); // Sign out
 
-echo '<strong>Konton</strong>';
+echo '<strong>Accounts</strong>';
 print_r($accounts);
 
-echo '<strong>Kontoutdrag</strong>';
+echo '<strong>Bank statements</strong>';
 print_r($accountInfo);
 ```
 
-## Profilväljare (företag)
-I Swedbanks API finns det stöd för att ha flera företagsprofiler kopplat till sin inlogging. Glöm inte att ändra BANK_APP till ett av Swedbanks företagsappar.
+## Profile selector
+The Swedbank API have support for multiple company profiles linked to a user. Do not forget to change BANK_APP to either swedbank_foretag or sparbanken_foretag.
 
 ```PHP
-$profiles = $bankConn->profileList(); // Profiler
+$profiles = $bankConn->profileList(); // Profiles
 
-$accounts = $bankConn->accountList($profiles->corporateProfiles[0]->id); // Tillgängliga konton utifrån vald profil
+$accounts = $bankConn->accountList($profiles->corporateProfiles[0]->id); // Available accounts based on the selected profile
 
 $accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[0]->id);
 
-$bankConn->terminate(); // Utlogging
+$bankConn->terminate(); // Sign out
 
-echo '<strong>Profiler</strong>';
+echo '<strong>Profiles</strong>';
 print_r($profiles);
 
-echo '<strong>Konton</strong>';
+echo '<strong>Accounts</strong>';
 print_r($profiles);
 
-echo '<strong>Kontoutdrag</strong>';
+echo '<strong>Bank statements</strong>';
 print_r($accountInfo);
 ```
 
 ## Quick balance 
-Ett av få API-anrop som kan helautomatiseras, då det inte kräver någon inlogging. Detta föutsätter att man skaffar ett SubscriptionId (se "[Hur hämtar jag SubscriptionId?](#hur-hämtar-jag-subscriptionid)").
-SubscriptionId är ett unikt ID per konto som kan bland annat ge följande information:
+One of few APIs that can be accessed without BankID or security token. All you need is to get a SubscriptionId (see "[How do I get a SubscriptionId?](#how-do-i-get-a-subscriptionid)")
+SubscriptionId is a unique ID per account that can be used to get the following information:
 
-* Aktuellt totalsaldo för kontot
-* Om det finns eller inte finns notiser för användaren (ex. nyinkomen e-faktura)
+* Current total balance of the account
+* If there are notifications for the user (eg. newly received e-invoice)
 
-Detta ID är tänkt att sparas och användas varje gång man begär snabbsaldo.
+This ID is supposed to be created and used each time you request quick balance .
 
 ```php
 <?php 
 require 'vendor/autoload.php';
 
-// Inställningar
+// Settings
 $bankApp        = 'swedbank';
 $subscriptionId = 'ExampleXX2GCi3333YpupYBDZX75sOme8Ht9dtuFAKE=';
 
@@ -138,8 +138,8 @@ var_dump($bankConn->quickBalance($subscriptionId));
 
 ```
 
-### Hur hämtar jag SubscriptionId?
-Enklast är att använda detta verktyg:
+### How do I get a SubscriptionId?
+The easiest way is use this tool:
 
 ```php
 <?php 
@@ -147,111 +147,111 @@ require 'vendor/autoload.php';
 
 session_start();
 
-// Inställningar
+// Settings
 $bankApp  = 'swedbank';
 $username = 8903060000; 
 
-// Inled inloggning
+// Besgin sign in
 if (!isset($_SESSION['swedbankjson_auth']))
 {
     $auth = new SwedbankJson\Auth\MobileBankID($bankApp, $username);
     $auth->initAuth();
-    exit('Öppna BankID-appen och godkänn inloggingen. Därefter uppdatera sidan.');
+    exit('Please open the BankID app and confirm the login. Then refresh this page.');
 }
 
-// Verifiera inlogging
+// Verify sign in
 $auth = unserialize($_SESSION['swedbankjson_auth']);
 if (!$auth->verify())
-    exit("Du uppdaterade sidan, men inloggningen är inte godkänd i BankID-appen. Försök igen.");
+    exit("You updated the page, but the login has not been approved in the BankID app. Please try again.");
 
-// Inloggad
+// You are in
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 
 if (empty($_POST['quickbalanceSubscriptionID']))
 {
     $quickBalanceAccounts = $bankConn->quickBalanceAccounts();
 
-    echo '<form action="" method="post"><p>Välj konto för subscriptionId</p><select name="quickbalanceSubscriptionID">';
+    echo '<form action="" method="post"><p>Select account konto for SubscriptionId</p><select name="quickbalanceSubscriptionID">';
 
     foreach ($quickBalanceAccounts->accounts as $account)
         echo '<option value="'.$account->quickbalanceSubscription->id.'">'.$account->name.'</option>';
 
-    echo '</select><button>Skapa prenumeration</button></form>';
+    echo '</select><button>Create subscription</button></form>';
     exit;
 }
 
 $subInfo = $bankConn->quickBalanceSubscription($_POST['quickbalanceSubscriptionID']);
-echo "<p>Ditt subscriptionId: {$subInfo->subscriptionId}</p>
-<p>Testa direkt:</p>var_dump(\$bankConn->quickBalance('{$subInfo->subscriptionId}'));";
+echo "<p>Your SubscriptionId: {$subInfo->subscriptionId}</p>
+<p>Test it right away:</p>var_dump(\$bankConn->quickBalance('{$subInfo->subscriptionId}'));";
 
 $auth->terminate(); // Sign out
 ```
 
-## Transfer moeny
-Just nu stöds direktöverförningar samt schemalagd och periodiserade överförningar mellan egna konton.
-Möjligtvis finns det stöd för andra typer av överförningar, under förutsättning att de inte behöver signeras.
+## Transfer money
+Currently there is only support for money transfares between accounts you own. It is possible that other types of transfers is supported, provided that they do not need to be signed.
 
-Exempel på hur man flyttar 0,99 kronor mellan två konton
+Examples of how to move the 0.99 SEK between two accounts.
 
 ```php
 echo '<pre>':
 $baseInfo = $bankConn->baseInfo();
 
-// Hitta konton som passar utifrån dina förutsättningar
+// Find accounts that matches your requirements
 print_r($baseInfo);
 
-// Ersätts med fördel av ett fomulär
-// OBS! Ändra detta innan du testar koden!
-$fromAccountId      = $baseInfo->fromAccountGroup[0]->accounts[0]->id;      // Ex. Lönekonto
-$recipientAccountId = $baseInfo->recipientAccountGroup[1]->accounts[3]->id; // Ex. Semensterkonto
+// Sholud be replaced with a form
+// NOTE: Change this before run
+$fromAccountId      = $baseInfo->fromAccountGroup[0]->accounts[0]->id;      // Ex. Sealery account 
+$recipientAccountId = $baseInfo->recipientAccountGroup[1]->accounts[3]->id; // Ex. Vecation saving account
 
-// Registera direktöverförning
-$result = $bankConn->registerTransfer(0.99, $fromAccountId, $recipientAccountId, 'Från test', 'Till test');
+// Register a transfare request to queue
+$result = $bankConn->registerTransfer(0.99, $fromAccountId, $recipientAccountId, 'From test', 'To test');
 
-// Se om överförningen registrerades
+// See if the transfare request have been added to queue
 print_r($result); // Likande output som listRegisteredTransfers()
 
-// Verkställ överförning
+// Execute transfare queue
 print_r($bankConn->confirmTransfer());
 
 // Om man vill, kolla att inga överförningar finns kvar
+// If you like, check so that queue is empty
 print_r($bankConn->listRegisteredTransfers());
 
-$auth->terminate(); // Utlogging
+$auth->terminate(); // Sign out
 ```
 
-Det finns stöd för att registera flera överförningar och variationer av överförningar
+There is support to register multiple transfers and variations of transfers.
 
 ```php
-// Direktöverförning utan meddelande
+// Trasnfare without message
 $bankConn->registerTransfer(0.99, $fromAccountId, $recipientAccountId);
 
-// Schemalagd överförning, kommer endast ske en gång
-$bankConn->registerTransfer(1000.00, $fromAccountId, $recipientAccountId, 'Present', 'Present', '2016-03-06');
+// Scheduled transfer will only take place only once
+$bankConn->registerTransfer(1000.00, $fromAccountId, $recipientAccountId, 'Gift', 'Gift', '2017-03-06');
 
-// Periodiserad överförning, datum måste anges som fungerar som startdatum.
-// Möjliga perioder finns avgörs av 'perodicity' som bland annat finns i resultatet av baseInfo().
-// Exemel på perioder: ["NONE", "WEEKLY", "EVERY_OTHER_WEEK", "MONTHLY", "EVERY_OTHER_MONTH", "QUARTERLY", "SEMI_ANNUALLY", "ANNUALLY"]
-$bankConn->registerTransfer(1000.00, $fromAccountId, $recipientAccountId, 'Present', 'Present', '2017-03-06', 'ANNUALLY');
+// Periodized transfer date must be entered that acts as the start date.
+// Possible periods are determined by 'periodicity', which is found in the results of the baseInfo().
+// Examples of periods: ["NONE", "WEEKLY", "EVERY_OTHER_WEEK", "MONTHLY", "EVERY_OTHER_MONTH", "QUARTERLY", "SEMI_ANNUALLY", "ANNUALLY"]
+$bankConn->registerTransfer(1000.00, $fromAccountId, $recipientAccountId, 'Gift', 'Gift', '2018-03-06', 'ANNUALLY');
 
-// Bekräfta alla överförningar
+// Confirm all transfares
 print_r($bankConn->confirmTransfer());
 
-// Se om schemalagda och periodiserade överförningar regisiterades korrekt
+// See if scheduled and allocated transfers are registered successfully.
 print_r($bankConn->listConfirmedTransfers());
 ```
 
-Var dock noga med att inte registera två likande överförningar (samma summa, sändar- och mottagarkokonton samt datum), då genereras felmeddelande och förlorar sessionen.
-Man behöver då logga in igen, men tidigare registerade överförningar finns kvar.
+Be careful not to register two similar transfers (the same amount, the sending and receiving accounts and date), this will result as an error message from the API.
 
-För att ta bort en överförning kan man göra följande
+To delete a transfer can do the following.
 
 ```php
 // Ta bort obekräftad överförning
+// Remove unconfirmed transfer from queue 
 $transfares = $bankConn->listRegisteredTransfers();
 $bankConn->deleteTransfer($transfares->transferGroups[0]->transfers[0]->id);
 
-// Ta bort schemalagd eller periodiserad överförning
+// Remove scheduled or accrual transfer
 $confirmedTransfares = $bankConn->listConfirmedTransfers();
 $bankConn->deleteTransfer($confirmedTransfares->transferGroups[0]->transfers[2]->id);
 ```
