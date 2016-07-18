@@ -1,49 +1,51 @@
 # Composer
 
-## Linux och OS X
+## Linux and MacOS
 
-Kör följande i ett terminalfönster (OS X: Öppna Applikationer > Verktygsprogram > Terminal):
+Run the following in a terminal window (MacOS: Applications > Utilities > Terminal):
 ```bash
 curl -sS https://getcomposer.org/installer | php
 ```
 
-Lägg in SwebankJson i composer.json antingen med följande kommando:
+Insert SwedbankJson in composer.json with the following command:
 ```bash
-php composer.phar require walle89/swedbank-json ~0.6
+php composer.phar require walle89/swedbank-json
 ```
-Efter lyckad installation, ladda in autoload.php.
 
+After successful installation, load autoload.php.
 ```php
+<?php
 require 'vendor/autoload.php';
 ```
 
 ## Windows
 
-Se till att php.exe finns installerat och den fulla sökvägen till den (ex. C:\php\php.exe).
+Make sure that the php.exe is installed and you know the full path to it (eg. C:\php\php.exe).
 
-Kör sedan [Compoer-Setup.exe](https://getcomposer.org/doc/00-intro.md#using-the-installer) och följ instruktionerna samt se till att "Shell menus" installeras.
+Download and run [Compoer-Setup.exe](https://getcomposer.org/doc/00-intro.md#using-the-installer). Follow the instructions and make sure "Shell menus" is installed.
 
-Skapa eller ändra composer.json med följande innehåll:
+Create or modify composer.json with the following content:
 ```javascript
 {
     "require": {
-        "walle89/swedbank-json": "~0.6"
+        "walle89/swedbank-json": "^0.6.0"
     }
 }
 ```
 
-Högerklicka på composer.json och välj "Composer Install". Efter lyckad installation, ladda in autoload.php.
+Right-click the composer.json and select "Composer Install". After successful installation, load autoload.php.
 ```php
+<?php
 require 'vendor/autoload.php';
 ```
 
-## Uppdatering
+## Updates
 
-### Linux och OS X
-Kör följande kommando:
+### Linux och MacOS
+Run this command:
 ```bash
 php composer.phar update
 ```
 
 ### Windows
-Högerklicka på den katalog som innehåller composer.json, högerklicka och välj "Composter update".
+Right click on the directory containing composer.json, right click and select "Composter update."
