@@ -49,11 +49,24 @@ echo 'Quick balance
 print_r($quickBalance);
 ```
 
-## Feedback, questions, bugs, etc.
+## FAQ
 
+### How do I install this?
+You can read about it in [INSTALL.md].
+
+### Can I install it without Composer?
+Short awser: No.
+Longer awnser: You can, but it's either recommended or supported. It's much easier to do with Composer. [Read more about installing with Composer](docs/composer.md).
+
+### I'm not Swedbank customer in Sweden, can I use this API?
+No, Swedbank's API is unique for the Swedish market and is not compatible with eg. Swedbank Denmark or Swedbank Lithuania.
+
+## Feedback, questions, bugs, etc.
 Please search for similar issues before [creating a new issue](https://github.com/walle89/SwedbankJson/issues). It's most your question have alredy been awnsered or it's a know bug or issue. Also check the documentation.
 
-Github issues is the only way to get support. 
+Github issues is the only way to get support.
 
 ## Licens
 [MIT](LICENSE)
+
+[INSTALL.md]: INSTALL.md
