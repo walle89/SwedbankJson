@@ -19,6 +19,21 @@ List all bank accounts available to the profile. If ProfilID is not provied, it 
 ## AccountDetails([ string $accoutID = '' [, int $transactionsPerPage = 0 [, int $page = 1]]])
 Shows account details and transactions for the account. If no $accoutID is not provied, it will fallback to default accout.
 
+## RegisterTransfer($amount, $fromAccountId, $recipientAccountId [, $fromAccountNote = '' [, $recipientAccountMessage = '' [, $transferDate = '' [, $perodicity = 'NONE']]]])
+Register a money transfer.
+
+## ListRegisteredTransfers()
+List registered money transfers.
+
+## ListConfirmedTransfers()
+List confirmed money transfers.
+
+## DeleteTransfer( $transfareId )
+Delete a money transfer. You will find $transfareId in ListRegisteredTransfers() or ListConfirmedTransfers().
+
+## ConfirmTransfer()
+Execute registered money transfers.
+
 ## QuickBalanceAccounts([ string $profileID = '' ])
 Lists possible quick balance accounts. If ProfilID is not provied, it will fallback to default profile. 
 
