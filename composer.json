@@ -20,7 +20,7 @@
         "php": ">=5.5",
         "ext-curl": "*",
         "ramsey/uuid": "~2.8",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "^6.2.1"
     },
     "require-dev": {
         "rtheunissen/guzzle-log-middleware": "^0.4.0",
