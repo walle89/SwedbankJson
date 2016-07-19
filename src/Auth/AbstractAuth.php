@@ -1,13 +1,4 @@
 <?php
-/**
- * Wrapper för Swedbanks stänga API för mobilappar
- *
- * @package SwedbankJson
- * @author  Eric Wallmander
- *          Date: 2014-02-25
- *          Time: 21:36
- */
-
 namespace SwedbankJson\Auth;
 
 use Exception;

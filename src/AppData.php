@@ -1,12 +1,4 @@
 <?php
-/**
- * Inställningar för olika app-varianter från Swedbank.
- *
- * @package SwedbankJson
- * @author  Eric Wallmander
- * Date: 2014-05-13
- * Time: 21:40
- */
 namespace SwedbankJson;
 
 use SwedbankJson\Exception\UserException;

@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Eric Wallmander
- * Date: 15-02-28
- * Time: 20:19
- */
-
 namespace SwedbankJson\Auth;
 
 /**
