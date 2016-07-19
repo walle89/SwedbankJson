@@ -4,7 +4,7 @@
 * [No authentication](#no-authentication)
 * [Mobile BankID](#mobile-bankid)
 * [Security token](#security-token)
-* [Personal code - Discontinued](#personal-code-discontinued)
+* [Personal code - Discontinued](#personal-code---discontinued)
 
 ## Introduction
 Common settings for code examples below.
@@ -86,7 +86,7 @@ Swedbank provides a hardware security token for all its Internet Bank customers.
 
 Both requires a pin number to unlock the security token before any codes can be generated. 
 
-[Read more about Swedbank security tokens](https://hjalp.swedbank.se/sidhjalp-internetbanken-privat/sakerhetsdosa/svarta-ovala-dosan/index.htm) (in Swedish).
+[Read more about Swedbank security tokens](https://hjalp.swedbank.se/sidhjalp-internetbanken-privat/sakerhetsdosa/index.htm) (in Swedish).
 
 ### Security token with one time code
 This type of security token generates a one time use 8 digit code. To generate this code, you need to press 1 when "Appli" displays on the screen.
