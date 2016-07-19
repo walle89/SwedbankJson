@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
+### Security
+- Guzzle set to minimum version of 6.2.1 beacuse of HTTP_PROXY vulnerability.
+
 ### Added
 - Transfer money between accounts.
 - Option to log HTTP requests to file for debugging purposes.
@@ -18,7 +21,6 @@ All notable changes to this project will be documented in this file.
 - Cleanup() didn't clean up saved session.
 - UserException namespace for Appdata.
 - Documentation links
-
 
 ## [0.6.0] - 2016-01-31
 ### Added
