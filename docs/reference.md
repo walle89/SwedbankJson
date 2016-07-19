@@ -1,38 +1,38 @@
-# Refferens
-För mer detaljerad information, se phpdoc i [SwedbankJson.php](../src/SwedbankJson.php)
+# Referance
+For more detailed information, see the phpdoc in [SwedbankJson.php](../src/SwedbankJson.php)
 
 ## Profilelist()
-Listar tillgänliga profiler för användaren. Används för att bland kunna växla mellan privat konto och ett eller flera företagskonton.
+Lists available user profiles. Used to include switching between private account and one or more business accounts.
 
 ## Reminders()
-Antal avvisade betalningar, osignerade betalningar, osignerade överförningar och inkommna e-fakturor
+Get the number of rejected payments, payments signed, unsigned transfers and incoming e-invoices.
 
 ## BaseInfo()
-Lista på konton grupperade på typ
+Account list grouped by type.
 
 ## AccountList([ string $profileID = '' ])
-Listar alla bankkonton som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.
+List all bank accounts available to the profile. If no profile set is selected first profile in the list.
 
 ## PortfolioList([ string $profileID = '' ])
-Listar investeringssparande som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.
+List all bank accounts available to the profile. If ProfilID is not provied, it will fallback to default profile. 
 
 ## AccountDetails([ string $accoutID = '' [, int $transactionsPerPage = 0 [, int $page = 1]]])
-Visar kontodetaljer och transaktioner för konto. Om inget kontoID anges väljs första kontot i listan.
+Shows account details and transactions for the account. If no $accoutID is not provied, it will fallback to default accout.
 
 ## QuickBalanceAccounts([ string $profileID = '' ])
-Listar möjliga snabbsaldo konton. Om ingen profil anges väljs första profilen i listan.
+Lists possible quick balance accounts. If ProfilID is not provied, it will fallback to default profile. 
 
 ## QuickBalanceSubscription( string $accountQuickBalanceSubID )
-Aktiverar och kopplar snabbsaldo till konto.
+Activates and connects quick balance to account.
 
-För att kunna visa (quickBalance()) och avaktivera (quickBalanceUnsubscription()) snabbsaldo måste man ange "subscriptionId" som finns med i resultatet.
-Man bör spara undan subscriptionId i en databas eller motsvarande.
+To view (quickBalance()) and inactivate (quickBalanceUnsubscription()) quick balance subscriptionID must be provided. The result of this API will return a subscriptionID. 
+You should save subscriptionID in a database.
 
 ## QuickBalance( string $quickBalanceSubscriptionId )
-Hämta snabbsaldo
+Gets the quick balance.
 
 ## QuickBalanceUnsubscription( string $quickBalanceSubscriptionId [, string $profileID = '' ])
-Avaktiverar snabbsaldo för konto
+Disables quick balance for account.
 
 ## Terminate()
-Skickar utloggingsförfrågan till Swedbank samt rensar lokal cookie och sessions data.
+Signing out the user. Also clears local cookie and session data.
