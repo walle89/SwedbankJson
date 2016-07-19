@@ -124,5 +124,5 @@ From the perspective of login in into one of the mobile apps, the flow should lo
 Currenty there is only an alfa implementation of this authentication method. If you are intrested to try it out, [send me an email](http://wallmander.net/contact/) (NOTE: *Not* for support, [create an issue for that](https://github.com/walle89/SwedbankJson/issues)).
 
 ## Personal code - Discontinued
-Swedbank shuted down personal code authentication method in February 2016.
+Swedbank discontinued personal code authentication method in February 2016.
 This authentication type allowed to sign in with personal identity number or corporate identity number as username and a password to show bank statements.
