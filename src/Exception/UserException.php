@@ -5,6 +5,4 @@ namespace SwedbankJson\Exception;
  * Class UserException
  * @package SwedbankJson\Exception
  */
-class UserException extends \RuntimeException implements SwedbankJsonException
-{
-}
+class UserException extends \RuntimeException implements SwedbankJsonException {}
