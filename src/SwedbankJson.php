@@ -10,7 +10,7 @@ use SwedbankJson\Exception\UserException;
  */
 class SwedbankJson
 {
-    /** @var AbstractAuth  */
+    /** @var AbstractAuth */
     private $_auth;
 
     /** @var string */
@@ -49,11 +49,19 @@ class SwedbankJson
         if (!isset($output->banks[0]->bankId))
         {
             if (!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
-                throw new UserException("The user is not a customer in Swedbank. Please choose one of the Sparbanken's bank types (sparbanken, sparbanken_foretag eller sparbanken_ung)", 21);
-
+            {
+                throw new UserException(
+                    "The user is not a customer in Swedbank. Please choose one of the Sparbanken's bank types (sparbanken, sparbanken_foretag eller sparbanken_ung)",
+                    21
+                );
+            }
             elseif ($output->hasSwedbankProfile AND !$output->hasSavingsbankProfile)
-                throw new UserException("The user is not a customer in Sparbanken. Please choose one of the Swedbank's bank types (swedbank, swedbank_foretag eller swedbank_ung)", 22);
-
+            {
+                throw new UserException(
+                    "The user is not a customer in Sparbanken. Please choose one of the Swedbank's bank types (swedbank, swedbank_foretag eller swedbank_ung)",
+                    22
+                );
+            }
             else
                 throw new Exception('The profile do not contain any bank accounts.', 23);
         }
@@ -141,7 +149,7 @@ class SwedbankJson
      *
      * NOTE: Use quickBalanceAccounts() to list quick balance accounts. Do not rely on the 'selectedForQuickbalance' attribute.
      *
-     * @param string $profileID PorfileID
+     * @param string $profileID Profile ID
      *
      * @return object Decoded JSON detailed account list
      * @throws Exception
@@ -209,13 +217,18 @@ class SwedbankJson
     /**
      * Add and prepare a transfer for confirmation
      *
+     * The money will not be sent until the transfer have been confirmed, including direct transfers.
+     *
+     * NOTE: Transfers that need to be signed to confirm (eg. accounts with groupID ACCOUNT_SIGNED) are currently not supported.
+     * It is possible to register the transaction and than open the mobile app, to sign and confirm the transaction.
+     *
      * @param float  $amount                  Amount to be transferred
      * @param string $fromAccountId           From AccountID
      * @param string $recipientAccountId      Recipient AccountID
      * @param string $fromAccountNote         From message
      * @param string $recipientAccountMessage Recipient message
      * @param string $transferDate            Date when the transfer will take place. Date format is YYYY-MM-DD (today's date onwards). If not specified, it is a direct transfer
-     * @param string $periodicity             Periodicity. For possible possible selectable periods, see 'Periodicity' from the result of @see baseInfo()
+     * @param string $periodicity             Periodicity. For possible selectable periods, see 'Periodicity' from the result of @see baseInfo()
      *
      * @return object
      */
@@ -239,7 +252,9 @@ class SwedbankJson
     }
 
     /**
-     * Översikt av ej bekräftade överförningar
+     * List registered transfers
+     *
+     * Unconfirmed transfers waits to be approved/confirmed.
      *
      * @return object
      */
@@ -249,9 +264,10 @@ class SwedbankJson
     }
 
     /**
-     * Lista aktuella/framtida bekräftade överförningar
+     * List confirmed scheduled transfers
      *
-     * Innehåller bland annat schemalagda och periodiska överförningar
+     * Both one time feature transfers and active periodicity scheduled transfers are listed.
+     * Past transfers, direct transfers and inactivated periodicity scheduled transfers are not listed.
      *
      * @return object
      */
@@ -261,18 +277,27 @@ class SwedbankJson
     }
 
     /**
-     * Ta bort överförning
+     * Delete a transfer
      *
-     * @param $transfareId
+     * Deletes registered and confirmed transfers.
+     *
+     * @param string $transferId Transaction ID. Get ID from @see listConfirmedTransfers() or @see listRegisteredTransfers()
      */
-    public function deleteTransfer($transfareId)
+    public function deleteTransfer($transferId)
     {
-        $this->_auth->getRequest('transfer/'.$transfareId);
-        $this->_auth->deleteRequest('transfer/'.$transfareId);
+        $this->_auth->getRequest('transfer/'.$transferId);
+        $this->_auth->deleteRequest('transfer/'.$transferId);
     }
 
     /**
-     * Genomför transaktioner
+     * Confirms transfers
+     *
+     * When a transfer is confirmed, the money will be sent at the scheduled time and will be listed in @see listRegisteredTransfers().
+     * With deleteTransfer(), you can cancel a transfer before the money have been sent. However confirmed direct transfers cannot be cancelled, since the money is sent
+     * immediately.
+     *
+     * NOTE: Transfers that need to be signed to confirm (eg. accounts with groupID ACCOUNT_SIGNED) are currently not supported.
+     * It is possible to open the mobile app to sign and confirm the transaction.
      *
      * @return object
      */
@@ -281,7 +306,7 @@ class SwedbankJson
         $transactions = $this->listRegisteredTransfers();
 
         if (empty($transactions->links->next->uri))
-            throw new UserException('Det finns inga transaktioner att bekräfta', 55);
+            throw new UserException('There are no registered transactions to confirm.', 55);
 
         // confirmTransferId
         preg_match('#transfer/confirmed/(.+)#iu', $transactions->links->next->uri, $m);
@@ -293,11 +318,11 @@ class SwedbankJson
     }
 
     /**
-     * Lista möjligar snabbsaldo konton.  Om ingen profil anges väljs första profilen i listan.
+     * List of possible accounts for fetch quick balance
      *
-     * @param string $profileID ProfilID
+     * @param string $profileID Profile ID
      *
-     * @return object           Lista på snabbsaldokonton med respektive quickbalanceSubscription ID
+     * @return object   List of possible quick balance accounts. Each account have a quick balance subscription ID needed for subscription.
      * @throws Exception
      */
     public function quickBalanceAccounts($profileID = '')
@@ -307,21 +332,20 @@ class SwedbankJson
         $output = $this->_auth->getRequest('quickbalance/accounts');
 
         if (!isset($output->accounts))
-            throw new Exception('Snabbsaldokonton kan inte listas.', 60);
+            throw new Exception('Quick balance accounts cannot be listed.', 60);
 
         return $output;
     }
 
     /**
-     * Aktiverar och kopplar snabbsaldo till konto.
+     * Subscribes a account to quick balance
      *
-     * För att kunna visa (@see quickBalance()) och avaktivera (@see quickBalanceUnsubscription()) snabbsaldo måste man
-     * ange "subscriptionId" som finns med i resultatet. Man bör spara undan subscriptionId i en databas eller
-     * motsvarande.
+     * After successful subscription, it's important to save the SubscriptionID ("subscriptionId" attribute) on a permanent storage (eg. database).
+     * SubscriptionID is used to fetch quick balance and when it's time to unsubscribe.
      *
-     * @param string $accountQuickBalanceSubID ID hämtad från @see quickBalanceAccounts(). Leta efter ID under quickbalanceSubscription
+     * @param string $accountQuickBalanceSubID Account quick balance subscription ID.
      *
-     * @return object                           Bekräfltese med innehållande subscriptionId
+     * @return object A successful subsciption will return a sub
      * @throws Exception
      */
     public function quickBalanceSubscription($accountQuickBalanceSubID)
@@ -329,52 +353,58 @@ class SwedbankJson
         $output = $this->_auth->postRequest('quickbalance/subscription/'.$accountQuickBalanceSubID);
 
         if (!isset($output->subscriptionId))
-            throw new Exception('Kan ej sätta prenumeration, förmodligen fel ID av "quickbalanceSubscription"', 61);
+            throw new Exception('Cannot subscribe to account. Please check the ID is from "quickbalanceSubscription".', 61);
 
         return $output;
     }
 
     /**
-     * Hämta snabbsaldo
+     * Fetch quick balance
      *
-     * @param string $quickBalanceSubscriptionId SubscriptionId
+     * Will get basic balance information (eg. account total amount)
      *
-     * @return object                       Saldoinformation
+     * @param string $subscriptionId Subscription ID. @see quickBalanceSubscription()
+     *
+     * @return object Balance information
      * @throws Exception
      */
-    public function quickBalance($quickBalanceSubscriptionId)
+    public function quickBalance($subscriptionId)
     {
-        $output = $this->_auth->getRequest('quickbalance/'.$quickBalanceSubscriptionId);
+        $output = $this->_auth->getRequest('quickbalance/'.$subscriptionId);
 
         if (!isset($output->balance))
-            throw new Exception('Kan ej hämta snabbsaldo. Kontrollera ID', 62);
+            throw new Exception('Cannot fetch quick balance. Please check the Subscription ID.', 62);
 
         return $output;
     }
 
     /**
-     * Avaktiverar snabbsaldo för konto
+     * Unsubscribes quick balance account
      *
-     * @param string $quickBalanceSubscriptionId SubscriptionId
-     * @param string $profileID                  ProfileID
+     * @param string $subscriptionId Subscription ID. @see quickBalanceSubscription()
+     * @param string $profileID      Profile ID.
      *
      * @return object
      * @throws Exception
      */
-    public function quickBalanceUnsubscription($quickBalanceSubscriptionId, $profileID = '')
+    public function quickBalanceUnsubscription($subscriptionId, $profileID = '')
     {
         $this->selectProfile($profileID);
 
-        $output = $this->_auth->deleteRequest('quickbalance/subscription/'.$quickBalanceSubscriptionId);
+        $output = $this->_auth->deleteRequest('quickbalance/subscription/'.$subscriptionId);
 
         if (!isset($output->subscriptionId))
-            throw new Exception('Kan ej sätta prenumeration, förmodligen fel ID av "quickbalanceSubscription"', 63);
+            throw new Exception('Cannot unsubscribe account. Please check the Subscription ID.', 63);
 
         return $output;
     }
 
     /**
-     * Loggar ut från API:et
+     * Sign out
+     *
+     * Alias for @see AbstractAuth::terminate()
+     *
+     * @return object @see AbstractAuth::terminate();
      */
     public function terminate()
     {
