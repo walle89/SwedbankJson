@@ -10,20 +10,16 @@ use SwedbankJson\Exception\UserException;
  */
 class SwedbankJson
 {
-    /**
-     * @var object Inlogging
-     */
+    /** @var AbstractAuth  */
     private $_auth;
 
-    /**
-     * @var bool Håller koll på om profil är satt
-     */
-    private $_selectedProfileID;
+    /** @var string */
+    private $_profileID;
 
     /**
      * SwedbankJson constructor.
      *
-     * @param AbstractAuth $auth Instans en av inloggingsmetoderna
+     * @param AbstractAuth $auth One of the authentication types.
      */
     public function __construct(AbstractAuth $auth)
     {
@@ -31,12 +27,13 @@ class SwedbankJson
     }
 
     /**
-     * Profilinfomation
+     * Profile information
      *
-     * Få tillgång till lista av profiler och respektive tillfälliga ID-nummer. Varje privatperson och företag har egna profiler.
+     * List of available user profile(s) with per session IDs. Each user can only have one private profile but several corporate profiles.
+     * Profile ID is a 40 characters long string that looks like a SHA1 hash, found in privateProfile->id or corporateProfiles->id.
      *
-     * @return array        JSON-avkodad data om profilen
-     * @throws Exception    Fel med anrop mot Swedbank API:et
+     * @return array        JSON decoded response from the API.
+     * @throws Exception
      */
     public function profileList()
     {
@@ -47,56 +44,56 @@ class SwedbankJson
         $output = $this->_auth->getRequest('profile/');
 
         if (!isset($output->hasSwedbankProfile))
-            throw new Exception('Något med profilsidan är fel.', 20);
+            throw new Exception('Unknown error with the profile page.', 20);
 
         if (!isset($output->banks[0]->bankId))
         {
             if (!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
-                throw new UserException('Kontot är inte kopplat till Swedbank. Välj istället en av Sparbankens banktyper (sparbanken, sparbanken_foretag eller sparbanken_ung)', 21);
+                throw new UserException("The user is not a customer in Swedbank. Please choose one of the Sparbanken's bank types (sparbanken, sparbanken_foretag eller sparbanken_ung)", 21);
 
             elseif ($output->hasSwedbankProfile AND !$output->hasSavingsbankProfile)
-                throw new UserException('Kontot är inte kopplat till Sparbanken. Välj istället en av Swedbanks banktyper (swedbank, swedbank_foretag eller swedbank_ung)', 22);
+                throw new UserException("The user is not a customer in Sparbanken. Please choose one of the Swedbank's bank types (swedbank, swedbank_foretag eller swedbank_ung)", 22);
 
             else
-                throw new Exception('Profilsidan innerhåller inga bankkonton.', 23);
+                throw new Exception('The profile do not contain any bank accounts.', 23);
         }
         return $output->banks[0];
     }
 
     /**
-     * Väljer profil
+     * Selecting profile
      *
-     * @param string $profileID
+     * @param string $profileID PorfileID
      *
-     * @return null Då när profil är redan är vald
+     * @return null If profile already selected.
      * @throws Exception
-     * @throws UserException
      */
     private function selectProfile($profileID = '')
     {
-        // Om profil inte är definerad, hämta standardprofil
+        // If profile ID not defined, choose default profile
         if (empty($profileID))
         {
-            // Är profileID satt? Hoppa över selectProfile
-            if ($this->_selectedProfileID)
-                return null;
+            if ($this->_profileID)
+                return null; // If profile already selected
 
             $profiles    = $this->profileList();
-            $profileData = $profiles->{$this->_auth->getProfileType()}; // Väljer privat- eller företagskonto beroende på angiven appdata user-agent
+            $profileData = $profiles->{$this->_auth->getProfileType()}; // Depending on selected bank type, it will wither choose a private or corporate profile
 
-            $profileID = (isset($profileData->id)) ? $profileData->id : $profileData[0]->id;
+            $profileID = (isset($profileData->id)) ? $profileData->id : $profileData[0]->id; // Default profile
         }
 
-        // Väljer profil
+        // Request profile cahnge
         $this->_auth->postRequest('profile/'.$profileID);
 
-        $this->_selectedProfileID = $profileID;
+        $this->_profileID = $profileID;
     }
 
     /**
-     * Antal avvisade betalningar, osignerade betalningar, osignerade överförningar och inkommna e-fakturor
+     * Reminders and notifications
      *
-     * @return object       Lista med antal
+     * Lists number of rejected payments, payments signed, unsigned transfers and incoming e-invoices.
+     *
+     * @return object   Decoded JSON reminder and notification list
      * @throws Exception
      */
     public function reminders()
@@ -107,9 +104,20 @@ class SwedbankJson
     }
 
     /**
-     * Lista på konton grupperade på typ
+     * Account list grouped by type and periodicity types.
      *
-     * @return object       Lista med grundläggande information om konton
+     * There are mainly two groups; fromAccountGroup and recipientAccountGroup. As the names suggests, these groups lists accounts that money can be withdrawn from and be
+     * transferred to. Something to keep in mid is check the attribute "groupId", which accounts you can transfer to without signing the transaction. Example of types:
+     *
+     * * ACCOUNT_SEK - Regular account
+     * * ACCOUNT_SAVINGS - Savings account
+     * * ACCOUNT_SIGNED - Signed receivers, accounts that somebody else owns.
+     *
+     * Currently money transfers to ACCOUNT_SIGNED accounts is not supported. Either is adding new signed accounts.
+     *
+     * For periodicity transferees, allowed types are also listed under the 'perodicity' attribute.
+     *
+     * @return object       Decoded JSON list of basic accounts information and periodicity types.
      * @throws Exception
      */
     public function baseInfo()
@@ -120,12 +128,23 @@ class SwedbankJson
     }
 
     /**
-     * Listar alla bankkonton som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.
+     * Lists accounts available to the profile.
      *
-     * @param string $profileID ProfilID
+     * Type of accounts that are listed:
      *
-     * @return object               Lista på alla konton
-     * @throws \Exception           Något med API-anropet gör att kontorna inte listas
+     * * transactionAccounts - Regular accounts
+     * * transactionDisposalAccounts - Disposal accounts
+     * * loanAccounts - Loans (including mortgage)
+     * * savingAccounts - Savings accounts
+     * * cardAccounts - Credit cards
+     * * cardCredit - Credit information
+     *
+     * NOTE: Use quickBalanceAccounts() to list quick balance accounts. Do not rely on the 'selectedForQuickbalance' attribute.
+     *
+     * @param string $profileID PorfileID
+     *
+     * @return object Decoded JSON detailed account list
+     * @throws Exception
      */
     public function accountList($profileID = '')
     {
@@ -134,18 +153,18 @@ class SwedbankJson
         $output = $this->_auth->getRequest('engagement/overview');
 
         if (!isset($output->transactionAccounts))
-            throw new Exception('Bankkonton kunde inte listas.', 30);
+            throw new Exception("Can not fetch account list.", 30);
 
         return $output;
     }
 
     /**
-     * Listar investeringssparande som finns tillgängliga för profilen. Om ingen profil anges väljs första profilen i listan.
+     * Lists investment savings available to the profile.
      *
-     * @param string $profileID ProfilID
+     * @param string $profileID Profile ID
      *
-     * @return object           Lista på alla Investeringssparkonton
-     * @throws \Exception       Något med API-anropet gör att kontorna inte listas
+     * @return object Decoded JSON investment savings list
+     * @throws Exception
      */
     public function portfolioList($profileID = '')
     {
@@ -154,57 +173,58 @@ class SwedbankJson
         $output = $this->_auth->getRequest('portfolio/holdings');
 
         if (!isset($output->savingsAccounts))
-            throw new Exception('Investeringssparkonton kunde inte listas.', 40);
+            throw new Exception('Can not fetch investment savings list.', 40);
 
         return $output;
     }
 
     /**
-     * Visar kontodetaljer och transaktioner för konto. Om inget kontoID anges väljs första kontot i listan.
+     * Account details and bank statements.
      *
-     * @param $accoutID             string  Unik och slumpvis konto-id från Swedbank API
-     * @param $transactionsPerPage  int     Antal transaktioner som listas "per sida". Måste vara ett heltal större eller lika med 1.
-     * @param $page                 int     Aktuell sida. Måste vara ett heltal större eller lika med 1. $transactionsPerPage måste anges.
+     * @param string $accountID           Account ID. If left blank, the default account is chosen.
+     * @param int    $transactionsPerPage Bank statements per page. Default 50.
+     * @param int    $page                Bank statements paging index.
      *
-     * @return object           Avkodad JSON med kontinformationn
-     * @throws Exception        AccoutID inte stämmer
+     * @return object Decoded JSON with account information
+     * @throws Exception Not valid AccountID
      */
-    public function accountDetails($accoutID = '', $transactionsPerPage = 0, $page = 1)
+    public function accountDetails($accountID = '', $transactionsPerPage = 0, $page = 1)
     {
-        if (empty($accoutID))
-            $accoutID = $this->accountList()->transactionAccounts[0]->id;
+        // If account ID not defined, choose default account
+        if (empty($accountID))
+            $accountID = $this->accountList()->transactionAccounts[0]->id;
 
         $query = [];
         if ($transactionsPerPage > 0 AND $page >= 1)
             $query = ['transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,];
 
-        $output = $this->_auth->getRequest('engagement/transactions/'.$accoutID, $query);
+        $output = $this->_auth->getRequest('engagement/transactions/'.$accountID, $query);
 
         if (!isset($output->transactions))
-            throw new Exception('AccountID stämmer inte', 50);
+            throw new Exception('Not a valid AccountID', 50);
 
         return $output;
     }
 
     /**
-     * Lägg till och förbered överförning
+     * Add and prepare a transfer for confirmation
      *
-     * @param float  $amount                  Belopp att överföra
-     * @param string $fromAccountId           ID för avsändarkonto
-     * @param string $recipientAccountId      ID för kontomotagare
-     * @param string $fromAccountNote         Notering av transaktion
-     * @param string $recipientAccountMessage Meddelande för mottagare
-     * @param string $transferDate            Datum när överförningen ska ske i formatet YYYY-MM-DD (dagens datum och framåt). Om inget anges, görs den direkt
-     * @param string $perodicity              Periodicitet. För möjliga möjliga valbara perioder, se 'perodicity' från resultatet av @see baseInfo()
+     * @param float  $amount                  Amount to be transferred
+     * @param string $fromAccountId           From AccountID
+     * @param string $recipientAccountId      Recipient AccountID
+     * @param string $fromAccountNote         From message
+     * @param string $recipientAccountMessage Recipient message
+     * @param string $transferDate            Date when the transfer will take place. Date format is YYYY-MM-DD (today's date onwards). If not specified, it is a direct transfer
+     * @param string $periodicity             Periodicity. For possible possible selectable periods, see 'Periodicity' from the result of @see baseInfo()
      *
      * @return object
      */
-    public function registerTransfer($amount, $fromAccountId, $recipientAccountId, $fromAccountNote = '', $recipientAccountMessage = '', $transferDate = '', $perodicity = 'NONE')
+    public function registerTransfer($amount, $fromAccountId, $recipientAccountId, $fromAccountNote = '', $recipientAccountMessage = '', $transferDate = '', $periodicity = 'NONE')
     {
         $data = [
             'amount'             => number_format((float)$amount, 2, ',', ''),
             'note'               => $fromAccountNote,
-            'periodicalCode'     => $perodicity,
+            'periodicalCode'     => $periodicity,
             'message'            => $recipientAccountMessage,
             'recipientAccountId' => $recipientAccountId,
             'fromAccountId'      => $fromAccountId,
