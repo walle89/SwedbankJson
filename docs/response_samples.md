@@ -8,6 +8,7 @@
 * [Account Details](#account-details)
 * [Register Transfer](#register-transfer)
 * [List Registered Transfers](#list-registered-transfers)
+* [List Confirmed Transfers](#list-confirmed-transfers)
 
 ##Profile List
     stdClass Object
@@ -325,3 +326,5 @@
 ##Register Transfer
 
 ##List Registered Transfers
+
+##List Confirmed Transfers

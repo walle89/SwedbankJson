@@ -301,7 +301,7 @@ class SwedbankJson
      *
      * @return object
      */
-    public function confirmTransfer()
+    public function confirmTransfers()
     {
         $transactions = $this->listRegisteredTransfers();
 
@@ -315,6 +315,17 @@ class SwedbankJson
         $output = $this->_auth->putRequest('transfer/confirmed/'.$confirmTransferId);
 
         return $output;
+    }
+
+    /**
+     * Alias for confirm transfares @see confirmTransfers()
+     *
+     * @deprecated Refactored to confirmTransfers().
+     * @return object
+     */
+    public function confirmTransfer()
+    {
+        return $this->confirmTransfers();
     }
 
     /**

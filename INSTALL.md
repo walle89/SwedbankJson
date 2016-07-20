@@ -211,7 +211,7 @@ $result = $bankConn->registerTransfer(0.99, $fromAccountId, $recipientAccountId,
 print_r($result); // Likande output som listRegisteredTransfers()
 
 // Execute transfare queue
-print_r($bankConn->confirmTransfer());
+print_r($bankConn->confirmTransfers());
 
 // Om man vill, kolla att inga överförningar finns kvar
 // If you like, check so that queue is empty
@@ -235,7 +235,7 @@ $bankConn->registerTransfer(1000.00, $fromAccountId, $recipientAccountId, 'Gift'
 $bankConn->registerTransfer(1000.00, $fromAccountId, $recipientAccountId, 'Gift', 'Gift', '2018-03-06', 'ANNUALLY');
 
 // Confirm all transfares
-print_r($bankConn->confirmTransfer());
+print_r($bankConn->confirmTransfers());
 
 // See if scheduled and allocated transfers are registered successfully.
 print_r($bankConn->listConfirmedTransfers());

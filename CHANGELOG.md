@@ -13,6 +13,9 @@ All notable changes to this project will be documented in this file.
 - Translated the documentation to English.
 - Updated app version for all Swedbank apps.
 
+### Deprecated
+- Refactor of confirmTransfer() to confirmTransfers().
+
 ## [0.6.1] - 2016-02-07
 ### Added
 - Documentation for quick balance.

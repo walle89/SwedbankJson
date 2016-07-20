@@ -31,7 +31,7 @@ List confirmed money transfers.
 ## DeleteTransfer( $transfareId )
 Delete a money transfer. You will find $transfareId in ListRegisteredTransfers() or ListConfirmedTransfers().
 
-## ConfirmTransfer()
+## ConfirmTransfers()
 Execute registered money transfers.
 
 ## QuickBalanceAccounts([ string $profileID = '' ])
