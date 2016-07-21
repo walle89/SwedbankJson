@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Translated the documentation to English.
+- Improved documentation. Now with API response samples.
 - Updated app version for all Swedbank apps.
 
 ### Deprecated
