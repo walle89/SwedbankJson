@@ -9,8 +9,12 @@
 * [Register Transfer](#register-transfer)
 * [List Registered Transfers](#list-registered-transfers)
 * [List Confirmed Transfers](#list-confirmed-transfers)
+* [Quick Balance Accounts](#quick-balance-accounts)
+* [Quick Balance Subscription](#quick-balance-subscription)
+* [Quick Balance](#quick-balance)
+* [Quick Balance Unsubscription](#quick-balance-unsubscription)
 
-##Profile List
+## Profile List
     stdClass Object
     (
         [name] => Swedbank AB (publ)
@@ -19,7 +23,7 @@
             (
                 [activeProfileLanguage] => en
                 [id] => cc2087a7d835d6e47aFAKEcc8f3aac3eb0ad8953
-                [bankId] => 08999
+                [bankId] => 99999
                 [customerNumber] => 19890306-0000
                 [bankName] => Swedbank AB (publ)
                 [customerName] => Zoe Green
@@ -47,7 +51,7 @@
     
     )
     
-##Reminders
+## Reminders
     stdClass Object
     (
         [rejectedPayments] => stdClass Object
@@ -146,7 +150,7 @@
     
     )
 
-##Baseinfo
+## Baseinfo
     stdClass Object
     (
         [fromAccountGroup] => Array
@@ -317,14 +321,687 @@
     
     )
 
-##Account List
+## Account List
+    stdClass Object
+    (
+        [transactionAccounts] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [selectedForQuickbalance] => 
+                        [links] => stdClass Object
+                            (
+                                [next] => stdClass Object
+                                    (
+                                        [method] => GET
+                                        [uri] => /v4/engagement/transactions/e948eacd2f366c2fd8b8bFAKE7300b39a441248c
+                                    )
+    
+                            )
+    
+                        [name] => Salary
+                        [priority] => 1
+                        [id] => e948eacd2f366c2fd8b8bFAKE7300b39a441248c
+                        [currency] => SEK
+                        [details] => stdClass Object
+                            (
+                                [links] => stdClass Object
+                                    (
+                                        [next] => stdClass Object
+                                            (
+                                                [method] => GET
+                                                [uri] => /v4/engagement/account/e948eacd2f366c2fd8b8bFAKE7300b39a441248c
+                                            )
+    
+                                    )
+    
+                            )
+    
+                        [balance] => 7 615,90
+                        [accountNumber] => 555 123 456-7
+                        [clearingNumber] => 5555-9
+                        [fullyFormattedNumber] => 5555-9,555 123 456-7
+                        [originalName] => Privatkonto
+                        [availableForFavouriteAccount] => 1
+                        [availableForPriorityAccount] => 1
+                        [favouriteAccount] => 1
+                    )
+    
+            )
+    
+        [transactionDisposalAccounts] => Array
+            (
+            )
+    
+        [loanAccounts] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [links] => stdClass Object
+                            (
+                                [next] => stdClass Object
+                                    (
+                                        [method] => GET
+                                        [uri] => /v4/engagement/loandetail/ae164aca51ebc3FAKEe4e0279842d2d3101951c5
+                                    )
+    
+                            )
+    
+                        [name] => Bolån
+                        [id] => ae164aca51ebc3FAKEe4e0279842d2d3101951c5
+                        [currency] => SEK
+                        [balance] => -555 555,00
+                        [accountNumber] => 555 678 901-2
+                        [clearingNumber] => 5555-9
+                        [fullyFormattedNumber] => 5555-9,555 678 901-2
+                        [availableForFavouriteAccount] => 
+                        [availableForPriorityAccount] => 
+                    )
+    
+            )
+    
+        [savingAccounts] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [selectedForQuickbalance] => 
+                        [links] => stdClass Object
+                            (
+                                [next] => stdClass Object
+                                    (
+                                        [method] => GET
+                                        [uri] => /v4/engagement/transactions/bve8be6cfbc8199a9fFAKEc324d1d528f1c1082
+                                    )
+    
+                            )
+    
+                        [name] => Vacation
+                        [priority] => 2
+                        [id] => bve8be6cfbc8199a9fFAKEc324d1d528f1c1082
+                        [currency] => SEK
+                        [details] => stdClass Object
+                            (
+                                [links] => stdClass Object
+                                    (
+                                        [next] => stdClass Object
+                                            (
+                                                [method] => GET
+                                                [uri] => /v4/engagement/account/bve8be6cfbc8199a9fFAKEc324d1d528f1c1082
+                                            )
+    
+                                    )
+    
+                            )
+    
+                        [balance] => 79 555,52
+                        [accountNumber] => 555 789 012-3
+                        [clearingNumber] => 5555-9
+                        [fullyFormattedNumber] => 5555-9,555 789 012-3
+                        [availableForFavouriteAccount] => 1
+                        [availableForPriorityAccount] => 1
+                    )
+    
+            )
+    
+        [cardAccounts] => Array
+            (
+            )
+    
+        [cardCredit] => stdClass Object
+            (
+            )
+    
+    )
 
-##Portfolio List
+## Portfolio List
+    stdClass Object
+    (
+        [errorCode] => 0
+        [savingsGoals] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [name] => Vacation 2017
+                        [id] => 0b24ffb95894912dFAKEc461b8c844cc1c81d354
+                        [goalAmount] => stdClass Object
+                            (
+                                [currencyCode] => SEK
+                                [amount] => 30 000,00
+                            )
+    
+                        [targetDate] => 2017-06-26
+                        [fullyFormattedNumber] => 5555-9,555 789 012-3
+                        [amountLeft] => stdClass Object
+                            (
+                                [currencyCode] => SEK
+                                [amount] => 28 500,00
+                            )
+    
+                        [savedAmount] => stdClass Object
+                            (
+                                [currencyCode] => SEK
+                                [amount] => 1 500,00
+                            )
+    
+                        [links] => stdClass Object
+                            (
+                                [delete] => stdClass Object
+                                    (
+                                        [method] => DELETE
+                                        [uri] => /v4/savingsgoal/0b24ffb95894912dFAKEc461b8c844cc1c81d354
+                                    )
+    
+                            )
+    
+                    )
+    
+            )
+    
+        [serverTime] => 12:32
+        [fundAccounts] => Array
+            (
+            )
+    
+        [savingsAccounts] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [details] => stdClass Object
+                            (
+                                [links] => stdClass Object
+                                    (
+                                        [next] => stdClass Object
+                                            (
+                                                [method] => GET
+                                                [uri] => /v4/engagement/account/ab62ba92e0712ef68FAKEed11f5b573edcedwa90
+                                            )
+    
+                                    )
+    
+                            )
+    
+                        [dispositionRight] => 
+                        [name] => Vacation
+                        [id] => ab62ba92e0712ef68FAKEed11f5b573edcedwa90
+                        [balance] => stdClass Object
+                            (
+                                [currencyCode] => SEK
+                                [amount] => 79 555,52
+                            )
+    
+                        [accountNumber] => 555 789 012-3
+                        [clearingNumber] => 5555-9
+                        [fullyFormattedNumber] => 5555-9,555 789 012-3
+                        [links] => stdClass Object
+                            (
+                                [next] => stdClass Object
+                                    (
+                                        [method] => GET
+                                        [uri] => /v4/engagement/transactions/ab62ba92e0712ef68FAKEed11f5b573edcedwa90
+                                    )
+    
+                            )
+    
+                    )
+    
+            )
+    
+        [endowmentInsurances] => Array
+            (
+            )
+    
+        [investmentSavings] => Array
+            (
+            )
+    
+        [equityTraders] => Array
+            (
+            )
+    
+    )
 
-##Account Details
+## Account Details
+    stdClass Object
+    (
+        [account] => stdClass Object
+            (
+                [reservedAmount] => -1 759,94
+                [availableAmount] => 7 615,90
+                [creditGranted] => 0,00
+                [quickbalanceSubscription] => stdClass Object
+                    (
+                        [id] => e9fb6aada670a7FAKEd34ed90297748b8069badb
+                        [active] => 
+                        [links] => stdClass Object
+                            (
+                                [next] => stdClass Object
+                                    (
+                                        [method] => POST
+                                        [uri] => /v4/quickbalance/subscription/e9fb6aada670a7FAKEd34ed90297748b8069badb
+                                    )
+    
+                            )
+    
+                    )
+    
+                [currencyAccount] => 
+                [internalAccount] => 
+                [name] => Salary
+                [id] => 29baec9d3f2a478866FAKEebb5d3948ee4c4c9d3
+                [currency] => SEK
+                [balance] => 7 615,90
+                [accountNumber] => 555 123 456-7
+                [clearingNumber] => 5555-9
+                [fullyFormattedNumber] => 5555-9,555 123 456-7
+                [expenseControl] => stdClass Object
+                    (
+                        [status] => ACTIVE
+                        [viewCategorizations] => 1
+                        [links] => stdClass Object
+                            (
+                                [delete] => stdClass Object
+                                    (
+                                        [method] => DELETE
+                                        [uri] => /v4/expensecontrol/accounts/29baec9d3f2a478866FAKEebb5d3948ee4c4c9d3
+                                    )
+    
+                                [edit] => stdClass Object
+                                    (
+                                        [method] => PUT
+                                        [uri] => /v4/expensecontrol/accounts/29baec9d3f2a478866FAKEebb5d3948ee4c4c9d3
+                                    )
+    
+                            )
+    
+                    )
+    
+                [originalName] => Privatkonto
+                [availableForFavouriteAccount] => 
+                [availableForPriorityAccount] => 
+            )
+    
+        [numberOfTransactions] => 50
+        [reservedTransactions] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [date] => 2016-07-19
+                        [description] => SKYDDAT BELOPP
+                        [currency] => SEK
+                        [amount] => -150,44
+                    )
+            )
+    
+        [transactions] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [date] => 2016-07-19
+                        [description] => MALMART
+                        [currency] => SEK
+                        [amount] => -122,23
+                        [expenseControlIncluded] => UNAVAILABLE
+                    )
+    
+                [1] => stdClass Object
+                    (
+                        [id] => ea6c5FAKE305112b955ee1c34618f60279ebea6c
+                        [date] => 2016-07-17
+                        [description] => VERIZON
+                        [currency] => SEK
+                        [amount] => -52,83
+                        [expenseControlIncluded] => INCLUDED
+                        [labelings] => stdClass Object
+                            (
+                                [links] => stdClass Object
+                                    (
+                                        [next] => stdClass Object
+                                            (
+                                                [method] => POST
+                                                [uri] => /v4/expensecontrol/transactions/ea6c5FAKE305112b955ee1c34618f60279ebea6c/labels
+                                            )
+    
+                                    )
+    
+                                [labels] => Array
+                                    (
+                                        [0] => stdClass Object
+                                            (
+                                                [links] => stdClass Object
+                                                    (
+                                                        [delete] => stdClass Object
+                                                            (
+                                                                [method] => DELETE
+                                                                [uri] => /v4/expensecontrol/transactions/ea6c5FAKE305112b955ee1c34618f60279ebea6c/labels71a3d963064FAKEe73d51150cd7c64db6b98adc2
+                                                            )
+    
+                                                    )
+    
+                                                [name] => Bankkort
+                                                [id] => 71a3d963064FAKEe73d51150cd7c64db6b98adc2
+                                                [type] => SYSTEM
+                                            )
+    
+                                    )
+    
+                            )
+    
+                        [categorizations] => stdClass Object
+                            (
+                                [links] => stdClass Object
+                                    (
+                                        [edit] => stdClass Object
+                                            (
+                                                [method] => PUT
+                                                [uri] => /v4/expensecontrol/transactions/ea6c5FAKE305112b955ee1c34618f60279ebea6c/categories
+                                            )
+    
+                                    )
+    
+                                [categories] => Array
+                                    (
+                                        [0] => stdClass Object
+                                            (
+                                                [name] => TV, bredband, telefoni
+                                                [group] => ID_ACCOMMODATION
+                                                [id] => 7245a544ddc4086a3b291bFAKE19599ade6f9498
+                                                [amount] => -52,83
+                                            )
+    
+                                    )
+    
+                            )
+    
+                        [accountingDate] => 2016-07-18
+                        [accountingBalance] => stdClass Object
+                            (
+                                [currencyCode] => SEK
+                                [amount] => 7 615,90
+                            )
+    
+                    )
+    
+            )
+    
+        [uncategorizedExpenseTransactions] => 1
+        [uncategorizedIncomeTransactions] => 0
+        [uncategorizedSubcategoryId] => eeee5d38920af1ef86FAKE0dfa271c06b1503fff
+        [uncategorizedSortOfReceivers] => 1
+        [moreTransactionsAvailable] => 1
+        [numberOfReservedTransactions] => 2
+        [numberOfBankGiroPrognosisTransactions] => 0
+        [bankGiroPrognosisTransactions] => Array
+            (
+            )
+    
+        [links] => stdClass Object
+            (
+                [next] => stdClass Object
+                    (
+                        [method] => GET
+                        [uri] => /v4/engagement/transactions/29baec9d3f2a478866FAKEebb5d3948ee4c4c9d3?transactionsPerPage=50&amp;page=2
+                    )
+    
+            )
+    
+    )
 
-##Register Transfer
+## Register Transfer
+    stdClass Object
+    (
+        [links] => stdClass Object
+            (
+                [next] => stdClass Object
+                    (
+                        [method] => PUT
+                        [uri] => /v4/transfer/confirmed/Pz8UTp5eH0+Pz8tPz94Pz4yFAKEOltCQDVkZjUwZjFhOj81Pw==
+                    )
+    
+            )
+    
+        [totalSum] => 5,05
+        [transferGroups] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [sum] => 5,05
+                        [transfers] => Array
+                            (
+                                [0] => stdClass Object
+                                    (
+                                        [links] => stdClass Object
+                                            (
+                                                [self] => stdClass Object
+                                                    (
+                                                        [method] => GET
+                                                        [uri] => /v4/transfer/0828c9FAKE83269427bfcfdfec143068e615abfc
+                                                    )
+    
+                                                [edit] => stdClass Object
+                                                    (
+                                                        [method] => PUT
+                                                        [uri] => /v4/transfer/0828c9FAKE83269427bfcfdfec143068e615abfc
+                                                    )
+    
+                                            )
+    
+                                        [id] => 0828c9FAKE83269427bfcfdfec143068e615abfc
+                                        [to] => stdClass Object
+                                            (
+                                                [name] => Tickets
+                                                [accountNumber] => 555 098 765-1
+                                                [clearingNumber] => 5555-9
+                                                [fullyFormattedNumber] => 5555-9,555 098 765-1
+                                                [availableForTags] => Array
+                                                    (
+                                                    )
+    
+                                            )
+    
+                                        [from] => stdClass Object
+                                            (
+                                                [name] => Vacation
+                                                [accountNumber] => 555 789 012-3
+                                                [clearingNumber] => 5555-9
+                                                [fullyFormattedNumber] => 5555-9,555 789 012-3
+                                                [availableForTags] => Array
+                                                    (
+                                                    )
+    
+                                            )
+    
+                                        [amount] => 5,05
+                                        [periodicity] => NONE
+                                        [transferDate] => 
+                                        [dateDependency] => DIRECT
+                                    )
+    
+                            )
+    
+                        [groupingAccount] => stdClass Object
+                            (
+                                [balance] => 79 555,52
+                                [name] => Vacation
+                                [accountNumber] => 555 789 012-3
+                                [clearingNumber] => 5555-9
+                                [fullyFormattedNumber] => 5555-9,555 789 012-3
+                                [availableForTags] => Array
+                                    (
+                                    )
+    
+                            )
+    
+                    )
+    
+            )
+    
+    )
 
-##List Registered Transfers
+## List Registered Transfers
+See [Register Transfer](#register-transfer).
 
-##List Confirmed Transfers
+## List Confirmed Transfers
+    stdClass Object
+    (
+        [totalSum] => 1 250,00
+        [transferGroups] => Array
+            (
+                [0] => stdClass Object
+                    (
+                        [sum] => 1 250,00
+                        [transfers] => Array
+                            (
+                                [0] => stdClass Object
+                                    (
+                                        [message] => Vacation 2017
+                                        [id] => 583390a87125b958038caFAKE2377696a14f5833
+                                        [to] => stdClass Object
+                                            (
+                                                [name] => Vacation
+                                                [accountNumber] => 555 789 012-3
+                                                [clearingNumber] => 5555-9
+                                                [fullyFormattedNumber] => 5555-9,555 789 012-3
+                                                [availableForTags] => Array
+                                                    (
+                                                    )
+    
+                                            )
+    
+                                        [from] => stdClass Object
+                                            (
+                                                [name] => Salary
+                                                [accountNumber] => 555 123 456-7
+                                                [clearingNumber] => 5555-9
+                                                [fullyFormattedNumber] => 5555-9,555 123 456-7
+                                                [availableForTags] => Array
+                                                    (
+                                                    )
+    
+                                            )
+    
+                                        [amount] => 750,00
+                                        [periodicity] => MONTHLY
+                                        [note] => Vacation 2017
+                                        [transferDate] => 2016-07-25
+                                        [dateDependency] => DATE_DEPENDENT
+                                        [links] => stdClass Object
+                                            (
+                                                [self] => stdClass Object
+                                                    (
+                                                        [method] => GET
+                                                        [uri] => /v4/transfer/583390a87125b958038caFAKE2377696a14f5833
+                                                    )
+    
+                                                [edit] => stdClass Object
+                                                    (
+                                                        [method] => PUT
+                                                        [uri] => /v4/transfer/583390a87125b958038caFAKE2377696a14f5833
+                                                    )
+    
+                                            )
+    
+                                    )
+    
+                            )
+    
+                        [groupingAccount] => stdClass Object
+                            (
+                                [balance] => 7 615,90
+                                [name] => Salary
+                                [accountNumber] => 555 123 456-7
+                                [clearingNumber] => 5555-9
+                                [fullyFormattedNumber] => 5555-9,555 123 456-7
+                                [availableForTags] => Array
+                                    (
+                                    )
+    
+                            )
+    
+                    )
+            )
+    
+    )
+
+## Quick Balance Accounts
+    stdClass Object
+    (
+        [accounts] = Array
+            (
+                [0] = stdClass Object
+                    (
+                        [name] = Vacation
+                        [currency] = SEK
+                        [balance] = 79 555,52
+                        [accountNumber] = 555 789 012-3
+                        [clearingNumber] = 5555-9
+                        [fullyFormattedNumber] = 5555-9,555 789 012-3
+                        [quickbalanceSubscription] = stdClass Object
+                            (
+                                [id] = 237b7c031adf8cfFAKE195fb0cc2468d2d4f9031
+                                [active] = 
+                                [links] = stdClass Object
+                                    (
+                                        [next] = stdClass Object
+                                            (
+                                                [method] = POST
+                                                [uri] = /v4/quickbalance/subscription/237b7c031adf8cfFAKE195fb0cc2468d2d4f9031
+                                            )
+    
+                                    )
+    
+                            )
+    
+                    )
+    
+                [2] = stdClass Object
+                    (
+                        [name] = Salery
+                        [currency] = SEK
+                        [balance] = 7 615,90
+                        [accountNumber] = 555 123 456-7
+                        [clearingNumber] = 5555-9
+                        [fullyFormattedNumber] = 5555-9,555 123 456-7
+                        [quickbalanceSubscription] = stdClass Object
+                            (
+                                [id] = a8f9a9187ddbcbeFAKE965a4d33cdfbd8a2b7204
+                                [active] = 
+                                [links] = stdClass Object
+                                    (
+                                        [next] = stdClass Object
+                                            (
+                                                [method] = POST
+                                                [uri] = /v4/quickbalance/subscription/a8f9a9187ddbcbeFAKE965a4d33cdfbd8a2b7204
+                                            )
+    
+                                    )
+    
+                            )
+    
+                    )
+    
+            )
+    
+    )
+
+## Quick Balance Subscription
+    stdClass Object
+    (
+        [subscriptionId] => lDVcX_iRc71oPAMDdSR_XU70LrslhdeT6Eltp1EL-10=
+        [unsubscribedSubscriptions] => Array
+            (
+            )
+    
+    )
+
+## Quick Balance
+    stdClass Object
+    (
+        [currency] => SEK
+        [balance] => 7 615,90
+        [balanceForCustomer] => 1
+        [remindersExists] => 
+        [numberOfReminders] => 0
+    )
+
+## Quick Balance Unsubscription
+See [Quick Balance Subscription](#quick-balance-subscription)
