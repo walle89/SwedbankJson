@@ -8,9 +8,9 @@ namespace SwedbankJson\Auth;
 interface AuthInterface
 {
     /**
-     * Inled inloggon
+     * Sign in
      *
-     * @return bool Om inloggingen lyckades eller ej
+     * @return bool True for successful sign in
      */
     public function login();
 }
