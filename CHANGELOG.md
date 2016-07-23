@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 - Translated the documentation to English.
 - Improved documentation. Now with API response samples.
 - Updated app version for all Swedbank apps.
+- Refactor getchallenge() to getChallenge(). Method names are case-insensitive, should have no effect.
+- Refactor setchallengeResponse() to setChallengeResponse(). Method names are case-insensitive, should have no effect.
 
 ### Deprecated
 - Refactor of confirmTransfer() to confirmTransfers().

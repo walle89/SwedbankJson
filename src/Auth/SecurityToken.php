@@ -37,7 +37,7 @@ class SecurityToken extends AbstractAuth
     {
         $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
         $this->_username = $username;
-        $this->setchallengeResponse($challengeResponse);
+        $this->setChallengeResponse($challengeResponse);
         $this->_debug = (bool)$debug;
         $this->setAuthorizationKey();
     }
@@ -50,7 +50,7 @@ class SecurityToken extends AbstractAuth
      * @return string|null Control number. Null if the security token only requires a generated one time code.
      * @throws Exception
      */
-    public function getchallenge()
+    public function getChallenge()
     {
         if (empty($this->_challenge))
         {
@@ -76,7 +76,7 @@ class SecurityToken extends AbstractAuth
     /**
      * Sign in
      *
-     * It is a good idea to check security token type before sign in with getchallenge() and isUseOneTimePassword().
+     * It is a good idea to check security token type before sign in with getChallenge() and isUseOneTimePassword().
      *
      * @param string $challengeResponse One time code or response code from security token
      *
@@ -86,10 +86,10 @@ class SecurityToken extends AbstractAuth
     public function login($challengeResponse = '')
     {
         if (!empty($challengeResponse))
-            $this->setchallengeResponse($challengeResponse);
+            $this->setChallengeResponse($challengeResponse);
 
         if (is_null($this->_challenge))
-            $this->getchallenge();
+            $this->getChallenge();
 
         if (empty($this->_challengeResponse))
             throw new UserException('One time code or response code from security token is missing.', 11);
@@ -112,7 +112,7 @@ class SecurityToken extends AbstractAuth
      *
      * @param string $challengeResponse One time code or response code from security token.
      */
-    public function setchallengeResponse($challengeResponse)
+    public function setChallengeResponse($challengeResponse)
     {
         $this->_challengeResponse = $challengeResponse;
     }
