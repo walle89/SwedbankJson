@@ -71,7 +71,7 @@ class SwedbankJson
     /**
      * Selecting profile
      *
-     * @param string $profileID PorfileID
+     * @param string $profileID ProfileID
      *
      * @return null If profile already selected.
      * @throws Exception
@@ -318,7 +318,7 @@ class SwedbankJson
     }
 
     /**
-     * Alias for confirm transfares @see confirmTransfers()
+     * Alias for confirm transferee @see confirmTransfers()
      *
      * @deprecated Refactored to confirmTransfers().
      * @return object
@@ -356,7 +356,7 @@ class SwedbankJson
      *
      * @param string $accountQuickBalanceSubID Account quick balance subscription ID.
      *
-     * @return object A successful subsciption will return a sub
+     * @return object A successful subscription will return a subscription ID.
      * @throws Exception
      */
     public function quickBalanceSubscription($accountQuickBalanceSubID)

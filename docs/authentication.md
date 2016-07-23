@@ -47,7 +47,7 @@ $bankConn = new SwedbankJson\SwedbankJson($auth);
 
 ## Mobile BankID
 Mobile [BankID](https://www.bankid.com/en/) is a electronic identification (eID) issued by Swedish banks to authenticate persons and organizations with a smartphone app.
-To use this authentication method, you must download the "BankID säkerhetsapp" app by Finansiell ID-Teknik BID AB for [IOS](https://itunes.apple.com/us/app/bankid-sakerhetsapp/id433151512?mt=8) or [Andorid](https://play.google.com/store/apps/details?id=com.bankid.bus&hl=en)
+To use this authentication method, you must download the "BankID säkerhetsapp" app by Finansiell ID-Teknik BID AB for [IOS](https://itunes.apple.com/us/app/bankid-sakerhetsapp/id433151512?mt=8) or [Android](https://play.google.com/store/apps/details?id=com.bankid.bus&hl=en)
 and follow the instructions in the app to activate BankID. If you use Mobile BankId today for sign in into one of the Swedbank apps, you are all set.
 
 The authentication process takes several steps to complete and between each step requires the session is saved. 
@@ -79,7 +79,7 @@ The idea of the flow of the sample code above is as follows:
 This sample code is not an elegant solution. To make it more user friendly, use Javascript and Ajax to check login verification every 5 secounds and automatically forward the user to the next page when verified.
 
 ## Security token
-Swedbank provides a hardware security token for all its Internet Bank customers. There are two main variations of the security tokens isssued by the bank:
+Swedbank provides a hardware security token for all its internet bank customers. There are two main variations of the security tokens issued by the bank:
 
 1. [Security token with one time code.](#security-token-with-one-time-code)
 1. [Security token with control number and response code.](#security-token-with-control-number-and-response-code)
@@ -117,11 +117,11 @@ $bankConn = new SwedbankJson\SwedbankJson($auth);
 Unlike security token with one time code, this type of token needs a 8 digit control number before it can generate a response code.
 The response code is a 8 digit number used to enter into the app to verify authentication.
 
-From the perspective of login in into one of the mobile apps, the flow should look like this:
+From the perspective of login into one of the mobile apps, the flow should look like this:
 
 **Choose "Säkerhetsdosa" -> Enter control number into security token -> Enter response code -> Authenticated**
 
-Currenty there is only an alfa implementation of this authentication method. If you are intrested to try it out, [send me an email](http://wallmander.net/contact/) (NOTE: *Not* for support, [create an issue for that](https://github.com/walle89/SwedbankJson/issues)).
+Currently there is only an alfa implementation of this authentication method. If you are interested to try it out, [send me an email](http://wallmander.net/contact/) (NOTE: *Not* for support, [create an issue for that](https://github.com/walle89/SwedbankJson/issues)).
 
 ## Personal code - Discontinued
 Swedbank discontinued personal code authentication method in February 2016.

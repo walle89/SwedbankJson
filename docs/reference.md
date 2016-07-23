@@ -1,4 +1,4 @@
-# Referance
+# Reference
 For more detailed information, see the phpdoc in [SwedbankJson.php](../src/SwedbankJson.php)
 
 ## Profilelist()
@@ -14,12 +14,12 @@ Account list grouped by type.
 List all bank accounts available to the profile. If no profile set is selected first profile in the list.
 
 ## PortfolioList([ string $profileID = '' ])
-List all bank accounts available to the profile. If ProfilID is not provied, it will fallback to default profile. 
+List all bank accounts available to the profile. If ProfileID is not provided, it will fallback to default profile. 
 
-## AccountDetails([ string $accoutID = '' [, int $transactionsPerPage = 0 [, int $page = 1]]])
-Shows account details and transactions for the account. If no $accoutID is not provied, it will fallback to default accout.
+## AccountDetails([ string $accountID = '' [, int $transactionsPerPage = 0 [, int $page = 1]]])
+Shows account details and transactions for the account. If no $accountID is not provided, it will fallback to default account.
 
-## RegisterTransfer($amount, $fromAccountId, $recipientAccountId [, $fromAccountNote = '' [, $recipientAccountMessage = '' [, $transferDate = '' [, $perodicity = 'NONE']]]])
+## RegisterTransfer($amount, $fromAccountId, $recipientAccountId [, $fromAccountNote = '' [, $recipientAccountMessage = '' [, $transferDate = '' [, $periodicity = 'NONE']]]])
 Register a money transfer.
 
 ## ListRegisteredTransfers()
@@ -28,14 +28,14 @@ List registered money transfers.
 ## ListConfirmedTransfers()
 List confirmed money transfers.
 
-## DeleteTransfer( $transfareId )
-Delete a money transfer. You will find $transfareId in ListRegisteredTransfers() or ListConfirmedTransfers().
+## DeleteTransfer( $transferId )
+Delete a money transfer. You will find $transferId in ListRegisteredTransfers() or ListConfirmedTransfers().
 
 ## ConfirmTransfers()
 Execute registered money transfers.
 
 ## QuickBalanceAccounts([ string $profileID = '' ])
-Lists possible quick balance accounts. If ProfilID is not provied, it will fallback to default profile. 
+Lists possible quick balance accounts. If ProfileID is not provided, it will fallback to default profile. 
 
 ## QuickBalanceSubscription( string $accountQuickBalanceSubID )
 Activates and connects quick balance to account.

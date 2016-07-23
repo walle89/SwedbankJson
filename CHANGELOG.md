@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
 ### Security
-- Guzzle set to minimum version of 6.2.1 beacuse of HTTP_PROXY vulnerability.
+- Guzzle set to minimum version of 6.2.1 because of HTTP_PROXY vulnerability.
 
 ### Added
 - Transfer money between accounts.
@@ -68,15 +68,15 @@ All notable changes to this project will be documented in this file.
 - Baseinfo - Account list grouped by type.
 
 ### Changed
-- AccountDetails does not longer require AccoutID. If no AccoutID is provied, it will fallback to default account.
-- Setting ProfilID is no longer required. If ProfilID is not provied, it will fallback to default profile. 
+- AccountDetails does not longer require AccountID. If no AccountID is provided, it will fallback to default account.
+- Setting ProfileID is no longer required. If ProfileID is not provided, it will fallback to default profile. 
 - Updated app version for all Swedbank apps.
 - Updated documentation.
 - Updated dependencies of UDID and Guzzle.
 
 ## [0.3.4] - 2014-06-18
 ### Added
-- Support for Sparnaken Företag.
+- Support for Sparbanken Företag.
 
 ### Changed
 - Updated app version for Swedbank and Sparbanken.
@@ -102,8 +102,8 @@ All notable changes to this project will be documented in this file.
 
 ## [0.3.1] - 2014-05-15
 ### Changed
-- Byte av namespaceing.
-- Composer justeringar.
+- Changed namespace.
+- Composer adjustments.
 
 ## [0.3.0] - 2014-05-15
 ### Changed
@@ -124,7 +124,7 @@ All notable changes to this project will be documented in this file.
 
 ## 0.0.6 - 2014-05-04
 ### Added
-- Adjusteble row limit for bank statemaent.
+- Adjustable row limit for bank statements.
 - Automatic profile selection by bank type.
 
 ### Changed
