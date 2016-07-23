@@ -1,8 +1,8 @@
 <?php
 namespace SwedbankJson\Auth;
 
-use SwedbankJson\AppData;
 use Exception;
+use SwedbankJson\AppData;
 
 /**
  * Class UnAuth
@@ -13,8 +13,10 @@ class UnAuth extends AbstractAuth
     /**
      * UnAuth constructor.
      *
-     * @param string|array $bankApp ID för vilken bank som ska anropas, eller array med appdata uppgifter.
-     * @param bool         $debug   Sätt true för att göra felsökning, annars false eller null
+     * @param string|array $bankApp Bank type AppID
+     * @param bool         $debug   Enable debugging
+     *
+     * @throws Exception
      */
     public function __construct($bankApp, $debug = false)
     {

@@ -25,10 +25,10 @@ use SwedbankJson\Exception\UserException;
  */
 abstract class AbstractAuth implements AuthInterface
 {
-    /** Name for auth session */
+    /** Auth session name */
     const authSession = 'swedbankjson_auth';
 
-    /** Name for cookie jar session */
+    /** Cookie jar session name */
     const cookieJarSession = 'swedbankjson_cookiejar';
 
     /** @var string URI to API server */

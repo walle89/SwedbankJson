@@ -82,7 +82,7 @@ This sample code is not an elegant solution. To make it more user friendly, use 
 Swedbank provides a hardware security token for all its Internet Bank customers. There are two main variations of the security tokens isssued by the bank:
 
 1. [Security token with one time code.](#security-token-with-one-time-code)
-1. [Security token with control number and reply code.](#security-token-with-control-number-and-reply-code)
+1. [Security token with control number and response code.](#security-token-with-control-number-and-response-code)
 
 Both requires a pin number to unlock the security token before any codes can be generated. 
 
@@ -113,13 +113,13 @@ $auth     = new SwedbankJson\Auth\SecurityToken($bankApp, $username, $_POST['cha
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 
-### Security token with control number and reply code
-Unlike security token with one time code, this type of token needs a 8 digit control number before it can generate a reply code.
-The reply code is a 8 digit number used to enter into the app to verify authentication.
+### Security token with control number and response code
+Unlike security token with one time code, this type of token needs a 8 digit control number before it can generate a response code.
+The response code is a 8 digit number used to enter into the app to verify authentication.
 
 From the perspective of login in into one of the mobile apps, the flow should look like this:
 
-**Choose "Säkerhetsdosa" -> Enter control number into security token -> Enter reply code -> Authenticated**
+**Choose "Säkerhetsdosa" -> Enter control number into security token -> Enter response code -> Authenticated**
 
 Currenty there is only an alfa implementation of this authentication method. If you are intrested to try it out, [send me an email](http://wallmander.net/contact/) (NOTE: *Not* for support, [create an issue for that](https://github.com/walle89/SwedbankJson/issues)).
 
