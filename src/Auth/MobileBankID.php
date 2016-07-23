@@ -13,10 +13,7 @@ class MobileBankID extends AbstractAuth
     /** @var string Username. Personal identity number or corporate identity number (personnummer/organisationsnummer) */
     private $_username;
 
-    /**
-     * @var bool Om BankId har tidigare bilvit verifierad eller ej
-     */
-    /** @var bool If Mobile BankID authtication have been verified */
+    /** @var bool If Mobile BankID authentication have been verified */
     protected $_verified = false;
 
     /**
@@ -84,7 +81,6 @@ class MobileBankID extends AbstractAuth
         if (empty($output->status))
             throw new Exception('Mobile BankID cannot be verified. Maybe a session timeout.', 11);
 
-        // Om status är "COMPLETE", är det lyckad inlogging
         $this->_verified = ($output->status == 'COMPLETE');
 
         $this->saveSession();
@@ -111,7 +107,7 @@ class MobileBankID extends AbstractAuth
     /**
      * For persistent sessions
      *
-     * @return array List of attriutes to be saved
+     * @return array List of attributes to be saved
      */
     public function __sleep()
     {

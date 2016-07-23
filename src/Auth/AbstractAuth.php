@@ -132,7 +132,7 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     * Sendning GET request
+     * Sending GET request
      *
      * @param string $apiRequest API method call
      * @param array  $query      GET query
@@ -271,7 +271,7 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     * Sedning HTTP request
+     * Sending HTTP request
      *
      * @param Request $request
      * @param array   $query   HTTP query for GET requests
@@ -333,7 +333,7 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * For persistent sessions
      *
-     * @return array List of attriutes to be saved
+     * @return array List of attributes to be saved
      */
     public function __sleep()
     {
@@ -343,14 +343,14 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * Generate dsid
      *
-     * Randomly generated 8 characters maed for each request to the API.
+     * Randomly generated 8 characters made for each request to the API.
      * Likely to be used for braking cache.
      *
      * @return string 8 random generated characters
      */
     private function dsid()
     {
-        // Generate 8 cahcacters
+        // Generate 8 characters
         $dsid = substr(sha1(mt_rand()), rand(1, 30), 8);
 
         // 4 characters to uppercase

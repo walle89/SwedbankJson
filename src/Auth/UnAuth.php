@@ -27,18 +27,17 @@ class UnAuth extends AbstractAuth
     }
 
     /**
-     * Inlogging
-     * Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t
+     * UnAuth connection
      *
-     * @return bool         True om inloggingen lyckades
-     * @throws Exception    Fel vid inloggen
+     * @return bool True on success.
+     * @throws Exception
      */
     public function login()
     {
         $output = $this->getRequest('identification/device/');
 
         if ($output->status != 'OK')
-            throw new Exception('Uppkoppling misslyckades, kontrollera authorization-nyckel.', 10);
+            throw new Exception('Connection error check authentication key or try again later.', 10);
 
         return true;
     }
