@@ -1,17 +1,8 @@
 <?php
-/**
- * Wrapper för Swedbanks stänga API för mobilappar
- *
- * @package SwedbankJson
- * @author  Eric Wallmander
- *          Date: 2014-02-25
- *          Time: 21:36
- */
-
 namespace SwedbankJson\Auth;
 
-use SwedbankJson\AppData;
 use Exception;
+use SwedbankJson\AppData;
 
 /**
  * Class MobileBankID
@@ -19,22 +10,20 @@ use Exception;
  */
 class MobileBankID extends AbstractAuth
 {
-    /**
-     * @var int Inlogging personnummer
-     */
+    /** @var string Username. Personal identity number or corporate identity number (personnummer/organisationsnummer) */
     private $_username;
 
-    /**
-     * @var bool Om BankId har tidigare bilvit verifierad eller ej
-     */
+    /** @var bool If Mobile BankID authentication have been verified */
     protected $_verified = false;
 
     /**
      * MobileBankID constructor.
      *
-     * @param string|array $bankApp  ID för vilken bank som ska anropas, eller array med appdata uppgifter.
-     * @param int          $username Personnummer för inlogging till internetbanken
-     * @param bool         $debug    Sätt true för att göra felsökning, annars false eller null
+     * @param string|array $bankApp  Bank type AppID
+     * @param string       $username Personal identity number or corporate identity number (personnummer/organisationsnummer)
+     * @param bool         $debug    Enable debugging
+     *
+     * @throws Exception
      */
     public function __construct($bankApp, $username, $debug = false)
     {
@@ -46,9 +35,9 @@ class MobileBankID extends AbstractAuth
     }
 
     /**
-     * Inleder inlogging med Mobilt BankID
+     * Initiate Mobile BankID authentication
      *
-     * Ser till att verifieringsförfrågan skickas till användarens mobila BankID
+     * Sends verification request to the users Mobile BankID app.
      *
      * @return bool
      * @throws Exception
@@ -67,7 +56,7 @@ class MobileBankID extends AbstractAuth
             ]);
 
         if ($output->status != 'USER_SIGN')
-            throw new Exception('Kan inte koppla bankID.', 10);
+            throw new Exception('Unable to use Mobile BankID. Check if the user have enabled Mobile BankID.', 10);
 
         $this->saveSession();
 
@@ -75,9 +64,11 @@ class MobileBankID extends AbstractAuth
     }
 
     /**
-     * Verifierings kontroll
+     * Check Mobile BankID verification
      *
-     * @return bool
+     * See if the user have confirmed the authentication verification request.
+     *
+     * @return bool True if verified. False to check later (eg. 5 seconds) for user verification.
      * @throws Exception
      */
     public function verify()
@@ -88,9 +79,8 @@ class MobileBankID extends AbstractAuth
         $output = $this->getRequest('identification/bankid/mobile/verify');
 
         if (empty($output->status))
-            throw new Exception('BankID är inte verifierad.', 11);
+            throw new Exception('Mobile BankID cannot be verified. Maybe a session timeout.', 11);
 
-        // Om status är "COMPLETE", är det lyckad inlogging
         $this->_verified = ($output->status == 'COMPLETE');
 
         $this->saveSession();
@@ -99,27 +89,25 @@ class MobileBankID extends AbstractAuth
     }
 
     /**
-     * Inlogging
+     * Sign in
      *
-     * Verifiering måste vara genomförd för att kunna genomföra restireande steg i inloggingsprocessen
+     * The authentication verification request must be verified with verify() before use of login.
      *
-     * @return bool         True om inloggingen lyckades
-     * @throws Exception    Fel vid inloggen
+     * @return bool         True on successful sign in
+     * @throws Exception
      */
     public function login()
     {
         if (!$this->_verified)
-            throw new Exception('BankID är inte verifierad.', 12);
+            throw new Exception('The authentication process did not start in the right way for Mobile BankID.', 12);
 
         return true;
     }
 
     /**
-     * För sparande av session
+     * For persistent sessions
      *
-     * Modifierad för att inkludera $_verified
-     *
-     * @return array Lista på attribut som ska sparas
+     * @return array List of attributes to be saved
      */
     public function __sleep()
     {

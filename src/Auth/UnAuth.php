@@ -1,17 +1,8 @@
 <?php
-/**
- * Wrapper för Swedbanks stänga API för mobilappar
- *
- * @package SwedbankJSON
- * @author  Eric Wallmander
- *          Date: 2014-02-25
- *          Time: 21:36
- */
-
 namespace SwedbankJson\Auth;
 
-use SwedbankJson\AppData;
 use Exception;
+use SwedbankJson\AppData;
 
 /**
  * Class UnAuth
@@ -22,8 +13,10 @@ class UnAuth extends AbstractAuth
     /**
      * UnAuth constructor.
      *
-     * @param string|array $bankApp ID för vilken bank som ska anropas, eller array med appdata uppgifter.
-     * @param bool         $debug   Sätt true för att göra felsökning, annars false eller null
+     * @param string|array $bankApp Bank type AppID
+     * @param bool         $debug   Enable debugging
+     *
+     * @throws Exception
      */
     public function __construct($bankApp, $debug = false)
     {
@@ -34,18 +27,17 @@ class UnAuth extends AbstractAuth
     }
 
     /**
-     * Inlogging
-     * Loggar in med personummer och personig kod för att få reda på bankID och den tillfälliga profil-id:t
+     * UnAuth connection
      *
-     * @return bool         True om inloggingen lyckades
-     * @throws Exception    Fel vid inloggen
+     * @return bool True on success.
+     * @throws Exception
      */
     public function login()
     {
         $output = $this->getRequest('identification/device/');
 
         if ($output->status != 'OK')
-            throw new Exception('Uppkoppling misslyckades, kontrollera authorization-nyckel.', 10);
+            throw new Exception('Connection error check authentication key or try again later.', 10);
 
         return true;
     }

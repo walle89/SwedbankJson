@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Eric Wallmander
- * Date: 15-02-28
- * Time: 20:19
- */
-
 namespace SwedbankJson\Auth;
 
 /**
@@ -15,9 +8,9 @@ namespace SwedbankJson\Auth;
 interface AuthInterface
 {
     /**
-     * Inled inloggon
+     * Sign in
      *
-     * @return bool Om inloggingen lyckades eller ej
+     * @return bool True for successful sign in
      */
     public function login();
 }

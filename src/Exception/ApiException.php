@@ -1,13 +1,4 @@
 <?php
-/**
- * Wrapper för Swedbanks stänga API för mobilappar
- *
- * @package SwedbankJson
- * @author  Eric Wallmander
- *          Date: 2016-01-04
- *          Time: 23:26
- */
-
 namespace SwedbankJson\Exception;
 
 /**
@@ -16,22 +7,18 @@ namespace SwedbankJson\Exception;
  */
 class ApiException extends \RuntimeException implements SwedbankJsonException
 {
-    /**
-     * @var string Meddelande
-     */
+    /** @var string Exception message */
     private $_response;
 
-    /**
-     * @var array Felmeddelanden
-     */
+    /** @var array Error messages */
     private $_errorMessages = [];
 
     /**
      * ApiException constructor.
      *
-     * @param string          $response Meddelande
-     * @param int             $code     Felkod
-     * @param \Exception|null $previous Exception föregående
+     * @param string          $response The Exception message to throw.
+     * @param int             $code     The Exception code.
+     * @param \Exception|null $previous The previous exception used for the exception chaining.
      */
     public function __construct($response, $code = 0, \Exception $previous = null)
     {
@@ -44,7 +31,7 @@ class ApiException extends \RuntimeException implements SwedbankJsonException
         {
             foreach ($result->errorMessages as $type => $data)
             {
-                foreach($data as $ii => $error)
+                foreach ($data as $ii => $error)
                 {
                     $index = $ii + 1;
                     $temp  = "$type ($index): ";
@@ -65,9 +52,9 @@ class ApiException extends \RuntimeException implements SwedbankJsonException
     }
 
     /**
-     * Hämta meddelande
+     * Get response message
      *
-     * @return string Meddelande
+     * @return string Response message
      */
     public function getResponse()
     {
@@ -75,9 +62,9 @@ class ApiException extends \RuntimeException implements SwedbankJsonException
     }
 
     /**
-     * Hämta felmeddelanden
+     * Get error messages
      *
-     * @return array Felmeddelanden
+     * @return array Error messages
      */
     public function getErrorMessages()
     {
