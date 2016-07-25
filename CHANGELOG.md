@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
+
+## [0.7.0] - 2016-07-25
 ### Security
 - Guzzle set to minimum version of 6.2.1 because of HTTP_PROXY vulnerability.
 
@@ -163,7 +165,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - First release.
 
-[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.6.1...HEAD
+[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/walle89/SwedbankJson/compare/v0.6.1...v0.7.0
 [0.6.1]: https://github.com/walle89/SwedbankJson/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/walle89/SwedbankJson/compare/v0.5.2...v0.6.0
 [0.5.2]: https://github.com/walle89/SwedbankJson/compare/v0.5.1...v0.5.2

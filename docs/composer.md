@@ -33,7 +33,7 @@ When you have installed Composer, create or modify composer.json with the follow
 ```javascript
 {
     "require": {
-        "walle89/swedbank-json": "^0.6"
+        "walle89/swedbank-json": "^0.7"
     }
 }
 ```
