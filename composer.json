@@ -1,6 +1,6 @@
 {
     "name": "walle89/swedbank-json",
-    "description": "Wrapper for Swedbank's closed mobile apps API in Sweden",
+    "description": " Unofficial API client for the Swedbank's and Sparbanken's mobile apps in Sweden.",
     "type": "library",
     "keywords": ["swedbank","wrapper","api","json"],
     "minimum-stability": "stable",
