@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
+### Changed
+- Updated app version for all Swedbank apps.
 
 ## [0.7.0] - 2016-07-25
 ### Security
