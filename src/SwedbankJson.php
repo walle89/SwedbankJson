@@ -32,7 +32,7 @@ class SwedbankJson
      * List of available user profile(s) with per session IDs. Each user can only have one private profile but several corporate profiles.
      * Profile ID is a 40 characters long string that looks like a SHA1 hash, found in privateProfile->id or corporateProfiles->id.
      *
-     * @return array        JSON decoded response from the API.
+     * @return object JSON decoded response from the API.
      * @throws Exception
      */
     public function profileList()
