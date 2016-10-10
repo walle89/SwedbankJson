@@ -24,7 +24,7 @@ require 'vendor/autoload.php';
 ## Windows
 
 To run Composer on windows, you need php.exe. You can either [download it from php.net](http://windows.php.net/download/) or 
-install PHP web development package like [WampServer](http://www.wampserver.com/en/). Make sure you know the full path to php.exe, Composer will likely need it. 
+install PHP web development package like [WampServer](http://www.wampserver.com/en/). Make sure you know the full path to php.exe, Composer may need it. 
 
 Download, run [Composer-Setup.exe](https://getcomposer.org/doc/00-intro.md#installation-windows) and follow the instructions.
 

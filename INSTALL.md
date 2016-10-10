@@ -247,7 +247,6 @@ Be careful not to register two similar transfers (the same amount, the sending a
 To delete a transfer can do the following.
 
 ```php
-// Ta bort obekräftad överförning
 // Remove unconfirmed transfer from queue 
 $transfares = $bankConn->listRegisteredTransfers();
 $bankConn->deleteTransfer($transfares->transferGroups[0]->transfers[0]->id);
