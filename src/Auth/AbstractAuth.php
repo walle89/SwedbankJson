@@ -15,7 +15,7 @@ use GuzzleHttp\Psr7\Request;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 use SwedbankJson\Exception\ApiException;
 use SwedbankJson\Exception\UserException;
 
