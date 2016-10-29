@@ -9,10 +9,11 @@
 ## Introduction
 This project uses third-party libraries like HTTP client to send API requests.
 To manage these libraries, SwedbankJson is using [Composer] as a dependency manager.
+If your projects don't already use Composer, it's highly recommended to start using it.
 
 Composer makes it easy to use third-party components and libraries like [Symfony Components] and other libraries listed on [Packagist]. 
 Instead downloading all dependencies (and a dependency dependencies) manually, Composer takes care of it for you.
-It also helps developers with keep all dependencies up to date with new updates that includes new features and security or other bug fixes.
+It also helps developers with keep all dependencies up to date with new updates that includes new features, security and bug fixes.
 
 Many modern PHP projects like [Zend Framework 3], [Symfony], [Laravel] and [Guzzle] all uses Composer.
 
@@ -26,7 +27,6 @@ If you want to, you can run Composer directly on the web server if you have perm
 First we need to download and run Composer. Follow one of the instructions on respective platform. 
 
 #### Linux and MacOS
-
 Run the following in a terminal window (MacOS: Applications > Utilities > Terminal):
 
 ```bash
@@ -42,7 +42,6 @@ php composer.phar require walle89/swedbank-json
 After successful installation, it's time to [upload the files](#upload). 
 
 #### Windows
-
 To run Composer in Windows, you need `php.exe`. You can either [download it from php.net] or 
 install PHP web development package like [WampServer]. Make sure you know the full path to php.exe, Composer may need it. 
 
@@ -61,7 +60,7 @@ When you have installed Composer, create or modify `composer.json` with the foll
 Right-click the composer.json and select "Composer Install". 
 
 ### 2. Upload
-Now upload the generated `vendor` folder to the web server or your hosting provider. Where you place it dose not really matter, 
+Now upload the generated `vendor` folder to the web server or your hosting provider. Where you place it doesn't really matter, 
 the important thing is PHP have access to it. You can also upload composer.json and composer.lock if you want to, but it's not required in order to make it work with PHP.
 
 ### 3. Run example code
