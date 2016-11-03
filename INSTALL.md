@@ -33,7 +33,7 @@ require 'vendor/autoload.php';
 
 // Settings
 $bankApp  = 'swedbank';
-$username = 8903060000; 
+$username = 198903060000; // Personal identity number (personnummer).
 
 if(empty($_POST['challengeResponse']))
 {
@@ -151,7 +151,7 @@ session_start();
 
 // Settings
 $bankApp  = 'swedbank';
-$username = 8903060000; 
+$username = 8903060000; // Personal identity number (personnummer). 
 
 // Besgin sign in
 if (!isset($_SESSION['swedbankjson_auth']))

@@ -11,7 +11,7 @@ Common settings for code examples below.
 
 ```php
 // Settings
-$username = 198903060000; // Personal identity number or corporate identity number (personnummer/organisationsnummer)
+$username = 198903060000; // Personal identity number (personnummer).
 $bankApp  = 'swedbank';   // Bank type
 ```
 
