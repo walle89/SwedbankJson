@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
+- Updated app version for Swedbank, Swedbank Företag, Sparbanken and Sparbanken Företag.
 
 ## [0.7.1] - 2016-10-22
 ### Changed
