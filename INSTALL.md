@@ -15,7 +15,7 @@
 * Curl
 
 ## Installation with Composer
-Currently this project only supports installation with [Composer](http://getcomposer.org) and it's available via Packagist ([walle89/swedbank-json](https://packagist.org/packages/walle89/swedbank-json)).
+Currently this project only supports installation with [Composer] and it's available via Packagist ([walle89/swedbank-json]).
 [Read more about Composer](docs/composer.md). Installation done in any outer way than with Composer is not supported.
 
 ```bash
@@ -25,7 +25,7 @@ composer require walle89/swedbank-json
 Next, use the example code below.
 
 ## Example code
-This example uses [security token with one time code](docs/authentication.md#security-token-with-one-time-code) as authentication method for listing bank statements. 
+This example uses [security token with one time code] as authentication method for listing bank statements. 
 
 ```php
 <?php 
@@ -61,7 +61,10 @@ print_r($accountInfo);
 ```
 
 ### Alternative authentication methods
-[Authentication methods with instructions](docs/authentication.md).
+Besides authentication with security token with one time code, SwedbankJson also support authentication methods like Mobile BankID and "no authentication".
+Each method have it's benefits and limitations.
+
+Information about and instructions for implementation can be read in [authentication.md](docs/authentication.md).
 
 ## Bank statements
 List bank statements for the first account.
@@ -255,3 +258,7 @@ $bankConn->deleteTransfer($transfares->transferGroups[0]->transfers[0]->id);
 $confirmedTransfares = $bankConn->listConfirmedTransfers();
 $bankConn->deleteTransfer($confirmedTransfares->transferGroups[0]->transfers[2]->id);
 ```
+
+[Composer]: (http://getcomposer.org)
+[walle89/swedbank-json]: (https://packagist.org/packages/walle89/swedbank-json)
+[security token with one time code]: (docs/authentication.md#security-token-with-one-time-code)
