@@ -16,13 +16,13 @@
 * [Quick Balance Unsubscription](#quick-balance-unsubscription)
 
 ## Introduction
-All response samples are meant to as a reference to what output to be expected from the Swedbank API. It's an additional resource to [the introduction](INSTALL.md).
+All response samples are meant to as a reference to what output to be expected from the Swedbank API. It's an additional resource to [the introduction](/INSTALL.md).
 
 Many parameter names and its content are mostly self-explanatory. Parameters that needs additional information, there are noted in a table for each response sample. 
 
 ### Note about IDs and URIs
 All "id" and "uri" parameters below are per session temporary unique strings. They can not and should not be saved and reused in any way.
-Depending on what API is used, there are other parameters that can be used as a persistent id between sessions. For more info, please [read the introduction](INSTALL.md).
+Depending on what API is used, there are other parameters that can be used as a persistent id between sessions. For more info, please [read the introduction](/INSTALL.md).
 
 ## Profile List
 | Parameter | Description |
@@ -177,7 +177,7 @@ Depending on what API is used, there are other parameters that can be used as a 
 | --- | --- |
 | id | Per session temporary unique strings. Only used for referring an API action. |
 | fullyFormattedNumber | Persistent unique identifier for the account. |
-| perodicity | Alternatives for register periodicity transfers. See [Transfer money](INSTALL.md#transfer-money) |
+| perodicity | Alternatives for register periodicity transfers. See [Transfer money](/INSTALL.md#transfer-money) |
 | links | Used for internals of the API. New URIs for each session. |
 
     stdClass Object
@@ -1053,7 +1053,7 @@ See [Register Transfer](#register-transfer).
 ## Quick Balance Subscription
 | Parameter | Description |
 | --- | --- |
-| subscriptionId | See [Quick balance](INSTALL.md#quick-balance). Save this ID. |
+| subscriptionId | See [Quick balance](/INSTALL.md#quick-balance). Save this ID. |
 
     stdClass Object
     (
