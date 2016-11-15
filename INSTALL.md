@@ -82,9 +82,10 @@ print_r($accountInfo);
 To choose a specific account to get bank statements from, you can modify the above code to the following:
 
 ```php
-$accounts = $bankConn->accountList(); // Account list
+$accounts             = $bankConn->accountList(); // Account list
+$transactionAccountID = $accounts->transactionAccounts[1]->id; // Temporary per session ID.
 
-$accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[1]->id); // Select account 2
+$accountInfo = $bankConn->accountDetails($transactionAccountID); // Select account 2
 
 $bankConn->terminate(); // Sign out
 
@@ -101,10 +102,12 @@ Do not forget to change BANK_APP to either swedbank_foretag or sparbanken_foreta
 
 ```PHP
 $profiles = $bankConn->profileList(); // Profiles
+$prfileID = $accounts->transactionAccounts[1]->id; // Temporary per session ID.
 
-$accounts = $bankConn->accountList($profiles->corporateProfiles[0]->id); // Available accounts based on the selected profile
+$accounts             = $bankConn->accountList($prfileID); // Available accounts based on the selected profile
+$transactionAccountID = $accounts->transactionAccounts[0]->id; // Temporary per session ID.
 
-$accountInfo = $bankConn->accountDetails($accounts->transactionAccounts[0]->id);
+$accountInfo = $bankConn->accountDetails($transactionAccountID);
 
 $bankConn->terminate(); // Sign out
 
@@ -125,7 +128,7 @@ SubscriptionId is a unique ID per account that can be used to get the following 
 * Current total balance of the account
 * If there are notifications for the user (eg. newly received e-invoice)
 
-This ID is supposed to be created and used each time you request quick balance .
+This ID is supposed to be created and used each time you request quick balance.
 
 ```php
 <?php 
@@ -206,8 +209,8 @@ print_r($baseInfo);
 
 // Sholud be replaced with a form
 // NOTE: Change this before run
-$fromAccountId      = $baseInfo->fromAccountGroup[0]->accounts[0]->id;      // Ex. Sealery account 
-$recipientAccountId = $baseInfo->recipientAccountGroup[1]->accounts[3]->id; // Ex. Vecation saving account
+$fromAccountId      = $baseInfo->fromAccountGroup[0]->accounts[0]->id;      // Ex. Sealery account. The ID is temporary per session
+$recipientAccountId = $baseInfo->recipientAccountGroup[1]->accounts[3]->id; // Ex. Vecation saving account. The ID is temporary per session
 
 // Register a transfare request
 $result = $bankConn->registerTransfer(0.99, $fromAccountId, $recipientAccountId, 'From test', 'To test');
