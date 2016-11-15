@@ -2,7 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
+### Changed
 - Updated app version for Swedbank, Swedbank Företag, Sparbanken and Sparbanken Företag.
+- Improved response samples documentation and notes about Ids and URIs. 
 
 ## [0.7.1] - 2016-10-22
 ### Changed
