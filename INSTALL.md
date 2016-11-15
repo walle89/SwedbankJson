@@ -67,6 +67,8 @@ Each method have it's benefits and limitations.
 Information about and instructions for implementation can be read in [authentication.md](docs/authentication.md).
 
 ## Bank statements
+
+### Simple example
 List bank statements for the first account.
 
 ```php
@@ -78,7 +80,9 @@ echo '<strong>Bank statements</strong>';
 print_r($accountInfo);
 ```
 
-## Selecting specific account
+The output should look like [account details response sample](docs/response_samples.md#account-details). 
+
+### Selecting specific account
 To choose a specific account to get bank statements from, you can modify the above code to the following:
 
 ```php
@@ -95,6 +99,14 @@ print_r($accounts);
 echo '<strong>Bank statements</strong>';
 print_r($accountInfo);
 ```
+
+### Syncing bank statements
+A common use case is to save and compare bank statements to for example detect new transactions.
+One important thing to know is the IDs form the API *can not* and *should not* be used for this purpose. This is
+because they are only unique for the session. In the next session the transaction will have a new temporary ID.
+
+One approach to solve this is combine date, description, currency and amount parameters to an identifier for that transaction.
+You can possibly add the accounting balance amount as an identifier for better accuracy.
 
 ## Profile selector
 The Swedbank API have support for multiple company profiles linked to a user.
