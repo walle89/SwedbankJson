@@ -1,5 +1,6 @@
 # Response samples
 
+* [Introduction](#introduction)
 * [Profile List](#profile-list)
 * [Reminders](#reminders)
 * [Baseinfo](#baseinfo)
@@ -14,7 +15,24 @@
 * [Quick Balance](#quick-balance)
 * [Quick Balance Unsubscription](#quick-balance-unsubscription)
 
+## Introduction
+All response samples are meant to as a reference to what output to be expected from the Swedbank API. It's an additional resource to [the introduction](INSTALL.md).
+
+Many parameter names and its content are mostly self-explanatory. Parameters that needs additional information, there are noted in a table for each response sample. 
+
+### Note about IDs and URIs
+All "id" and "uri" parameters below are per session temporary unique strings. They can not and should not be saved and reused in any way.
+Depending on what API is used, there are other parameters that can be used as a persistent id between sessions. For more info, please [read the introduction](INSTALL.md).
+
 ## Profile List
+| Parameter | Description |
+| --- | --- |
+| bankId | Internal reference ID to which bank the customer belongs to. | 
+| privateProfile | Containing the user's personal accounts and services. | 
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| links | Used for internals of the API. New URIs for each session. |
+| corporateProfiles | If the user have business accounts, it will be listed here. |
+
     stdClass Object
     (
         [name] => Swedbank AB (publ)
@@ -52,6 +70,10 @@
     )
     
 ## Reminders
+| Parameter | Description |
+| --- | --- |
+| links | Used for internals of the API. New URIs for each session. |
+
     stdClass Object
     (
         [rejectedPayments] => stdClass Object
@@ -151,6 +173,13 @@
     )
 
 ## Baseinfo
+| Parameter | Description |
+| --- | --- |
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| fullyFormattedNumber | Persistent unique identifier for the account. |
+| perodicity | Alternatives for register periodicity transfers. See [Transfer money](INSTALL.md#transfer-money) |
+| links | Used for internals of the API. New URIs for each session. |
+
     stdClass Object
     (
         [fromAccountGroup] => Array
@@ -322,6 +351,13 @@
     )
 
 ## Account List
+| Parameter | Description |
+| --- | --- |
+| links | Used for internals of the API. New URIs for each session. |
+| details | Used for internals of the API. New URIs for each session. |
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| fullyFormattedNumber | Persistent unique identifier for the account. |
+
     stdClass Object
     (
         [transactionAccounts] => Array
@@ -454,6 +490,13 @@
     )
 
 ## Portfolio List
+| Parameter | Description |
+| --- | --- |
+| savingsGoals | Swedbank's saving goal service |
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| fullyFormattedNumber | Persistent unique identifier for the account. |
+| links | Used for internals of the API. New URIs for each session. |
+
     stdClass Object
     (
         [errorCode] => 0
@@ -561,6 +604,12 @@
     )
 
 ## Account Details
+| Parameter | Description |
+| --- | --- |
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| links | Used for internals of the API. New URIs for each session. |
+| fullyFormattedNumber | Persistent unique identifier for the account. |
+
     stdClass Object
     (
         [account] => stdClass Object
@@ -747,6 +796,12 @@
     )
 
 ## Register Transfer
+| Parameter | Description |
+| --- | --- |
+| links | Used for internals of the API. New URIs for each session. |
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| fullyFormattedNumber | Persistent unique identifier for the account. |
+
     stdClass Object
     (
         [links] => stdClass Object
@@ -841,6 +896,12 @@
 See [Register Transfer](#register-transfer).
 
 ## List Confirmed Transfers
+| Parameter | Description |
+| --- | --- |
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| fullyFormattedNumber | Persistent unique identifier for the account. |
+| links | Used for internals of the API. New URIs for each session. |
+
     stdClass Object
     (
         [totalSum] => 1 250,00
@@ -923,6 +984,12 @@ See [Register Transfer](#register-transfer).
     )
 
 ## Quick Balance Accounts
+| Parameter | Description |
+| --- | --- |
+| fullyFormattedNumber | Persistent unique identifier for the account. |
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| links | Used for internals of the API. New URIs for each session. |
+
     stdClass Object
     (
         [accounts] = Array
@@ -984,6 +1051,10 @@ See [Register Transfer](#register-transfer).
     )
 
 ## Quick Balance Subscription
+| Parameter | Description |
+| --- | --- |
+| subscriptionId | See [Quick balance](INSTALL.md#quick-balance). Save this ID. |
+
     stdClass Object
     (
         [subscriptionId] => lDVcX_iRc71oPAMDdSR_XU70LrslhdeT6Eltp1EL-10=
