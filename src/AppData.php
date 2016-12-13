@@ -11,7 +11,7 @@ class AppData
 {
     /** @var array Bank type with appID and user-agent */
     private static $appData = [
-            'swedbank'           => ['appID' => 'X71LuxH8n4XEqDMg', 'useragent' => 'SwedbankMOBPrivateIOS/4.9.3_(iOS;_10.1.1)_Apple/iPhone7,2'],
+            'swedbank'           => ['appID' => 'R7PA74SED1LkJcjT', 'useragent' => 'SwedbankMOBPrivateIOS/4.9.4_(iOS;_10.2)_Apple/iPhone9,3'],
             'sparbanken'         => ['appID' => 'WLUDemwnwZvJdoJx', 'useragent' => 'SavingbankMOBPrivateIOS/4.9.3_(iOS;_10.1.1)_Apple/iPhone7,2'],
             'swedbank_ung'       => ['appID' => 'vEgFFWmbG1IbipQs', 'useragent' => 'SwedbankMOBYouthIOS/2.4.2_(iOS;_10.0.2)_Apple/iPhone7,2'],
             'sparbanken_ung'     => ['appID' => 'QmaEk0DY4w2I9xCb', 'useragent' => 'SavingbankMOBYouthIOS/2.4.2_(iOS;_10.0.2)_Apple/iPhone7,2'],
