@@ -1,10 +1,12 @@
 .idea
-exmaple.php
 composer.phar
 vendor/
 .DS_Store
 
-### Local Vagrant dev ###
+### Docker ###
+config/
+log/
 tests/
-*agrant*
-ansible*
+.env
+docker-compose.yml
+*.dockerfile
