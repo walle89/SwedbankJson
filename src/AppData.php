@@ -11,12 +11,12 @@ class AppData
 {
     /** @var array Bank type with appID and user-agent */
     private static $appData = [
-            'swedbank'           => ['appID' => 'R7PA74SED1LkJcjT', 'useragent' => 'SwedbankMOBPrivateIOS/4.9.4_(iOS;_10.2)_Apple/iPhone9,3'],
-            'sparbanken'         => ['appID' => 'kjKoiXCGhZfkG9rR', 'useragent' => 'SavingbankMOBPrivateIOS/4.9.4_(iOS;_10.2)_Apple/iPhone9,3'],
-            'swedbank_ung'       => ['appID' => 'rnwjZ2HxcgWRRzfA', 'useragent' => 'SwedbankMOBYouthIOS/2.4.4_(iOS;_10.2)_Apple/iPhone9,3'],
-            'sparbanken_ung'     => ['appID' => '4W0SGwEd7ojoq5EF', 'useragent' => 'SavingbankMOBYouthIOS/2.4.4_(iOS;_10.2)_Apple/iPhone9,3'],
-            'swedbank_foretag'   => ['appID' => 'nUIGXI44CNWfAnJl', 'useragent' => 'SwedbankMOBCorporateIOS/2.6.4_(iOS;_10.2)_Apple/iPhone9,3'],
-            'sparbanken_foretag' => ['appID' => 'KAswmoyM4CbPC3AN', 'useragent' => 'SavingbankMOBCorporateIOS/2.6.4_(iOS;_10.2)_Apple/iPhone9,3'],
+            'swedbank'           => ['appID' => 'Meen0DRdooDtd3y2', 'useragent' => 'SwedbankMOBPrivateIOS/4.9.5_(iOS;_10.2.1)_Apple/iPhone9,3'],
+            'sparbanken'         => ['appID' => 'f7flKefi5gKbG1BG', 'useragent' => 'SavingbankMOBPrivateIOS/4.9.5_(iOS;_10.2.1)_Apple/iPhone9,3'],
+            'swedbank_ung'       => ['appID' => '1WBuAPysQW12LIAX', 'useragent' => 'SwedbankMOBYouthIOS/2.4.5_(iOS;_10.2.1)_Apple/iPhone9,3'],
+            'sparbanken_ung'     => ['appID' => 'P4gwbFmLWE71hrSv', 'useragent' => 'SavingbankMOBYouthIOS/2.4.5_(iOS;_10.2.1)_Apple/iPhone9,3'],
+            'swedbank_foretag'   => ['appID' => 'ZA4nyT1jAY3b3aDK', 'useragent' => 'SwedbankMOBCorporateIOS/2.6.5_(iOS;_10.2.1)_Apple/iPhone9,3'],
+            'sparbanken_foretag' => ['appID' => '1AJGhENPquTSriHe', 'useragent' => 'SavingbankMOBCorporateIOS/2.6.5_(iOS;_10.2.1)_Apple/iPhone9,3'],
         ];
 
     /**
