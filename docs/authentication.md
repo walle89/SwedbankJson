@@ -68,7 +68,7 @@ $auth = unserialize($_SESSION['swedbankjson_auth']);
 if (!$auth->verify())
     exit("You updated the page, but the login is not approved in the BankID app. Please try again.");
 
-// Steg 3 - You are in!
+// Step 3 - You are in!
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 
