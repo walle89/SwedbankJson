@@ -27,13 +27,8 @@ If you want to, you can run Composer directly on the web server if you have perm
 First we need to download and run Composer. Follow one of the instructions on respective platform. 
 
 #### Linux and MacOS
-Run the following in a terminal window (MacOS: Applications > Utilities > Terminal):
-
-```bash
-curl -sS https://getcomposer.org/installer | php
-```
-
-Insert SwedbankJson in `composer.json` with the following command:
+First open a terminal window (MacOS: Applications > Utilities > Terminal), then follow these [instructions for local installation](https://getcomposer.org/doc/00-intro.md#locally).
+After you got composer.phar, insert SwedbankJson in `composer.json` with the following command:
 
 ```bash
 php composer.phar require walle89/swedbank-json
@@ -45,7 +40,7 @@ After successful installation, it's time to [upload the files](#upload).
 To run Composer in Windows, you need `php.exe`. You can either [download it from php.net] or 
 install PHP web development package like [WampServer]. Make sure you know the full path to php.exe, Composer may need it. 
 
-Download, run [Composer-Setup.exe] and follow the instructions.
+An easy way to install Composer is to [run and follow instructions for the installer](https://getcomposer.org/doc/00-intro.md#installation-windows).   
 
 When you have installed Composer, create or modify `composer.json` with the following content:
 
@@ -92,6 +87,5 @@ Right click on the directory containing composer.json, right click and select "C
 
 [download it from php.net]: http://windows.php.net/download/
 [WampServer]: http://www.wampserver.com/en/
-[Composer-Setup.exe]: https://getcomposer.org/doc/00-intro.md#installation-windows
 
 [example codes]: ../INSTALL.md#example-code
