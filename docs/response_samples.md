@@ -76,6 +76,35 @@ Depending on what API is used, there are other parameters that can be used as a 
 
     stdClass Object
     (
+        [unreadDocuments] => stdClass Object
+            (
+                [links] => stdClass Object
+                    ( 
+                        [next] => stdClass Object 
+                            ( 
+                                [method] => GET 
+                                [uri] => /v4/message/document/documents
+                            )
+                    )
+                
+                [count] => 0
+            )
+            
+        [unreadMessages] => stdClass Object
+            (
+                [links] => stdClass Object
+                    (
+                        [next] => stdClass Object
+                            (
+                                [method] => GET
+                                [uri] => /v4/message/messagebox/default/folder/inbox/thread
+                            )
+    
+                    )
+    
+                [count] => 0
+            )
+    
         [rejectedPayments] => stdClass Object
             (
                 [links] => stdClass Object
@@ -111,6 +140,21 @@ Depending on what API is used, there are other parameters that can be used as a 
             )
     
         [unsignedPayments] => stdClass Object
+            (
+                [links] => stdClass Object
+                    (
+                        [next] => stdClass Object
+                            (
+                                [method] => GET
+                                [uri] => /v4/payment/registered
+                            )
+    
+                    )
+    
+                [count] => 0
+            )
+    
+        [unsignedPaymentsForApproval] => stdClass Object
             (
                 [links] => stdClass Object
                     (
@@ -170,6 +214,54 @@ Depending on what API is used, there are other parameters that can be used as a 
                 [count] => 0
             )
     
+        [ongoingConsumerLoans] => stdClass Object
+            (
+                [links] => stdClass Object
+                    (
+                        [next] => stdClass Object
+                            (
+                                [method] => GET
+                                [uri] => /v4/lending/loan/overview
+                            )
+    
+                    )
+    
+                [count] => 0
+            )
+    
+        [agedConsumerLoans] => stdClass Object
+            (
+                [count] => 0
+                [deleteLinks] => Array
+                    (
+                    )
+    
+            )
+    
+        [closedConsumerLoans] => stdClass Object
+            (
+                [count] => 0
+                [deleteLinks] => Array
+                    (
+                    )
+    
+            )
+    
+        [unsignedPaymentsForCountersign] => stdClass Object
+            (
+                [links] => stdClass Object
+                    (
+                        [next] => stdClass Object
+                            (
+                                [method] => GET
+                                [uri] => /v4/payment/registered
+                            )
+    
+                    )
+    
+                [count] => 0
+            )
+
     )
 
 ## Baseinfo
