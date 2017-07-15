@@ -112,30 +112,6 @@ class SwedbankJson
     }
 
     /**
-     * Account list grouped by type and periodicity types.
-     *
-     * There are mainly two groups; fromAccountGroup and recipientAccountGroup. As the names suggests, these groups lists accounts that money can be withdrawn from and be
-     * transferred to. Something to keep in mid is check the attribute "groupId", which accounts you can transfer to without signing the transaction. Example of types:
-     *
-     * * ACCOUNT_SEK - Regular account
-     * * ACCOUNT_SAVINGS - Savings account
-     * * ACCOUNT_SIGNED - Signed receivers, accounts that somebody else owns.
-     *
-     * Currently money transfers to ACCOUNT_SIGNED accounts is not supported. Either is adding new signed accounts.
-     *
-     * For periodicity transferees, allowed types are also listed under the 'perodicity' attribute.
-     *
-     * @return object       Decoded JSON list of basic accounts information and periodicity types.
-     * @throws Exception
-     */
-    public function baseInfo()
-    {
-        $this->selectProfile();
-
-        return $this->_auth->getRequest('transfer/baseinfo');
-    }
-
-    /**
      * Lists accounts available to the profile.
      *
      * Type of accounts that are listed:
@@ -233,6 +209,33 @@ class SwedbankJson
     }
 
     /**
+     * Information to create a payment
+     *
+     * Lists accounts that are can be send or receive a payment. In order to crate a payment transaction, both sender and receiver account must be selected from this list.
+     *
+     * The list contains following account types:
+     *
+     * * Payment - External accounts. Mostly Bankgiro and Plusgiro accounts typically used by organizations and companies. Used for eg. paying bills.
+     * * Transfer - External bank accounts.
+     * * TransactionAccountGroups - Personal/private bank accounts.
+     * * InternationalRecipients - External international accounts.
+     *
+     * NOTE: Currently this project dose not actions that needs to be signed. In this case, adding new receptions or do payments to a external accounts require to be signed.
+     *       Generally accounts listed in "TransactionAccountGroups" do not require to be signed to confirm a payment. However make sure that the sender account have "TRANSFER_FROM"
+     *       scope type, and the receive account have the "TRANSFER_TO" scope type.
+     *
+     * For periodicity transferees, allowed types are listed under "transfare->periodicities".
+     *
+     * @return object Decode JSON with base payment and transfer information
+     * @throws Exception
+     */
+    public function transferBaseInfo() {
+        $this->selectProfile();
+
+        return $this->_auth->getRequest('payment/baseinfo');
+    }
+
+    /**
      * Add and prepare a transfer for confirmation
      *
      * The money will not be sent until the transfer have been confirmed, including direct transfers.
@@ -246,27 +249,28 @@ class SwedbankJson
      * @param string $fromAccountNote         From message
      * @param string $recipientAccountMessage Recipient message
      * @param string $transferDate            Date when the transfer will take place. Date format is YYYY-MM-DD (today's date onwards). If not specified, it is a direct transfer
-     * @param string $periodicity             Periodicity. For possible selectable periods, see 'Periodicity' from the result of @see baseInfo()
+     * @param string $periodicity             Periodicity. For possible selectable periods, see 'Periodicity' from the result of @see transferBaseInfo()
      *
      * @return object
      */
-    public function registerTransfer($amount, $fromAccountId, $recipientAccountId, $fromAccountNote = '', $recipientAccountMessage = '', $transferDate = '', $periodicity = 'NONE')
+    public function transferRegisterPayment($amount, $fromAccountId, $recipientAccountId, $fromAccountNote = '', $recipientAccountMessage = '', $transferDate = '', $periodicity = '')
     {
         $data = [
-            'amount'             => number_format((float)$amount, 2, ',', ''),
-            'note'               => $fromAccountNote,
-            'periodicalCode'     => $periodicity,
-            'message'            => $recipientAccountMessage,
-            'recipientAccountId' => $recipientAccountId,
-            'fromAccountId'      => $fromAccountId,
+            'amount'          => number_format((float)$amount, 2, ',', ''),
+            'noteToSender'    => $fromAccountNote,
+            'noteToRecipient' => $recipientAccountMessage,
+            'recipientId'     => $recipientAccountId,
+            'fromAccountId'   => $fromAccountId,
+            'date'            => $transferDate,
         ];
 
-        if (!empty($transferDate))
-            $data['transferDate'] = $transferDate;
+        if(!empty($periodicity)) {
+            $data['periodicity'] = $periodicity;
+        }
 
-        $this->_auth->postRequest('transfer/registered', $data);
+        $this->_auth->postRequest('payment/registered/transfer', $data);
 
-        return $this->listRegisteredTransfers();
+        return $this->transferListRegistered();
     }
 
     /**
@@ -276,22 +280,22 @@ class SwedbankJson
      *
      * @return object
      */
-    public function listRegisteredTransfers()
+    public function transferListRegistered()
     {
-        return $this->_auth->getRequest('transfer/registered');
+        return $this->_auth->getRequest('payment/registered');
     }
 
     /**
      * List confirmed scheduled transfers
      *
      * Both one time feature transfers and active periodicity scheduled transfers are listed.
-     * Past transfers, direct transfers and inactivated periodicity scheduled transfers are not listed.
+     * Historical transfers, direct transfers and inactivated periodicity scheduled transfers are not listed.
      *
      * @return object
      */
-    public function listConfirmedTransfers()
+    public function transferListConfirmed()
     {
-        return $this->_auth->getRequest('transfer/confirmed');
+        return $this->_auth->getRequest('payment/confirmed');
     }
 
     /**
@@ -301,49 +305,36 @@ class SwedbankJson
      *
      * @param string $transferId Transaction ID. Get ID from @see listConfirmedTransfers() or @see listRegisteredTransfers()
      */
-    public function deleteTransfer($transferId)
+    public function transferDeletePayment($transferId)
     {
-        $this->_auth->getRequest('transfer/'.$transferId);
-        $this->_auth->deleteRequest('transfer/'.$transferId);
+        $this->_auth->getRequest('payment/'.$transferId);
+        $this->_auth->deleteRequest('payment/'.$transferId);
     }
 
     /**
      * Confirms transfers
      *
-     * When a transfer is confirmed, the money will be sent at the scheduled time and will be listed in @see listRegisteredTransfers().
-     * With deleteTransfer(), you can cancel a transfer before the money have been sent. However confirmed direct transfers cannot be cancelled, since the money is sent
+     * When a transfer is confirmed, the money will be sent at the scheduled time and will be listed in @see transferListRegistered().
+     * With transferDeletePayment(), you can cancel a transfer before the money have been sent. However confirmed direct transfers cannot be cancelled, since the money is sent
      * immediately.
      *
-     * NOTE: Transfers that need to be signed to confirm (eg. accounts with groupID ACCOUNT_SIGNED) are currently not supported.
+     * NOTE: Transfers that need to be signed to confirm are currently not supported.
      * It is possible to open the mobile app to sign and confirm the transaction.
      *
      * @return object
      */
-    public function confirmTransfers()
+    public function transferConfirmPayments()
     {
-        $transactions = $this->listRegisteredTransfers();
+        $transactions = $this->transferListRegistered();
 
         if (empty($transactions->links->next->uri))
             throw new UserException('There are no registered transactions to confirm.', 55);
 
         // confirmTransferId
-        preg_match('#transfer/confirmed/(.+)#iu', $transactions->links->next->uri, $m);
+        preg_match('#payment/confirmed/(.+)#iu', $transactions->links->next->uri, $m);
         $confirmTransferId = $m[1];
 
-        $output = $this->_auth->putRequest('transfer/confirmed/'.$confirmTransferId);
-
-        return $output;
-    }
-
-    /**
-     * Alias for confirm transferee @see confirmTransfers()
-     *
-     * @deprecated Refactored to confirmTransfers().
-     * @return object
-     */
-    public function confirmTransfer()
-    {
-        return $this->confirmTransfers();
+        return $this->_auth->putRequest('payment/confirmed/'.$confirmTransferId);
     }
 
     /**
