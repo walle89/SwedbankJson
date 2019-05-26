@@ -302,7 +302,10 @@ abstract class AbstractAuth implements AuthInterface
             throw new ApiException($e->getResponse());
         } catch (ClientException $e)
         {
-            $this->terminate();
+            if(strpos($request->getUri(), 'identification/logout') === false)
+            {
+                $this->terminate();
+            }
             throw new ApiException($e->getResponse());
         }
 
