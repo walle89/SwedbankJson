@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
 
+## [0.7.5] - 2019-12-09
+### Fixed
+- Updated app version for all Swedbank apps in order to support the new minimal required version to use the API.
+
 ## [0.7.4] - 2019-10-24
 ### Fixed
 - Updated app version for all Swedbank apps (expect youth apps) in order to support the new minimal required version to use the API.
@@ -183,7 +187,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - First release.
 
-[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.7.4...HEAD
+[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.7.5...HEAD
+[0.7.5]: https://github.com/walle89/SwedbankJson/compare/v0.7.4...v0.7.5
 [0.7.4]: https://github.com/walle89/SwedbankJson/compare/v0.7.3...v0.7.4
 [0.7.3]: https://github.com/walle89/SwedbankJson/compare/v0.7.2...v0.7.3
 [0.7.2]: https://github.com/walle89/SwedbankJson/compare/v0.7.1...v0.7.2
