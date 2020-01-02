@@ -59,11 +59,11 @@ No, it's either recommended or supported. It's much easier to use Composer than 
 No, Swedbank's API is unique for the Swedish market and is not compatible with eg. Swedbank Denmark or Swedbank Lithuania.
 
 ### Why is this library not using the Swedbank Open Banking API?
-Swedbank Open Banking API (and Open Banking in general) is in many aspects a fantastic initiative. Now we have an open documented standard for how a third party can fetch bank statements and initiate payment transactions on behalf of a customer. Unlike this library, Swedbank Open Banking API is supported by the bank.
+Swedbank Open Banking API (and Open Banking in general) is in many aspects a fantastic initiative, that gives third parties access to an open API to fetch bank statements and initiate payment transactions on behalf of a customer. Unlike this library, Swedbank Open Banking API is supported by the bank.
 
-However there are few reasons for why I have chose to not to use the Open Banking API. One of them is it's costly and time consuming to get the required AISP or PISP licence from a local financial supervisory authority such as [Finansinspektionen](https://www.fi.se/sv/bank/andra-betaltjanstdirektivet-psd-2/) (Swedish) in order to get access to real customer data (production access).
+However there are few downsides with Open Banking API. One of them is it's costly and time consuming to get the required AISP or PISP licence from a local financial supervisory authority such as [Finansinspektionen](https://www.fi.se/sv/bank/andra-betaltjanstdirektivet-psd-2/) (Swedish) in order to get access to real customer data (production access).
 
-This library is instead using Swedbank's Mobile Apps API, the same API that's used for the Swedish Swedbank apps or Sparbanken apps for Android and Ios. There is no need for a AISP or PISP license. If you can use any of Swedbank's or Sparbanken's apps, then you can start coding using this library. Also Mobile Apps API have endpoints such as QuickBalance that's not exist in the Open Banking API.
+This library is instead using Swedbank's Mobile Apps API, the same API that's used for the Swedish Swedbank apps or Sparbanken apps for Android and Ios. If you can use any of Swedbank's or Sparbanken's apps, then you can start using this library. Also Mobile Apps API have endpoints such as QuickBalance that's not exist in the Swedbank Open Banking API.
 
 ## Support and Feedback
 This project utilize Github Issues for both support and feedback. Before creating a new issue, please do the following:
