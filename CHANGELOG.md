@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased][unreleased]
 ### Added
 - Automatic updates of or only remotely fetch app data meta data.
+- Fetch transaction details from transaction row. Issue [#38](https://github.com/walle89/SwedbankJson/issues/38).
 
 ### Changed
 - All auth classes now requires `AppData` object.
