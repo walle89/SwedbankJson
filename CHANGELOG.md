@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 - Warning for the "swedbank_företag" bank type.
+- To set BankType string in auth classes.
 
 ## [0.7.5] - 2019-12-09
 ### Fixed
