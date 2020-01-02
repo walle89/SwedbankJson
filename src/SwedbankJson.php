@@ -215,6 +215,24 @@ class SwedbankJson
     }
 
     /**
+     * Get detailed information about a transaction.
+     *
+     * @param string $detailsTransactionID Detailed transaction ID
+     *
+     * @return object       Decoded JSON with detailed transaction information
+     * @throws Exception    Not a valid DetailsTransactionID
+     */
+    public function transactionDetails($detailsTransactionID)
+    {
+        $output = $this->_auth->getRequest('engagement/transactions/details/'.$detailsTransactionID);
+
+        if (!isset($output->transactionDate))
+            throw new Exception('Not a valid DetailsTransactionID', 60);
+
+        return $output;
+    }
+
+    /**
      * Add and prepare a transfer for confirmation
      *
      * The money will not be sent until the transfer have been confirmed, including direct transfers.
