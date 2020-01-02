@@ -2,18 +2,26 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
+### Added
+- Automatic updates of or only remotely fetch app data meta data.
+
+### Changed
+- All auth classes now requires `AppData` object.
+
+### Removed
+- Warning for the "swedbank_företag" bank type.
 
 ## [0.7.5] - 2019-12-09
 ### Fixed
-- Updated app version for all Swedbank apps in order to support the new minimal required version to use the API.
+- Updated app version for all Swedbank apps in order to support the new minimal required version to use the API. Issue [#39](https://github.com/walle89/SwedbankJson/issues/39).
 
 ## [0.7.4] - 2019-10-24
 ### Fixed
-- Updated app version for all Swedbank apps (expect youth apps) in order to support the new minimal required version to use the API.
+- Updated app version for all Swedbank apps (expect youth apps) in order to support the new minimal required version to use the API. Issue [#39](https://github.com/walle89/SwedbankJson/issues/39).
 
 ## [0.7.3] - 2019-10-07
 ### Fixed
-- Updated app version for all Swedbank apps in order to support the new minimal required version to use the API.
+- Updated app version for all Swedbank apps in order to support the new minimal required version to use the API. Issue [#39](https://github.com/walle89/SwedbankJson/issues/39).
 
 ## [0.7.2] - 2019-05-26
 ### Fixed
