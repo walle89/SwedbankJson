@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
 ### Added
-- Automatic updates of or only remotely fetch app data meta data.
+- Automatic updates of or only remotely fetch app data meta data. Issue [#40](https://github.com/walle89/SwedbankJson/issues/40).
 - Fetch transaction details from transaction row. Issue [#38](https://github.com/walle89/SwedbankJson/issues/38).
 
 ### Changed
