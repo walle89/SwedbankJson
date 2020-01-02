@@ -19,6 +19,9 @@ List all bank accounts available to the profile. If ProfileID is not provided, i
 ## AccountDetails([ string $accountID = '' [, int $transactionsPerPage = 0 [, int $page = 1]]])
 Shows account details and transactions for the account. If no $accountID is not provided, it will fallback to default account.
 
+## TransactionDetails( string $detailsTransactionID )
+Shows additional information about a specific transaction.
+
 ## RegisterTransfer($amount, $fromAccountId, $recipientAccountId [, $fromAccountNote = '' [, $recipientAccountMessage = '' [, $transferDate = '' [, $periodicity = 'NONE']]]])
 Register a money transfer.
 

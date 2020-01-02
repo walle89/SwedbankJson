@@ -795,6 +795,45 @@ Depending on what API is used, there are other parameters that can be used as a 
     
     )
 
+## Transaction Details
+
+    stdClass Object
+    (
+        [message] => Dinner out
+        [reference] => +4670000000000
+        [description] => Swish skickad
+        [transactionType] => UT
+        [amount] => -120,00
+        [bankReference] => 8313955000000
+        [transactionDate] => 2020-01-05
+        [bookedDate] => 2020-01-05
+        [transactionTypeDescription] => Uttag
+        [uniqueReference] => FE5FE229CC244B06857191355E2FAKE5
+        [originalUniqueReference] => 
+        [orderId] => 
+        [ownSwishName] => TONARI VON TOTORO
+        [swishTransactionInfo] => stdClass Object
+            (
+                [product] => SWISH
+                [transactionType] => SENT
+                [transactionCounterPartRole] => PRIVATE
+                [productService] => BASE
+                [refund] => 
+                [correction] => 
+            )
+    
+        [swishDetails] => stdClass Object
+            (
+                [ownSwishNumber] => +4670000000000
+                [recipientName] => 
+                [sendersNumber] => +46 (0)701 00 00 00
+                [payersName] => Mononoke Hime
+                [transactionTime] => 12:16
+                [swishReference] => 588809101940000
+            )
+    
+    )
+
 ## Register Transfer
 | Parameter | Description |
 | --- | --- |

@@ -133,6 +133,20 @@ echo '<strong>Bank statements</strong>';
 print_r($accountInfo);
 ```
 
+## Transaction Details
+With some transaction rows, there can be additional data that can be fetched. A indicator of a transaction row has more details, is it has a `details` attribute containing a link to `/v4/engagement/transactions/details`.
+
+```php
+$accountInfo = $bankConn->accountDetails();
+$transactionDetails = $bankConn->transactionDetails($accountInfo->transactions[78]->details->id);
+
+$bankConn->terminate(); // Sign out
+
+echo '<strong>Transaction Details</strong>';
+print_r($transactionDetails);
+```
+
+
 ## Quick balance 
 One of few APIs that can be accessed without BankID or security token. All you need is to get a SubscriptionId (see "[How do I get a SubscriptionId?](#how-do-i-get-a-subscriptionid)")
 SubscriptionId is a unique ID per account that can be used to get the following information:
