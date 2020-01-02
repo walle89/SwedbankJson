@@ -26,7 +26,7 @@ Traffic between Swedbank's servers and the API client uses the same TLS encrypti
 List bank statements with authentication method [security token with one time code](docs/authentication.md#security-token-with-one-time-code).
 
 ```php
-$auth     = new SwedbankJson\Auth\SecurityToken($bankApp, $username, $challengeResponse);
+$auth     = new SwedbankJson\Auth\SecurityToken($appData, $username, $challengeResponse);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 
 $accountInfo = $bankConn->accountDetails();
@@ -40,7 +40,7 @@ print_r($accountInfo);
 All APIs does not require to sign in. One example is quick balance.
 
 ```php
-$auth     = new SwedbankJson\Auth\UnAuth($bankApp);
+$auth     = new SwedbankJson\Auth\UnAuth($appData);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 
 $quickBalance = $bankConn->quickBalance($subID);

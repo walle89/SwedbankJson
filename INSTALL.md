@@ -32,8 +32,9 @@ This example uses [security token with one time code] as authentication method f
 require 'vendor/autoload.php';
 
 // Settings
-$bankApp  = 'swedbank';
-$username = 198903060000; // Personal identity number (personnummer).
+$bankApp   = 'swedbank';
+$username  = 198903060000; // Personal identity number (personnummer).
+$cachePath = __DIR__.'/AppData.json';
 
 if(empty($_POST['challengeResponse']))
 {
@@ -49,7 +50,8 @@ if(empty($_POST['challengeResponse']))
 if(!is_numeric($_POST['challengeResponse']))
    exit('Wrong code!');
 
-$auth     = new SwedbankJson\Auth\SecurityToken($bankApp, $username, $_POST['challengeResponse']);
+$appData  = new SwedbankJson\AppData($bankApp, $cachePath);
+$auth     = new SwedbankJson\Auth\SecurityToken($appData, $username, $_POST['challengeResponse']);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 
 $accountInfo = $bankConn->accountDetails();
@@ -65,6 +67,9 @@ Besides authentication with security token with one time code, SwedbankJson also
 Each method have it's benefits and limitations.
 
 Information about and instructions for implementation can be read in [authentication.md](docs/authentication.md).
+
+## What is cache used for? What is App data?
+App data is needed in order use Swedbank's Mobile Apps API and it's by default fetched from a remote file. For more information, read the [App Data documentation](docs/appdata.md). 
 
 ## Bank statements
 
@@ -149,8 +154,10 @@ require 'vendor/autoload.php';
 // Settings
 $bankApp        = 'swedbank';
 $subscriptionId = 'ExampleXX2GCi3333YpupYBDZX75sOme8Ht9dtuFAKE=';
+$cachePath      = __DIR__.'/AppData.json';
 
-$auth     = new SwedbankJson\Auth\UnAuth($bankApp);
+$appData  = new SwedbankJson\AppData($bankApp, $cachePath);
+$auth     = new SwedbankJson\Auth\UnAuth($appData);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 
 echo '<pre>';
@@ -168,13 +175,15 @@ require 'vendor/autoload.php';
 session_start();
 
 // Settings
-$bankApp  = 'swedbank';
-$username = 8903060000; // Personal identity number (personnummer). 
+$bankApp   = 'swedbank';
+$username  = 8903060000; // Personal identity number (personnummer).
+$cachePath = __DIR__.'/AppData.json';
 
-// Besgin sign in
+// Sign in
 if (!isset($_SESSION['swedbankjson_auth']))
 {
-    $auth = new SwedbankJson\Auth\MobileBankID($bankApp, $username);
+    $appData = new SwedbankJson\AppData($bankApp, $cachePath);
+    $auth = new SwedbankJson\Auth\MobileBankID($appData, $username);
     $auth->initAuth();
     exit('Please open the BankID app and confirm the login. Then reload this page.');
 }

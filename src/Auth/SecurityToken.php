@@ -26,16 +26,16 @@ class SecurityToken extends AbstractAuth
     /**
      * SecurityToken constructor.
      *
-     * @param string|array $bankApp           Bank type AppID
-     * @param string       $username          Personal identity number or corporate identity number (personnummer/organisationsnummer)
-     * @param int          $challengeResponse One time code or response code from security token
-     * @param bool         $debug             Enable debugging
+     * @param AppData $appData
+     * @param string  $username          Personal identity number or corporate identity number (personnummer/organisationsnummer)
+     * @param int     $challengeResponse One time code or response code from security token
+     * @param bool    $debug             Enable debugging
      *
      * @throws Exception
      */
-    public function __construct($bankApp, $username, $challengeResponse = 0, $debug = false)
+    public function __construct(AppData $appData, $username, $challengeResponse = 0, $debug = false)
     {
-        $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
+        $this->setAppData($appData);
         $this->_username = $username;
         $this->setChallengeResponse($challengeResponse);
         $this->_debug = (bool)$debug;
@@ -49,6 +49,7 @@ class SecurityToken extends AbstractAuth
      *
      * @return string|null Control number. Null if the security token only requires a generated one time code.
      * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getChallenge()
     {
@@ -82,6 +83,7 @@ class SecurityToken extends AbstractAuth
      *
      * @return bool      True on successful sign in
      * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function login($challengeResponse = '')
     {

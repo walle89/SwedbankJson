@@ -13,14 +13,14 @@ class UnAuth extends AbstractAuth
     /**
      * UnAuth constructor.
      *
-     * @param string|array $bankApp Bank type AppID
-     * @param bool         $debug   Enable debugging
+     * @param AppData $appData
+     * @param bool    $debug Enable debugging
      *
      * @throws Exception
      */
-    public function __construct($bankApp, $debug = false)
+    public function __construct(AppData $appData, $debug = false)
     {
-        $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
+        $this->setAppData($appData);
         $this->_debug = (bool)$debug;
         $this->setAuthorizationKey();
         $this->setBaseUri('https://unauth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/');
@@ -31,6 +31,7 @@ class UnAuth extends AbstractAuth
      *
      * @return bool True on success.
      * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function login()
     {

@@ -41,7 +41,8 @@ This makes it very easy to automatically fetch information with a cron job.
 But most of Swedbank's APIs requires authentication with Mobile BankID or security token. 
 
 ```php
-$auth     = new SwedbankJson\Auth\UnAuth($bankApp);
+$appData  = new SwedbankJson\AppData($bankApp, __DIR__.'/AppData.json');
+$auth     = new SwedbankJson\Auth\UnAuth($appData);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 
@@ -58,7 +59,8 @@ session_start();
 // Step 1 - Start the authentication process
 if (!isset($_SESSION['swedbankjson_auth']))
 {
-    $auth = new SwedbankJson\Auth\MobileBankID($bankApp, $username);
+    $appData = new SwedbankJson\AppData($bankApp, __DIR__.'/AppData.json');
+    $auth    = new SwedbankJson\Auth\MobileBankID($appData, $username);
     $auth->initAuth();
     exit("Open the BankID app and confirm the login. Then refresh the page.");
 }
@@ -109,7 +111,8 @@ if(empty($_POST['challengeResponse'])
 if(!is_numeric($_POST['challengeResponse']))
     exit('Wrong code!');
 
-$auth     = new SwedbankJson\Auth\SecurityToken($bankApp, $username, $_POST['challengeResponse']);
+$appData  = new SwedbankJson\AppData($bankApp, __DIR__.'/AppData.json');
+$auth     = new SwedbankJson\Auth\SecurityToken($appData, $username, $_POST['challengeResponse']);
 $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 

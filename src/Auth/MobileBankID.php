@@ -19,15 +19,15 @@ class MobileBankID extends AbstractAuth
     /**
      * MobileBankID constructor.
      *
-     * @param string|array $bankApp  Bank type AppID
-     * @param string       $username Personal identity number or corporate identity number (personnummer/organisationsnummer)
-     * @param bool         $debug    Enable debugging
+     * @param AppData $appData  Bank type AppID
+     * @param string  $username Personal identity number or corporate identity number (personnummer/organisationsnummer)
+     * @param bool    $debug    Enable debugging
      *
      * @throws Exception
      */
-    public function __construct($bankApp, $username, $debug = false)
+    public function __construct(AppData $appData, $username, $debug = false)
     {
-        $this->setAppData((!is_array($bankApp)) ? AppData::bankAppId($bankApp) : $bankApp);
+        $this->setAppData($appData);
         $this->_username = $username;
         $this->_debug    = (bool)$debug;
         $this->setAuthorizationKey();
@@ -41,6 +41,7 @@ class MobileBankID extends AbstractAuth
      *
      * @return bool
      * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function initAuth()
     {
@@ -70,6 +71,7 @@ class MobileBankID extends AbstractAuth
      *
      * @return bool True if verified. False to check later (eg. 5 seconds) for user verification.
      * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function verify()
     {
