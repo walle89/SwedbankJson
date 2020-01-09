@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "updated": "2020-01-02T03:07:00+01:00",
+    "timestamp": 1577930820
+  },
   "apps": {
     "swedbank": {
       "appID": "4cQupxZFo8kk7R7f",
