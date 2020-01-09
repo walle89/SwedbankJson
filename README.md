@@ -2,7 +2,7 @@
 
 ## What is appdata.json and what is it used for?
 [Appdata.json](appdata.json) is a file used by the [SwedbankJson client API](https://github.com/walle89/SwedbankJson) project to automatically download the latest Swedbank mobile app meta data.
-This is data is used in the authentication process with the Swedbank mobile app API. More information can be found in the [SwedbankJson documentation](https://github.com/walle89/SwedbankJson/blob/master/docs/appdata.md).
+This data is used in the authentication process with the Swedbank mobile app API. More information can be found in the [SwedbankJson documentation](https://github.com/walle89/SwedbankJson/blob/master/docs/appdata.md).
 
 You can download the file with this URL: https://raw.githubusercontent.com/walle89/SwedbankJson/files/appdata.json
 
