@@ -5,7 +5,7 @@ Swedbank's API blocks older versions of its apps, and that also means the app da
 
 Previous versions of this library this had to be done manually via Composer update.
 With version `1.0.0`, this can be done with the updated `AppData` class automatically fetch from a remote source (by default from 
-https://raw.githubusercontent.com/walle89/SwedbankJson/files/appdata.json).
+https://raw.githubusercontent.com/walle89/sbj-resources/master/src/AppData.json).
 
 ## AppData class usage
 

@@ -40,7 +40,7 @@ class AppData
         $bankAppId,
         $cacheFilePath,
         $cacheTimeout = 1440,
-        $remoteDownload = 'https://raw.githubusercontent.com/walle89/SwedbankJson/files/appdata.json'
+        $remoteDownload = 'https://raw.githubusercontent.com/walle89/sbj-resources/master/src/AppData.json'
     )
     {
         $this->appId            = $bankAppId;
