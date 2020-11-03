@@ -21,7 +21,7 @@ All response samples are meant to as a reference to what output to be expected f
 Many parameter names and its content are mostly self-explanatory. Parameters that needs additional information, there are noted in a table for each response sample. 
 
 ### Note about IDs and URIs
-All "id" and "uri" parameters below are per session temporary unique strings. They can not and should not be saved and reused in any way.
+All "id" and "uri" parameters below are per session temporary unique strings. They cannot and should not be saved and reused in any way.
 Depending on what API is used, there are other parameters that can be used as a persistent id between sessions. For more info, please [read the introduction](/INSTALL.md).
 
 ## Profile List

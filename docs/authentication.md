@@ -124,7 +124,7 @@ From the perspective of login into one of the mobile apps, the flow should look 
 
 **Choose "Säkerhetsdosa" -> Enter control number into security token -> Enter response code -> Authenticated**
 
-Currently there is only an alfa implementation of this authentication method. If you are interested to try it out, [send me an email](http://wallmander.net/contact/) (NOTE: *Not* for support, [create an issue for that](https://github.com/walle89/SwedbankJson/issues)).
+Currently, there is only an alfa implementation of this authentication method. If you are interested to try it out, [send me an email](http://wallmander.net/contact/) (NOTE: *Not* for support, [create an issue for that](https://github.com/walle89/SwedbankJson/issues)).
 
 ## Personal code - Discontinued
 Swedbank discontinued personal code authentication method in February 2016.

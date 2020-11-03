@@ -12,7 +12,7 @@ To manage these libraries, SwedbankJson is using [Composer] as a dependency mana
 If your projects don't already use Composer, it's highly recommended to start using it.
 
 Composer makes it easy to use third-party components and libraries like [Symfony Components] and other libraries listed on [Packagist]. 
-Instead downloading all dependencies (and a dependency dependencies) manually, Composer takes care of it for you.
+Instead, downloading all dependencies (and a dependency dependencies) manually, Composer takes care of it for you.
 It also helps developers with keep all dependencies up to date with new updates that includes new features, security and bug fixes.
 
 Many modern PHP projects like [Zend Framework 3], [Symfony], [Laravel] and [Guzzle] all uses Composer.
@@ -20,11 +20,11 @@ Many modern PHP projects like [Zend Framework 3], [Symfony], [Laravel] and [Guzz
 You can read more about Composer in [this guide] or [on its official website].
  
 ## Installation
-One of the simplest way to install with composer is run the installer local on the computer and than upload the files to the web server.
+One of the simplest way to install with Composer is run the installer local on the computer and then upload the files to the web server.
 If you want to, you can run Composer directly on the web server if you have permissions to do so. 
 
 ### 1. Run Composer
-First we need to download and run Composer. Follow one of the instructions on respective platform. 
+First we need to download and run Composer. Follow one of the instructions on the respective platform. 
 
 #### Linux and MacOS
 First open a terminal window (MacOS: Applications > Utilities > Terminal), then follow these [instructions for local installation](https://getcomposer.org/doc/00-intro.md#locally).

@@ -53,4 +53,4 @@ Gets the quick balance.
 Disables quick balance for account.
 
 ## Terminate()
-Signing out the user. Also clears local cookie and session data.
+Signing out the user. Also, clears the local cookie and session data.
