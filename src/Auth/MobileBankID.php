@@ -53,6 +53,7 @@ class MobileBankID extends AbstractAuth
             [
                 'useEasyLogin'        => false,
                 'generateEasyLoginId' => false,
+                'bankIdOnSameDevice'  => false,
                 'userId'              => $this->_username,
             ]);
 
