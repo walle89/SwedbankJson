@@ -23,7 +23,6 @@ class UnAuth extends AbstractAuth
         $this->setAppData($appData);
         $this->_debug = (bool)$debug;
         $this->setAuthorizationKey();
-        $this->setBaseUri('https://unauth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/');
     }
 
     /**
