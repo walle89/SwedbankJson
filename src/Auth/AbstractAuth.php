@@ -36,7 +36,7 @@ abstract class AbstractAuth implements AuthInterface
     private $_baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/';
 
     /** @var string API version */
-    private $_apiVersion = 'v4';
+    private $_apiVersion = 'v5';
 
     /** @var AppData AppData object */
     protected $_appData;
