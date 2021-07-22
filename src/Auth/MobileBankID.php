@@ -10,9 +10,6 @@ use SwedbankJson\AppData;
  */
 class MobileBankID extends AbstractAuth
 {
-    /** @var string Username. Personal identity number or corporate identity number (personnummer/organisationsnummer) */
-    private $_username;
-
     /** @var bool If Mobile BankID authentication have been verified */
     protected $_verified = false;
 
@@ -20,15 +17,13 @@ class MobileBankID extends AbstractAuth
      * MobileBankID constructor.
      *
      * @param AppData $appData  Bank type AppID
-     * @param string  $username Personal identity number or corporate identity number (personnummer/organisationsnummer)
      * @param bool    $debug    Enable debugging
      *
      * @throws Exception
      */
-    public function __construct(AppData $appData, $username, $debug = false)
+    public function __construct(AppData $appData, $debug = false)
     {
         $this->setAppData($appData);
-        $this->_username = $username;
         $this->_debug    = (bool)$debug;
         $this->setAuthorizationKey();
         $this->persistentSession();
@@ -48,21 +43,15 @@ class MobileBankID extends AbstractAuth
         if ($this->_verified)
             return true;
 
-        $output = $this->postRequest(
-            'identification/bankid/mobile',
-            [
-                'useEasyLogin'        => false,
-                'generateEasyLoginId' => false,
-                'bankIdOnSameDevice'  => false,
-                'userId'              => $this->_username,
-            ]);
+        $output = $this->postRequest('identification/bankid/mobile', ['bankIdOnSameDevice'  => false,]);
 
-        if ($output->status != 'USER_SIGN')
+        if ($output->status != 'USER_SIGN') {
             throw new Exception('Unable to use Mobile BankID. Check if the user have enabled Mobile BankID.', 10);
+        }
 
         $this->saveSession();
 
-        return $output;
+        return true;
     }
 
     /**
@@ -92,20 +81,16 @@ class MobileBankID extends AbstractAuth
     }
 
     /**
-     * Fetch the QR code
+     * Fetch the challenge Image (QR code)
      *
-     * @return bool True if verified. False to check later (eg. 5 seconds) for user verification.
-     * @throws Exception
+     * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function QRCode()
+    public function getChallengeImage()
     {
-        $request = $this->createRequest('get', 'identification/bankid/mobile/image');
-        $output = $this->initiateAndSendRequest($request, []);
+        $output = $this->getRequest('identification/bankid/mobile/image');
 
-        $this->saveSession();
-
-        return (string) $output->getBody();
+        return (string)$output;
     }
 
     /**

@@ -228,7 +228,7 @@ abstract class AbstractAuth implements AuthInterface
      * @return Request
      * @throws Exception
      */
-    protected function createRequest($method, $apiRequest, $headers = [], $body = null)
+    private function createRequest($method, $apiRequest, $headers = [], $body = null)
     {
         // Initiate HTTP client if missing
         if (empty($this->_client))
@@ -273,16 +273,16 @@ abstract class AbstractAuth implements AuthInterface
     }
 
     /**
-     * Helper function for intitiating and sending request includes error handling
+     * Sending HTTP request
      *
      * @param Request $request
      * @param array   $query   HTTP query for GET requests
      * @param array   $options HTTP client configurations
      *
-     * @return Response Response from the API
+     * @return object JSON decoded response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function initiateAndSendRequest(Request $request, array $query = [], array $options = [])
+    private function sendRequest(Request $request, array $query = [], array $options = [])
     {
         $dsid = $this->dsid();
 
@@ -311,25 +311,14 @@ abstract class AbstractAuth implements AuthInterface
             throw new ApiException($e->getResponse());
         }
 
-        return $response;
-    }
+        $output = $response->getBody();
 
-    /**
-     * Sending HTTP request
-     *
-     * @param Request $request
-     * @param array   $query   HTTP query for GET requests
-     * @param array   $options HTTP client configurations
-     *
-     * @return object JSON decoded response from the API
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    private function sendRequest(Request $request, array $query = [], array $options = [])
-    {
-        $response = $this->initiateAndSendRequest($request, $query, $options);
-        return json_decode($response->getBody());
+        if(strpos($response->getHeader('content-type')[0],'application/json;') !== false) {
+            $output = json_decode($output);
+        }
+
+        return $output;
     }
-    
 
     /**
      * Save session data between sessions
