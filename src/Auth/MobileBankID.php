@@ -53,6 +53,7 @@ class MobileBankID extends AbstractAuth
             [
                 'useEasyLogin'        => false,
                 'generateEasyLoginId' => false,
+                'bankIdOnSameDevice'  => false,
                 'userId'              => $this->_username,
             ]);
 
@@ -61,7 +62,7 @@ class MobileBankID extends AbstractAuth
 
         $this->saveSession();
 
-        return true;
+        return $output;
     }
 
     /**
@@ -88,6 +89,23 @@ class MobileBankID extends AbstractAuth
         $this->saveSession();
 
         return $this->_verified;
+    }
+
+    /**
+     * Fetch the QR code
+     *
+     * @return bool True if verified. False to check later (eg. 5 seconds) for user verification.
+     * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function QRCode()
+    {
+        $request = $this->createRequest('get', 'identification/bankid/mobile/image');
+        $output = $this->initiateAndSendRequest($request, []);
+
+        $this->saveSession();
+
+        return (string) $output->getBody();
     }
 
     /**
