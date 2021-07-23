@@ -5,7 +5,6 @@ use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\SessionCookieJar;
-use GuzzleHttp\Cookie\SetCookie;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\HandlerStack;
@@ -259,8 +258,8 @@ abstract class AbstractAuth implements AuthInterface
                     'Accept-Language'  => 'sv-se',
                     'Accept-Encoding'  => 'gzip, deflate',
                     'Connection'       => 'keep-alive',
-                    'Proxy-Connection' => 'keep-alive',
                     'User-Agent'       => $this->_appData->getUserAgent(),
+                    'X-Client'         => $this->_appData->getUserAgent(),
                 ],
                 'allow_redirects' => ['max' => 10, 'referer' => true,],
                 'verify'          => false, // Skipping TLS certificate verification of Swedbank API. Only for preventive purposes.
@@ -284,17 +283,8 @@ abstract class AbstractAuth implements AuthInterface
      */
     private function sendRequest(Request $request, array $query = [], array $options = [])
     {
-        $dsid = $this->dsid();
-
-        $this->_cookieJar->setCookie(new SetCookie([
-            'Name'   => 'dsid',
-            'Value'  => $dsid,
-            'Path'   => '/',
-            'Domain' => 0,
-        ]));
-
         $options['cookies'] = $this->_cookieJar;
-        $options['query']   = array_merge($query, ['dsid' => $dsid]);
+        $options['query']   = $query;
         try
         {
             $response = $this->_client->send($request, $options);
@@ -349,20 +339,6 @@ abstract class AbstractAuth implements AuthInterface
     public function __sleep()
     {
         return ['_appData', '_authorization', '_debug', '_persistentSession',];
-    }
-
-    /**
-     * Generate dsid
-     *
-     * Randomly generated 8 characters made for each request to the API.
-     * Likely to be used for braking cache.
-     *
-     * @return string 8 random generated characters
-     */
-    private function dsid()
-    {
-        // Random 8 characters.
-        return substr(base64_encode(hash('sha224',uniqid())),mt_rand(0,60),8);
     }
 
     /**
