@@ -79,7 +79,7 @@ abstract class AbstractAuth implements AuthInterface
      */
     public function genAuthorizationKey()
     {
-        return base64_encode($this->_appData->getAppID().':'.strtoupper(Uuid::uuid4()));
+        return base64_encode($this->_appData->getAppID().':'.$this->generateDeviceID());
     }
 
     /**
@@ -349,5 +349,15 @@ abstract class AbstractAuth implements AuthInterface
     protected function setBaseUri($baseUri)
     {
         $this->_baseUri = $baseUri;
+    }
+
+    /**
+     * Generates a random device ID
+     *
+     * @throws Exception
+     */
+    private function generateDeviceID(): string
+    {
+        return strtoupper(Uuid::uuid4());
     }
 }
