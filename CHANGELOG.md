@@ -3,13 +3,18 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
 ### Added
-- Automatic updates of or only remotely fetch app data meta data. Issue [#40](https://github.com/walle89/SwedbankJson/issues/40).
+- New authentication method:  Mobile BankID on same device.
+- New authentication method:  Mobile BankID QR code. Pull request [#43](https://github.com/walle89/SwedbankJson/pull/43). Thank you [@matthiaspalmer](https://github.com/matthiaspalmer) and [@NisseDILLIGAF](https://github.com/NisseDILLIGAF) for your contributions.
+- Automatic updates of or only remotely fetch app data metadata. Issue [#40](https://github.com/walle89/SwedbankJson/issues/40).
 - Fetch transaction details from transaction row. Issue [#38](https://github.com/walle89/SwedbankJson/issues/38).
 
 ### Changed
 - All auth classes now requires `AppData` object.
+- Moved from version 4 to version 5 of the Swedbank API.
 
 ### Removed
+- Mobile BankID with Personal identity number
+- Bank types "swedbank_ung" and "sparbanken_ung".
 - Warning for the "swedbank_företag" bank type.
 - To set BankType string in auth classes.
 
