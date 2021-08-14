@@ -16,6 +16,9 @@ class MobileBankID extends AbstractAuth
     /** @var string Token needed for authentication on same device */
     protected $_autoStartToken;
 
+    /** @var bool */
+    protected $_sameDevice = false;
+
     /**
      * MobileBankID constructor.
      *
@@ -37,18 +40,16 @@ class MobileBankID extends AbstractAuth
      *
      * Sends verification request to the users Mobile BankID app.
      *
-     * @param bool $bankIdOnSameDevice
-     *
      * @return bool
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function initAuth(bool $bankIdOnSameDevice): bool
+    public function initAuth(): bool
     {
         if ($this->_verified)
             return true;
 
-        $output = $this->postRequest('identification/bankid/mobile', ['bankIdOnSameDevice'  => $bankIdOnSameDevice,]);
+        $output = $this->postRequest('identification/bankid/mobile', ['bankIdOnSameDevice'  => $this->_sameDevice,]);
 
         if ($output->status != 'USER_SIGN') {
             throw new Exception('Unable to use Mobile BankID. Check if the user have enabled Mobile BankID.', 10);
@@ -136,5 +137,15 @@ class MobileBankID extends AbstractAuth
         $sleepAttr   = parent::__sleep();
         $sleepAttr[] = '_verified';
         return $sleepAttr;
+    }
+
+    /**
+     * Authentication on same device (true) or via image challenge (QR code)
+     *
+     * @param bool $sameDevice
+     */
+    public function sameDevice(bool $sameDevice)
+    {
+        $this->_sameDevice = $sameDevice;
     }
 }
