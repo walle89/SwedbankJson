@@ -16,7 +16,7 @@ $bankApp  = 'swedbank';   // Bank type
 ```
 
 ### Bank types
-This API client is based on the same API that Swedbank using for there mobile apps. Before first run, you need to set $bankApp to one of the 6 apps form the list below.
+This API client is based on the same API that Swedbank using for there mobile apps. Before first run, you need to set $bankApp to one of the 4 apps form the list below.
 What to $bankApp value to choose depends on the bank that the user is customer of. The rule of thumb is to choose whatever Swedbank's or Sparbanken's mobile app the user is using.
 
 #### Swedbank
@@ -24,16 +24,17 @@ What to $bankApp value to choose depends on the bank that the user is customer o
 | --- | --- | --- |
 | swedbank | Private individual | Swedbank | 
 | swedbank_foretag | Organisation | Swedbank Företag | 
-| swedbank_ung | Youth | Swedbank Ung |
 
 #### Sparbanken
 | $bankApp | Intended for | Mobile app name |
 | --- | --- | --- |
 | sparbanken | Private individual | Sparbanken | 
 | sparbanken_foretag | Organisation | Sparbanken Företag | 
-| sparbanken_ung | Youth | Sparbanken Ung |
 
 If you are unsure, 'swedbank' or 'swedbank_foretag' is often a quite a safe bet. There is no reliable way to find out in which bank the user is a customer of.
+
+#### Youth apps
+As of November 2020, app types 'swedbank_ung' and 'sparbanken_ung' have been removed these apps are no longer maintained by Swedbank. Use 'swedbank' or 'sparbanken' bank types instead.
 
 ## No authentication
 As the name suggests, for some API requests (eg. [Quick balance](../INSTALL.md#quick-balance)) there is no authentication required.
@@ -47,7 +48,7 @@ $bankConn = new SwedbankJson\SwedbankJson($auth);
 ```
 
 ## Mobile BankID
-Mobile [BankID](https://www.bankid.com/en/) is a electronic identification (eID) issued by Swedish banks to authenticate persons and organizations with a smartphone app.
+Mobile [BankID](https://www.bankid.com/en/) is an electronic identification (eID) issued by Swedish banks to authenticate persons and organizations with a smartphone app.
 To use this authentication method, you must download the "BankID säkerhetsapp" app by Finansiell ID-Teknik BID AB for [IOS](https://itunes.apple.com/us/app/bankid-sakerhetsapp/id433151512?mt=8) or [Android](https://play.google.com/store/apps/details?id=com.bankid.bus&hl=en)
 and follow the instructions in the app to activate BankID. If you use Mobile BankId today for sign in into one of the Swedbank apps, you are all set.
 

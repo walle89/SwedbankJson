@@ -51,14 +51,14 @@ class SwedbankJson
             if (!$output->hasSwedbankProfile AND $output->hasSavingsbankProfile)
             {
                 throw new UserException(
-                    "The user is not a customer in Swedbank. Please choose one of the Sparbanken's bank types (sparbanken, sparbanken_foretag eller sparbanken_ung)",
+                    "The user is not a customer in Swedbank. Please choose one of the Sparbanken's bank types (sparbanken or sparbanken_foretag)",
                     21
                 );
             }
             elseif ($output->hasSwedbankProfile AND !$output->hasSavingsbankProfile)
             {
                 throw new UserException(
-                    "The user is not a customer in Sparbanken. Please choose one of the Swedbank's bank types (swedbank, swedbank_foretag eller swedbank_ung)",
+                    "The user is not a customer in Sparbanken. Please choose one of the Swedbank's bank types (swedbank or swedbank_foretag)",
                     22
                 );
             }

@@ -13,6 +13,10 @@ All notable changes to this project will be documented in this file.
 - Warning for the "swedbank_företag" bank type.
 - To set BankType string in auth classes.
 
+## [0.7.6] - 2020-01-23
+### Fixed
+- Updated app version for all Swedbank apps in order to support the new minimal required version to use the API.
+
 ## [0.7.5] - 2019-12-09
 ### Fixed
 - Updated app version for all Swedbank apps in order to support the new minimal required version to use the API. Issue [#39](https://github.com/walle89/SwedbankJson/issues/39).
@@ -197,7 +201,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - First release.
 
-[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.7.5...HEAD
+[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.7.6...HEAD
+[0.7.6]: https://github.com/walle89/SwedbankJson/compare/v0.7.5...v0.7.6
 [0.7.5]: https://github.com/walle89/SwedbankJson/compare/v0.7.4...v0.7.5
 [0.7.4]: https://github.com/walle89/SwedbankJson/compare/v0.7.3...v0.7.4
 [0.7.3]: https://github.com/walle89/SwedbankJson/compare/v0.7.2...v0.7.3
