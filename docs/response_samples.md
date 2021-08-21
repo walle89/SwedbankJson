@@ -3,10 +3,11 @@
 * [Introduction](#introduction)
 * [Profile List](#profile-list)
 * [Reminders](#reminders)
-* [Baseinfo](#baseinfo)
 * [Account List](#account-list)
 * [Portfolio List](#portfolio-list)
 * [Account Details](#account-details)
+* [Transaction Details](#transaction-details)
+* [Transfer Base Info](#transfer-base-info)
 * [Register Transfer](#register-transfer)
 * [List Registered Transfers](#list-registered-transfers)
 * [List Confirmed Transfers](#list-confirmed-transfers)
@@ -23,6 +24,10 @@ Many parameter names and its content are mostly self-explanatory. Parameters tha
 ### Note about IDs and URIs
 All "id" and "uri" parameters below are per session temporary unique strings. They cannot and should not be saved and reused in any way.
 Depending on what API is used, there are other parameters that can be used as a persistent id between sessions. For more info, please [read the introduction](/INSTALL.md).
+
+### Work in progress
+Most of the examples below are for version 4 (v4) of the API, but the current API is using version 5 (v5).
+However, version 4 and 5 of the API are fairly similar outputs and should in general be any major difference.
 
 ## Profile List
 | Parameter | Description |
@@ -168,184 +173,6 @@ Depending on what API is used, there are other parameters that can be used as a 
                     )
     
                 [count] => 0
-            )
-    
-    )
-
-## Baseinfo
-| Parameter | Description |
-| --- | --- |
-| id | Per session temporary unique strings. Only used for referring an API action. |
-| fullyFormattedNumber | Persistent unique identifier for the account. |
-| perodicity | Alternatives for register periodicity transfers. See [Transfer money](/INSTALL.md#transfer-money) |
-| links | Used for internals of the API. New URIs for each session. |
-
-    stdClass Object
-    (
-        [fromAccountGroup] => Array
-            (
-                [0] => stdClass Object
-                    (
-                        [name] => Konton i svenska kronor
-                        [groupId] => ACCOUNT_SEK
-                        [accounts] => Array
-                            (
-                                [0] => stdClass Object
-                                    (
-                                        [balance] => 27 555,90
-                                        [name] => Salary
-                                        [id] => ee127fa99638283ecFAKEadac85ebc848b19cac2
-                                        [accountNumber] => 555 123 456-7
-                                        [clearingNumber] => 5555-9
-                                        [fullyFormattedNumber] => 5555-9,555 123 456-7
-                                        [availableForTags] => Array
-                                            (
-                                                [0] => DEFAULT_FROM_ACCOUNT
-                                            )
-    
-                                        [isDefault] => 1
-                                    )
-    
-                            )
-    
-                    )
-    
-                [1] => stdClass Object
-                    (
-                        [name] => Sparkonton
-                        [groupId] => ACCOUNT_SAVINGS
-                        [accounts] => Array
-                            (
-                                [0] => stdClass Object
-                                    (
-                                        [balance] => 79 555,52
-                                        [name] => Vacation
-                                        [id] => aa127fa99638283ecFAKEadac85ebc848b19bve8
-                                        [accountNumber] => 555 789 012-3
-                                        [clearingNumber] => 5555-9
-                                        [fullyFormattedNumber] => 5555-9,555 789 012-3
-                                        [availableForTags] => Array
-                                            (
-                                                [0] => DEFAULT_FROM_ACCOUNT
-                                            )
-    
-                                        [isDefault] => 
-                                    )
-                            )
-    
-                    )
-    
-            )
-    
-        [recipientAccountGroup] => Array
-            (
-                [0] => stdClass Object
-                    (
-                        [name] => Konton i svenska kronor
-                        [groupId] => ACCOUNT_SEK
-                        [accounts] => Array
-                            (
-                                [0] => stdClass Object
-                                    (
-                                        [balance] => 27 555,90
-                                        [name] => Salary
-                                        [id] => ee127fa99638283ecFAKEadac85ebc848b19cac2
-                                        [accountNumber] => 555 123 456-7
-                                        [clearingNumber] => 5555-9
-                                        [fullyFormattedNumber] => 5555-9,555 123 456-7
-                                        [availableForTags] => Array
-                                            (
-                                            )
-    
-                                        [isDefault] => 
-                                    )
-    
-                            )
-    
-                    )
-    
-                [1] => stdClass Object
-                    (
-                        [name] => Sparkonton
-                        [groupId] => ACCOUNT_SAVINGS
-                        [accounts] => Array
-                            (
-                                [0] => stdClass Object
-                                    (
-                                        [balance] => 79 555,52
-                                        [name] => Vacation
-                                        [id] => aa127fa99638283ecFAKEadac85ebc848b19bve8
-                                        [accountNumber] => 555 789 012-3
-                                        [clearingNumber] => 5555-9
-                                        [fullyFormattedNumber] => 5555-9,555 789 012-3
-                                        [availableForTags] => Array
-                                            (
-                                            )
-    
-                                        [isDefault] => 
-                                    )
-    
-                            )
-    
-                    )
-    
-                [2] => stdClass Object
-                    (
-                        [name] => Signerade mottagare
-                        [groupId] => ACCOUNT_SIGNED
-                        [accounts] => Array
-                            (
-                                [0] => stdClass Object
-                                    (
-                                        [name] => Tonari von Totoro
-                                        [id] => abc294c1dd55cFAKE386cb4d41a536ff9c9ae8e7
-                                        [accountNumber] => 555 345 678-9
-                                        [clearingNumber] => 5555-9
-                                        [fullyFormattedNumber] => 5555-9,555 345 678-9
-                                        [availableForTags] => Array
-                                            (
-                                            )
-    
-                                        [isDefault] => 
-                                    )
-    
-                            )
-    
-                    )
-    
-            )
-    
-        [perodicity] => Array
-            (
-                [0] => NONE
-                [1] => WEEKLY
-                [2] => EVERY_OTHER_WEEK
-                [3] => MONTHLY
-                [4] => EVERY_OTHER_MONTH
-                [5] => QUARTERLY
-                [6] => SEMI_ANNUALLY
-                [7] => ANNUALLY
-            )
-    
-        [addRecipientStatus] => stdClass Object
-            (
-                [allowed] => 
-                [notAllowedMessage] => stdClass Object
-                    (
-                        [message] => För att lägga till mottagare med Mobilt BankID behöver du aktivera Mobilt BankID för utökad användning.<br><br>Detta gör du i internetbanken på sidan BankID.
-                        [headline] => Du har inte aktiverat utökad användning för Mobilt BankID
-                    )
-    
-            )
-    
-        [links] => stdClass Object
-            (
-                [next] => stdClass Object
-                    (
-                        [method] => POST
-                        [uri] => /v4/transfer/registered
-                    )
-    
             )
     
     )
@@ -833,6 +660,286 @@ Depending on what API is used, there are other parameters that can be used as a 
             )
     
     )
+
+## Transfer Base Info
+| Parameter | Description |
+| --- | --- |
+| id | Per session temporary unique strings. Only used for referring an API action. |
+| fullyFormattedNumber | Persistent unique identifier for the account. |
+| periodicities | Alternatives for register periodicity transfers. See [Transfer money](/INSTALL.md#transfer-money) |
+| type |  |
+| scopes |  |
+| links | Used for internals of the API. New URIs for each session. |
+stdClass Object
+(
+    [payment] => stdClass Object
+        (
+            [payees] => Array
+                (
+                    [0] => stdClass Object
+                        (
+                            [name] => A BANKGIRO ACCOUNT
+                            [id] => 3e127fa99638283ecFAKEadac85ebc848b1337j1
+                            [type] => BGACCOUNT
+                            [accountNumber] => 729-7021
+                            [lastUsed] => 2016-12-20
+                            [referenceType] => OCR
+                            [links] => stdClass Object
+                                (
+                                    [delete] => stdClass Object
+                                        (
+                                            [method] => DELETE
+                                            [uri] => /v5/payment/payee/3e127fa99638283ecFAKEadac85ebc848b1337j1
+                                        )
+
+                                    [edit] => stdClass Object
+                                        (
+                                            [method] => PUT
+                                            [uri] => /v5/payment/payee/3e127fa99638283ecFAKEadac85ebc848b1337j1
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => stdClass Object
+                        (
+                            [name] => A PLUSGIRO ACCOUNT
+                            [id] => aa127fa99638283ecFAKEadac85ebc848b19bve8
+                            [type] => PGACCOUNT
+                            [accountNumber] => 418 99 01-4
+                            [lastUsed] => 2015-03-31
+                            [links] => stdClass Object
+                                (
+                                    [delete] => stdClass Object
+                                        (
+                                            [method] => DELETE
+                                            [uri] => /v5/payment/payee/aa127fa99638283ecFAKEadac85ebc848b19bve8
+                                        )
+
+                                    [edit] => stdClass Object
+                                        (
+                                            [method] => PUT
+                                            [uri] => /v5/payment/payee/aa127fa99638283ecFAKEadac85ebc848b19bve8
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [links] => stdClass Object
+                (
+                    [next] => stdClass Object
+                        (
+                            [method] => POST
+                            [uri] => /v5/payment/registered/payment
+                        )
+
+                )
+
+        )
+
+    [addRecipientStatus] => stdClass Object
+        (
+            [links] => stdClass Object
+                (
+                    [next] => stdClass Object
+                        (
+                            [method] => POST
+                            [uri] => /v5/payment/recipient
+                        )
+
+                )
+
+            [allowed] => 
+            [notAllowedMessage] => stdClass Object
+                (
+                    [message] => Aktivera Mobilt BankID med utökad användning för att lägga till mottagare med Mobilt BankID.<br><br>Detta gör du i internetbanken på sidan BankID.
+                    [headline] => Du har inte aktiverat utökad användning för Mobilt BankID
+                )
+
+        )
+
+    [transfer] => stdClass Object
+        (
+            [periodicities] => Array
+                (
+                    [0] => NONE
+                    [1] => WEEKLY
+                    [2] => EVERY_OTHER_WEEK
+                    [3] => MONTHLY
+                    [4] => EVERY_OTHER_MONTH
+                    [5] => QUARTERLY
+                    [6] => SEMI_ANNUALLY
+                    [7] => ANNUALLY
+                )
+
+            [externalRecipients] => Array
+                (
+                    [0] => stdClass Object
+                        (
+                            [name] => Tonari no Totoro
+                            [lastUsed] => 2013-03-30
+                            [links] => stdClass Object
+                                (
+                                    [delete] => stdClass Object
+                                        (
+                                            [method] => DELETE
+                                            [uri] => /v5/payment/recipient/abc294c1dd55cFAKE386cb4d41a536ff9c9ae8e7
+                                        )
+
+                                    [edit] => stdClass Object
+                                        (
+                                            [method] => PUT
+                                            [uri] => /v5/payment/recipient/abc294c1dd55cFAKE386cb4d41a536ff9c9ae8e7
+                                        )
+
+                                )
+
+                            [id] => abc294c1dd55cFAKE386cb4d41a536ff9c9ae8e7
+                            [bank] => Laholms Sparbank
+                            [accountNumber] => 555 789 012-3
+                            [clearingNumber] => 5555-9
+                            [fullyFormattedNumber] => 5555-9,555 789 012-3
+                        )
+
+            [links] => stdClass Object
+                (
+                    [next] => stdClass Object
+                        (
+                            [method] => POST
+                            [uri] => /v5/payment/registered/transfer
+                        )
+
+                )
+
+        )
+
+    [addPayeeStatus] => stdClass Object
+        (
+            [links] => stdClass Object
+                (
+                    [next] => stdClass Object
+                        (
+                            [method] => POST
+                            [uri] => /v5/payment/recipient
+                        )
+
+                )
+
+            [allowed] => 
+            [notAllowedMessage] => stdClass Object
+                (
+                    [message] => Aktivera Mobilt BankID med utökad användning för att lägga till mottagare med Mobilt BankID.<br><br>Detta gör du i internetbanken på sidan BankID.
+                    [headline] => Du har inte aktiverat utökad användning för Mobilt BankID
+                )
+
+        )
+
+    [transactionAccountGroups] => Array
+        (
+            [0] => stdClass Object
+                (
+                    [name] => Konton i svenska kronor
+                    [accounts] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [scopes] => Array
+                                        (
+                                            [0] => TRANSFER_TO
+                                            [1] => TRANSFER_FROM
+                                            [2] => DEFAULT_FROM
+                                            [3] => PAYMENT_FROM
+                                        )
+
+                                    [currencyCode] => SEK
+                                    [amount] => 27 555,90
+                                    [name] => Salary
+                                    [id] => ee127fa99638283ecFAKEadac85ebc848b19cac2
+                                    [accountNumber] => 555 123 456-7
+                                    [clearingNumber] => 5555-9
+                                    [fullyFormattedNumber] => 5555-9,555 123 456-7
+                                )
+
+                            [1] => stdClass Object
+                                (
+                                    [scopes] => Array
+                                        (
+                                            [0] => TRANSFER_FROM
+                                        )
+
+                                    [currencyCode] => SEK
+                                    [amount] => 0,00
+                                    [usageNotification] => Observera att detta är ett investeringssparkonto. Insättningar medför skattekonsekvenser.
+                                    [name] => Pension savings ISK
+                                    [id] => ffec719061337645f5367de6acFAKE096fe32997
+                                    [accountNumber] => 555 456 789-0
+                                    [clearingNumber] => 5555-9
+                                    [fullyFormattedNumber] => 5555-9,555 456 789-0
+                                )
+
+                        )
+
+                )
+
+            [1] => stdClass Object
+                (
+                    [name] => Sparkonton
+                    [accounts] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [scopes] => Array
+                                        (
+                                            [0] => TRANSFER_TO
+                                            [1] => TRANSFER_FROM
+                                            [2] => PAYMENT_FROM
+                                        )
+
+                                    [currencyCode] => SEK
+                                    [amount] => 79 555,52
+                                    [name] => Vacation
+                                    [id] => aa127fa99638283ecFAKEadac85ebc848b19bve8
+                                    [accountNumber] => 555 789 012-3
+                                    [clearingNumber] => 5555-9
+                                    [fullyFormattedNumber] => 5555-9,555 789 012-3
+                                )
+                                
+                            [1] => stdClass Object
+                                (
+                                    [scopes] => Array
+                                        (
+                                            [0] => TRANSFER_TO
+                                            [1] => TRANSFER_FROM
+                                        )
+
+                                    [currencyCode] => SEK
+                                    [amount] => 1 337,00
+                                    [name] => New Bike
+                                    [id] => fe74b15d2c239FAKE41eb3d11fe54d567c80ad8d
+                                    [accountNumber] => 555 071 585-6
+                                    [clearingNumber] => 5555-9
+                                    [fullyFormattedNumber] => 5555-9,555 071 585-6
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [internationalRecipients] => stdClass Object
+        (
+            [recipients] => Array
+                (
+                )
+
+        )
+
+)
 
 ## Register Transfer
 | Parameter | Description |
