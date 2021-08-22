@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file.
 - New authentication method:  Mobile BankID QR code. Pull request [#43](https://github.com/walle89/SwedbankJson/pull/43). Thank you [@matthiaspalmer](https://github.com/matthiaspalmer) and [@NisseDILLIGAF](https://github.com/NisseDILLIGAF) for your contributions.
 - Automatic updates of or only remotely fetch app data metadata. Issue [#40](https://github.com/walle89/SwedbankJson/issues/40).
 - Fetch transaction details from transaction row. Issue [#38](https://github.com/walle89/SwedbankJson/issues/38).
+- Method transferBaseInfo().
+- Method transferRegisterPayment().
+- Method transferListRegistered().
+- Method transferListConfirmed().
+- Method transferConfirmPayments().
 
 ### Changed
 - All auth classes now requires `AppData` object.
@@ -17,6 +22,12 @@ All notable changes to this project will be documented in this file.
 - Bank types "swedbank_ung" and "sparbanken_ung".
 - Warning for the "swedbank_företag" bank type.
 - To set BankType string in auth classes.
+- Method baseInfo(), replaced with transferBaseInfo().
+- Method registerTransfer(), replaced with transferRegisterPayment().
+- Method listRegisteredTransfers(), replaced with transferListRegistered().
+- Method listConfirmedTransfers(), replaced with transferListConfirmed().
+- Method deleteTransfer(), replaced with transferDeletePayment().
+- Method confirmTransfers(), replaced with transferConfirmPayments().
 
 ## [0.7.6] - 2020-01-23
 ### Fixed

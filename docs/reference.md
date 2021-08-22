@@ -7,9 +7,6 @@ Lists available user profiles. Used to include switching between private account
 ## Reminders()
 Get the number of rejected payments, payments signed, unsigned transfers and incoming e-invoices.
 
-## BaseInfo()
-Account list grouped by type.
-
 ## AccountList([ string $profileID = '' ])
 List all bank accounts available to the profile. If no profile set is selected first profile in the list.
 
@@ -22,19 +19,22 @@ Shows account details and transactions for the account. If no $accountID is not 
 ## TransactionDetails( string $detailsTransactionID )
 Shows additional information about a specific transaction.
 
-## RegisterTransfer( float $amount, string $fromAccountId, string $recipientAccountId [, string $fromAccountNote = '' [, string $recipientAccountMessage = '' [, string $transferDate = '' [, string $periodicity = 'NONE']]]])
+## TransferBaseInfo()
+List accounts that can send or receive payment.
+
+## TransferRegisterPayment( float $amount, string $fromAccountId, string $recipientAccountId [, string $fromAccountNote = '' [, string $recipientAccountMessage = '' [, string $transferDate = '' [, string $periodicity = '']]]])
 Register a money transfer.
 
-## ListRegisteredTransfers()
+## TransferListRegistered()
 List registered money transfers.
 
-## ListConfirmedTransfers()
+## TransferListConfirmed()
 List confirmed money transfers.
 
-## DeleteTransfer( string $transferId )
-Delete a money transfer. You will find $transferId in ListRegisteredTransfers() or ListConfirmedTransfers().
+## TransferDeletePayment( string $transferId )
+Delete a money transfer. You will find $transferId in TransferListRegistered() or TransferListConfirmed().
 
-## ConfirmTransfers()
+## TransferConfirmPayments()
 Execute registered money transfers.
 
 ## QuickBalanceAccounts([ string $profileID = '' ])
