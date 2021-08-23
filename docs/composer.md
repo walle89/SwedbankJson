@@ -15,12 +15,12 @@ Composer makes it easy to use third-party components and libraries like [Symfony
 Instead, downloading all dependencies (and a dependency dependencies) manually, Composer takes care of it for you.
 It also helps developers with keep all dependencies up to date with new updates that includes new features, security and bug fixes.
 
-Many modern PHP projects like [Zend Framework 3], [Symfony], [Laravel] and [Guzzle] all uses Composer.
+Many modern PHP projects like [Zend Framework 3], [Symfony], [Laravel], [Facebook SDK] and [Guzzle] all uses Composer.
 
 You can read more about Composer in [this guide] or [on its official website].
  
 ## Installation
-One of the simplest way to install with Composer is run the installer local on the computer and then upload the files to the web server.
+One of the simplest ways to install with Composer is run the installer local on the computer and then upload the files to the web server.
 If you want to, you can run Composer directly on the web server if you have permissions to do so. 
 
 ### 1. Run Composer
@@ -47,7 +47,7 @@ When you have installed Composer, create or modify `composer.json` with the foll
 ```javascript
 {
     "require": {
-        "walle89/swedbank-json": "^0.7"
+        "walle89/swedbank-json": "^1.0"
     }
 }
 ```
@@ -80,6 +80,7 @@ Right click on the directory containing composer.json, right click and select "C
 [Zend Framework 3]: https://framework.zend.com/
 [Symfony]: https://github.com/symfony/symfony
 [Laravel]: https://laravel.com/
+[Facebook SDK]: https://github.com/facebook/php-graph-sdk
 
 [Guzzle]: https://github.com/guzzle/guzzle
 [this guide]: https://www.codementor.io/php/tutorial/composer-install-php-dependency-manager
