@@ -25,11 +25,11 @@ use SwedbankJson\Exception\UserException;
  */
 abstract class AbstractAuth implements AuthInterface
 {
-    /** Auth session name */
+    /** @var string Auth session name */
     const authSession = 'swedbankjson_auth';
 
-    /** Cookie jar session name */
     const cookieJarSession = 'swedbankjson_cookiejar';
+    /** @var string Cookie jar session name */
 
     /** @var string URI to API server */
     private $_baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/';
@@ -72,7 +72,7 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * Generates authorization key
      *
-     * Swedbank app API require a authorization key to able to connect to their API.
+     * Swedbank app API requires an authorization key to be able to connect to their API.
      *
      * @return string Randomly generated authorization key
      * @throws Exception
