@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
+
+## [1.0.0] - 2021-08-29
 ### Added
 - New authentication method:  Mobile BankID on same device.
 - New authentication method:  Mobile BankID QR code. Pull request [#43](https://github.com/walle89/SwedbankJson/pull/43). Thank you [@matthiaspalmer](https://github.com/matthiaspalmer) and [@NisseDILLIGAF](https://github.com/NisseDILLIGAF) for your contributions.
@@ -218,7 +220,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - First release.
 
-[unreleased]: https://github.com/walle89/SwedbankJson/compare/v0.7.6...HEAD
+[unreleased]: https://github.com/walle89/SwedbankJson/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/walle89/SwedbankJson/compare/0.7.6...v1.0.0
 [0.7.6]: https://github.com/walle89/SwedbankJson/compare/0.7.5...0.7.6
 [0.7.5]: https://github.com/walle89/SwedbankJson/compare/0.7.4...0.7.5
 [0.7.4]: https://github.com/walle89/SwedbankJson/compare/0.7.3...0.7.4
