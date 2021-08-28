@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - All auth classes now requires `AppData` object.
 - Moved from version 4 to version 5 of the Swedbank API.
+- setBaseUri() method now need API version number included.
 
 ### Removed
 - Mobile BankID with Personal identity number

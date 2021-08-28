@@ -28,16 +28,14 @@ abstract class AbstractAuth implements AuthInterface
     /** @var string Auth session name */
     const authSession = 'swedbankjson_auth';
 
-    const cookieJarSession = 'swedbankjson_cookiejar';
     /** @var string Cookie jar session name */
+    const cookieJarSession  = 'swedbankjson_cookiejar';
 
-    /** @var string URI to API server */
-    private $_baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/';
     /** @var string Logout endpoint */
     const apiEndpointTerminate = 'identification/logout';
 
-    /** @var string API version */
-    private $_apiVersion = 'v5';
+    /** @var string URI to API server */
+    private $_baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/v5/';
 
     /** @var AppData AppData object */
     protected $_appData;
@@ -253,7 +251,7 @@ abstract class AbstractAuth implements AuthInterface
             }
 
             $this->_client = new Client([
-                'base_uri'        => $this->_baseUri.$this->_apiVersion.'/',
+                'base_uri'        => $this->_baseUri,
                 'headers'         => [
                     'Authorization'    => $this->_authorization,
                     'Accept'           => '*/*',
@@ -346,7 +344,7 @@ abstract class AbstractAuth implements AuthInterface
     /**
      * Overwrite base URI to API server
      *
-     * @param string $baseUri URI to API server. Exclude version
+     * @param string $baseUri URI to API server.
      */
     protected function setBaseUri($baseUri)
     {
