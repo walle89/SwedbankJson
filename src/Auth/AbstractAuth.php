@@ -356,7 +356,7 @@ abstract class AbstractAuth implements AuthInterface
      *
      * @throws Exception
      */
-    private function generateDeviceID(): string
+    private function generateDeviceID()
     {
         return strtoupper(Uuid::uuid4());
     }
