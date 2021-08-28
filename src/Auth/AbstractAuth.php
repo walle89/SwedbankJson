@@ -33,6 +33,8 @@ abstract class AbstractAuth implements AuthInterface
 
     /** @var string URI to API server */
     private $_baseUri = 'https://auth.api.swedbank.se/TDE_DAP_Portal_REST_WEB/api/';
+    /** @var string Logout endpoint */
+    const apiEndpointTerminate = 'identification/logout';
 
     /** @var string API version */
     private $_apiVersion = 'v5';
@@ -92,7 +94,7 @@ abstract class AbstractAuth implements AuthInterface
      */
     public function terminate()
     {
-        $result = $this->putRequest('identification/logout');
+        $result = $this->putRequest(self::apiEndpointTerminate);
 
         $this->cleanup();
 
@@ -294,7 +296,7 @@ abstract class AbstractAuth implements AuthInterface
             throw new ApiException($e->getResponse());
         } catch (ClientException $e)
         {
-            if(strpos($request->getUri(), 'identification/logout') === false)
+            if (strpos($request->getUri(), self::apiEndpointTerminate) === false)
             {
                 $this->terminate();
             }
