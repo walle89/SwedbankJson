@@ -68,7 +68,7 @@ if (!isset($_SESSION['swedbankjson_auth']))
     $auth->sameDevice(true);
     $auth->initAuth();
     
-    // For automatic redirect from BankID app, replace "null" with URL to this script.
+    // Automatic redirect back to script from BankID app, replace "null" with URL to this script. Eg. "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"
     $redirectURL = urlencode('null');
     $bankIdAppUrl = sprintf('https://app.bankid.com/?autostarttoken=%s&redirect=%s', $auth->getAutoStartToken(), $redirectURL);
     
@@ -130,6 +130,7 @@ if (!$auth->verify()) {
         '<img src="data:image/png;base64,%s" style="max-width:100%%">',
         base64_encode($auth->getChallengeImage())
     );
+    exit;
 }
 
 // Step 3 - You are in!

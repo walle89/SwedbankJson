@@ -25,7 +25,7 @@ try
 
         if ($sameDevice)
         {
-            // For automatic redirect from BankID app, replace "null" with URL to this script.
+            // Automatic redirect back to script from BankID app, replace "null" with URL to this script. Eg. "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"
             $redirectURL = urlencode('null');
 
             $bankIdAppUrl = sprintf('https://app.bankid.com/?autostarttoken=%s&redirect=%s', $auth->getAutoStartToken(), $redirectURL);
