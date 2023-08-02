@@ -2,19 +2,22 @@
 
 Unofficial API client for the Swedbank's and Sparbanken's mobile apps in Sweden.
 
-* Overview of your bank accounts, loans, debit and credit cards.
+* Overview of your bank accounts, loans, debit and credit cards
 * List account transactions
 * Transfer money between accounts
-* Sign in with different profiles, ideal for Swedbank Företag app users.
+* Sign in with different profiles, ideal for Swedbank Företag app users
 * Activate, deactivate, and view quick balance (aka. snabbsaldo)
+* No authentication required to view quick balance, ideal for unattended monitoring and automation
 
 **Authentication methods**
 
 * Mobile BankID
 * Security token with one time code
-* No authentication (used for some functionality eg. quick balance)
 
-Traffic between Swedbank's servers and the API client uses the same TLS encryption that Swedbank apps are using and without middlemen.
+## Security
+
+All SwedbankJson API client traffic is TLS encrypted and strictly between your device/server that runs the code and Swedbank's servers. The client can not and will not send any
+information to any third party for any reason. 
 
 ## Installation and documentation
 
@@ -23,6 +26,7 @@ Traffic between Swedbank's servers and the API client uses the same TLS encrypti
 * [Reference](docs/reference.md)
 
 ## Code example
+
 List bank statements with authentication method [security token with one time code](docs/authentication.md#security-token-with-one-time-code).
 
 ```php
@@ -37,7 +41,7 @@ echo 'Bank statements
 print_r($accountInfo);
 ```
 
-All APIs does not require to sign in. One example is quick balance.
+All API endpoints do not require to sign in. One example is quick balance.
 
 ```php
 $auth     = new SwedbankJson\Auth\UnAuth($appData);
@@ -52,26 +56,39 @@ print_r($quickBalance);
 
 ## FAQ
 
-### Can I install it without Composer?
-No, it's either recommended or supported. It's much easier to use Composer than manually download all the dependencies. [Read more about installing with Composer](docs/composer.md).
+### Can I install SwedbankJson without Composer?
 
-### I'm not a Swedbank customer in Sweden, can I use this library?
-No, Swedbank's API is unique for the Swedish market and is not compatible with eg. Swedbank Denmark or Swedbank Lithuania.
+No, it's either recommended or supported. It's much easier to use Composer than manually download all the
+dependencies. [Read more about installing with Composer](docs/composer.md).
 
-### Why is this library not using the Swedbank Open Banking API?
-Swedbank Open Banking API (and Open Banking in general) is in many aspects a fantastic initiative, that gives third parties access to an open API to fetch bank statements and initiate payment transactions on behalf of a customer. Unlike this library, Swedbank Open Banking API is supported by the bank.
+### Is SwedbankJson compatible with Swedbank's non-swedish apps?
 
-However there are few downsides with Open Banking API. One of them is it's costly and time consuming to get the required AISP or PISP licence from a local financial supervisory authority such as [Finansinspektionen](https://www.fi.se/sv/bank/andra-betaltjanstdirektivet-psd-2/) (Swedish) in order to get access to real customer data (production access).
+As far as I know, the Swedbank's API that SwedbankJson is using is unique for the Swedish market and is not used outside of Sweden.
 
-This library is instead using Swedbank's Mobile Apps API, the same API that's used for the Swedish Swedbank apps or Sparbanken apps for Android and Ios. If you can use any of Swedbank's or Sparbanken's apps, then you can start using this library. Also Mobile Apps API have endpoints such as QuickBalance that's not exist in the Swedbank Open Banking API.
+### Why use mobile apps API instead of Swedbank Open Banking API?
+
+In short, if you can use of Swedbank's or Sparbanken's Swedish mobile apps for Android or Ios, then you can use this library right now to e.g. login to your own account and fetch
+real transaction data (aka. production access).
+
+In order get similar production access for the Swedbank Open Banking API, the following are required:
+
+1. Hold a PISP, AISP or similar license from a local financial regulatory authority such
+   as [Finansinspektionen](https://www.fi.se/sv/betalningar/andra-betaltjanstdirektivet-psd-2/)
+   (Swedish). Applying for a license [may involve fees](https://www.fi.se/en/payments/apply-for-authorisation/payment-services/).
+2. Valid QSEAL and QWAC certificates.
+3. Apply for production access and be approved by Swedbank.
+
+In other words, it's a long, complex (and costly) process to get started with Open Banking API.
 
 ## Support and Feedback
-This project utilize Github Issues for both support and feedback. Before creating a new issue, please do the following:
+
+This project utilize GitHub Issues for both support and feedback. Before creating a new issue, please do the following:
 
 1. Check the documentation (see links under [Installation and documentation](#installation-and-documentation)).
-1. [Search in issues](https://github.com/walle89/SwedbankJson/issues).
+2. [Search in issues](https://github.com/walle89/SwedbankJson/issues).
 
 If you didn't find your answer, you are welcome to [create a new issue](https://github.com/walle89/SwedbankJson/issues).
 
 ## License
+
 [MIT](LICENSE)
