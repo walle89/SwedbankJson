@@ -4,6 +4,7 @@ composer.*
 !composer.json
 vendor/
 .DS_Store
+/AGENTS.md
 
 ### Local Vagrant dev ###
 tests/
