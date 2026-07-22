@@ -1,11 +1,11 @@
-> [!CAUTION]  
-> This project is not affiliated with, endorsed by, or associated with Swedbank, Sparbanken, or any of their subsidiaries.
-> All trademarks and brand names are the property of their respective owners.
-> Use of the information and resources provided in this repository is for educational and interoperability purposes only and may be subject to legal or policy restrictions.
-
 # SwedbankJson
 
 Unofficial API client for the Swedbank's and Sparbanken's mobile apps in Sweden.
+
+> [!IMPORTANT]
+> **Independent project.** SwedbankJson is not affiliated with or endorsed by Swedbank AB or any savings bank operating under the Sparbanken name. All trademarks belong to their respective owners.
+>
+> **Responsible use.** This software is intended for education, research, and interoperability. Use it only with accounts and systems you are authorized to access, and comply with applicable laws and service terms.
 
 * Overview of your bank accounts, loans, debit and credit cards
 * List account transactions
