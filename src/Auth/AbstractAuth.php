@@ -261,8 +261,12 @@ abstract class AbstractAuth implements AuthInterface
                     'User-Agent'       => $this->_appData->getUserAgent(),
                     'X-Client'         => $this->_appData->getUserAgent(),
                 ],
-                'allow_redirects' => ['max' => 10, 'referer' => true,],
-                'verify'          => false, // Skipping TLS certificate verification of Swedbank API. Only for preventive purposes.
+                'allow_redirects' => [
+                    'max'       => 10,
+                    'referer'   => false,
+                    'protocols' => ['https'],
+                ],
+                'verify'          => true,
                 'handler'         => $stack,
                 //'debug'           => $this->_debug,
             ]);

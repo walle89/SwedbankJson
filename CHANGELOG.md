@@ -1,7 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
 ## [Unreleased][unreleased]
+
+## [1.0.1] - 2026-07-27
+### Security
+- Enabled TLS certificate verification for API requests.
+- Restricted automatic redirects to HTTPS and disabled generated `Referer` headers.
 
 ## [1.0.0] - 2021-08-29
 ### Added
@@ -220,7 +227,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - First release.
 
-[unreleased]: https://github.com/walle89/SwedbankJson/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/walle89/SwedbankJson/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/walle89/SwedbankJson/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/walle89/SwedbankJson/compare/0.7.6...v1.0.0
 [0.7.6]: https://github.com/walle89/SwedbankJson/compare/0.7.5...0.7.6
 [0.7.5]: https://github.com/walle89/SwedbankJson/compare/0.7.4...0.7.5
