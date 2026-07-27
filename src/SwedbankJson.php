@@ -420,6 +420,67 @@ class SwedbankJson
     }
 
     /**
+     * Lists credit cards available to the profile.
+     *
+     * Returns all credit cards associated with the authenticated user from the mobile API.
+     * Each card includes information such as card number (masked), credit limit, used credit,
+     * available amount, and current balance.
+     *
+     * @param string $profileID Profile ID
+     *
+     * @return object Decoded JSON credit card list with cardAccounts array
+     * @throws Exception
+     */
+    public function creditCardList($profileID = '')
+    {
+        $this->selectProfile($profileID);
+
+        $output = $this->_auth->getRequest('card/creditcard');
+
+        if (!isset($output->cardAccounts))
+            throw new Exception('Cannot fetch credit card list.', 70);
+
+        return $output;
+    }
+
+    /**
+     * Credit card details and transactions.
+     *
+     * Returns transaction history for a specific credit card, including both booked transactions
+     * and reserved (pending) transactions. Supports pagination for large transaction histories.
+     *
+     * @param string $cardID              Credit card ID. If left blank, the first credit card is chosen.
+     * @param int    $transactionsPerPage Transactions per page. Default 100.
+     * @param int    $page                Transaction paging index (1-based).
+     *
+     * @return object Decoded JSON with credit card transaction information including transactions, reservedTransactions, and creditCardDetails
+     * @throws Exception Not valid CardID
+     */
+    public function creditCardDetails($cardID = '', $transactionsPerPage = 0, $page = 1)
+    {
+        // If card ID not defined, choose first credit card
+        if (empty($cardID))
+        {
+            $cards = $this->creditCardList();
+            if (empty($cards->cardAccounts) || count($cards->cardAccounts) === 0)
+                throw new Exception('No credit cards available.', 71);
+
+            $cardID = $cards->cardAccounts[0]->id;
+        }
+
+        $query = [];
+        if ($transactionsPerPage > 0 AND $page >= 1)
+            $query = ['transactionsPerPage' => (int)$transactionsPerPage, 'page' => (int)$page,];
+
+        $output = $this->_auth->getRequest('card/creditcard/'.$cardID.'/transactions', $query);
+
+        if (!isset($output->transactions))
+            throw new Exception('Not a valid CardID', 72);
+
+        return $output;
+    }
+
+    /**
      * Sign out
      *
      * Alias for @see AbstractAuth::terminate()

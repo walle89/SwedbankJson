@@ -86,5 +86,9 @@ try
 echo '<h1>Account details</h1><pre>';
 print_r($bankConn->accountDetails());
 
+// Example of credit card details call. See documentation for details.
+echo '<h1>Credit card details</h1><pre>';
+print_r($bankConn->creditCardDetails());
+
 // Sign out. If you want to keep the session to next page load, remove this line.
 $bankConn->terminate();
